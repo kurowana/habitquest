@@ -1,48 +1,14 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
+import userStore from "./store/user";
+import eventStore from "./store/event";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-const store =new Vuex.Store({
-    state:{
-        user_id:'',
-        user:{},
-        userSt:{
-            maxhp:0,
-            hp:0,
-            maxmp:0,
-            mp:0,
-            atk:0,
-            matk:0,
-            def:0,
-            mdef:0,
-            spd:0,
-            hit:0,
-            flee:0,
-        },
-        monster:{},
-    },
-    getters:{
-        getUserInfo:state=>{
-            return state.user
-        },
-        getUserSt:state=>{
-            return state.userSt
-        },
-        getHasHabit:state=>{
-            return state.user.habit
-        },
-        getMonster:state=>{
-            return state.monster
-        },
-    },
-    mutations:{
-        setHabit(state,habit){
-            Vue.set(state.user.habit,{'habit_name':habit})
-        },
-
+const store = new Vuex.Store({
+    modules: {
+        userStore,
+        eventStore
     }
-})
-export default store
-
-
+});
+export default store;
