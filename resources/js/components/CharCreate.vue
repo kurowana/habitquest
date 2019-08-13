@@ -141,7 +141,7 @@ export default {
         }
         if (st == "dex" && this.currentDex > 10) {
           this.currentDex--;
-          this.statusPoint++;
+          this.statusPoin;
         }
         if (st == "luc" && this.currentLuc > 10) {
           this.currentLuc--;
