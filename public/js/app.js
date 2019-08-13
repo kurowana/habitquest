@@ -1896,10 +1896,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -1911,25 +1907,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      user: ''
+      user: ""
     };
   },
   props: {
-    'userId': ''
+    userId: ""
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getUserInfo', 'getUserSt'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getUserInfo", "getUserSt"])),
   components: {
-    'char-info': _CharInfo__WEBPACK_IMPORTED_MODULE_3__["default"],
-    'char-create': _CharCreate__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'habit': _Habit__WEBPACK_IMPORTED_MODULE_4__["default"],
-    'monster-create': _MonsterCreate__WEBPACK_IMPORTED_MODULE_5__["default"],
-    'battle': _Battle__WEBPACK_IMPORTED_MODULE_6__["default"],
-    'message': _Message__WEBPACK_IMPORTED_MODULE_7__["default"]
+    "char-info": _CharInfo__WEBPACK_IMPORTED_MODULE_3__["default"],
+    "char-create": _CharCreate__WEBPACK_IMPORTED_MODULE_2__["default"],
+    habit: _Habit__WEBPACK_IMPORTED_MODULE_4__["default"],
+    "monster-create": _MonsterCreate__WEBPACK_IMPORTED_MODULE_5__["default"],
+    battle: _Battle__WEBPACK_IMPORTED_MODULE_6__["default"],
+    message: _Message__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   created: function created() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('./api/set_status', {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/set_status", {
       user_id: this.userId
     }).then(function (res) {
       _this.user = res.data;
@@ -1950,10 +1946,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     test: function test() {
-      this.$store.commit('strup');
+      this.$store.commit("strup");
     },
     test2: function test2() {
-      this.$store.commit('plus');
+      this.$store.commit("plus");
     }
   }
 });
@@ -2117,15 +2113,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       imgList: {
-        'char1': '男性1',
-        'char2': '女性1'
+        char1: "男性1",
+        char2: "女性1"
       },
-      selectedImg: '',
+      selectedImg: "",
       statusPoint: 5,
       currentStr: 10,
       currentVit: 10,
@@ -2136,7 +2134,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   props: {
-    'userId': ''
+    userId: ""
   },
   computed: {
     v_statusPoint: function v_statusPoint() {
@@ -2163,31 +2161,31 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     charImgChange: function charImgChange(imgname) {
-      this.selectedImg = 'img/' + imgname + '.png';
+      this.selectedImg = "img/" + imgname + ".png";
     },
     stPlus: function stPlus(st) {
       if (this.statusPoint > 0) {
-        if (st == 'str') {
+        if (st == "str") {
           this.currentStr++;
         }
 
-        if (st == 'vit') {
+        if (st == "vit") {
           this.currentVit++;
         }
 
-        if (st == 'int') {
+        if (st == "int") {
           this.currentInt++;
         }
 
-        if (st == 'agi') {
+        if (st == "agi") {
           this.currentAgi++;
         }
 
-        if (st == 'dex') {
+        if (st == "dex") {
           this.currentDex++;
         }
 
-        if (st == 'luc') {
+        if (st == "luc") {
           this.currentLuc++;
         }
 
@@ -2196,32 +2194,32 @@ __webpack_require__.r(__webpack_exports__);
     },
     stMinus: function stMinus(st) {
       if (this.statusPoint < 5) {
-        if (st == 'str' && this.currentStr > 10) {
+        if (st == "str" && this.currentStr > 10) {
           this.currentStr--;
           this.statusPoint++;
         }
 
-        if (st == 'vit' && this.currentVit > 10) {
+        if (st == "vit" && this.currentVit > 10) {
           this.currentVit--;
           this.statusPoint++;
         }
 
-        if (st == 'int' && this.currentInt > 10) {
+        if (st == "int" && this.currentInt > 10) {
           this.currentInt--;
           this.statusPoint++;
         }
 
-        if (st == 'agi' && this.currentAgi > 10) {
+        if (st == "agi" && this.currentAgi > 10) {
           this.currentAgi--;
           this.statusPoint++;
         }
 
-        if (st == 'dex' && this.currentDex > 10) {
+        if (st == "dex" && this.currentDex > 10) {
           this.currentDex--;
           this.statusPoint++;
         }
 
-        if (st == 'luc' && this.currentLuc > 10) {
+        if (st == "luc" && this.currentLuc > 10) {
           this.currentLuc--;
           this.statusPoint++;
         }
@@ -2229,9 +2227,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     createChar: function createChar() {
       if (this.statusPoint > 0) {
-        alert('振り分けポイントが残っています');
+        alert("振り分けポイントが残っています");
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('./api/create_char', {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/create_char", {
           user_id: this.userId,
           str: this.currentStr,
           vit: this.currentVit,
@@ -2657,7 +2655,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.content[data-v-c514e612]{\r\n    display:flex;\r\n    width:1000px;\n}\n.sidebar[data-v-c514e612]{\r\n    width:200px;\r\n    background: url(" + escape(__webpack_require__(/*! ../../../public/img/ui/sidebar.png */ "./public/img/ui/sidebar.png")) + ") repeat;\n}\n.game-view[data-v-c514e612]{\r\n    width:800px;\r\n    height:600px;\r\n    position:relative;\r\n    background-image:url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden000.jpg */ "./public/img/bg/shinden000.jpg")) + ");\n}\n.btn[data-v-c514e612]{\r\n    width:180px;\r\n    height:40px;\r\n    margin:10px;\r\n    padding:5px;\r\n    background:linear-gradient(#333, #666);\r\n    border:double 2px gold;\r\n    border-radius: 5px;\r\n    color:white;\r\n    font-size:16px;\n}\n.anime[data-v-c514e612]{\r\n    width:192px;\r\n    height:192px;\r\n    padding: 0;\r\n    background:url(" + escape(__webpack_require__(/*! ../../../public/img/effect/test.png */ "./public/img/effect/test.png")) + ") 0 0 no-repeat;\r\n    -webkit-animation: sprite1-data-v-c514e612 0.5s step-end infinite;\r\n            animation: sprite1-data-v-c514e612 0.5s step-end infinite;\n}\n.anime2[data-v-c514e612]{\r\n    width:192px;\r\n    height:192px;\r\n    padding: 0;\r\n    background:url(" + escape(__webpack_require__(/*! ../../../public/img/effect/test2.png */ "./public/img/effect/test2.png")) + ") 0 0 no-repeat;\r\n    -webkit-animation: sprite1-data-v-c514e612 0.5s step-end infinite;\r\n            animation: sprite1-data-v-c514e612 0.5s step-end infinite;\n}\n@-webkit-keyframes sprite1-data-v-c514e612 {\n1% {background-position: 0 0}\n5% {background-position: -192px 0}\n10% {background-position: -384px 0}\n15% {background-position: -576px 0}\n20% {background-position: -768px 0}\n25% {background-position: 0 -192px}\n30% {background-position: -192px -192px}\n35% {background-position: -384px -192px}\n40% {background-position: -576px -192px}\n45% {background-position: -768px -192px}\n50% {background-position: 0 -384px}\n55% {background-position: -192px -384px}\n60% {background-position: -384px -384px}\n65% {background-position: -576px -384px}\n70% {background-position: -768px -384px}\n75% {background-position: 0 -576px}\n80% {background-position: -192px -576px}\n85% {background-position: -384px -576px}\n90% {background-position: -576px -576px}\n95% {background-position: -768px -576px}\n}\n@keyframes sprite1-data-v-c514e612 {\n1% {background-position: 0 0}\n5% {background-position: -192px 0}\n10% {background-position: -384px 0}\n15% {background-position: -576px 0}\n20% {background-position: -768px 0}\n25% {background-position: 0 -192px}\n30% {background-position: -192px -192px}\n35% {background-position: -384px -192px}\n40% {background-position: -576px -192px}\n45% {background-position: -768px -192px}\n50% {background-position: 0 -384px}\n55% {background-position: -192px -384px}\n60% {background-position: -384px -384px}\n65% {background-position: -576px -384px}\n70% {background-position: -768px -384px}\n75% {background-position: 0 -576px}\n80% {background-position: -192px -576px}\n85% {background-position: -384px -576px}\n90% {background-position: -576px -576px}\n95% {background-position: -768px -576px}\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1000px;\n}\n.sidebar[data-v-c514e612] {\r\n  width: 200px;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/ui/sidebar.png */ "./public/img/ui/sidebar.png")) + ") repeat;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background-image: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden000.jpg */ "./public/img/bg/shinden000.jpg")) + ");\n}\n.btn[data-v-c514e612] {\r\n  width: 180px;\r\n  height: 40px;\r\n  margin: 10px;\r\n  padding: 5px;\r\n  background: linear-gradient(#333, #666);\r\n  border: double 2px gold;\r\n  border-radius: 5px;\r\n  color: white;\r\n  font-size: 16px;\n}\n.anime[data-v-c514e612] {\r\n  width: 192px;\r\n  height: 192px;\r\n  padding: 0;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/effect/test.png */ "./public/img/effect/test.png")) + ") 0 0 no-repeat;\r\n  -webkit-animation: sprite1-data-v-c514e612 0.5s step-end infinite;\r\n          animation: sprite1-data-v-c514e612 0.5s step-end infinite;\n}\n.anime2[data-v-c514e612] {\r\n  width: 192px;\r\n  height: 192px;\r\n  padding: 0;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/effect/test2.png */ "./public/img/effect/test2.png")) + ") 0 0 no-repeat;\r\n  -webkit-animation: sprite1-data-v-c514e612 0.5s step-end infinite;\r\n          animation: sprite1-data-v-c514e612 0.5s step-end infinite;\n}\n@-webkit-keyframes sprite1-data-v-c514e612 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite1-data-v-c514e612 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -3882,7 +3880,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "sidebar" }, [
       _c("div", { staticClass: "btn" }, [
-        _vm._v("\n                ボタンテスト\n                "),
+        _vm._v("\n        ボタンテスト\n        "),
         _c("div", { staticClass: "anime" }),
         _vm._v(" "),
         _c("div", { staticClass: "anime2" })
@@ -4028,7 +4026,7 @@ var render = function() {
     "div",
     [
       _c("h2", [_vm._v("キャラクター作成")]),
-      _vm._v("\n    " + _vm._s(_vm.userId) + "\n    "),
+      _vm._v("\n  " + _vm._s(_vm.userId) + "\n  "),
       _vm._l(_vm.imgList, function(value, key) {
         return _c("div", { key: key }, [
           _c("input", {
@@ -4040,7 +4038,7 @@ var render = function() {
               }
             }
           }),
-          _vm._v("\n        " + _vm._s(value) + "\n    ")
+          _vm._v("\n    " + _vm._s(value) + "\n  ")
         ])
       }),
       _vm._v(" "),
@@ -4052,9 +4050,7 @@ var render = function() {
         _c("p", [_vm._v("振り分け可能ポイント：" + _vm._s(_vm.statusPoint))]),
         _vm._v(" "),
         _c("div", [
-          _vm._v(
-            "\n            STR:" + _vm._s(_vm.v_currentStr) + "\n            "
-          ),
+          _vm._v("\n      STR:" + _vm._s(_vm.v_currentStr) + "\n      "),
           _c(
             "button",
             {
@@ -4081,9 +4077,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", [
-          _vm._v(
-            "\n            VIT:" + _vm._s(_vm.v_currentVit) + "\n            "
-          ),
+          _vm._v("\n      VIT:" + _vm._s(_vm.v_currentVit) + "\n      "),
           _c(
             "button",
             {
@@ -4110,9 +4104,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", [
-          _vm._v(
-            "\n            INT:" + _vm._s(_vm.v_currentInt) + "\n            "
-          ),
+          _vm._v("\n      INT:" + _vm._s(_vm.v_currentInt) + "\n      "),
           _c(
             "button",
             {
@@ -4139,9 +4131,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", [
-          _vm._v(
-            "\n            AGI:" + _vm._s(_vm.v_currentAgi) + "\n            "
-          ),
+          _vm._v("\n      AGI:" + _vm._s(_vm.v_currentAgi) + "\n      "),
           _c(
             "button",
             {
@@ -4168,9 +4158,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", [
-          _vm._v(
-            "\n            DEX:" + _vm._s(_vm.v_currentDex) + "\n            "
-          ),
+          _vm._v("\n      DEX:" + _vm._s(_vm.v_currentDex) + "\n      "),
           _c(
             "button",
             {
@@ -4197,9 +4185,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", [
-          _vm._v(
-            "\n            LUC:" + _vm._s(_vm.v_currentLuc) + "\n            "
-          ),
+          _vm._v("\n      LUC:" + _vm._s(_vm.v_currentLuc) + "\n      "),
           _c(
             "button",
             {
