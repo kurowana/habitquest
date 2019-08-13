@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="content">
       <div class="game-view">
-        <message></message>
+        <message :message="getMessage"></message>
       </div>
       <div class="sidebar">
         <div class="btn">
@@ -12,6 +12,7 @@
         </div>
       </div>
     </div>
+    {{$store.state}}
     <char-create :userId="userId"></char-create>
     <char-info :userinfo="getUserInfo" :userst="getUserSt"></char-info>
     <habit></habit>
@@ -42,13 +43,11 @@ export default {
     userId: ""
   },
   computed: {
-    /*userinfo:function(){
-            return this.$store.state.user;
-        },
-        count:function(){
-            return this.$store.state.count;
-        },*/
-    ...mapGetters(["getUserInfo", "getUserSt"])
+    // userinfo: function() {
+    //   return this.$user.state.user;
+    // }
+
+    ...mapGetters(["getUserInfo", "getUserSt", "getMessage"])
   },
   components: {
     "char-info": charInfo,
@@ -65,35 +64,39 @@ export default {
       })
       .then(res => {
         this.user = res.data;
-        this.$store.state.user = res.data;
-        this.$store.state.user_id = this.UserId;
+        this.$store.state.userStore.user = res.data;
+        this.$store.state.userStore.user_id = this.UserId;
 
-        this.$store.state.userSt.maxhp = Math.round(
+        this.$store.state.userStore.userSt.maxhp = Math.round(
           res.data.status.vit * 2 + res.data.status.str + 50
         );
-        this.$store.state.userSt.hp = Math.round(
+        this.$store.state.userStore.userSt.hp = Math.round(
           res.data.status.vit * 2 + res.data.status.str + 50
         );
-        this.$store.state.userSt.maxmp = Math.round(
+        this.$store.state.userStore.userSt.maxmp = Math.round(
           res.data.status.int * 2 + 20
         );
-        this.$store.state.userSt.mp = Math.round(res.data.status.int * 2 + 20);
-        this.$store.state.userSt.atk = Math.round(
+        this.$store.state.userStore.userSt.mp = Math.round(
+          res.data.status.int * 2 + 20
+        );
+        this.$store.state.userStore.userSt.atk = Math.round(
           res.data.status.str * 2 + res.data.status.dex / 2
         );
-        this.$store.state.userSt.matk = Math.round(
+        this.$store.state.userStore.userSt.matk = Math.round(
           res.data.status.int * 2 + res.data.status.dex / 2
         );
-        this.$store.state.userSt.def = Math.round(
+        this.$store.state.userStore.userSt.def = Math.round(
           res.data.status.vit + res.data.status.str / 2
         );
-        this.$store.state.userSt.mdef = Math.round(
+        this.$store.state.userStore.userSt.mdef = Math.round(
           res.data.status.int + res.data.status.vit / 2
         );
-        this.$store.state.userSt.spd = Math.round(res.data.status.agi * 1.5);
-        this.$store.state.userSt.hit =
+        this.$store.state.userStore.userSt.spd = Math.round(
+          res.data.status.agi * 1.5
+        );
+        this.$store.state.userStore.userSt.hit =
           Math.round(res.data.status.dex + res.data.status.luc / 2) + 80;
-        this.$store.state.userSt.flee = Math.round(
+        this.$store.state.userStore.userSt.flee = Math.round(
           res.data.status.agi + res.data.status.luc / 2
         );
       });

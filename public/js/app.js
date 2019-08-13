@@ -1896,6 +1896,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -1913,7 +1914,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: {
     userId: ""
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getUserInfo", "getUserSt"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getUserInfo", "getUserSt", "getMessage"])),
   components: {
     "char-info": _CharInfo__WEBPACK_IMPORTED_MODULE_3__["default"],
     "char-create": _CharCreate__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -1929,19 +1930,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       user_id: this.userId
     }).then(function (res) {
       _this.user = res.data;
-      _this.$store.state.user = res.data;
-      _this.$store.state.user_id = _this.UserId;
-      _this.$store.state.userSt.maxhp = Math.round(res.data.status.vit * 2 + res.data.status.str + 50);
-      _this.$store.state.userSt.hp = Math.round(res.data.status.vit * 2 + res.data.status.str + 50);
-      _this.$store.state.userSt.maxmp = Math.round(res.data.status["int"] * 2 + 20);
-      _this.$store.state.userSt.mp = Math.round(res.data.status["int"] * 2 + 20);
-      _this.$store.state.userSt.atk = Math.round(res.data.status.str * 2 + res.data.status.dex / 2);
-      _this.$store.state.userSt.matk = Math.round(res.data.status["int"] * 2 + res.data.status.dex / 2);
-      _this.$store.state.userSt.def = Math.round(res.data.status.vit + res.data.status.str / 2);
-      _this.$store.state.userSt.mdef = Math.round(res.data.status["int"] + res.data.status.vit / 2);
-      _this.$store.state.userSt.spd = Math.round(res.data.status.agi * 1.5);
-      _this.$store.state.userSt.hit = Math.round(res.data.status.dex + res.data.status.luc / 2) + 80;
-      _this.$store.state.userSt.flee = Math.round(res.data.status.agi + res.data.status.luc / 2);
+      _this.$store.state.userStore.user = res.data;
+      _this.$store.state.userStore.user_id = _this.UserId;
+      _this.$store.state.userStore.userSt.maxhp = Math.round(res.data.status.vit * 2 + res.data.status.str + 50);
+      _this.$store.state.userStore.userSt.hp = Math.round(res.data.status.vit * 2 + res.data.status.str + 50);
+      _this.$store.state.userStore.userSt.maxmp = Math.round(res.data.status["int"] * 2 + 20);
+      _this.$store.state.userStore.userSt.mp = Math.round(res.data.status["int"] * 2 + 20);
+      _this.$store.state.userStore.userSt.atk = Math.round(res.data.status.str * 2 + res.data.status.dex / 2);
+      _this.$store.state.userStore.userSt.matk = Math.round(res.data.status["int"] * 2 + res.data.status.dex / 2);
+      _this.$store.state.userStore.userSt.def = Math.round(res.data.status.vit + res.data.status.str / 2);
+      _this.$store.state.userStore.userSt.mdef = Math.round(res.data.status["int"] + res.data.status.vit / 2);
+      _this.$store.state.userStore.userSt.spd = Math.round(res.data.status.agi * 1.5);
+      _this.$store.state.userStore.userSt.hit = Math.round(res.data.status.dex + res.data.status.luc / 2) + 80;
+      _this.$store.state.userStore.userSt.flee = Math.round(res.data.status.agi + res.data.status.luc / 2);
     });
   },
   methods: {
@@ -2216,7 +2217,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (st == "dex" && this.currentDex > 10) {
           this.currentDex--;
-          this.statusPoint++;
+          this.statusPoin;
         }
 
         if (st == "luc" && this.currentLuc > 10) {
@@ -2347,6 +2348,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2357,93 +2360,49 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   props: {
-    'userinfo': '',
-    'userst': ''
+    userinfo: "",
+    userst: ""
   },
   computed: {
     v_userinfo: function v_userinfo() {
       return this.userinfo;
-    } //現在ステータス
-
-    /*
-    v_userCurrentHP:function(){
-        if(this.currentHP===null){
-            this.currentHP=this.v_userHP
-        }
-        return this.currentHP
-    },
-    v_userCurrentMP:function(){
-        if(this.currentMP===null){
-            this.currentMP=this.v_userMP
-        }
-        return this.currentMP
-    },
-    //実効ステータス
-    v_userHP:function(){
-        return Math.round((this.userinfo.status.vit*2)+this.userinfo.status.str+50)
-    },
-    v_userMP:function(){
-        return Math.round((this.userinfo.status.int*2)+20)
-    },
-    v_userATK:function(){
-        return Math.round((this.userinfo.status.str*2)+(this.userinfo.status.dex/2))
-    },
-    v_userMATK:function(){
-        return Math.round((this.userinfo.status.int*2)+(this.userinfo.status.dex/2))
-    },
-    v_userDEF:function(){
-        return Math.round(this.userinfo.status.vit+(this.userinfo.status.str/2))
-    },
-    v_userMDEF:function(){
-        return Math.round(this.userinfo.status.int+(this.userinfo.status.vit/2))
-    },
-    v_userSPD:function(){
-        return Math.round(this.userinfo.status.agi*1.5)
-    },
-    v_userHIT:function(){
-        return Math.round(this.userinfo.status.dex+(this.userinfo.status.luc/2))+80
-    },
-    v_userFLEE:function(){
-        return Math.round(this.userinfo.status.agi+(this.userinfo.status.luc/2))
-    },
-    */
-
+    }
   },
   created: function created() {},
   methods: {
     addPoint: function addPoint(status) {
-      if (status == 'str' && this.userinfo.status.point > 0) {
+      if (status == "str" && this.userinfo.status.point > 0) {
         this.userinfo.status.str++;
         this.userinfo.status.point--;
       }
 
-      if (status == 'vit' && this.userinfo.status.point > 0) {
+      if (status == "vit" && this.userinfo.status.point > 0) {
         this.userinfo.status.vit++;
         this.userinfo.status.point--;
       }
 
-      if (status == 'int' && this.userinfo.status.point > 0) {
+      if (status == "int" && this.userinfo.status.point > 0) {
         this.userinfo.status["int"]++;
         this.userinfo.status.point--;
       }
 
-      if (status == 'agi' && this.userinfo.status.point > 0) {
+      if (status == "agi" && this.userinfo.status.point > 0) {
         this.userinfo.status.agi++;
         this.userinfo.status.point--;
       }
 
-      if (status == 'dex' && this.userinfo.status.point > 0) {
+      if (status == "dex" && this.userinfo.status.point > 0) {
         this.userinfo.status.dex++;
         this.userinfo.status.point--;
       }
 
-      if (status == 'luc' && this.userinfo.status.point > 0) {
+      if (status == "luc" && this.userinfo.status.point > 0) {
         this.userinfo.status.luc++;
         this.userinfo.status.point--;
       }
     },
     growStatus: function growStatus() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('./api/grow_status', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/grow_status", {
         user_id: this.userinfo.id,
         str: this.userinfo.status.str,
         vit: this.userinfo.status.vit,
@@ -2500,19 +2459,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tempAddHabit: ''
+      tempAddHabit: ""
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['getHasHabit'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getHasHabit"])),
   created: function created() {},
   methods: {
     addHabit: function addHabit() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('./api/add_habit', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/add_habit", {
         user_id: this.$store.state.user.id,
         habit_name: this.tempAddHabit
       }).then(function (res) {
@@ -2520,7 +2485,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     habitPlus: function habitPlus(habit_id) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('./api/add_habit_count', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/add_habit_count", {
         user_id: this.$store.state.user.id,
         habit_id: habit_id
       }).then(function (res) {
@@ -2528,7 +2493,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     habitDelete: function habitDelete(habit_id) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('./api/delete_habit', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/delete_habit", {
         habit_id: habit_id
       }).then(function (res) {
         location.reload();
@@ -2563,14 +2528,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
   },
-  computed: {},
+  props: {
+    message: ""
+  },
+  computed: {
+    currentMessage: function currentMessage() {
+      return this.message;
+    }
+  },
   methods: {}
 });
 
@@ -2675,7 +2646,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.msg-window[data-v-b91a6428]{\n    width:800px;\n    height:175px;\n    background:url(" + escape(__webpack_require__(/*! ../../../public/img/ui/msg-window.png */ "./public/img/ui/msg-window.png")) + ") no-repeat;\n    position:absolute;\n    bottom:0;\n    left:0;\n}\n.name[data-v-b91a6428]{\n    padding:10px 70px 0px 70px;\n    color:white;\n    font-size:22px;\n}\n.message[data-v-b91a6428]{\n    padding:3px 70px 8px 70px;\n    color:white;\n    font-size:20px;\n}\n", ""]);
+exports.push([module.i, "\n.msg-window[data-v-b91a6428] {\r\n  width: 800px;\r\n  height: 175px;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/ui/msg-window.png */ "./public/img/ui/msg-window.png")) + ") no-repeat;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\n}\n.name[data-v-b91a6428] {\r\n  padding: 10px 70px 0px 70px;\r\n  color: white;\r\n  font-size: 22px;\n}\n.message[data-v-b91a6428] {\r\n  padding: 3px 70px 8px 70px;\r\n  color: white;\r\n  font-size: 20px;\n}\r\n", ""]);
 
 // exports
 
@@ -3853,11 +3824,16 @@ var render = function() {
     { staticClass: "wrapper" },
     [
       _c("div", { staticClass: "content" }, [
-        _c("div", { staticClass: "game-view" }, [_c("message")], 1),
+        _c(
+          "div",
+          { staticClass: "game-view" },
+          [_c("message", { attrs: { message: _vm.getMessage } })],
+          1
+        ),
         _vm._v(" "),
         _vm._m(0)
       ]),
-      _vm._v(" "),
+      _vm._v("\n  " + _vm._s(_vm.$store.state) + "\n  "),
       _c("char-create", { attrs: { userId: _vm.userId } }),
       _vm._v(" "),
       _c("char-info", {
@@ -4433,9 +4409,9 @@ var render = function() {
           ])
         ])
       ]),
-      _vm._v("\n        現在HP：" + _vm._s(_vm.userst.hp)),
+      _vm._v("\n    現在HP：" + _vm._s(_vm.userst.hp) + "\n    "),
       _c("br"),
-      _vm._v("\n        現在MP：" + _vm._s(_vm.userst.mp)),
+      _vm._v("\n    現在MP：" + _vm._s(_vm.userst.mp) + "\n    "),
       _c("br")
     ])
   ])
@@ -4574,32 +4550,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "msg-window" }, [
-        _c("p", { staticClass: "name" }, [_vm._v("アリア")]),
-        _vm._v(" "),
-        _c("p", { staticClass: "message" }, [
-          _vm._v(
-            "\n            このメッセージウィンドウ内にメッセージが表示されるぞ！"
-          ),
-          _c("br"),
-          _vm._v(
-            "\n            何行まで入れることができるかな？長すぎる文章だとはみ出しそうだぞ。"
-          ),
-          _c("br"),
-          _vm._v("\n            というわけでテストだ！\n        ")
-        ])
+  return _c("div", [
+    _c("div", { staticClass: "msg-window" }, [
+      _c("p", { staticClass: "name" }, [_vm._v("アリア")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "message" }, [
+        _vm._v(
+          "\n      " +
+            _vm._s(_vm.currentMessage) +
+            "\n      " +
+            _vm._s(_vm.$store.state.eventStore.message) +
+            "\n    "
+        )
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -20744,11 +20711,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: '#app',
+  el: "#app",
   store: _store__WEBPACK_IMPORTED_MODULE_2__["default"],
   router: _router__WEBPACK_IMPORTED_MODULE_1__["default"],
   components: {
-    'app-base': _components_AppBase__WEBPACK_IMPORTED_MODULE_3__["default"]
+    "app-base": _components_AppBase__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
 
@@ -21308,51 +21275,127 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/user */ "./resources/js/store/user.js");
+/* harmony import */ var _store_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/event */ "./resources/js/store/event.js");
+
+
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  state: {
-    user_id: '',
-    user: {},
-    userSt: {
-      maxhp: 0,
-      hp: 0,
-      maxmp: 0,
-      mp: 0,
-      atk: 0,
-      matk: 0,
-      def: 0,
-      mdef: 0,
-      spd: 0,
-      hit: 0,
-      flee: 0
-    },
-    monster: {}
-  },
-  getters: {
-    getUserInfo: function getUserInfo(state) {
-      return state.user;
-    },
-    getUserSt: function getUserSt(state) {
-      return state.userSt;
-    },
-    getHasHabit: function getHasHabit(state) {
-      return state.user.habit;
-    },
-    getMonster: function getMonster(state) {
-      return state.monster;
-    }
-  },
-  mutations: {
-    setHabit: function setHabit(state, habit) {
-      vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(state.user.habit, {
-        'habit_name': habit
-      });
-    }
+  modules: {
+    userStore: _store_user__WEBPACK_IMPORTED_MODULE_2__["default"],
+    eventStore: _store_event__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/js/store/event.js":
+/*!*************************************!*\
+  !*** ./resources/js/store/event.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var state = {
+  message: "storeメッセージ",
+  charImgL: "",
+  charImgC: "",
+  charImgR: ""
+};
+var getters = {
+  getMessage: function getMessage(state) {
+    return state.message;
+  },
+  getCharImgL: function getCharImgL(state) {
+    return state.charImgL;
+  },
+  getCharImgC: function getCharImgC(state) {
+    return state.charImgC;
+  },
+  getCharImgR: function getCharImgR(state) {
+    return state.charImgR;
+  }
+};
+var mutations = {
+  setMessage: function setMessage(state, message) {
+    state.message = message;
+  },
+  setCharImgL: function setCharImgL(state, imgPath) {
+    state.charImgL = imgPath;
+  },
+  setCharImgC: function setCharImgC(state, imgPath) {
+    state.charImgC = imgPath;
+  },
+  setCharImgR: function setCharImgR(state, imgPath) {
+    state.charImgR = imgPath;
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  getters: getters,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/user.js":
+/*!************************************!*\
+  !*** ./resources/js/store/user.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var state = {
+  user_id: "",
+  user: {},
+  userSt: {
+    maxhp: 0,
+    hp: 0,
+    maxmp: 0,
+    mp: 0,
+    atk: 0,
+    matk: 0,
+    def: 0,
+    mdef: 0,
+    spd: 0,
+    hit: 0,
+    flee: 0
+  },
+  monster: {}
+};
+var getters = {
+  getUserInfo: function getUserInfo(state) {
+    return state.user;
+  },
+  getUserSt: function getUserSt(state) {
+    return state.userSt;
+  },
+  getHasHabit: function getHasHabit(state) {
+    return state.user.habit;
+  },
+  getMonster: function getMonster(state) {
+    return state.monster;
+  }
+};
+var mutations = {
+  setHabit: function setHabit(state, habit) {
+    state.user.habit = {
+      habit_name: habit
+    };
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  getters: getters,
+  mutations: mutations
+});
 
 /***/ }),
 
