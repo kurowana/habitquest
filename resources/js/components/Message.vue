@@ -1,11 +1,8 @@
 <template>
-  <div>
+  <div v-if="isShowMsg">
     <div class="msg-window">
       <p class="name">アリア</p>
-      <p class="message">
-        {{currentMessage}}
-        {{$store.state.eventStore.message}}
-      </p>
+      <p class="message">{{$store.state.eventStore.message}}</p>
     </div>
   </div>
 </template>
@@ -16,7 +13,9 @@ import { mapGetters } from "vuex";
 
 export default {
   data: function() {
-    return {};
+    return {
+      isShowMsg: true
+    };
   },
   props: {
     message: ""
@@ -38,6 +37,7 @@ export default {
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: 100;
 }
 .name {
   padding: 10px 70px 0px 70px;
