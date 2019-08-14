@@ -2,7 +2,8 @@
   <div class="wrapper">
     <div class="content">
       <div class="game-view">
-        <message :message="getMessage"></message>
+        <char-img></char-img>
+        <message></message>
       </div>
       <div class="sidebar">
         <div class="btn">
@@ -12,7 +13,6 @@
         </div>
       </div>
     </div>
-    {{$store.state}}
     <char-create :userId="userId"></char-create>
     <char-info :userinfo="getUserInfo" :userst="getUserSt"></char-info>
     <habit></habit>
@@ -32,6 +32,7 @@ import habit from "./Habit";
 import monsterCreate from "./MonsterCreate";
 import Battle from "./Battle";
 import Message from "./Message";
+import charImg from "./charImg";
 
 export default {
   data: function() {
@@ -55,7 +56,8 @@ export default {
     habit: habit,
     "monster-create": monsterCreate,
     battle: Battle,
-    message: Message
+    message: Message,
+    "char-img": charImg
   },
   created: function() {
     axios
