@@ -82,6 +82,8 @@
             <div class="content">
                 <div class="title m-b-md">
                     HabitQuest
+                    <p>はじめから</p>
+                    <p>続きから</p>
                 </div>
 
             </div>
