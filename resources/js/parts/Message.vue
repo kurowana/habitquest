@@ -1,8 +1,9 @@
 <template>
   <div v-if="isShowMsg">
-    <div class="msg-window">
+    <div class="msg-window" @click="nextMsgReq">
       <p class="name">アリア</p>
-      <p class="message">{{$store.state.eventStore.message}}</p>
+      <p class="message" v-html="$store.state.eventStore.message"></p>
+      <i class="fas fa-angle-double-down msgIcon"></i>
     </div>
   </div>
 </template>
@@ -14,7 +15,8 @@ import { mapGetters } from "vuex";
 export default {
   data: function() {
     return {
-      isShowMsg: true
+      isShowMsg: true,
+      msgCount: 0
     };
   },
   props: {
@@ -25,7 +27,13 @@ export default {
       return this.message;
     }
   },
-  methods: {}
+  methods: {
+    nextMsgReq: function() {
+      console.log("ok");
+      this.$emit("next-msg", this.msgCount);
+      this.msgCount++;
+    }
+  }
 };
 </script>
 
@@ -48,5 +56,27 @@ export default {
   padding: 3px 70px 8px 70px;
   color: white;
   font-size: 20px;
+}
+
+.msgIcon {
+  color: gold;
+  font-size: 2em;
+  position: absolute;
+  bottom: 20px;
+  left: 730px;
+  animation: iconMove 0.5s infinite;
+}
+
+@keyframes iconMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 5px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 </style>
