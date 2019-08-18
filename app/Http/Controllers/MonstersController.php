@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Monster;
+use App\Models\Monster;
 
 class MonstersController extends Controller
 {
@@ -82,25 +82,27 @@ class MonstersController extends Controller
     {
         //
     }
-    public function add_monster(Request $request){
-        $monster=new Monster;
-        $monster->monster_name=$request->name;
-        $monster->hp=$request->hp;
-        $monster->mp=$request->mp;
-        $monster->atk=$request->atk;
-        $monster->matk=$request->matk;
-        $monster->def=$request->def;
-        $monster->mdef=$request->mdef;
-        $monster->spd=$request->spd;
-        $monster->hit=$request->hit;
-        $monster->flee=$request->flee;
+    public function add_monster(Request $request)
+    {
+        $monster = new Monster;
+        $monster->monster_name = $request->name;
+        $monster->hp = $request->hp;
+        $monster->mp = $request->mp;
+        $monster->atk = $request->atk;
+        $monster->matk = $request->matk;
+        $monster->def = $request->def;
+        $monster->mdef = $request->mdef;
+        $monster->spd = $request->spd;
+        $monster->hit = $request->hit;
+        $monster->flee = $request->flee;
         $monster->save();
 
         return response('ok');
     }
 
-    public function appear_monster(Request $request){
-        $monster=Monster::find(2);
+    public function appear_monster(Request $request)
+    {
+        $monster = Monster::find(2);
 
         return response($monster);
     }

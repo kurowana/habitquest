@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -38,16 +38,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function habit(){
-        return $this->hasMany('App\Habit');
+    public function habit()
+    {
+        return $this->hasMany('App\Models\Habit');
     }
 
-    public function status(){
-        return $this->hasOne('App\Status');
+    public function status()
+    {
+        return $this->hasOne('App\Models\Status');
     }
 
-    public function skill(){
-        return $this->belongsToMany('App\Skill','skill_user','user_id','skill_id');
+    public function skill()
+    {
+        return $this->belongsToMany('App\Models\Skill', 'skill_user', 'user_id', 'skill_id');
     }
-
 }

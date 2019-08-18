@@ -4,7 +4,6 @@
       <router-view class="game-view" :style="{background:bgImg}"></router-view>
       <router-view name="sidebar"></router-view>
     </div>
-
     <char-create :userId="userId"></char-create>
     <char-info :userinfo="getUserInfo" :userst="getUserSt"></char-info>
     <habit></habit>
