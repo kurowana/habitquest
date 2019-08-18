@@ -31,13 +31,18 @@ export default {
       if (count === 0) {
         this.$store.commit(
           "setMessage",
-          "１番目のメッセージ<br />\
-        てすとだよ<br />\
-        長のの文章テストああああああ"
+          "１番目のメッセージ\n\
+てすとだよ\n\
+長のの文章テストああああああ"
         );
       }
       if (count === 1) {
-        this.$store.commit("setMessage", "2番目のメッセージ");
+        this.$store.commit(
+          "setMessage",
+          "2番目のメッセージ\n\
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
+aaaaaaa"
+        );
       }
     }
   }

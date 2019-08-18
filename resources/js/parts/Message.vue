@@ -1,8 +1,15 @@
 <template>
   <div v-if="isShowMsg">
-    <div class="msg-window" @click="nextMsgReq">
+    <div class="msg-window" @click="changeDelay">
       <p class="name">アリア</p>
-      <p class="message" v-html="$store.state.eventStore.message"></p>
+      <p class="message">
+        <vue-typer
+          :text="$store.state.eventStore.message"
+          :repeat="0"
+          :type-delay="delayTime"
+          @completed="onCompleted"
+        ></vue-typer>
+      </p>
       <i class="fas fa-angle-double-down msgIcon"></i>
     </div>
   </div>
@@ -16,7 +23,9 @@ export default {
   data: function() {
     return {
       isShowMsg: true,
-      msgCount: 0
+      msgCount: 0,
+      delayTime: 10,
+      completeFlag: false
     };
   },
   props: {
@@ -32,6 +41,19 @@ export default {
       console.log("ok");
       this.$emit("next-msg", this.msgCount);
       this.msgCount++;
+    },
+    changeDelay: function() {
+      if (this.completeFlag === true) {
+        this.nextMsgReq();
+        this.delayTime = 10;
+        this.completeFlag = false;
+      } else {
+        this.delayTime = 0;
+      }
+    },
+    onCompleted: function() {
+      console.log("complete");
+      this.completeFlag = true;
     }
   }
 };

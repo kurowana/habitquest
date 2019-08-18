@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Habit;
-use App\User;
-use App\Status;
+use App\Models\Habit;
+use App\Models\User;
+use App\Models\Status;
 
 class HabitsController extends Controller
 {
@@ -85,33 +85,36 @@ class HabitsController extends Controller
         //
     }
 
-    public function add_habit(Request $request){
-        $habit=new Habit;
-        $habit->habit_name=$request->habit_name;
-        $habit->user_id=$request->user_id;
+    public function add_habit(Request $request)
+    {
+        $habit = new Habit;
+        $habit->habit_name = $request->habit_name;
+        $habit->user_id = $request->user_id;
         $habit->save();
 
         return response('ok');
     }
 
-    public function add_habit_count(Request $request){
-        $habit=Habit::find($request->habit_id);
-        $habit->count+=1;
+    public function add_habit_count(Request $request)
+    {
+        $habit = Habit::find($request->habit_id);
+        $habit->count += 1;
         $habit->save();
 
-        $status=Status::where('user_id',$request->user_id)
+        $status = Status::where('user_id', $request->user_id)
             ->first();
-        $status->exp+=10*$habit->count;
-        list($lv,$count)=$status->lvup($status->lv,$status->exp);
-        $status->lv=$lv;
-        $status->point+=$count*3;
+        $status->exp += 10 * $habit->count;
+        list($lv, $count) = $status->lvup($status->lv, $status->exp);
+        $status->lv = $lv;
+        $status->point += $count * 3;
         $status->save();
 
         return response('ok');
     }
 
-    public function delete_habit(Request $request){
-        $habit=Habit::find($request->habit_id);
+    public function delete_habit(Request $request)
+    {
+        $habit = Habit::find($request->habit_id);
         $habit->delete();
 
         return response('ok');
