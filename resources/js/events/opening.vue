@@ -2,6 +2,7 @@
   <div>
     <message @next-msg="nextMsg"></message>
     <char-img></char-img>
+    <modal v-if="isShwoModal">あいうえお</modal>
   </div>
 </template>
 
@@ -9,13 +10,18 @@
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
 
+import modal from "../parts/modal";
+
 export default {
   components: {
     message: message,
-    "char-img": charImg
+    "char-img": charImg,
+    modal: modal
   },
   data: function() {
-    return {};
+    return {
+      isShwoModal: false
+    };
   },
   created: function() {
     this.$store.commit("setCharImgL1", "npc001l.png");
@@ -44,6 +50,23 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
 aaaaaaa"
         );
       }
+      if (count === 2) {
+        this.openModal();
+        console.log(this.isShwoModal);
+      }
+      if (count === 3) {
+        this.closeModal();
+        console.log(this.isShwoModal);
+      }
+      if (count === 4) {
+        this.$store.commit("setMessage", "modal後のメッセージ");
+      }
+    },
+    openModal: function() {
+      this.isShwoModal = true;
+    },
+    closeModal: function() {
+      this.isShwoModal = false;
     }
   }
 };
