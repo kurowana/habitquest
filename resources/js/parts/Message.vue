@@ -10,7 +10,7 @@
           @completed="onCompleted"
         ></vue-typer>
       </p>
-      <i class="fas fa-angle-double-down msgIcon"></i>
+      <i v-show="isCompleted" class="fas fa-angle-double-down msgIcon"></i>
     </div>
   </div>
 </template>
@@ -24,12 +24,13 @@ export default {
     return {
       isShowMsg: true,
       msgCount: 0,
-      delayTime: 10,
-      completeFlag: false
+      delayTime: 30,
+      isCompleted: false
     };
   },
   props: {
-    message: ""
+    message: "",
+    completed: false
   },
   computed: {
     currentMessage() {
@@ -37,23 +38,20 @@ export default {
     }
   },
   methods: {
-    nextMsgReq: function() {
-      console.log("ok");
+    nextMsg: function() {
       this.$emit("next-msg", this.msgCount);
       this.msgCount++;
     },
     changeDelay: function() {
-      if (this.completeFlag === true) {
-        this.nextMsgReq();
-        this.delayTime = 10;
-        this.completeFlag = false;
+      if (this.isCompleted === true) {
+        this.nextMsg();
+        this.isCompleted = true;
       } else {
-        this.delayTime = 0;
+        return;
       }
     },
     onCompleted: function() {
-      console.log("complete");
-      this.completeFlag = true;
+      this.isCompleted = true;
     }
   }
 };
