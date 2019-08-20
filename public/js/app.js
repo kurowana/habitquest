@@ -1943,7 +1943,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }).then(function (res) {
       _this.user = res.data;
       _this.$store.state.userStore.user = res.data;
-      _this.$store.state.userStore.user_id = _this.UserId;
+      _this.$store.state.userStore.userId = _this.UserId;
       _this.$store.state.userStore.userSt.maxhp = Math.round(res.data.status.vit * 2 + res.data.status.str + 50);
       _this.$store.state.userStore.userSt.hp = Math.round(res.data.status.vit * 2 + res.data.status.str + 50);
       _this.$store.state.userStore.userSt.maxmp = Math.round(res.data.status["int"] * 2 + 20);
@@ -2591,9 +2591,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
-/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
-/* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../parts/modal */ "./resources/js/parts/modal.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
+/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
+/* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parts/modal */ "./resources/js/parts/modal.vue");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2602,20 +2607,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    message: _parts_Message__WEBPACK_IMPORTED_MODULE_0__["default"],
-    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_1__["default"],
-    modal: _parts_modal__WEBPACK_IMPORTED_MODULE_2__["default"]
+    message: _parts_Message__WEBPACK_IMPORTED_MODULE_1__["default"],
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_2__["default"],
+    modal: _parts_modal__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
       isShwoModal: false
     };
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    userImg: "getUserImg"
+  })),
   created: function created() {
     this.$store.commit("setCharImgL1", "npc001l.png");
     this.$store.commit("setCharImgL2", "npc006l.png");
@@ -2625,7 +2638,7 @@ __webpack_require__.r(__webpack_exports__);
     this.$store.commit("setMessage", "これはオープニングです");
   },
   methods: {
-    nextMsg: function nextMsg(count) {
+    getScene: function getScene(count) {
       if (count === 0) {
         this.$store.commit("setMessage", "１番目のメッセージ\n\
 てすとだよ\n\
@@ -2640,12 +2653,12 @@ aaaaaaa");
 
       if (count === 2) {
         this.openModal();
-        console.log(this.isShwoModal);
+        this.$store.commit("setClickableFlag", true);
       }
 
       if (count === 3) {
+        this.$store.commit("setClickableFlag", true);
         this.closeModal();
-        console.log(this.isShwoModal);
       }
 
       if (count === 4) {
@@ -2711,6 +2724,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2743,26 +2760,27 @@ __webpack_require__.r(__webpack_exports__);
     message: "",
     completed: false
   },
-  computed: {
-    currentMessage: function currentMessage() {
-      return this.message;
-    }
-  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    sceneCount: "getSceneCount",
+    clickableFlag: "getClickableFlag",
+    currentMessage: "getMessage"
+  })),
   methods: {
-    nextMsg: function nextMsg() {
-      this.$emit("next-msg", this.msgCount);
-      this.msgCount++;
+    nextScene: function nextScene() {
+      this.$store.commit("setClickableFlag", false);
+      this.$emit("next-scene", this.sceneCount);
+      this.$store.commit("setSceneCount", this.sceneCount + 1);
     },
-    changeDelay: function changeDelay() {
-      if (this.isCompleted === true) {
-        this.nextMsg();
-        this.isCompleted = true;
+    changeScene: function changeScene() {
+      if (this.clickableFlag === true) {
+        this.nextScene();
       } else {
         return;
       }
     },
     onCompleted: function onCompleted() {
-      this.isCompleted = true;
+      // this.isCompleted = true;
+      this.$store.commit("setClickableFlag", true);
     }
   }
 });
@@ -5167,11 +5185,21 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("message", { on: { "next-msg": _vm.nextMsg } }),
+      _c("message", { on: { "next-scene": _vm.getScene } }),
       _vm._v(" "),
       _c("char-img"),
       _vm._v(" "),
-      _vm.isShwoModal ? _c("modal", [_vm._v("あいうえお")]) : _vm._e()
+      _vm.isShwoModal
+        ? _c(
+            "modal",
+            _vm._l(_vm.userImg, function(img, index) {
+              return _c("div", { key: index }, [
+                _c("img", { attrs: { src: img.face } })
+              ])
+            }),
+            0
+          )
+        : _vm._e()
     ],
     1
   )
@@ -5226,7 +5254,7 @@ var render = function() {
     ? _c("div", [
         _c(
           "div",
-          { staticClass: "msg-window", on: { click: _vm.changeDelay } },
+          { staticClass: "msg-window", on: { click: _vm.changeScene } },
           [
             _c("p", { staticClass: "name" }, [_vm._v("アリア")]),
             _vm._v(" "),
@@ -5236,7 +5264,7 @@ var render = function() {
               [
                 _c("vue-typer", {
                   attrs: {
-                    text: _vm.$store.state.eventStore.message,
+                    text: _vm.currentMessage,
                     repeat: 0,
                     "type-delay": _vm.delayTime
                   },
@@ -5251,8 +5279,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.isCompleted,
-                  expression: "isCompleted"
+                  value: _vm.clickableFlag,
+                  expression: "clickableFlag"
                 }
               ],
               staticClass: "fas fa-angle-double-down msgIcon"
@@ -22244,6 +22272,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
+  sceneCount: 0,
+  isClickable: false,
   message: "storeメッセージ",
   charName: "",
   charImgL1: "",
@@ -22367,6 +22397,12 @@ var state = {
   }
 };
 var getters = {
+  getSceneCount: function getSceneCount(state) {
+    return state.sceneCount;
+  },
+  getClickableFlag: function getClickableFlag(state) {
+    return state.isClickable;
+  },
   getMessage: function getMessage(state) {
     return state.message;
   },
@@ -22390,6 +22426,12 @@ var getters = {
   }
 };
 var mutations = {
+  setSceneCount: function setSceneCount(state, count) {
+    state.sceneCount = count;
+  },
+  setClickableFlag: function setClickableFlag(state, bool) {
+    state.isClickable = bool;
+  },
   setMessage: function setMessage(state, message) {
     state.message = message;
   },
@@ -22450,7 +22492,7 @@ var mutations = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  user_id: "",
+  userId: "",
   user: {},
   userSt: {
     maxhp: 0,
@@ -22465,7 +22507,128 @@ var state = {
     hit: 0,
     flee: 0
   },
-  monster: {}
+  userImg: {
+    p001: {
+      face: "img/p_face/f001.png",
+      stand: "img/p_stand/p001.png"
+    },
+    p002: {
+      face: "img/p_face/f002.png",
+      stand: "img/p_stand/p002.png"
+    },
+    p003: {
+      face: "img/p_face/f003.png",
+      stand: "img/p_stand/p003.png"
+    },
+    p004: {
+      face: "img/p_face/f004.png",
+      stand: "img/p_stand/p004.png"
+    },
+    p005: {
+      face: "img/p_face/f005.png",
+      stand: "img/p_stand/p005.png"
+    },
+    p006: {
+      face: "img/p_face/f006.png",
+      stand: "img/p_stand/p006.png"
+    },
+    p007: {
+      face: "img/p_face/f007.png",
+      stand: "img/p_stand/p007.png"
+    },
+    p008: {
+      face: "img/p_face/f008.png",
+      stand: "img/p_stand/p008.png"
+    },
+    p009: {
+      face: "img/p_face/f009.png",
+      stand: "img/p_stand/p009.png"
+    },
+    p010: {
+      face: "img/p_face/f010.png",
+      stand: "img/p_stand/p010.png"
+    },
+    p011: {
+      face: "img/p_face/f011.png",
+      stand: "img/p_stand/p011.png"
+    },
+    p012: {
+      face: "img/p_face/f012.png",
+      stand: "img/p_stand/p012.png"
+    },
+    p013: {
+      face: "img/p_face/f013.png",
+      stand: "img/p_stand/p013.png"
+    },
+    p014: {
+      face: "img/p_face/f014.png",
+      stand: "img/p_stand/p014.png"
+    },
+    p015: {
+      face: "img/p_face/f015.png",
+      stand: "img/p_stand/p015.png"
+    },
+    p016: {
+      face: "img/p_face/f016.png",
+      stand: "img/p_stand/p016.png"
+    },
+    p017: {
+      face: "img/p_face/f017.png",
+      stand: "img/p_stand/p017.png"
+    },
+    p018: {
+      face: "img/p_face/f018.png",
+      stand: "img/p_stand/p018.png"
+    },
+    p019: {
+      face: "img/p_face/f019.png",
+      stand: "img/p_stand/p019.png"
+    },
+    p020: {
+      face: "img/p_face/f020.png",
+      stand: "img/p_stand/p020.png"
+    },
+    p021: {
+      face: "img/p_face/f021.png",
+      stand: "img/p_stand/p021.png"
+    },
+    p022: {
+      face: "img/p_face/f022.png",
+      stand: "img/p_stand/p022.png"
+    },
+    p023: {
+      face: "img/p_face/f023.png",
+      stand: "img/p_stand/p023.png"
+    },
+    p024: {
+      face: "img/p_face/f024.png",
+      stand: "img/p_stand/p024.png"
+    },
+    p025: {
+      face: "img/p_face/f025.png",
+      stand: "img/p_stand/p025.png"
+    },
+    p026: {
+      face: "img/p_face/f026.png",
+      stand: "img/p_stand/p026.png"
+    },
+    p027: {
+      face: "img/p_face/f027.png",
+      stand: "img/p_stand/p027.png"
+    },
+    p028: {
+      face: "img/p_face/f028.png",
+      stand: "img/p_stand/p028.png"
+    },
+    p029: {
+      face: "img/p_face/f029.png",
+      stand: "img/p_stand/p029.png"
+    },
+    p030: {
+      face: "img/p_face/f030.png",
+      stand: "img/p_stand/p030.png"
+    }
+  }
 };
 var getters = {
   getUserInfo: function getUserInfo(state) {
@@ -22477,8 +22640,8 @@ var getters = {
   getHasHabit: function getHasHabit(state) {
     return state.user.habit;
   },
-  getMonster: function getMonster(state) {
-    return state.monster;
+  getUserImg: function getUserImg(state) {
+    return state.userImg;
   }
 };
 var mutations = {
