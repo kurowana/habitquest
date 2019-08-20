@@ -1,4 +1,6 @@
 const state = {
+    sceneCount: 0,
+    isClickable: false,
     message: "storeメッセージ",
     charName: "",
     charImgL1: "",
@@ -123,6 +125,12 @@ const state = {
     }
 };
 const getters = {
+    getSceneCount: state => {
+        return state.sceneCount;
+    },
+    getClickableFlag: state => {
+        return state.isClickable;
+    },
     getMessage: state => {
         return state.message;
     },
@@ -146,6 +154,12 @@ const getters = {
     }
 };
 const mutations = {
+    setSceneCount(state, count) {
+        state.sceneCount = count;
+    },
+    setClickableFlag(state, bool) {
+        state.isClickable = bool;
+    },
     setMessage(state, message) {
         state.message = message;
     },

@@ -1,16 +1,16 @@
 <template>
   <div v-if="isShowMsg">
-    <div class="msg-window" @click="changeDelay">
+    <div class="msg-window" @click="changeScene">
       <p class="name">アリア</p>
       <p class="message">
         <vue-typer
-          :text="$store.state.eventStore.message"
+          :text="currentMessage"
           :repeat="0"
           :type-delay="delayTime"
           @completed="onCompleted"
         ></vue-typer>
       </p>
-      <i v-show="isCompleted" class="fas fa-angle-double-down msgIcon"></i>
+      <i v-show="clickableFlag" class="fas fa-angle-double-down msgIcon"></i>
     </div>
   </div>
 </template>
@@ -33,25 +33,28 @@ export default {
     completed: false
   },
   computed: {
-    currentMessage() {
-      return this.message;
-    }
+    ...mapGetters({
+      sceneCount: "getSceneCount",
+      clickableFlag: "getClickableFlag",
+      currentMessage: "getMessage"
+    })
   },
   methods: {
-    nextMsg: function() {
-      this.$emit("next-msg", this.msgCount);
-      this.msgCount++;
+    nextScene: function() {
+      this.$store.commit("setClickableFlag", false);
+      this.$emit("next-scene", this.sceneCount);
+      this.$store.commit("setSceneCount", this.sceneCount + 1);
     },
-    changeDelay: function() {
-      if (this.isCompleted === true) {
-        this.nextMsg();
-        this.isCompleted = true;
+    changeScene: function() {
+      if (this.clickableFlag === true) {
+        this.nextScene();
       } else {
         return;
       }
     },
     onCompleted: function() {
-      this.isCompleted = true;
+      // this.isCompleted = true;
+      this.$store.commit("setClickableFlag", true);
     }
   }
 };

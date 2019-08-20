@@ -58,7 +58,7 @@ export default {
       .then(res => {
         this.user = res.data;
         this.$store.state.userStore.user = res.data;
-        this.$store.state.userStore.user_id = this.UserId;
+        this.$store.state.userStore.userId = this.UserId;
 
         this.$store.state.userStore.userSt.maxhp = Math.round(
           res.data.status.vit * 2 + res.data.status.str + 50

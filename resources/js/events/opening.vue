@@ -1,12 +1,18 @@
 <template>
   <div>
-    <message @next-msg="nextMsg"></message>
+    <message @next-scene="getScene"></message>
     <char-img></char-img>
-    <modal v-if="isShwoModal">あいうえお</modal>
+    <modal v-if="isShwoModal">
+      <div v-for="(img,index) in userImg" :key="index">
+        <img :src="img.face" />
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
 
@@ -23,6 +29,11 @@ export default {
       isShwoModal: false
     };
   },
+  computed: {
+    ...mapGetters({
+      userImg: "getUserImg"
+    })
+  },
   created: function() {
     this.$store.commit("setCharImgL1", "npc001l.png");
     this.$store.commit("setCharImgL2", "npc006l.png");
@@ -33,7 +44,7 @@ export default {
     this.$store.commit("setMessage", "これはオープニングです");
   },
   methods: {
-    nextMsg: function(count) {
+    getScene: function(count) {
       if (count === 0) {
         this.$store.commit(
           "setMessage",
@@ -52,11 +63,11 @@ aaaaaaa"
       }
       if (count === 2) {
         this.openModal();
-        console.log(this.isShwoModal);
+        this.$store.commit("setClickableFlag", true);
       }
       if (count === 3) {
+        this.$store.commit("setClickableFlag", true);
         this.closeModal();
-        console.log(this.isShwoModal);
       }
       if (count === 4) {
         this.$store.commit("setMessage", "modal後のメッセージ");
