@@ -4,11 +4,20 @@
       <router-view class="game-view" :style="{background:bgImg}"></router-view>
       <router-view name="sidebar"></router-view>
     </div>
+    <div>
+      <label>name</label>
+      <input type="hidden" name="_token" :value="csrf" />
+      <input type="text" v-model="userName" />
+      <label>password</label>
+      <input type="text" v-model="password" />
+      <button @click="registTest">登録</button>
+    </div>
     <char-create :userId="userId"></char-create>
     <char-info :userinfo="getUserInfo" :userst="getUserSt"></char-info>
     <habit></habit>
     <monster-create></monster-create>
     <battle></battle>
+    {{csrf}}
   </div>
 </template>
 
@@ -28,7 +37,14 @@ import Battle from "./Battle";
 export default {
   data: function() {
     return {
-      user: ""
+      user: "",
+
+      userName: "",
+      password: "",
+
+      csrf: document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content")
     };
   },
   props: {
@@ -100,6 +116,18 @@ export default {
     },
     test2: function() {
       this.$store.commit("plus");
+    },
+    registTest: function() {
+      axios
+        .post("./api/register", {
+          // token: this.csrf,
+          name: this.userName,
+          password: this.password,
+          password_confirmation: this.password
+        })
+        .then(res => {
+          console.log("post");
+        });
     }
   }
 };
