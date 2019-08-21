@@ -1903,6 +1903,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1915,7 +1924,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      user: ""
+      user: "",
+      userName: "",
+      password: "",
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
   props: {
@@ -1963,6 +1975,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     test2: function test2() {
       this.$store.commit("plus");
+    },
+    registTest: function registTest() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/register", {
+        // token: this.csrf,
+        name: this.userName,
+        password: this.password,
+        password_confirmation: this.password
+      }).then(function (res) {
+        console.log("post");
+      });
     }
   }
 });
@@ -4222,6 +4244,61 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c("div", [
+        _c("label", [_vm._v("name")]),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "hidden", name: "_token" },
+          domProps: { value: _vm.csrf }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.userName,
+              expression: "userName"
+            }
+          ],
+          attrs: { type: "text" },
+          domProps: { value: _vm.userName },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.userName = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", [_vm._v("password")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.password,
+              expression: "password"
+            }
+          ],
+          attrs: { type: "text" },
+          domProps: { value: _vm.password },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.password = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("button", { on: { click: _vm.registTest } }, [_vm._v("登録")])
+      ]),
+      _vm._v(" "),
       _c("char-create", { attrs: { userId: _vm.userId } }),
       _vm._v(" "),
       _c("char-info", {
@@ -4232,7 +4309,8 @@ var render = function() {
       _vm._v(" "),
       _c("monster-create"),
       _vm._v(" "),
-      _c("battle")
+      _c("battle"),
+      _vm._v("\n  " + _vm._s(_vm.csrf) + "\n")
     ],
     1
   )
