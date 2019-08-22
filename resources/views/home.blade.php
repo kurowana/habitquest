@@ -11,6 +11,8 @@
     <div>
         <h2>Habit Quest</h2>
         <app-base></app-base>
+        test
+        {{Auth::user()}}
         <p><a href="{{url('/register')}}">はじめから</a></p>
         <p><a href="{{url('/login')}}">続きから</a></p>
     </div>

@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 
 import sidebar1 from "./parts/sidebar1.vue";
 
-import opning from "./events/opening.vue";
+import opening from "./events/opening.vue";
 
 import testevent from "./events/testevent.vue";
 
@@ -14,7 +14,7 @@ const routes = [
         path: "/",
         name: "home",
         components: {
-            default: opning,
+            default: opening,
             sidebar: sidebar1
         }
     },
