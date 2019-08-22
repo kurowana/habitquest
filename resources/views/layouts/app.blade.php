@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,13 +22,14 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/user.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
         <div class="header">
             <a href="{{ url('/') }}">
                 {{ config('app.name', 'HabitQuest') }}
             </a>
-            
+
             <a href="{{ route('login') }}">{{ __('Login') }}</a>
             <a href="{{ route('register') }}">{{ __('Register') }}</a>
             <form action="{{ route('logout') }}" method="POST">
@@ -41,4 +43,5 @@
         </main>
     </div>
 </body>
+
 </html>

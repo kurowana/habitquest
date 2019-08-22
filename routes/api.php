@@ -18,8 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', 'Auth\RegisterController@register')->name('register');
-
 Route::post('/create_char', 'StatusesController@create_char');
 Route::post('/set_status', 'StatusesController@set_status');
 Route::post('/grow_status', 'StatusesController@grow_status');
