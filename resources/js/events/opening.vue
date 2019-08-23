@@ -48,10 +48,12 @@ export default {
   },
   computed: {
     ...mapGetters({
+      userInfo: "getUserInfo",
       userImg: "getUserImg"
     })
   },
   created: function() {
+    console.log(this.userInfo);
     this.$store.commit("setCharImgL1", "npc001l.png");
     this.$store.commit("setCharImgL2", "npc006l.png");
     this.$store.commit("setCharImgC", "npc001_1.png");
