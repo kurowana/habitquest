@@ -1,21 +1,56 @@
 <template>
   <div>
+    <modal v-if="isShowLoginModal" class="loginForm">
+      <div class="form-item">
+        <label for="name">ユーザー名</label>
+        <input v-model="loginName" type="text" name="name" />
+      </div>
+      <div class="form-item">
+        <label for="password">パスワード</label>
+        <input v-model="loginPassword" type="password" name="password" />
+      </div>
+      <div class="form-button">
+        <button @click="sentLoginData">ログインする</button>
+        <button @click="isShowLoginModal=false">戻る</button>
+      </div>
+    </modal>
     <h1 class="title">Habit Quest</h1>
     <div class="title-window">
       <router-link :to="{name:'opening'}">
-        <p class="title-item">はじめから</p>
+        <button class="title-item">はじめから</button>
       </router-link>
-      <p class="title-item">つづきから</p>
+      <button class="title-item" @click="isShowLoginModal=true">つづきから</button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import modal from "../parts/modal";
+
 export default {
-  data: function() {
-    return {};
+  components: {
+    modal: modal
   },
-  methods: {}
+  data: function() {
+    return {
+      loginName: "",
+      loginPassword: "",
+      isShowLoginModal: false
+    };
+  },
+  methods: {
+    sentLoginData: function() {
+      axios
+        .post("./login", {
+          name: this.loginName,
+          password: this.loginPassword
+        })
+        .then(res => {
+          console.log(res);
+        });
+    }
+  }
 };
 </script>
 
@@ -61,11 +96,34 @@ export default {
   width: 300px;
   height: 45px;
   padding-top: 4px;
+  margin-bottom: 20px;
   background: linear-gradient(0.45deg, #666666, #000000);
   border: double gold 2px;
   border-radius: 10px;
   color: white;
   font-size: 1.5em;
+  text-align: center;
+}
+
+.loginForm {
+  width: 400px;
+  height: 200px;
+  top: 300px;
+  left: 200px;
+  border: 2px double gold;
+  border-radius: 30px;
+  box-shadow: 5px 5px 4px 4px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(45deg, #000000, #666666);
+  color: white;
+}
+
+.form-item {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.form-button {
+  margin: 30px 0;
   text-align: center;
 }
 </style>

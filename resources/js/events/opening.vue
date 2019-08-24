@@ -3,23 +3,23 @@
     <message @next-scene="getScene"></message>
     <char-img></char-img>
     <!-- キャラ画像一覧 -->
-    <modal v-if="isShwoModal">
-      <div class="modal-content">
-        <div class="img-container">
-          <div class="img-card" v-for="(img,index) in userImg" :key="index">
-            <img @click.prevent.self="selectImg(img)" :src="img.face" />
-          </div>
+    <modal v-if="isSelectModal" class="imgSelectModal">
+      <div class="img-container">
+        <div class="img-card" v-for="(img,index) in userImg" :key="index">
+          <img class="img-face" @click.prevent.self="selectImg(img)" :src="img.face" />
         </div>
-        <button @click="test">test</button>
       </div>
     </modal>
     <!-- キャラ確認 -->
-    <modal v-if="isShwoModal2">
-      <div class="modal-content">
+    <modal v-if="isConfirmModal" class="imgConfirmModal">
+      <div class="confirm-content">
         <div class="img-container">
-          <img :src="selectedImg" />
+          <img class="img-stand" :src="selectedImg" />
         </div>
-        <button @click="test">test</button>
+        <div class="button-container">
+          <button @click="test">なじむ。実に！なじむぞ。(決定)</button>
+          <button @click="test">残念だったな。トリックだよ(選びなおす)</button>
+        </div>
       </div>
     </modal>
   </div>
@@ -41,8 +41,8 @@ export default {
   },
   data: function() {
     return {
-      isShwoModal: false,
-      isShwoModal2: false,
+      isSelectModal: false,
+      isConfirmModal: false,
       selectedImg: ""
     };
   },
@@ -81,13 +81,13 @@ aaaaaaa"
         );
       }
       if (count === 2) {
-        this.openModal();
+        this.openSelectModal();
         this.$store.commit("setMessage", "あなたの姿を教えてね");
         this.$store.commit("setClickableFlag", true);
       }
       if (count === 3) {
         this.$store.commit("setClickableFlag", true);
-        this.closeModal();
+        this.closeSelectModal();
       }
       if (count === 4) {
         this.$store.commit("setMessage", "modal後のメッセージ");
@@ -95,32 +95,42 @@ aaaaaaa"
     },
     selectImg: function(img) {
       this.selectedImg = img.stand;
-      this.openModal2();
+      this.openConfirmModal();
     },
     test: function() {
       alert("test");
     },
-    openModal: function() {
-      this.isShwoModal = true;
+    openSelectModal: function() {
+      this.isSelectModal = true;
     },
-    closeModal: function() {
-      this.isShwoModal = false;
+    closeSelectModal: function() {
+      this.isSelectModal = false;
     },
-    openModal2: function() {
-      this.isShwoModal2 = true;
+    openConfirmModal: function() {
+      this.isConfirmModal = true;
     },
-    closeModal2: function() {
-      this.isShwoModal2 = false;
+    closeConfirmModal: function() {
+      this.isConfirmModal = false;
     }
   }
 };
 </script>
 
 <style scoped>
-.modal-content {
-  background: linear-gradient(45deg, #000000, #ffffff);
+.imgSelectModal {
+  background: linear-gradient(90deg, #000000, #666666);
   width: 720px;
   height: 380px;
+  top: 40px;
+  left: 40px;
+  overflow: auto;
+}
+.imgConfirmModal {
+  background: linear-gradient(90deg, #000000, #666666);
+  width: 720px;
+  height: 380px;
+  top: 40px;
+  left: 40px;
   overflow: auto;
 }
 
@@ -134,5 +144,14 @@ aaaaaaa"
   border: 2px double gold;
   border-radius: 10px;
   margin: 15px 0px 0px 15px;
+}
+
+.confirm-content {
+  display: flex;
+}
+
+.img-stand {
+  width: 240px;
+  height: 320px;
 }
 </style>
