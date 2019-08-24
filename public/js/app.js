@@ -2674,8 +2674,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      isShwoModal: false,
-      isShwoModal2: false,
+      isSelectModal: false,
+      isConfirmModal: false,
       selectedImg: ""
     };
   },
@@ -2707,14 +2707,14 @@ aaaaaaa");
       }
 
       if (count === 2) {
-        this.openModal();
+        this.openSelectModal();
         this.$store.commit("setMessage", "あなたの姿を教えてね");
         this.$store.commit("setClickableFlag", true);
       }
 
       if (count === 3) {
         this.$store.commit("setClickableFlag", true);
-        this.closeModal();
+        this.closeSelectModal();
       }
 
       if (count === 4) {
@@ -2723,22 +2723,22 @@ aaaaaaa");
     },
     selectImg: function selectImg(img) {
       this.selectedImg = img.stand;
-      this.openModal2();
+      this.openConfirmModal();
     },
     test: function test() {
       alert("test");
     },
-    openModal: function openModal() {
-      this.isShwoModal = true;
+    openSelectModal: function openSelectModal() {
+      this.isSelectModal = true;
     },
-    closeModal: function closeModal() {
-      this.isShwoModal = false;
+    closeSelectModal: function closeSelectModal() {
+      this.isSelectModal = false;
     },
-    openModal2: function openModal2() {
-      this.isShwoModal2 = true;
+    openConfirmModal: function openConfirmModal() {
+      this.isConfirmModal = true;
     },
-    closeModal2: function closeModal2() {
-      this.isShwoModal2 = false;
+    closeConfirmModal: function closeConfirmModal() {
+      this.isConfirmModal = false;
     }
   }
 });
@@ -2790,6 +2790,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parts/modal */ "./resources/js/parts/modal.vue");
 //
 //
 //
@@ -2802,11 +2805,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {};
+  components: {
+    modal: _parts_modal__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  methods: {}
+  data: function data() {
+    return {
+      loginName: "",
+      loginPassword: "",
+      isShowLoginModal: false
+    };
+  },
+  methods: {
+    sentLoginData: function sentLoginData() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./login", {
+        name: this.loginName,
+        password: this.loginPassword
+      }).then(function (res) {
+        console.log(res);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2981,7 +3016,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal-content[data-v-625c0140] {\r\n  background: linear-gradient(45deg, #000000, #ffffff);\r\n  width: 720px;\r\n  height: 380px;\r\n  overflow: auto;\n}\n.img-container[data-v-625c0140] {\r\n  display: flex;\r\n  padding-bottom: 15px;\r\n  flex-wrap: wrap;\n}\n.img-card img[data-v-625c0140] {\r\n  width: 100px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 15px 0px 0px 15px;\n}\r\n", ""]);
+exports.push([module.i, "\n.imgSelectModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.imgConfirmModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.img-container[data-v-625c0140] {\r\n  display: flex;\r\n  padding-bottom: 15px;\r\n  flex-wrap: wrap;\n}\n.img-card img[data-v-625c0140] {\r\n  width: 100px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 15px 0px 0px 15px;\n}\n.confirm-content[data-v-625c0140] {\r\n  display: flex;\n}\n.img-stand[data-v-625c0140] {\r\n  width: 240px;\r\n  height: 320px;\n}\r\n", ""]);
 
 // exports
 
@@ -3000,7 +3035,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.title[data-v-61246860] {\r\n  margin: 120px 0;\r\n  color: white;\r\n  text-shadow: rgb(255, 199, 0) 4px 0px 0px,\r\n    rgb(255, 199, 0) 3.87565px 0.989616px 0px,\r\n    rgb(255, 199, 0) 3.51033px 1.9177px 0px,\r\n    rgb(255, 199, 0) 2.92676px 2.72656px 0px,\r\n    rgb(255, 199, 0) 2.16121px 3.36588px 0px,\r\n    rgb(255, 199, 0) 1.26129px 3.79594px 0px,\r\n    rgb(255, 199, 0) 0.282949px 3.98998px 0px,\r\n    rgb(255, 199, 0) -0.712984px 3.93594px 0px,\r\n    rgb(255, 199, 0) -1.66459px 3.63719px 0px,\r\n    rgb(255, 199, 0) -2.51269px 3.11229px 0px,\r\n    rgb(255, 199, 0) -3.20457px 2.39389px 0px,\r\n    rgb(255, 199, 0) -3.69721px 1.52664px 0px,\r\n    rgb(255, 199, 0) -3.95997px 0.56448px 0px,\r\n    rgb(255, 199, 0) -3.97652px -0.432781px 0px,\r\n    rgb(255, 199, 0) -3.74583px -1.40313px 0px,\r\n    rgb(255, 199, 0) -3.28224px -2.28625px 0px,\r\n    rgb(255, 199, 0) -2.61457px -3.02721px 0px,\r\n    rgb(255, 199, 0) -1.78435px -3.57996px 0px,\r\n    rgb(255, 199, 0) -0.843183px -3.91012px 0px,\r\n    rgb(255, 199, 0) 0.150409px -3.99717px 0px,\r\n    rgb(255, 199, 0) 1.13465px -3.8357px 0px,\r\n    rgb(255, 199, 0) 2.04834px -3.43574px 0px,\r\n    rgb(255, 199, 0) 2.83468px -2.82216px 0px,\r\n    rgb(255, 199, 0) 3.44477px -2.03312px 0px,\r\n    rgb(255, 199, 0) 3.84068px -1.11766px 0px,\r\n    rgb(255, 199, 0) 3.9978px -0.132717px 0px;\r\n  font-size: 6em;\r\n  text-align: center;\n}\n.title-window[data-v-61246860] {\r\n  width: 300px;\r\n  margin: 0 auto;\n}\n.title-item[data-v-61246860] {\r\n  width: 300px;\r\n  height: 45px;\r\n  padding-top: 4px;\r\n  background: linear-gradient(0.45deg, #666666, #000000);\r\n  border: double gold 2px;\r\n  border-radius: 10px;\r\n  color: white;\r\n  font-size: 1.5em;\r\n  text-align: center;\n}\r\n", ""]);
+exports.push([module.i, "\n.title[data-v-61246860] {\r\n  margin: 120px 0;\r\n  color: white;\r\n  text-shadow: rgb(255, 199, 0) 4px 0px 0px,\r\n    rgb(255, 199, 0) 3.87565px 0.989616px 0px,\r\n    rgb(255, 199, 0) 3.51033px 1.9177px 0px,\r\n    rgb(255, 199, 0) 2.92676px 2.72656px 0px,\r\n    rgb(255, 199, 0) 2.16121px 3.36588px 0px,\r\n    rgb(255, 199, 0) 1.26129px 3.79594px 0px,\r\n    rgb(255, 199, 0) 0.282949px 3.98998px 0px,\r\n    rgb(255, 199, 0) -0.712984px 3.93594px 0px,\r\n    rgb(255, 199, 0) -1.66459px 3.63719px 0px,\r\n    rgb(255, 199, 0) -2.51269px 3.11229px 0px,\r\n    rgb(255, 199, 0) -3.20457px 2.39389px 0px,\r\n    rgb(255, 199, 0) -3.69721px 1.52664px 0px,\r\n    rgb(255, 199, 0) -3.95997px 0.56448px 0px,\r\n    rgb(255, 199, 0) -3.97652px -0.432781px 0px,\r\n    rgb(255, 199, 0) -3.74583px -1.40313px 0px,\r\n    rgb(255, 199, 0) -3.28224px -2.28625px 0px,\r\n    rgb(255, 199, 0) -2.61457px -3.02721px 0px,\r\n    rgb(255, 199, 0) -1.78435px -3.57996px 0px,\r\n    rgb(255, 199, 0) -0.843183px -3.91012px 0px,\r\n    rgb(255, 199, 0) 0.150409px -3.99717px 0px,\r\n    rgb(255, 199, 0) 1.13465px -3.8357px 0px,\r\n    rgb(255, 199, 0) 2.04834px -3.43574px 0px,\r\n    rgb(255, 199, 0) 2.83468px -2.82216px 0px,\r\n    rgb(255, 199, 0) 3.44477px -2.03312px 0px,\r\n    rgb(255, 199, 0) 3.84068px -1.11766px 0px,\r\n    rgb(255, 199, 0) 3.9978px -0.132717px 0px;\r\n  font-size: 6em;\r\n  text-align: center;\n}\n.title-window[data-v-61246860] {\r\n  width: 300px;\r\n  margin: 0 auto;\n}\n.title-item[data-v-61246860] {\r\n  width: 300px;\r\n  height: 45px;\r\n  padding-top: 4px;\r\n  margin-bottom: 20px;\r\n  background: linear-gradient(0.45deg, #666666, #000000);\r\n  border: double gold 2px;\r\n  border-radius: 10px;\r\n  color: white;\r\n  font-size: 1.5em;\r\n  text-align: center;\n}\n.loginForm[data-v-61246860] {\r\n  width: 400px;\r\n  height: 200px;\r\n  top: 300px;\r\n  left: 200px;\r\n  border: 2px double gold;\r\n  border-radius: 30px;\r\n  box-shadow: 5px 5px 4px 4px rgba(0, 0, 0, 0.4);\r\n  background: linear-gradient(45deg, #000000, #666666);\r\n  color: white;\n}\n.form-item[data-v-61246860] {\r\n  margin: 20px 0;\r\n  text-align: center;\n}\n.form-button[data-v-61246860] {\r\n  margin: 30px 0;\r\n  text-align: center;\n}\r\n", ""]);
 
 // exports
 
@@ -3058,7 +3093,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal-window[data-v-5ed17cb0] {\r\n  display: block;\r\n  position: absolute;\r\n  top: 5%;\r\n  left: 5%;\r\n  z-index: 100;\n}\r\n", ""]);
+exports.push([module.i, "\n.modal-window[data-v-5ed17cb0] {\r\n  display: block;\r\n  position: absolute;\r\n  z-index: 100;\n}\r\n", ""]);
 
 // exports
 
@@ -5424,44 +5459,52 @@ var render = function() {
       _vm._v(" "),
       _c("char-img"),
       _vm._v(" "),
-      _vm.isShwoModal
-        ? _c("modal", [
-            _c("div", { staticClass: "modal-content" }, [
-              _c(
-                "div",
-                { staticClass: "img-container" },
-                _vm._l(_vm.userImg, function(img, index) {
-                  return _c("div", { key: index, staticClass: "img-card" }, [
-                    _c("img", {
-                      attrs: { src: img.face },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          if ($event.target !== $event.currentTarget) {
-                            return null
-                          }
-                          return _vm.selectImg(img)
+      _vm.isSelectModal
+        ? _c("modal", { staticClass: "imgSelectModal" }, [
+            _c(
+              "div",
+              { staticClass: "img-container" },
+              _vm._l(_vm.userImg, function(img, index) {
+                return _c("div", { key: index, staticClass: "img-card" }, [
+                  _c("img", {
+                    staticClass: "img-face",
+                    attrs: { src: img.face },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        if ($event.target !== $event.currentTarget) {
+                          return null
                         }
+                        return _vm.selectImg(img)
                       }
-                    })
-                  ])
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c("button", { on: { click: _vm.test } }, [_vm._v("test")])
-            ])
+                    }
+                  })
+                ])
+              }),
+              0
+            )
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.isShwoModal2
-        ? _c("modal", [
-            _c("div", { staticClass: "modal-content" }, [
+      _vm.isConfirmModal
+        ? _c("modal", { staticClass: "imgConfirmModal" }, [
+            _c("div", { staticClass: "confirm-content" }, [
               _c("div", { staticClass: "img-container" }, [
-                _c("img", { attrs: { src: _vm.selectedImg } })
+                _c("img", {
+                  staticClass: "img-stand",
+                  attrs: { src: _vm.selectedImg }
+                })
               ]),
               _vm._v(" "),
-              _c("button", { on: { click: _vm.test } }, [_vm._v("test")])
+              _c("div", { staticClass: "button-container" }, [
+                _c("button", { on: { click: _vm.test } }, [
+                  _vm._v("なじむ。実に！なじむぞ。(決定)")
+                ]),
+                _vm._v(" "),
+                _c("button", { on: { click: _vm.test } }, [
+                  _vm._v("残念だったな。トリックだよ(選びなおす)")
+                ])
+              ])
             ])
           ])
         : _vm._e()
@@ -5515,22 +5558,111 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", { staticClass: "title" }, [_vm._v("Habit Quest")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "title-window" },
-      [
-        _c("router-link", { attrs: { to: { name: "opening" } } }, [
-          _c("p", { staticClass: "title-item" }, [_vm._v("はじめから")])
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "title-item" }, [_vm._v("つづきから")])
-      ],
-      1
-    )
-  ])
+  return _c(
+    "div",
+    [
+      _vm.isShowLoginModal
+        ? _c("modal", { staticClass: "loginForm" }, [
+            _c("div", { staticClass: "form-item" }, [
+              _c("label", { attrs: { for: "name" } }, [_vm._v("ユーザー名")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.loginName,
+                    expression: "loginName"
+                  }
+                ],
+                attrs: { type: "text", name: "name" },
+                domProps: { value: _vm.loginName },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.loginName = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-item" }, [
+              _c("label", { attrs: { for: "password" } }, [
+                _vm._v("パスワード")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.loginPassword,
+                    expression: "loginPassword"
+                  }
+                ],
+                attrs: { type: "password", name: "password" },
+                domProps: { value: _vm.loginPassword },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.loginPassword = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-button" }, [
+              _c("button", { on: { click: _vm.sentLoginData } }, [
+                _vm._v("ログインする")
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.isShowLoginModal = false
+                    }
+                  }
+                },
+                [_vm._v("戻る")]
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("h1", { staticClass: "title" }, [_vm._v("Habit Quest")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "title-window" },
+        [
+          _c("router-link", { attrs: { to: { name: "opening" } } }, [
+            _c("button", { staticClass: "title-item" }, [_vm._v("はじめから")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "title-item",
+              on: {
+                click: function($event) {
+                  _vm.isShowLoginModal = true
+                }
+              }
+            },
+            [_vm._v("つづきから")]
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -5650,9 +5782,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "modal-window" }, [
-    _c("div", { staticClass: "modal-content" }, [_vm._t("default")], 2)
-  ])
+  return _c(
+    "div",
+    { staticClass: "modal-window" },
+    [_vm._t("default", null, { modalContent: "" })],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
