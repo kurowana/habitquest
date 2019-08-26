@@ -2725,6 +2725,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2738,12 +2750,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       isRegistModal: false,
-      isSelectModal: false,
-      isConfirmModal: false,
+      isSelectImgModal: false,
+      isConfirmImgModal: false,
       isStatusModal: false,
+      isConfirmModal: false,
       name: "",
       password: "",
       selectedImg: "",
+      point: 5,
       str: 10,
       agi: 10,
       vit: 10,
@@ -2769,78 +2783,151 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     getScene: function getScene(count) {
-      if (count === 0) {
+      if (count === 1) {
         this.$store.commit("setMessage", "１番目のメッセージ\n\
 てすとだよ\n\
 長のの文章テストああああああ");
       }
 
-      if (count === 1) {
+      if (count === 2) {
         this.$store.commit("setMessage", "2番目のメッセージ\n\
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
 aaaaaaa");
       }
 
-      if (count === 2) {
+      if (count === 3) {
         this.openRegistModal();
         this.$store.commit("setMessage", "あなたの名前を教えてね");
         this.$store.commit("setClickableFlag", true);
       }
 
-      if (count === 3) {
+      if (count === 4) {
         this.openSelectModal();
         this.$store.commit("setMessage", "あなたの姿を教えてね");
         this.$store.commit("setClickableFlag", true);
       }
 
-      if (count === 4) {
+      if (count === 5) {
+        this.openConfirmImgModal();
+        this.$store.commit("setMessage", "この姿で間違いない？");
         this.$store.commit("setClickableFlag", true);
-        this.closeSelectModal();
       }
 
-      if (count === 5) {
-        this.$store.commit("setMessage", "modal後のメッセージ");
+      if (count === 6) {
+        this.$store.commit("setMessage", "能力の振り分けを行ってね");
+        this.openStatusModal();
+      }
+
+      if (count === 7) {
+        this.$store.commit("setMessage", "これでいいかな？");
+        this.openConfirmModal();
       }
     },
     saveName: function saveName() {
       this.closeRegistModal();
+      this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
-      var nextCount = this.sceneCount + 1;
-      this.$store.commit("setSceneCount", nextCount);
     },
     selectImg: function selectImg(img) {
       this.selectedImg = img.stand;
-      this.openConfirmModal();
+      this.closeSelectModal();
+      this.$store.commit("setSceneCount", this.sceneCount + 1);
+      this.getScene(this.sceneCount);
+    },
+    saveImg: function saveImg() {
+      this.closeConfirmImgModal();
+      this.$store.commit("setSceneCount", this.sceneCount + 1);
+      this.getScene(this.sceneCount);
+    },
+    returnImg: function returnImg() {
+      this.closeConfirmImgModal();
+      this.$store.commit("setSceneCount", this.sceneCount - 1);
+      this.getScene(this.sceneCount);
+    },
+    decideStatus: function decideStatus() {
+      this.closeStatusModal();
+      this.$store.commit("setSceneCount", this.sceneCount + 1);
+      this.getScene(this.sceneCount);
     },
     incStatus: function incStatus(status) {
-      switch (status) {
-        case "str":
-          this.str++;
-          break;
+      if (this.point > 0) {
+        this.point--;
 
-        case "agi":
-          this.agi++;
-          break;
+        switch (status) {
+          case "str":
+            this.str++;
+            break;
 
-        case "vit":
-          this.vit++;
-          break;
+          case "agi":
+            this.agi++;
+            break;
 
-        case "int":
-          this["int"]++;
-          break;
+          case "vit":
+            this.vit++;
+            break;
 
-        case "dex":
-          this.dex++;
-          break;
+          case "int":
+            this["int"]++;
+            break;
 
-        case "luc":
-          this.luc++;
-          break;
+          case "dex":
+            this.dex++;
+            break;
+
+          case "luc":
+            this.luc++;
+            break;
+        }
       }
     },
-    test: function test() {
-      alert("test");
+    decStatus: function decStatus(status) {
+      if (5 > this.point) {
+        this.point++;
+
+        switch (status) {
+          case "str":
+            if (this.str > 10) {
+              this.str--;
+            }
+
+            break;
+
+          case "agi":
+            if (this.agi > 10) {
+              this.agi--;
+            }
+
+            break;
+
+          case "vit":
+            if (this.vit > 10) {
+              this.agi--;
+            }
+
+            break;
+
+          case "int":
+            if (this["int"] > 10) {
+              this["int"]--;
+            }
+
+            break;
+
+          case "dex":
+            if (this.dex > 10) {
+              this.dex--;
+            }
+
+            break;
+
+          case "luc":
+            if (this.luc > 10) {
+              this.luc--;
+            }
+
+            break;
+        }
+      }
     },
     openRegistModal: function openRegistModal() {
       this.isRegistModal = true;
@@ -2849,22 +2936,28 @@ aaaaaaa");
       this.isRegistModal = false;
     },
     openSelectModal: function openSelectModal() {
-      this.isSelectModal = true;
+      this.isSelectImgModal = true;
     },
     closeSelectModal: function closeSelectModal() {
-      this.isSelectModal = false;
+      this.isSelectImgModal = false;
     },
-    openConfirmModal: function openConfirmModal() {
-      this.isConfirmModal = true;
+    openConfirmImgModal: function openConfirmImgModal() {
+      this.isConfirmImgModal = true;
     },
-    closeConfirmModal: function closeConfirmModal() {
-      this.isConfirmModal = false;
+    closeConfirmImgModal: function closeConfirmImgModal() {
+      this.isConfirmImgModal = false;
     },
     openStatusModal: function openStatusModal() {
       this.isStatusModal = true;
     },
     closeStatusModal: function closeStatusModal() {
       this.isStatusModal = false;
+    },
+    openConfirmModal: function openConfirmModal() {
+      this.isConfirmModal = true;
+    },
+    closeConfirmModal: function closeConfirmModal() {
+      this.isConfirmModal = false;
     }
   }
 });
@@ -3028,8 +3121,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     nextScene: function nextScene() {
       this.$store.commit("setClickableFlag", false);
-      this.$emit("next-scene", this.sceneCount);
       this.$store.commit("setSceneCount", this.sceneCount + 1);
+      this.$emit("get-scene", this.sceneCount);
     },
     changeScene: function changeScene() {
       if (this.clickableFlag === true) {
@@ -3142,7 +3235,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.isRegisterModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.imgSelectModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.imgConfirmModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.img-container[data-v-625c0140] {\r\n  display: flex;\r\n  padding-bottom: 15px;\r\n  flex-wrap: wrap;\n}\n.img-card img[data-v-625c0140] {\r\n  width: 100px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 15px 0px 0px 15px;\n}\n.confirm-content[data-v-625c0140] {\r\n  display: flex;\n}\n.img-stand[data-v-625c0140] {\r\n  width: 240px;\r\n  height: 320px;\n}\r\n", ""]);
+exports.push([module.i, "\n.isRegisterModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.selectImgModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.confirmImgModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.statusModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.confirmModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.img-container[data-v-625c0140] {\r\n  display: flex;\r\n  padding-bottom: 15px;\r\n  flex-wrap: wrap;\n}\n.img-card img[data-v-625c0140] {\r\n  width: 100px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 15px 0px 0px 15px;\n}\n.confirm-content[data-v-625c0140] {\r\n  display: flex;\n}\n.img-stand[data-v-625c0140] {\r\n  width: 240px;\r\n  height: 320px;\n}\r\n", ""]);
 
 // exports
 
@@ -5582,7 +5675,7 @@ var render = function() {
     "div",
     [
       _vm._v("\n  " + _vm._s(this.sceneCount) + "\n  "),
-      _c("message", { on: { "next-scene": _vm.getScene } }),
+      _c("message", { on: { "get-scene": _vm.getScene } }),
       _vm._v(" "),
       _c("char-img"),
       _vm._v(" "),
@@ -5648,8 +5741,8 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.isSelectModal
-        ? _c("modal", { staticClass: "imgSelectModal" }, [
+      _vm.isSelectImgModal
+        ? _c("modal", { staticClass: "selectImgModal" }, [
             _c(
               "div",
               { staticClass: "img-container" },
@@ -5675,8 +5768,8 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.isConfirmModal
-        ? _c("modal", { staticClass: "imgConfirmModal" }, [
+      _vm.isConfirmImgModal
+        ? _c("modal", { staticClass: "confirmImgModal" }, [
             _c("div", { staticClass: "confirm-content" }, [
               _c("div", { staticClass: "img-container" }, [
                 _c("img", {
@@ -5686,11 +5779,11 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "button-container" }, [
-                _c("button", { on: { click: _vm.test } }, [
+                _c("button", { on: { click: _vm.saveImg } }, [
                   _vm._v("なじむ。実に！なじむぞ。(決定)")
                 ]),
                 _vm._v(" "),
-                _c("button", { on: { click: _vm.test } }, [
+                _c("button", { on: { click: _vm.returnImg } }, [
                   _vm._v("残念だったな。トリックだよ(選びなおす)")
                 ])
               ])
@@ -5699,8 +5792,13 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.isStatusModal
-        ? _c("modal", { staticClass: "isStatusModal" }, [
+        ? _c("modal", { staticClass: "statusModal" }, [
             _c("div", { staticClass: "status-content" }, [
+              _vm._v(
+                "\n      振り分け可能ポイント：" +
+                  _vm._s(_vm.point) +
+                  "\n      "
+              ),
               _c("div", [
                 _c("label", { attrs: { for: "str" } }, [_vm._v("STR")]),
                 _vm._v(" "),
@@ -5971,8 +6069,47 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("div", [_c("button", [_vm._v("確定")])])
+              _c("div", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        if ($event.target !== $event.currentTarget) {
+                          return null
+                        }
+                        return _vm.decideStatus($event)
+                      }
+                    }
+                  },
+                  [_vm._v("確定")]
+                )
+              ])
             ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isConfirmModal
+        ? _c("modal", { staticClass: "confirmModal" }, [
+            _c("div", [_vm._v("名前：" + _vm._s(_vm.name))]),
+            _vm._v(" "),
+            _c("img", {
+              staticClass: "img-stand",
+              attrs: { src: _vm.selectedImg }
+            }),
+            _vm._v(" "),
+            _c("div", [_vm._v("STR:" + _vm._s(_vm.str))]),
+            _vm._v(" "),
+            _c("div", [_vm._v("AGI:" + _vm._s(_vm.agi))]),
+            _vm._v(" "),
+            _c("div", [_vm._v("VIT:" + _vm._s(_vm.vit))]),
+            _vm._v(" "),
+            _c("div", [_vm._v("INT:" + _vm._s(_vm.int))]),
+            _vm._v(" "),
+            _c("div", [_vm._v("DEX:" + _vm._s(_vm.dex))]),
+            _vm._v(" "),
+            _c("div", [_vm._v("LUC:" + _vm._s(_vm.luc))])
           ])
         : _vm._e()
     ],

@@ -42,8 +42,8 @@ export default {
   methods: {
     nextScene: function() {
       this.$store.commit("setClickableFlag", false);
-      this.$emit("next-scene", this.sceneCount);
       this.$store.commit("setSceneCount", this.sceneCount + 1);
+      this.$emit("get-scene", this.sceneCount);
     },
     changeScene: function() {
       if (this.clickableFlag === true) {
