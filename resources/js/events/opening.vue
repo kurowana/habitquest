@@ -44,43 +44,40 @@
       <div class="status-content">
         振り分け可能ポイント：{{point}}
         <div>
-          <label for="str">STR</label>
-          <input v-model="str" type="number" name="str" />
+          STR
           {{str}}
           <button @click="incStatus('str')">+</button>
           <button @click="decStatus('str')">-</button>
         </div>
         <div>
           <label for="agi">AGI</label>
-          <input v-model="agi" type="number" name="agi" />
           {{agi}}
           <button @click="incStatus('agi')">+</button>
           <button @click="decStatus('agi')">-</button>
         </div>
         <div>
-          <label for="vit">VIT</label>
-          <input v-model="vit" type="number" name="vit" />
+          VIT
           {{vit}}
           <button @click="incStatus('vit')">+</button>
           <button @click="decStatus('vit')">-</button>
         </div>
         <div>
-          <label for="int">INT</label>
-          <input v-model="int" type="number" name="int" />
+          INT
           {{int}}
           <button @click="incStatus('int')">+</button>
           <button @click="decStatus('int')">-</button>
         </div>
         <div>
-          <label for="dex">DEX</label>
-          <input v-model="dex" type="number" name="dex" />
+          DEX
           {{dex}}
           <button @click="incStatus('dex')">+</button>
           <button @click="decStatus('dex')">-</button>
         </div>
         <div>
-          <label for="luc">LUC</label>
-          <input v-model="luc" type="number" name="luc" />
+          LUC
+          {{luc}}
+          <button @click="incStatus('luc')">+</button>
+          <button @click="decStatus('luc')">-</button>
         </div>
         <div>
           <button @click.prevent.self="decideStatus">確定</button>
@@ -96,11 +93,13 @@
       <div>INT:{{int}}</div>
       <div>DEX:{{dex}}</div>
       <div>LUC:{{luc}}</div>
+      <button @click="registUser">登録</button>
     </modal>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import { mapGetters } from "vuex";
 
 import message from "../parts/Message";
@@ -249,40 +248,62 @@ aaaaaaa"
     },
     decStatus: function(status) {
       if (5 > this.point) {
-        this.point++;
         switch (status) {
           case "str":
             if (this.str > 10) {
               this.str--;
+              this.point++;
             }
             break;
           case "agi":
             if (this.agi > 10) {
               this.agi--;
+              this.point++;
             }
             break;
           case "vit":
             if (this.vit > 10) {
               this.agi--;
+              this.point++;
             }
             break;
           case "int":
             if (this.int > 10) {
               this.int--;
+              this.point++;
             }
             break;
           case "dex":
             if (this.dex > 10) {
               this.dex--;
+              this.point++;
             }
             break;
           case "luc":
             if (this.luc > 10) {
               this.luc--;
+              this.point++;
             }
             break;
         }
       }
+    },
+    registUser: function() {
+      axios
+        .post("./api/registUser", {
+          name: this.name,
+          password: this.password,
+          selectedImg: this.selectedImg,
+          str: this.str,
+          agi: this.agi,
+          vit: this.vit,
+          int: this.int,
+          dex: this.dex,
+          luc: this.luc
+        })
+        .then(res => {
+          console.log(res);
+        });
     },
     openRegistModal: function() {
       this.isRegistModal = true;
@@ -326,6 +347,7 @@ aaaaaaa"
   top: 40px;
   left: 40px;
   overflow: auto;
+  color: white;
 }
 .selectImgModal {
   background: linear-gradient(90deg, #000000, #666666);
@@ -334,6 +356,7 @@ aaaaaaa"
   top: 40px;
   left: 40px;
   overflow: auto;
+  color: white;
 }
 .confirmImgModal {
   background: linear-gradient(90deg, #000000, #666666);
@@ -342,6 +365,7 @@ aaaaaaa"
   top: 40px;
   left: 40px;
   overflow: auto;
+  color: white;
 }
 .statusModal {
   background: linear-gradient(90deg, #000000, #666666);
@@ -350,6 +374,7 @@ aaaaaaa"
   top: 40px;
   left: 40px;
   overflow: auto;
+  color: white;
 }
 .confirmModal {
   background: linear-gradient(90deg, #000000, #666666);

@@ -18,14 +18,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/create_char', 'StatusesController@create_char');
-Route::post('/set_status', 'StatusesController@set_status');
-Route::post('/grow_status', 'StatusesController@grow_status');
+Route::post('/registUser', 'Controller@registUser');
 
-Route::post('/add_habit', 'HabitsController@add_habit');
-Route::post('/add_habit_count', 'HabitsController@add_habit_count');
-Route::post('/delete_habit', 'HabitsController@delete_habit');
+// Route::post('/create_char', 'StatusesController@create_char');
+// Route::post('/set_status', 'StatusesController@set_status');
+// Route::post('/grow_status', 'StatusesController@grow_status');
 
-Route::post('/add_monster', 'MonstersController@add_monster');
+// Route::post('/add_habit', 'HabitsController@add_habit');
+// Route::post('/add_habit_count', 'HabitsController@add_habit_count');
+// Route::post('/delete_habit', 'HabitsController@delete_habit');
 
-Route::post('/appear_monster', 'MonstersController@appear_monster');
+// Route::post('/add_monster', 'MonstersController@add_monster');
+
+// Route::post('/appear_monster', 'MonstersController@appear_monster');
