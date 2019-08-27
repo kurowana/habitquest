@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
 {
-    //
+    //リレーション
     public function user()
     {
         return $this->belongsTo('App\Models\User');
@@ -20,5 +20,21 @@ class Status extends Model
             $count++;
         }
         return [$lv, $count];
+    }
+
+    public function registStatus($user_id, $str, $agi, $vit, $int, $dex, $luc, $imgPath)
+    {
+        $statusIns = new $this;
+        $statusIns->str = $str;
+        $statusIns->agi = $agi;
+        $statusIns->vit = $vit;
+        $statusIns->int = $int;
+        $statusIns->dex = $dex;
+        $statusIns->luc = $luc;
+        $statusIns->char_img = $imgPath;
+        $statusIns->user_id = $user_id;
+        $statusIns->save();
+
+        return $statusIns;
     }
 }

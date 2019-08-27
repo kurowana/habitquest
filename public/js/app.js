@@ -2627,10 +2627,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
-/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
-/* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parts/modal */ "./resources/js/parts/modal.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
+/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
+/* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/modal */ "./resources/js/parts/modal.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2735,17 +2737,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    message: _parts_Message__WEBPACK_IMPORTED_MODULE_1__["default"],
-    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_2__["default"],
-    modal: _parts_modal__WEBPACK_IMPORTED_MODULE_3__["default"]
+    message: _parts_Message__WEBPACK_IMPORTED_MODULE_2__["default"],
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_3__["default"],
+    modal: _parts_modal__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -2766,7 +2767,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       luc: 10
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     userInfo: "getUserInfo",
     userImg: "getUserImg",
     sceneCount: "getSceneCount",
@@ -2882,12 +2883,11 @@ aaaaaaa");
     },
     decStatus: function decStatus(status) {
       if (5 > this.point) {
-        this.point++;
-
         switch (status) {
           case "str":
             if (this.str > 10) {
               this.str--;
+              this.point++;
             }
 
             break;
@@ -2895,6 +2895,7 @@ aaaaaaa");
           case "agi":
             if (this.agi > 10) {
               this.agi--;
+              this.point++;
             }
 
             break;
@@ -2902,6 +2903,7 @@ aaaaaaa");
           case "vit":
             if (this.vit > 10) {
               this.agi--;
+              this.point++;
             }
 
             break;
@@ -2909,6 +2911,7 @@ aaaaaaa");
           case "int":
             if (this["int"] > 10) {
               this["int"]--;
+              this.point++;
             }
 
             break;
@@ -2916,6 +2919,7 @@ aaaaaaa");
           case "dex":
             if (this.dex > 10) {
               this.dex--;
+              this.point++;
             }
 
             break;
@@ -2923,11 +2927,27 @@ aaaaaaa");
           case "luc":
             if (this.luc > 10) {
               this.luc--;
+              this.point++;
             }
 
             break;
         }
       }
+    },
+    registUser: function registUser() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/registUser", {
+        name: this.name,
+        password: this.password,
+        selectedImg: this.selectedImg,
+        str: this.str,
+        agi: this.agi,
+        vit: this.vit,
+        "int": this["int"],
+        dex: this.dex,
+        luc: this.luc
+      }).then(function (res) {
+        console.log(res);
+      });
     },
     openRegistModal: function openRegistModal() {
       this.isRegistModal = true;
@@ -3235,7 +3255,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.isRegisterModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.selectImgModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.confirmImgModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.statusModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\n}\n.confirmModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.img-container[data-v-625c0140] {\r\n  display: flex;\r\n  padding-bottom: 15px;\r\n  flex-wrap: wrap;\n}\n.img-card img[data-v-625c0140] {\r\n  width: 100px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 15px 0px 0px 15px;\n}\n.confirm-content[data-v-625c0140] {\r\n  display: flex;\n}\n.img-stand[data-v-625c0140] {\r\n  width: 240px;\r\n  height: 320px;\n}\r\n", ""]);
+exports.push([module.i, "\n.isRegisterModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.selectImgModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.confirmImgModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.statusModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.confirmModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.img-container[data-v-625c0140] {\r\n  display: flex;\r\n  padding-bottom: 15px;\r\n  flex-wrap: wrap;\n}\n.img-card img[data-v-625c0140] {\r\n  width: 100px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 15px 0px 0px 15px;\n}\n.confirm-content[data-v-625c0140] {\r\n  display: flex;\n}\n.img-stand[data-v-625c0140] {\r\n  width: 240px;\r\n  height: 320px;\n}\r\n", ""]);
 
 // exports
 
@@ -5800,29 +5820,9 @@ var render = function() {
                   "\n      "
               ),
               _c("div", [
-                _c("label", { attrs: { for: "str" } }, [_vm._v("STR")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.str,
-                      expression: "str"
-                    }
-                  ],
-                  attrs: { type: "number", name: "str" },
-                  domProps: { value: _vm.str },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.str = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v("\n        " + _vm._s(_vm.str) + "\n        "),
+                _vm._v(
+                  "\n        STR\n        " + _vm._s(_vm.str) + "\n        "
+                ),
                 _c(
                   "button",
                   {
@@ -5850,27 +5850,6 @@ var render = function() {
               _vm._v(" "),
               _c("div", [
                 _c("label", { attrs: { for: "agi" } }, [_vm._v("AGI")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.agi,
-                      expression: "agi"
-                    }
-                  ],
-                  attrs: { type: "number", name: "agi" },
-                  domProps: { value: _vm.agi },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.agi = $event.target.value
-                    }
-                  }
-                }),
                 _vm._v("\n        " + _vm._s(_vm.agi) + "\n        "),
                 _c(
                   "button",
@@ -5898,29 +5877,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", [
-                _c("label", { attrs: { for: "vit" } }, [_vm._v("VIT")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.vit,
-                      expression: "vit"
-                    }
-                  ],
-                  attrs: { type: "number", name: "vit" },
-                  domProps: { value: _vm.vit },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.vit = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v("\n        " + _vm._s(_vm.vit) + "\n        "),
+                _vm._v(
+                  "\n        VIT\n        " + _vm._s(_vm.vit) + "\n        "
+                ),
                 _c(
                   "button",
                   {
@@ -5947,29 +5906,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", [
-                _c("label", { attrs: { for: "int" } }, [_vm._v("INT")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.int,
-                      expression: "int"
-                    }
-                  ],
-                  attrs: { type: "number", name: "int" },
-                  domProps: { value: _vm.int },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.int = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v("\n        " + _vm._s(_vm.int) + "\n        "),
+                _vm._v(
+                  "\n        INT\n        " + _vm._s(_vm.int) + "\n        "
+                ),
                 _c(
                   "button",
                   {
@@ -5996,29 +5935,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", [
-                _c("label", { attrs: { for: "dex" } }, [_vm._v("DEX")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.dex,
-                      expression: "dex"
-                    }
-                  ],
-                  attrs: { type: "number", name: "dex" },
-                  domProps: { value: _vm.dex },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.dex = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v("\n        " + _vm._s(_vm.dex) + "\n        "),
+                _vm._v(
+                  "\n        DEX\n        " + _vm._s(_vm.dex) + "\n        "
+                ),
                 _c(
                   "button",
                   {
@@ -6045,28 +5964,32 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", [
-                _c("label", { attrs: { for: "luc" } }, [_vm._v("LUC")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.luc,
-                      expression: "luc"
-                    }
-                  ],
-                  attrs: { type: "number", name: "luc" },
-                  domProps: { value: _vm.luc },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                _vm._v(
+                  "\n        LUC\n        " + _vm._s(_vm.luc) + "\n        "
+                ),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.incStatus("luc")
                       }
-                      _vm.luc = $event.target.value
                     }
-                  }
-                })
+                  },
+                  [_vm._v("+")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.decStatus("luc")
+                      }
+                    }
+                  },
+                  [_vm._v("-")]
+                )
               ]),
               _vm._v(" "),
               _c("div", [
@@ -6109,7 +6032,9 @@ var render = function() {
             _vm._v(" "),
             _c("div", [_vm._v("DEX:" + _vm._s(_vm.dex))]),
             _vm._v(" "),
-            _c("div", [_vm._v("LUC:" + _vm._s(_vm.luc))])
+            _c("div", [_vm._v("LUC:" + _vm._s(_vm.luc))]),
+            _vm._v(" "),
+            _c("button", { on: { click: _vm.registUser } }, [_vm._v("登録")])
           ])
         : _vm._e()
     ],

@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+use Illuminate\Support\Facades\Hash;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -38,6 +40,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    //リレーション
     public function habit()
     {
         return $this->hasMany('App\Models\Habit');
@@ -51,5 +55,16 @@ class User extends Authenticatable
     public function skill()
     {
         return $this->belongsToMany('App\Models\Skill', 'skill_user', 'user_id', 'skill_id');
+    }
+
+    //
+    public function registUserBase($name, $password)
+    {
+        $userIns = new $this;
+        $userIns->name = $name;
+        $userIns->password = Hash::make($password);
+        $userIns->save();
+
+        return $userIns;
     }
 }
