@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+import home from "./components/Home.vue";
 import sidebar1 from "./parts/sidebar1.vue";
 
 import title from "./events/title.vue";
@@ -16,6 +17,14 @@ const routes = [
         name: "title",
         components: {
             default: title,
+            sidebar: sidebar1
+        }
+    },
+    {
+        path: "/home",
+        name: "home",
+        components: {
+            default: home,
             sidebar: sidebar1
         }
     },
