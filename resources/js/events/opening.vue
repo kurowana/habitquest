@@ -302,7 +302,7 @@ aaaaaaa"
           luc: this.luc
         })
         .then(res => {
-          console.log(res);
+          this.$router.push({ name: "home" });
         });
     },
     openRegistModal: function() {
