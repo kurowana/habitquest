@@ -47,7 +47,7 @@ export default {
           password: this.loginPassword
         })
         .then(res => {
-          console.log(res);
+          location.reload();
         });
     }
   }
