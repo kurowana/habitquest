@@ -1906,6 +1906,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -1918,14 +1919,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      user: "",
+      // user:'',
       userName: "",
       password: "",
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
   props: {
-    userId: ""
+    user: {
+      type: String
+    }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getUserInfo", "getUserSt", "getMessage"]), {
     bgImg: function bgImg() {
@@ -3102,7 +3105,7 @@ __webpack_require__.r(__webpack_exports__);
         name: this.loginName,
         password: this.loginPassword
       }).then(function (res) {
-        console.log(res);
+        location.reload();
       });
     }
   }
@@ -4701,6 +4704,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "wrapper" }, [
+    _vm._v("\n  " + _vm._s(_vm.user) + "\n  "),
     _c(
       "div",
       { staticClass: "content" },

@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    {{user}}
     <div class="content">
       <router-view class="game-view" :style="{background:bgImg}"></router-view>
       <router-view name="sidebar"></router-view>
@@ -31,7 +32,7 @@ import Battle from "./Battle";
 export default {
   data: function() {
     return {
-      user: "",
+      // user:'',
 
       userName: "",
       password: "",
@@ -42,7 +43,9 @@ export default {
     };
   },
   props: {
-    userId: ""
+    user: {
+      type: String
+    }
   },
   computed: {
     ...mapGetters(["getUserInfo", "getUserSt", "getMessage"]),
