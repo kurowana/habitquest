@@ -30,6 +30,15 @@ import Battle from "./Battle";
 // import charImg from "./charImg";
 
 export default {
+  components: {
+    "char-info": charInfo,
+    "char-create": charCreate,
+    habit: habit,
+    "monster-create": monsterCreate,
+    battle: Battle
+    // message: Message,
+    // "char-img": charImg,
+  },
   data: function() {
     return {
       // user:'',
@@ -54,14 +63,13 @@ export default {
       return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
     }
   },
-  components: {
-    "char-info": charInfo,
-    "char-create": charCreate,
-    habit: habit,
-    "monster-create": monsterCreate,
-    battle: Battle
-    // message: Message,
-    // "char-img": charImg,
+  created: function() {
+    if (this.user == "") {
+      console.log("ng");
+    } else {
+      console.log("ok");
+      this.$router.push({ name: "home" });
+    }
   },
   // created: function() {
   //   axios
