@@ -302,7 +302,15 @@ aaaaaaa"
           luc: this.luc
         })
         .then(res => {
-          this.$router.push({ name: "home" });
+          axios
+            .post("./login", {
+              name: this.name,
+              password: this.password
+            })
+            .then(res => {
+              location.reload();
+            });
+          // this.$router.push({ name: "home" });
         });
     },
     openRegistModal: function() {

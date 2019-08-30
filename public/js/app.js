@@ -1917,6 +1917,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 // import charImg from "./charImg";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    "char-info": _CharInfo__WEBPACK_IMPORTED_MODULE_3__["default"],
+    "char-create": _CharCreate__WEBPACK_IMPORTED_MODULE_2__["default"],
+    habit: _Habit__WEBPACK_IMPORTED_MODULE_4__["default"],
+    "monster-create": _MonsterCreate__WEBPACK_IMPORTED_MODULE_5__["default"],
+    battle: _Battle__WEBPACK_IMPORTED_MODULE_6__["default"] // message: Message,
+    // "char-img": charImg,
+
+  },
   data: function data() {
     return {
       // user:'',
@@ -1935,14 +1944,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
     }
   }),
-  components: {
-    "char-info": _CharInfo__WEBPACK_IMPORTED_MODULE_3__["default"],
-    "char-create": _CharCreate__WEBPACK_IMPORTED_MODULE_2__["default"],
-    habit: _Habit__WEBPACK_IMPORTED_MODULE_4__["default"],
-    "monster-create": _MonsterCreate__WEBPACK_IMPORTED_MODULE_5__["default"],
-    battle: _Battle__WEBPACK_IMPORTED_MODULE_6__["default"] // message: Message,
-    // "char-img": charImg,
-
+  created: function created() {
+    if (this.user == "") {
+      console.log("ng");
+    } else {
+      console.log("ok");
+      this.$router.push({
+        name: "home"
+      });
+    }
   },
   // created: function() {
   //   axios
@@ -2972,9 +2982,12 @@ aaaaaaa");
         dex: this.dex,
         luc: this.luc
       }).then(function (res) {
-        _this.$router.push({
-          name: "home"
-        });
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./login", {
+          name: _this.name,
+          password: _this.password
+        }).then(function (res) {
+          location.reload();
+        }); // this.$router.push({ name: "home" });
       });
     },
     openRegistModal: function openRegistModal() {
