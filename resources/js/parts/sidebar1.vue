@@ -1,6 +1,9 @@
 <template>
   <div class="sidebar">
-    <router-link :to="{name:'test'}" class="btn">ボタンテスト</router-link>
+    <router-link :to="{name:'test'}" class="btn">ホーム</router-link>
+    <router-link :to="{name:'test'}" class="btn">ステータス</router-link>
+    <router-link :to="{name:'test'}" class="btn">交流</router-link>
+    <router-link :to="{name:'test'}" class="btn">探索</router-link>
     <div class="anime"></div>
     <div class="anime2"></div>
   </div>
