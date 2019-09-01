@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import home from "./components/Home.vue";
-import sidebar1 from "./parts/sidebar1.vue";
+import MainSidebar from "./parts/MainSidebar.vue";
 
 import title from "./events/title.vue";
 import opening from "./events/opening.vue";
@@ -17,7 +17,7 @@ const routes = [
         name: "title",
         components: {
             default: title,
-            sidebar: sidebar1
+            sidebar: MainSidebar
         }
     },
     {
@@ -25,7 +25,7 @@ const routes = [
         name: "home",
         components: {
             default: home,
-            sidebar: sidebar1
+            sidebar: MainSidebar
         }
     },
     {
@@ -33,7 +33,7 @@ const routes = [
         name: "opening",
         components: {
             default: opening,
-            sidebar: sidebar1
+            sidebar: MainSidebar
         }
     },
     {
@@ -41,7 +41,7 @@ const routes = [
         name: "test",
         components: {
             default: testevent,
-            sidebar: sidebar1
+            sidebar: MainSidebar
         }
     }
 ];
