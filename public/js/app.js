@@ -6338,7 +6338,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "router-link",
-        { staticClass: "btn", attrs: { to: { name: "test" } } },
+        { staticClass: "btn", attrs: { to: { name: "habit" } } },
         [_vm._v("習慣")]
       ),
       _vm._v(" "),
@@ -23471,10 +23471,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
-/* harmony import */ var _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parts/MainSidebar.vue */ "./resources/js/parts/MainSidebar.vue");
-/* harmony import */ var _events_title_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./events/title.vue */ "./resources/js/events/title.vue");
-/* harmony import */ var _events_opening_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./events/opening.vue */ "./resources/js/events/opening.vue");
-/* harmony import */ var _events_testevent_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./events/testevent.vue */ "./resources/js/events/testevent.vue");
+/* harmony import */ var _components_Habit_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Habit.vue */ "./resources/js/components/Habit.vue");
+/* harmony import */ var _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./parts/MainSidebar.vue */ "./resources/js/parts/MainSidebar.vue");
+/* harmony import */ var _events_title_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./events/title.vue */ "./resources/js/events/title.vue");
+/* harmony import */ var _events_opening_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./events/opening.vue */ "./resources/js/events/opening.vue");
+/* harmony import */ var _events_testevent_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./events/testevent.vue */ "./resources/js/events/testevent.vue");
+
 
 
 
@@ -23487,29 +23489,36 @@ var routes = [{
   path: "/",
   name: "title",
   components: {
-    "default": _events_title_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    "default": _events_title_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 }, {
   path: "/home",
   name: "home",
   components: {
     "default": _components_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }
+}, {
+  path: "/habit",
+  name: "habit",
+  components: {
+    "default": _components_Habit_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 }, {
   path: "/opening",
   name: "opening",
   components: {
-    "default": _events_opening_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    "default": _events_opening_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 }, {
   path: "/test",
   name: "test",
   components: {
-    "default": _events_testevent_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    "default": _events_testevent_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -23533,6 +23542,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/user */ "./resources/js/store/user.js");
 /* harmony import */ var _store_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/event */ "./resources/js/store/event.js");
+/* harmony import */ var _store_habit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/habit */ "./resources/js/store/habit.js");
+
 
 
 
@@ -23541,6 +23552,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     userStore: _store_user__WEBPACK_IMPORTED_MODULE_2__["default"],
+    habitStore: _store_habit__WEBPACK_IMPORTED_MODULE_4__["default"],
     eventStore: _store_event__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
@@ -23768,6 +23780,28 @@ var mutations = {
 
 /***/ }),
 
+/***/ "./resources/js/store/habit.js":
+/*!*************************************!*\
+  !*** ./resources/js/store/habit.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var state = {
+  habit: {}
+};
+var getters = {};
+var mutations = {};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  getters: getters,
+  mutations: mutations
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/user.js":
 /*!************************************!*\
   !*** ./resources/js/store/user.js ***!
@@ -23923,20 +23957,11 @@ var getters = {
   getUserSt: function getUserSt(state) {
     return state.userSt;
   },
-  getHasHabit: function getHasHabit(state) {
-    return state.user.habit;
-  },
   getUserImg: function getUserImg(state) {
     return state.userImg;
   }
 };
-var mutations = {
-  setHabit: function setHabit(state, habit) {
-    state.user.habit = {
-      habit_name: habit
-    };
-  }
-};
+var mutations = {};
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
   getters: getters,
