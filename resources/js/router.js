@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import home from "./components/Home.vue";
+import habit from "./components/Habit.vue";
+
 import MainSidebar from "./parts/MainSidebar.vue";
 
 import title from "./events/title.vue";
@@ -25,6 +27,14 @@ const routes = [
         name: "home",
         components: {
             default: home,
+            sidebar: MainSidebar
+        }
+    },
+    {
+        path: "/habit",
+        name: "habit",
+        components: {
+            default: habit,
             sidebar: MainSidebar
         }
     },

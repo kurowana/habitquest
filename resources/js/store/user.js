@@ -144,18 +144,12 @@ const getters = {
     getUserSt: state => {
         return state.userSt;
     },
-    getHasHabit: state => {
-        return state.user.habit;
-    },
     getUserImg: state => {
         return state.userImg;
     }
 };
-const mutations = {
-    setHabit(state, habit) {
-        state.user.habit = { habit_name: habit };
-    }
-};
+const mutations = {};
+
 export default {
     state,
     getters,
