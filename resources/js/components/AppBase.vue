@@ -13,6 +13,9 @@
       <input type="text" v-model="password" />
       <button @click="registTest">登録</button>
     </div>
+    <audio id="bgm" src="/bgm/bgm_maoudamashii_fantasy13.mp3"></audio>
+    <button @click="playBgm">再生</button>
+    <button @click="pauseBgm">停止</button>
   </div>
 </template>
 
@@ -71,6 +74,7 @@ export default {
       this.$router.push({ name: "home" });
     }
   },
+  mounted: function() {},
   // created: function() {
   //   axios
   //     .post("./api/set_status", {
@@ -132,6 +136,16 @@ export default {
         .then(res => {
           console.log("post");
         });
+    },
+    playBgm: function() {
+      const v = document.getElementById("bgm");
+      v.volume = v.volume * 0.1;
+      v.play();
+    },
+    pauseBgm: function() {
+      const v = document.getElementById("bgm");
+      v.volume = v.volume * 10;
+      v.pause();
     }
   }
 };

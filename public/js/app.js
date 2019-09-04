@@ -1907,6 +1907,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -1954,6 +1957,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
   },
+  mounted: function mounted() {},
   // created: function() {
   //   axios
   //     .post("./api/set_status", {
@@ -2012,6 +2016,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (res) {
         console.log("post");
       });
+    },
+    playBgm: function playBgm() {
+      var v = document.getElementById("bgm");
+      v.volume = v.volume * 0.1;
+      v.play();
+    },
+    pauseBgm: function pauseBgm() {
+      var v = document.getElementById("bgm");
+      v.volume = v.volume * 10;
+      v.pause();
     }
   }
 });
@@ -4822,7 +4836,15 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("button", { on: { click: _vm.registTest } }, [_vm._v("登録")])
-    ])
+    ]),
+    _vm._v(" "),
+    _c("audio", {
+      attrs: { id: "bgm", src: "/bgm/bgm_maoudamashii_fantasy13.mp3" }
+    }),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.playBgm } }, [_vm._v("再生")]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.pauseBgm } }, [_vm._v("停止")])
   ])
 }
 var staticRenderFns = []
