@@ -13,7 +13,7 @@
       <input type="text" v-model="password" />
       <button @click="registTest">登録</button>
     </div>
-    <audio id="bgm" src="/bgm/bgm_maoudamashii_fantasy13.mp3"></audio>
+    <audio id="bgm" v-play="isPlay" src="/bgm/bgm_maoudamashii_fantasy13.mp3"></audio>
     <button @click="playBgm">再生</button>
     <button @click="pauseBgm">停止</button>
   </div>
@@ -49,6 +49,8 @@ export default {
       userName: "",
       password: "",
 
+      isPlay: false,
+
       csrf: document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content")
@@ -59,6 +61,16 @@ export default {
       type: String
     }
   },
+  // directives: {
+  //   play: function(el, binding) {
+  //     if (binding.value) {
+  //       el.volume = 0.1;
+  //       el.play();
+  //     } else {
+  //       el.pause();
+  //     }
+  //   }
+  // },
   computed: {
     ...mapGetters(["getUserInfo", "getUserSt", "getMessage"]),
 
@@ -138,14 +150,16 @@ export default {
         });
     },
     playBgm: function() {
-      const v = document.getElementById("bgm");
-      v.volume = v.volume * 0.1;
-      v.play();
+      // const v = document.getElementById("bgm");
+      // v.volume = v.volume * 0.1;
+      // v.play();
+      this.isPlay = true;
     },
     pauseBgm: function() {
-      const v = document.getElementById("bgm");
-      v.volume = v.volume * 10;
-      v.pause();
+      // const v = document.getElementById("bgm");
+      // v.volume = v.volume * 10;
+      // v.pause();
+      this.isPlay = false;
     }
   }
 };
