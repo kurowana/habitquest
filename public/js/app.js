@@ -1934,6 +1934,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // user:'',
       userName: "",
       password: "",
+      isPlay: false,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
@@ -1942,6 +1943,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: String
     }
   },
+  // directives: {
+  //   play: function(el, binding) {
+  //     if (binding.value) {
+  //       el.volume = 0.1;
+  //       el.play();
+  //     } else {
+  //       el.pause();
+  //     }
+  //   }
+  // },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getUserInfo", "getUserSt", "getMessage"]), {
     bgImg: function bgImg() {
       return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
@@ -2018,14 +2029,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     playBgm: function playBgm() {
-      var v = document.getElementById("bgm");
-      v.volume = v.volume * 0.1;
-      v.play();
+      // const v = document.getElementById("bgm");
+      // v.volume = v.volume * 0.1;
+      // v.play();
+      this.isPlay = true;
     },
     pauseBgm: function pauseBgm() {
-      var v = document.getElementById("bgm");
-      v.volume = v.volume * 10;
-      v.pause();
+      // const v = document.getElementById("bgm");
+      // v.volume = v.volume * 10;
+      // v.pause();
+      this.isPlay = false;
     }
   }
 });
@@ -4839,6 +4852,14 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("audio", {
+      directives: [
+        {
+          name: "play",
+          rawName: "v-play",
+          value: _vm.isPlay,
+          expression: "isPlay"
+        }
+      ],
       attrs: { id: "bgm", src: "/bgm/bgm_maoudamashii_fantasy13.mp3" }
     }),
     _vm._v(" "),
@@ -22393,6 +22414,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_typer__WEBPACK_IMPORTED_MODULE_3___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("play", function (el, binding) {
+  if (binding.value) {
+    el.volume = 0.1;
+    el.play();
+  } else {
+    el.pause();
+  }
+});
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: "#app",
   store: _store__WEBPACK_IMPORTED_MODULE_2__["default"],
