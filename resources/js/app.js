@@ -9,7 +9,7 @@ Vue.use(VueTyper);
 
 Vue.directive("play", function(el, binding) {
     if (binding.value) {
-        el.volume = 0.1;
+        el.volume = 0.05;
         el.play();
     } else {
         el.pause();

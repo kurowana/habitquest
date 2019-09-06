@@ -10,6 +10,12 @@ const state = {
     charImgR2: "",
     bgImg: "shinden01.jpg",
 
+    sound: {
+        isPlay: false,
+        bgm: "/bgm/bgm_maoudamashii_fantasy13.mp3",
+        volume: 0.1
+    },
+
     //立ち絵変更用のキャラデータオブジェクト
     npc: {
         sphere: {
@@ -151,6 +157,9 @@ const getters = {
     },
     getCharImgR2: state => {
         return state.charImgR2;
+    },
+    getSound: state => {
+        return state.sound;
     }
 };
 const mutations = {
@@ -200,6 +209,13 @@ const mutations = {
         } else {
             state.charImgR2 = "./img/npc/" + imgPath;
         }
+    },
+    setSoundFlag(state, flag) {
+        state.sound.isPlay = flag;
+    },
+    setBgm(state, sound) {
+        state.sound.bgm = sound.bgm;
+        state.sound.volume = sound.volume;
     }
 };
 
