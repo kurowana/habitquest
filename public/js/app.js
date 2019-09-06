@@ -1884,6 +1884,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Habit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Habit */ "./resources/js/components/Habit.vue");
 /* harmony import */ var _MonsterCreate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MonsterCreate */ "./resources/js/components/MonsterCreate.vue");
 /* harmony import */ var _Battle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Battle */ "./resources/js/components/Battle.vue");
+/* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! timers */ "./node_modules/timers-browserify/main.js");
+/* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(timers__WEBPACK_IMPORTED_MODULE_7__);
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1910,6 +1912,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 
 
@@ -1943,17 +1948,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: String
     }
   },
-  // directives: {
-  //   play: function(el, binding) {
-  //     if (binding.value) {
-  //       el.volume = 0.1;
-  //       el.play();
-  //     } else {
-  //       el.pause();
-  //     }
-  //   }
-  // },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getUserInfo", "getUserSt", "getMessage"]), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getUserInfo", "getUserSt", "getMessage", "getSound"]), {
     bgImg: function bgImg() {
       return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
     }
@@ -2032,13 +2027,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // const v = document.getElementById("bgm");
       // v.volume = v.volume * 0.1;
       // v.play();
-      this.isPlay = true;
+      // this.isPlay = true;
+      this.$store.commit("setSoundFlag", true);
     },
     pauseBgm: function pauseBgm() {
       // const v = document.getElementById("bgm");
       // v.volume = v.volume * 10;
       // v.pause();
-      this.isPlay = false;
+      // this.isPlay = false;
+      this.$store.commit("setSoundFlag", false);
+    },
+    changeBgm: function changeBgm() {
+      this.$store.commit("setBgm", {
+        bgm: "/bgm/bgm_maoudamashii_healing08.mp3",
+        volume: 0.1
+      });
     }
   }
 });
@@ -4850,22 +4853,24 @@ var render = function() {
       _vm._v(" "),
       _c("button", { on: { click: _vm.registTest } }, [_vm._v("登録")])
     ]),
-    _vm._v(" "),
+    _vm._v("\n  " + _vm._s(_vm.getSound.isPlay) + "\n  "),
     _c("audio", {
       directives: [
         {
           name: "play",
           rawName: "v-play",
-          value: _vm.isPlay,
-          expression: "isPlay"
+          value: _vm.getSound.isPlay,
+          expression: "getSound.isPlay"
         }
       ],
-      attrs: { id: "bgm", src: "/bgm/bgm_maoudamashii_fantasy13.mp3" }
+      attrs: { id: "bgm", src: _vm.getSound.bgm }
     }),
     _vm._v(" "),
     _c("button", { on: { click: _vm.playBgm } }, [_vm._v("再生")]),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.pauseBgm } }, [_vm._v("停止")])
+    _c("button", { on: { click: _vm.pauseBgm } }, [_vm._v("停止")]),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.changeBgm } }, [_vm._v("変更")])
   ])
 }
 var staticRenderFns = []
@@ -22416,7 +22421,7 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_typer__WEBPACK_IMPORTED_MODULE_3___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.directive("play", function (el, binding) {
   if (binding.value) {
-    el.volume = 0.1;
+    el.volume = 0.05;
     el.play();
   } else {
     el.pause();
@@ -23631,6 +23636,11 @@ var state = {
   charImgR1: "",
   charImgR2: "",
   bgImg: "shinden01.jpg",
+  sound: {
+    isPlay: false,
+    bgm: "/bgm/bgm_maoudamashii_fantasy13.mp3",
+    volume: 0.1
+  },
   //立ち絵変更用のキャラデータオブジェクト
   npc: {
     sphere: {
@@ -23772,6 +23782,9 @@ var getters = {
   },
   getCharImgR2: function getCharImgR2(state) {
     return state.charImgR2;
+  },
+  getSound: function getSound(state) {
+    return state.sound;
   }
 };
 var mutations = {
@@ -23821,6 +23834,13 @@ var mutations = {
     } else {
       state.charImgR2 = "./img/npc/" + imgPath;
     }
+  },
+  setSoundFlag: function setSoundFlag(state, flag) {
+    state.sound.isPlay = flag;
+  },
+  setBgm: function setBgm(state, sound) {
+    state.sound.bgm = sound.bgm;
+    state.sound.volume = sound.volume;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

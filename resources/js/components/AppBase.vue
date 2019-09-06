@@ -13,9 +13,11 @@
       <input type="text" v-model="password" />
       <button @click="registTest">登録</button>
     </div>
-    <audio id="bgm" v-play="isPlay" src="/bgm/bgm_maoudamashii_fantasy13.mp3"></audio>
+    {{getSound.isPlay}}
+    <audio id="bgm" v-play="getSound.isPlay" :src="getSound.bgm"></audio>
     <button @click="playBgm">再生</button>
     <button @click="pauseBgm">停止</button>
+    <button @click="changeBgm">変更</button>
   </div>
 </template>
 
@@ -29,6 +31,7 @@ import charInfo from "./CharInfo";
 import habit from "./Habit";
 import monsterCreate from "./MonsterCreate";
 import Battle from "./Battle";
+import { setTimeout } from "timers";
 // import Message from "./Message";
 // import charImg from "./charImg";
 
@@ -61,18 +64,9 @@ export default {
       type: String
     }
   },
-  // directives: {
-  //   play: function(el, binding) {
-  //     if (binding.value) {
-  //       el.volume = 0.1;
-  //       el.play();
-  //     } else {
-  //       el.pause();
-  //     }
-  //   }
-  // },
+
   computed: {
-    ...mapGetters(["getUserInfo", "getUserSt", "getMessage"]),
+    ...mapGetters(["getUserInfo", "getUserSt", "getMessage", "getSound"]),
 
     bgImg: function() {
       return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
@@ -153,13 +147,21 @@ export default {
       // const v = document.getElementById("bgm");
       // v.volume = v.volume * 0.1;
       // v.play();
-      this.isPlay = true;
+      // this.isPlay = true;
+      this.$store.commit("setSoundFlag", true);
     },
     pauseBgm: function() {
       // const v = document.getElementById("bgm");
       // v.volume = v.volume * 10;
       // v.pause();
-      this.isPlay = false;
+      // this.isPlay = false;
+      this.$store.commit("setSoundFlag", false);
+    },
+    changeBgm: function() {
+      this.$store.commit("setBgm", {
+        bgm: "/bgm/bgm_maoudamashii_healing08.mp3",
+        volume: 0.1
+      });
     }
   }
 };
