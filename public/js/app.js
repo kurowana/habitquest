@@ -1950,7 +1950,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getUserInfo", "getUserSt", "getMessage", "getSound"]), {
     bgImg: function bgImg() {
-      return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
+      if (this.$store.state.eventStore.bgImg !== "") {
+        return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
+      } else {
+        return "#000000";
+      }
     }
   }),
   created: function created() {
@@ -2565,7 +2569,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getHasHabit"])),
-  created: function created() {},
+  created: function created() {
+    this.$store.commit("setBgImg", "");
+  },
   methods: {
     addHabit: function addHabit() {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/add_habit", {
@@ -3344,7 +3350,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1000px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  /* background-image: url(\"../../../public/img/bg/shinden000.jpg\"); */\n}\r\n", ""]);
+exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1000px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\r\n  /* background-image: url(\"../../../public/img/bg/shinden000.jpg\"); */\n}\r\n", ""]);
 
 // exports
 
@@ -23788,6 +23794,9 @@ var getters = {
   }
 };
 var mutations = {
+  setBgImg: function setBgImg(state, path) {
+    state.bgImg = path;
+  },
   setSceneCount: function setSceneCount(state, count) {
     state.sceneCount = count;
   },
