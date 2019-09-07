@@ -163,6 +163,9 @@ const getters = {
     }
 };
 const mutations = {
+    setBgImg(state, path) {
+        state.bgImg = path;
+    },
     setSceneCount(state, count) {
         state.sceneCount = count;
     },

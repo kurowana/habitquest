@@ -44,7 +44,9 @@ export default {
         }*/
     ...mapGetters(["getHasHabit"])
   },
-  created: function() {},
+  created: function() {
+    this.$store.commit("setBgImg", "");
+  },
   methods: {
     addHabit: function() {
       axios

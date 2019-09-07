@@ -69,7 +69,11 @@ export default {
     ...mapGetters(["getUserInfo", "getUserSt", "getMessage", "getSound"]),
 
     bgImg: function() {
-      return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
+      if (this.$store.state.eventStore.bgImg !== "") {
+        return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
+      } else {
+        return "#000000";
+      }
     }
   },
   created: function() {
@@ -177,6 +181,8 @@ export default {
   width: 800px;
   height: 600px;
   position: relative;
+  background: #000000;
+  color: #ffffff;
   /* background-image: url("../../../public/img/bg/shinden000.jpg"); */
 }
 </style>
