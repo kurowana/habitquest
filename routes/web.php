@@ -18,5 +18,8 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/{any?}', function () {
+    return view('home');
+})->where('any', '.+');
+
 Route::resource('/status', 'StatusesController');
