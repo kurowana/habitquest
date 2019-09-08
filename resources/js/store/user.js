@@ -1,5 +1,5 @@
 const state = {
-    userId: "",
+    isLogin: false,
     user: {},
     userSt: {
         maxhp: 0,
@@ -148,7 +148,14 @@ const getters = {
         return state.userImg;
     }
 };
-const mutations = {};
+const mutations = {
+    setLoginFlag(state, boolean) {
+        state.isLogin = boolean;
+    },
+    setUserInfo(state, user) {
+        state.user = user;
+    }
+};
 
 export default {
     state,

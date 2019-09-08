@@ -1,16 +1,11 @@
 <template>
   <div v-if="isShowMsg">
     <div class="msg-window" @click="changeScene">
-      <p class="name">アリア</p>
-      <p class="message">
-        <vue-typer
-          :text="currentMessage"
-          :repeat="0"
-          :type-delay="delayTime"
-          @completed="onCompleted"
-        ></vue-typer>
+      <p class="name">{{name}}</p>
+      <p class="message" v-if="message">
+        <vue-typer :text="message" :repeat="0" :type-delay="delayTime" @completed="onCompleted"></vue-typer>
       </p>
-      <i v-show="clickableFlag" class="fas fa-angle-double-down msgIcon"></i>
+      <i v-show="NextFlag" class="fas fa-angle-double-down msgIcon"></i>
     </div>
   </div>
 </template>
@@ -29,24 +24,33 @@ export default {
     };
   },
   props: {
-    message: "",
+    // message: "",
     completed: false
   },
   computed: {
     ...mapGetters({
       sceneCount: "getSceneCount",
-      clickableFlag: "getClickableFlag",
-      currentMessage: "getMessage"
-    })
+      NextFlag: "getNextFlag",
+      name: "getCharName",
+      storeMessage: "getMessage"
+    }),
+    message: function() {
+      if (this.storeMessage !== "") {
+        return this.storeMessage;
+      } else {
+        this.onCompleted;
+        return " ";
+      }
+    }
   },
   methods: {
     nextScene: function() {
-      this.$store.commit("setClickableFlag", false);
+      this.$store.commit("setNextFlag", false);
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
     },
     changeScene: function() {
-      if (this.clickableFlag === true) {
+      if (this.NextFlag === true) {
         this.nextScene();
       } else {
         return;
@@ -54,7 +58,7 @@ export default {
     },
     onCompleted: function() {
       // this.isCompleted = true;
-      this.$store.commit("setClickableFlag", true);
+      this.$store.commit("setNextFlag", true);
     }
   }
 };
@@ -71,6 +75,7 @@ export default {
   z-index: 100;
 }
 .name {
+  height: 45px;
   padding: 10px 70px 0px 70px;
   color: white;
   font-size: 22px;

@@ -1950,18 +1950,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getUserInfo", "getUserSt", "getMessage", "getSound"]), {
     bgImg: function bgImg() {
-      if (this.$store.state.eventStore.bgImg !== "") {
-        return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
-      } else {
-        return "#000000";
-      }
+      // if (this.$store.state.eventStore.bgImg !== "") {
+      //   return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
+      // } else {
+      //   return "#000000";
+      // }
+      return this.$store.state.eventStore.bgImg;
     }
   }),
   created: function created() {
     if (this.user == "") {
-      console.log("ng");
+      this.$store.commit("setLoginFlag", false);
+      this.$store.commit("setUserInfo", {});
     } else {
-      console.log("ok");
+      this.$store.commit("setLoginFlag", true);
+      this.$store.commit("setUserInfo", this.user);
       this.$router.push({
         name: "home"
       });
@@ -2840,6 +2843,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2853,11 +2862,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      isSoundCheckModal: false,
       isRegistModal: false,
       isSelectImgModal: false,
       isConfirmImgModal: false,
       isStatusModal: false,
       isConfirmModal: false,
+      registState: 1,
       name: "",
       password: "",
       selectedImg: "",
@@ -2867,91 +2878,100 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       vit: 10,
       "int": 10,
       dex: 10,
-      luc: 10
+      luc: 10,
+      eventObj: [function (vm) {
+        vm.$store.commit("setMessage", "１番目のメッセージ\n\
+てすとだよ\n\
+長のの文章テストああああああ");
+      }, function (vm) {
+        vm.$store.commit("setMessage", "");
+        vm.$store.commit("setNextFlag", true);
+        vm.$store.commit("setBgImg", "shinden");
+      }, function (vm) {
+        vm.$store.commit("setMessage", "2番目のメッセージ\n\
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
+aaaaaaa");
+      }, function (vm) {
+        vm.openSoundModal();
+        vm.$store.commit("setMessage", "音声再生の設定をしてね");
+      }, function (vm) {
+        vm.openRegistModal();
+        vm.$store.commit("setMessage", "あなたの名前を教えてね");
+      }, function (vm) {
+        // vm.openSelectModal();
+        vm.$store.commit("setMessage", "あなたの姿を教えてね");
+      }, function (vm) {
+        // vm.openConfirmImgModal();
+        vm.$store.commit("setMessage", "この姿で間違いない？");
+      }, function (vm) {
+        vm.$store.commit("setMessage", "能力の振り分けを行ってね"); // vm.openStatusModal();
+      }, function (vm) {
+        vm.$store.commit("setMessage", "これでいいかな？"); // vm.openConfirmModal();
+      }]
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     userInfo: "getUserInfo",
     userImg: "getUserImg",
     sceneCount: "getSceneCount",
-    clickableFlag: "getClickableFlag"
+    NextFlag: "getNextFlag"
   })),
   created: function created() {
-    console.log(this.userInfo);
-    this.$store.commit("setCharImgL1", "npc001l.png");
-    this.$store.commit("setCharImgL2", "npc006l.png");
-    this.$store.commit("setCharImgC", "npc001_1.png");
-    this.$store.commit("setCharImgR1", "npc001r.png");
-    this.$store.commit("setCharImgR2", "npc007r.png");
+    this.$store.commit("setBgImg", ""); // this.$store.commit("setCharImgL1", "npc001l.png");
+    // this.$store.commit("setCharImgL2", "npc006l.png");
+    // this.$store.commit("setCharImgC", "npc001_1.png");
+    // this.$store.commit("setCharImgR1", "npc001r.png");
+    // this.$store.commit("setCharImgR2", "npc007r.png");
+
     this.$store.commit("setMessage", "これはオープニングです");
   },
   methods: {
     getScene: function getScene(count) {
-      if (count === 1) {
-        this.$store.commit("setMessage", "１番目のメッセージ\n\
-てすとだよ\n\
-長のの文章テストああああああ");
-      }
+      var vm = this;
+      var eventLength = this.eventObj.length;
 
-      if (count === 2) {
-        this.$store.commit("setMessage", "2番目のメッセージ\n\
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
-aaaaaaa");
-      }
-
-      if (count === 3) {
-        this.openRegistModal();
-        this.$store.commit("setMessage", "あなたの名前を教えてね");
-        this.$store.commit("setClickableFlag", true);
-      }
-
-      if (count === 4) {
-        this.openSelectModal();
-        this.$store.commit("setMessage", "あなたの姿を教えてね");
-        this.$store.commit("setClickableFlag", true);
-      }
-
-      if (count === 5) {
-        this.openConfirmImgModal();
-        this.$store.commit("setMessage", "この姿で間違いない？");
-        this.$store.commit("setClickableFlag", true);
-      }
-
-      if (count === 6) {
-        this.$store.commit("setMessage", "能力の振り分けを行ってね");
-        this.openStatusModal();
-      }
-
-      if (count === 7) {
-        this.$store.commit("setMessage", "これでいいかな？");
-        this.openConfirmModal();
+      if (count <= eventLength) {
+        this.eventObj[count - 1](vm);
+      } else {
+        console.log("イベント終了");
       }
     },
+    soundSet: function soundSet(_boolean) {
+      this.$store.commit("setSoundFlag", _boolean);
+      this.closeSoundModal();
+      this.$store.commit("setSceneCount", this.sceneCount + 1);
+      this.getScene(this.sceneCount);
+    },
     saveName: function saveName() {
-      this.closeRegistModal();
+      this.registState++; // this.closeRegistModal();
+
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     selectImg: function selectImg(img) {
       this.selectedImg = img.stand;
-      this.closeSelectModal();
+      this.registState++; // this.closeSelectModal();
+
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     saveImg: function saveImg() {
-      this.closeConfirmImgModal();
+      this.registState++; // this.closeConfirmImgModal();
+
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     returnImg: function returnImg() {
-      this.closeConfirmImgModal();
+      this.registState--; // this.closeConfirmImgModal();
+
       this.$store.commit("setSceneCount", this.sceneCount - 1);
       this.getScene(this.sceneCount);
     },
     decideStatus: function decideStatus() {
-      this.closeStatusModal();
+      // this.closeStatusModal();
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
+      this.registState++;
     },
     incStatus: function incStatus(status) {
       if (this.point > 0) {
@@ -3059,36 +3079,42 @@ aaaaaaa");
         }); // this.$router.push({ name: "home" });
       });
     },
+    openSoundModal: function openSoundModal() {
+      this.isSoundCheckModal = true;
+    },
+    closeSoundModal: function closeSoundModal() {
+      this.isSoundCheckModal = false;
+    },
     openRegistModal: function openRegistModal() {
       this.isRegistModal = true;
     },
     closeRegistModal: function closeRegistModal() {
       this.isRegistModal = false;
-    },
-    openSelectModal: function openSelectModal() {
-      this.isSelectImgModal = true;
-    },
-    closeSelectModal: function closeSelectModal() {
-      this.isSelectImgModal = false;
-    },
-    openConfirmImgModal: function openConfirmImgModal() {
-      this.isConfirmImgModal = true;
-    },
-    closeConfirmImgModal: function closeConfirmImgModal() {
-      this.isConfirmImgModal = false;
-    },
-    openStatusModal: function openStatusModal() {
-      this.isStatusModal = true;
-    },
-    closeStatusModal: function closeStatusModal() {
-      this.isStatusModal = false;
-    },
-    openConfirmModal: function openConfirmModal() {
-      this.isConfirmModal = true;
-    },
-    closeConfirmModal: function closeConfirmModal() {
-      this.isConfirmModal = false;
-    }
+    } // openSelectModal: function() {
+    //   this.isSelectImgModal = true;
+    // },
+    // closeSelectModal: function() {
+    //   this.isSelectImgModal = false;
+    // },
+    // openConfirmImgModal: function() {
+    //   this.isConfirmImgModal = true;
+    // },
+    // closeConfirmImgModal: function() {
+    //   this.isConfirmImgModal = false;
+    // },
+    // openStatusModal: function() {
+    //   this.isStatusModal = true;
+    // },
+    // closeStatusModal: function() {
+    //   this.isStatusModal = false;
+    // },
+    // openConfirmModal: function() {
+    //   this.isConfirmModal = true;
+    // },
+    // closeConfirmModal: function() {
+    //   this.isConfirmModal = false;
+    // }
+
   }
 });
 
@@ -3248,11 +3274,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3265,22 +3286,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   props: {
-    message: "",
+    // message: "",
     completed: false
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     sceneCount: "getSceneCount",
-    clickableFlag: "getClickableFlag",
-    currentMessage: "getMessage"
-  })),
+    NextFlag: "getNextFlag",
+    name: "getCharName",
+    storeMessage: "getMessage"
+  }), {
+    message: function message() {
+      if (this.storeMessage !== "") {
+        return this.storeMessage;
+      } else {
+        this.onCompleted;
+        return " ";
+      }
+    }
+  }),
   methods: {
     nextScene: function nextScene() {
-      this.$store.commit("setClickableFlag", false);
+      this.$store.commit("setNextFlag", false);
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
     },
     changeScene: function changeScene() {
-      if (this.clickableFlag === true) {
+      if (this.NextFlag === true) {
         this.nextScene();
       } else {
         return;
@@ -3288,7 +3319,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     onCompleted: function onCompleted() {
       // this.isCompleted = true;
-      this.$store.commit("setClickableFlag", true);
+      this.$store.commit("setNextFlag", true);
     }
   }
 });
@@ -3345,12 +3376,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+var escape = __webpack_require__(/*! ../../../node_modules/css-loader/lib/url/escape.js */ "./node_modules/css-loader/lib/url/escape.js");
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1000px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\r\n  /* background-image: url(\"../../../public/img/bg/shinden000.jpg\"); */\n}\r\n", ""]);
+exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1000px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\r\n\r\n  /* background-image: url(\"../../../public/img/bg/shinden000.jpg\"); */\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden01.jpg */ "./public/img/bg/shinden01.jpg")) + ");\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree000.jpg */ "./public/img/bg/old_tree000.jpg")) + ");\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -3369,7 +3401,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.isRegisterModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.selectImgModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.confirmImgModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.statusModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.confirmModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.img-container[data-v-625c0140] {\r\n  display: flex;\r\n  padding-bottom: 15px;\r\n  flex-wrap: wrap;\n}\n.img-card img[data-v-625c0140] {\r\n  width: 100px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 15px 0px 0px 15px;\n}\n.confirm-content[data-v-625c0140] {\r\n  display: flex;\n}\n.img-stand[data-v-625c0140] {\r\n  width: 240px;\r\n  height: 320px;\n}\r\n", ""]);
+exports.push([module.i, "\n.soundCheckModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.registerModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.img-container[data-v-625c0140] {\r\n  display: flex;\r\n  padding-bottom: 15px;\r\n  flex-wrap: wrap;\n}\n.img-card img[data-v-625c0140] {\r\n  width: 100px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 15px 0px 0px 15px;\n}\n.confirm-content[data-v-625c0140] {\r\n  display: flex;\n}\n.img-stand[data-v-625c0140] {\r\n  width: 240px;\r\n  height: 320px;\n}\r\n", ""]);
 
 // exports
 
@@ -3428,7 +3460,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.msg-window[data-v-3dcfc3ac] {\r\n  width: 800px;\r\n  height: 175px;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/ui/msg-window.png */ "./public/img/ui/msg-window.png")) + ") no-repeat;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  z-index: 100;\n}\n.name[data-v-3dcfc3ac] {\r\n  padding: 10px 70px 0px 70px;\r\n  color: white;\r\n  font-size: 22px;\n}\n.message[data-v-3dcfc3ac] {\r\n  padding: 3px 70px 8px 70px;\r\n  color: white;\r\n  font-size: 20px;\n}\n.msgIcon[data-v-3dcfc3ac] {\r\n  color: gold;\r\n  font-size: 2em;\r\n  position: absolute;\r\n  bottom: 20px;\r\n  left: 730px;\r\n  -webkit-animation: iconMove-data-v-3dcfc3ac 0.5s infinite;\r\n          animation: iconMove-data-v-3dcfc3ac 0.5s infinite;\n}\n@-webkit-keyframes iconMove-data-v-3dcfc3ac {\n0% {\r\n    -webkit-transform: translate(0, 0);\r\n            transform: translate(0, 0);\n}\n50% {\r\n    -webkit-transform: translate(0, 5px);\r\n            transform: translate(0, 5px);\r\n    opacity: 0.5;\n}\n100% {\r\n    -webkit-transform: translate(0, 0);\r\n            transform: translate(0, 0);\n}\n}\n@keyframes iconMove-data-v-3dcfc3ac {\n0% {\r\n    -webkit-transform: translate(0, 0);\r\n            transform: translate(0, 0);\n}\n50% {\r\n    -webkit-transform: translate(0, 5px);\r\n            transform: translate(0, 5px);\r\n    opacity: 0.5;\n}\n100% {\r\n    -webkit-transform: translate(0, 0);\r\n            transform: translate(0, 0);\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.msg-window[data-v-3dcfc3ac] {\r\n  width: 800px;\r\n  height: 175px;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/ui/msg-window.png */ "./public/img/ui/msg-window.png")) + ") no-repeat;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  z-index: 100;\n}\n.name[data-v-3dcfc3ac] {\r\n  height: 45px;\r\n  padding: 10px 70px 0px 70px;\r\n  color: white;\r\n  font-size: 22px;\n}\n.message[data-v-3dcfc3ac] {\r\n  padding: 3px 70px 8px 70px;\r\n  color: white;\r\n  font-size: 20px;\n}\n.msgIcon[data-v-3dcfc3ac] {\r\n  color: gold;\r\n  font-size: 2em;\r\n  position: absolute;\r\n  bottom: 20px;\r\n  left: 730px;\r\n  -webkit-animation: iconMove-data-v-3dcfc3ac 0.5s infinite;\r\n          animation: iconMove-data-v-3dcfc3ac 0.5s infinite;\n}\n@-webkit-keyframes iconMove-data-v-3dcfc3ac {\n0% {\r\n    -webkit-transform: translate(0, 0);\r\n            transform: translate(0, 0);\n}\n50% {\r\n    -webkit-transform: translate(0, 5px);\r\n            transform: translate(0, 5px);\r\n    opacity: 0.5;\n}\n100% {\r\n    -webkit-transform: translate(0, 0);\r\n            transform: translate(0, 0);\n}\n}\n@keyframes iconMove-data-v-3dcfc3ac {\n0% {\r\n    -webkit-transform: translate(0, 0);\r\n            transform: translate(0, 0);\n}\n50% {\r\n    -webkit-transform: translate(0, 5px);\r\n            transform: translate(0, 5px);\r\n    opacity: 0.5;\n}\n100% {\r\n    -webkit-transform: translate(0, 0);\r\n            transform: translate(0, 0);\n}\n}\r\n", ""]);
 
 // exports
 
@@ -4795,10 +4827,7 @@ var render = function() {
       "div",
       { staticClass: "content" },
       [
-        _c("router-view", {
-          staticClass: "game-view",
-          style: { background: _vm.bgImg }
-        }),
+        _c("router-view", { staticClass: "game-view", class: _vm.bgImg }),
         _vm._v(" "),
         _c("router-view", { attrs: { name: "sidebar" } })
       ],
@@ -5864,342 +5893,450 @@ var render = function() {
       _vm._v(" "),
       _c("char-img"),
       _vm._v(" "),
-      _vm.isRegistModal
-        ? _c("modal", { staticClass: "isRegisterModal" }, [
+      _vm.isSoundCheckModal
+        ? _c("modal", { staticClass: "soundCheckModal" }, [
             _c("div", [
-              _c("div", [
-                _c("label", { attrs: { for: "name" } }, [_vm._v("ユーザー名")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.name,
-                      expression: "name"
-                    }
-                  ],
-                  attrs: { type: "text", name: "name" },
-                  domProps: { value: _vm.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.name = $event.target.value
-                    }
-                  }
-                })
+              _c("p", [
+                _vm._v("このアプリでは音声が流れます。よろしいですか？")
               ]),
               _vm._v(" "),
-              _c("div", [
-                _c("label", { attrs: { for: "password" } }, [
-                  _vm._v("パスワード")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.password,
-                      expression: "password"
-                    }
-                  ],
-                  attrs: { type: "password", name: "password" },
-                  domProps: { value: _vm.password },
+              _c(
+                "button",
+                {
                   on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.password = $event.target.value
+                    click: function($event) {
+                      return _vm.soundSet(true)
                     }
                   }
-                })
-              ]),
+                },
+                [_vm._v("音楽再生ON")]
+              ),
               _vm._v(" "),
-              _c("div", [
-                _c("button", { on: { click: _vm.saveName } }, [_vm._v("決定")])
-              ])
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.soundSet(false)
+                    }
+                  }
+                },
+                [_vm._v("音楽再生OFF")]
+              )
             ])
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.isSelectImgModal
-        ? _c("modal", { staticClass: "selectImgModal" }, [
+      _vm.isRegistModal
+        ? _c("modal", { staticClass: "registerModal" }, [
+            _vm._v("\n    " + _vm._s(_vm.registState) + "\n    "),
             _c(
               "div",
-              { staticClass: "img-container" },
-              _vm._l(_vm.userImg, function(img, index) {
-                return _c("div", { key: index, staticClass: "img-card" }, [
-                  _c("img", {
-                    staticClass: "img-face",
-                    attrs: { src: img.face },
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.registState === 1,
+                    expression: "registState===1"
+                  }
+                ]
+              },
+              [
+                _c("div", [
+                  _c("label", { attrs: { for: "name" } }, [
+                    _vm._v("ユーザー名")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.name,
+                        expression: "name"
+                      }
+                    ],
+                    attrs: { type: "text", name: "name" },
+                    domProps: { value: _vm.name },
                     on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        if ($event.target !== $event.currentTarget) {
-                          return null
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
                         }
-                        return _vm.selectImg(img)
+                        _vm.name = $event.target.value
                       }
                     }
                   })
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("label", { attrs: { for: "password" } }, [
+                    _vm._v("パスワード")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.password,
+                        expression: "password"
+                      }
+                    ],
+                    attrs: { type: "password", name: "password" },
+                    domProps: { value: _vm.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.password = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("button", { on: { click: _vm.saveName } }, [
+                    _vm._v("決定")
+                  ])
                 ])
-              }),
-              0
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.isConfirmImgModal
-        ? _c("modal", { staticClass: "confirmImgModal" }, [
-            _c("div", { staticClass: "confirm-content" }, [
-              _c("div", { staticClass: "img-container" }, [
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.registState === 2,
+                    expression: "registState===2"
+                  }
+                ]
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "img-container" },
+                  _vm._l(_vm.userImg, function(img, index) {
+                    return _c("div", { key: index, staticClass: "img-card" }, [
+                      _c("img", {
+                        staticClass: "img-face",
+                        attrs: { src: img.face },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            if ($event.target !== $event.currentTarget) {
+                              return null
+                            }
+                            return _vm.selectImg(img)
+                          }
+                        }
+                      })
+                    ])
+                  }),
+                  0
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.registState === 3,
+                    expression: "registState===3"
+                  }
+                ]
+              },
+              [
+                _c("div", { staticClass: "confirm-content" }, [
+                  _c("div", { staticClass: "img-container" }, [
+                    _c("img", {
+                      staticClass: "img-stand",
+                      attrs: { src: _vm.selectedImg }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "button-container" }, [
+                    _c("button", { on: { click: _vm.saveImg } }, [
+                      _vm._v("なじむ。実に！なじむぞ。(決定)")
+                    ]),
+                    _vm._v(" "),
+                    _c("button", { on: { click: _vm.returnImg } }, [
+                      _vm._v("残念だったな。トリックだよ(選びなおす)")
+                    ])
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.registState === 4,
+                    expression: "registState===4"
+                  }
+                ]
+              },
+              [
+                _c("div", { staticClass: "status-content" }, [
+                  _vm._v(
+                    "\n        振り分け可能ポイント：" +
+                      _vm._s(_vm.point) +
+                      "\n        "
+                  ),
+                  _c("div", [
+                    _vm._v(
+                      "\n          STR\n          " +
+                        _vm._s(_vm.str) +
+                        "\n          "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.incStatus("str")
+                          }
+                        }
+                      },
+                      [_vm._v("+")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.decStatus("str")
+                          }
+                        }
+                      },
+                      [_vm._v("-")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("label", { attrs: { for: "agi" } }, [_vm._v("AGI")]),
+                    _vm._v("\n          " + _vm._s(_vm.agi) + "\n          "),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.incStatus("agi")
+                          }
+                        }
+                      },
+                      [_vm._v("+")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.decStatus("agi")
+                          }
+                        }
+                      },
+                      [_vm._v("-")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n          VIT\n          " +
+                        _vm._s(_vm.vit) +
+                        "\n          "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.incStatus("vit")
+                          }
+                        }
+                      },
+                      [_vm._v("+")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.decStatus("vit")
+                          }
+                        }
+                      },
+                      [_vm._v("-")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n          INT\n          " +
+                        _vm._s(_vm.int) +
+                        "\n          "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.incStatus("int")
+                          }
+                        }
+                      },
+                      [_vm._v("+")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.decStatus("int")
+                          }
+                        }
+                      },
+                      [_vm._v("-")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n          DEX\n          " +
+                        _vm._s(_vm.dex) +
+                        "\n          "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.incStatus("dex")
+                          }
+                        }
+                      },
+                      [_vm._v("+")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.decStatus("dex")
+                          }
+                        }
+                      },
+                      [_vm._v("-")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm._v(
+                      "\n          LUC\n          " +
+                        _vm._s(_vm.luc) +
+                        "\n          "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.incStatus("luc")
+                          }
+                        }
+                      },
+                      [_vm._v("+")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.decStatus("luc")
+                          }
+                        }
+                      },
+                      [_vm._v("-")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            if ($event.target !== $event.currentTarget) {
+                              return null
+                            }
+                            return _vm.decideStatus($event)
+                          }
+                        }
+                      },
+                      [_vm._v("確定")]
+                    )
+                  ])
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.registState === 5,
+                    expression: "registState===5"
+                  }
+                ]
+              },
+              [
+                _c("div", [_vm._v("名前：" + _vm._s(_vm.name))]),
+                _vm._v(" "),
                 _c("img", {
                   staticClass: "img-stand",
                   attrs: { src: _vm.selectedImg }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "button-container" }, [
-                _c("button", { on: { click: _vm.saveImg } }, [
-                  _vm._v("なじむ。実に！なじむぞ。(決定)")
-                ]),
+                }),
                 _vm._v(" "),
-                _c("button", { on: { click: _vm.returnImg } }, [
-                  _vm._v("残念だったな。トリックだよ(選びなおす)")
+                _c("div", [_vm._v("STR:" + _vm._s(_vm.str))]),
+                _vm._v(" "),
+                _c("div", [_vm._v("AGI:" + _vm._s(_vm.agi))]),
+                _vm._v(" "),
+                _c("div", [_vm._v("VIT:" + _vm._s(_vm.vit))]),
+                _vm._v(" "),
+                _c("div", [_vm._v("INT:" + _vm._s(_vm.int))]),
+                _vm._v(" "),
+                _c("div", [_vm._v("DEX:" + _vm._s(_vm.dex))]),
+                _vm._v(" "),
+                _c("div", [_vm._v("LUC:" + _vm._s(_vm.luc))]),
+                _vm._v(" "),
+                _c("button", { on: { click: _vm.registUser } }, [
+                  _vm._v("登録")
                 ])
-              ])
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.isStatusModal
-        ? _c("modal", { staticClass: "statusModal" }, [
-            _c("div", { staticClass: "status-content" }, [
-              _vm._v(
-                "\n      振り分け可能ポイント：" +
-                  _vm._s(_vm.point) +
-                  "\n      "
-              ),
-              _c("div", [
-                _vm._v(
-                  "\n        STR\n        " + _vm._s(_vm.str) + "\n        "
-                ),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.incStatus("str")
-                      }
-                    }
-                  },
-                  [_vm._v("+")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.decStatus("str")
-                      }
-                    }
-                  },
-                  [_vm._v("-")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c("label", { attrs: { for: "agi" } }, [_vm._v("AGI")]),
-                _vm._v("\n        " + _vm._s(_vm.agi) + "\n        "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.incStatus("agi")
-                      }
-                    }
-                  },
-                  [_vm._v("+")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.decStatus("agi")
-                      }
-                    }
-                  },
-                  [_vm._v("-")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(
-                  "\n        VIT\n        " + _vm._s(_vm.vit) + "\n        "
-                ),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.incStatus("vit")
-                      }
-                    }
-                  },
-                  [_vm._v("+")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.decStatus("vit")
-                      }
-                    }
-                  },
-                  [_vm._v("-")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(
-                  "\n        INT\n        " + _vm._s(_vm.int) + "\n        "
-                ),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.incStatus("int")
-                      }
-                    }
-                  },
-                  [_vm._v("+")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.decStatus("int")
-                      }
-                    }
-                  },
-                  [_vm._v("-")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(
-                  "\n        DEX\n        " + _vm._s(_vm.dex) + "\n        "
-                ),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.incStatus("dex")
-                      }
-                    }
-                  },
-                  [_vm._v("+")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.decStatus("dex")
-                      }
-                    }
-                  },
-                  [_vm._v("-")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm._v(
-                  "\n        LUC\n        " + _vm._s(_vm.luc) + "\n        "
-                ),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.incStatus("luc")
-                      }
-                    }
-                  },
-                  [_vm._v("+")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.decStatus("luc")
-                      }
-                    }
-                  },
-                  [_vm._v("-")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        if ($event.target !== $event.currentTarget) {
-                          return null
-                        }
-                        return _vm.decideStatus($event)
-                      }
-                    }
-                  },
-                  [_vm._v("確定")]
-                )
-              ])
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.isConfirmModal
-        ? _c("modal", { staticClass: "confirmModal" }, [
-            _c("div", [_vm._v("名前：" + _vm._s(_vm.name))]),
-            _vm._v(" "),
-            _c("img", {
-              staticClass: "img-stand",
-              attrs: { src: _vm.selectedImg }
-            }),
-            _vm._v(" "),
-            _c("div", [_vm._v("STR:" + _vm._s(_vm.str))]),
-            _vm._v(" "),
-            _c("div", [_vm._v("AGI:" + _vm._s(_vm.agi))]),
-            _vm._v(" "),
-            _c("div", [_vm._v("VIT:" + _vm._s(_vm.vit))]),
-            _vm._v(" "),
-            _c("div", [_vm._v("INT:" + _vm._s(_vm.int))]),
-            _vm._v(" "),
-            _c("div", [_vm._v("DEX:" + _vm._s(_vm.dex))]),
-            _vm._v(" "),
-            _c("div", [_vm._v("LUC:" + _vm._s(_vm.luc))]),
-            _vm._v(" "),
-            _c("button", { on: { click: _vm.registUser } }, [_vm._v("登録")])
+              ]
+            )
           ])
         : _vm._e()
     ],
@@ -6449,31 +6586,33 @@ var render = function() {
           "div",
           { staticClass: "msg-window", on: { click: _vm.changeScene } },
           [
-            _c("p", { staticClass: "name" }, [_vm._v("アリア")]),
+            _c("p", { staticClass: "name" }, [_vm._v(_vm._s(_vm.name))]),
             _vm._v(" "),
-            _c(
-              "p",
-              { staticClass: "message" },
-              [
-                _c("vue-typer", {
-                  attrs: {
-                    text: _vm.currentMessage,
-                    repeat: 0,
-                    "type-delay": _vm.delayTime
-                  },
-                  on: { completed: _vm.onCompleted }
-                })
-              ],
-              1
-            ),
+            _vm.message
+              ? _c(
+                  "p",
+                  { staticClass: "message" },
+                  [
+                    _c("vue-typer", {
+                      attrs: {
+                        text: _vm.message,
+                        repeat: 0,
+                        "type-delay": _vm.delayTime
+                      },
+                      on: { completed: _vm.onCompleted }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c("i", {
               directives: [
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.clickableFlag,
-                  expression: "clickableFlag"
+                  value: _vm.NextFlag,
+                  expression: "NextFlag"
                 }
               ],
               staticClass: "fas fa-angle-double-down msgIcon"
@@ -22359,6 +22498,28 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./public/img/bg/old_tree000.jpg":
+/*!***************************************!*\
+  !*** ./public/img/bg/old_tree000.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/old_tree000.jpg?168c60cb256363d3d4c47395939d839c";
+
+/***/ }),
+
+/***/ "./public/img/bg/shinden01.jpg":
+/*!*************************************!*\
+  !*** ./public/img/bg/shinden01.jpg ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/shinden01.jpg?f37e0d4df742dbe0cef74d82d655b035";
+
+/***/ }),
+
 /***/ "./public/img/effect/test.png":
 /*!************************************!*\
   !*** ./public/img/effect/test.png ***!
@@ -23532,12 +23693,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
-/* harmony import */ var _components_Habit_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Habit.vue */ "./resources/js/components/Habit.vue");
-/* harmony import */ var _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./parts/MainSidebar.vue */ "./resources/js/parts/MainSidebar.vue");
-/* harmony import */ var _events_title_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./events/title.vue */ "./resources/js/events/title.vue");
-/* harmony import */ var _events_opening_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./events/opening.vue */ "./resources/js/events/opening.vue");
-/* harmony import */ var _events_testevent_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./events/testevent.vue */ "./resources/js/events/testevent.vue");
+/* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/user */ "./resources/js/store/user.js");
+/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
+/* harmony import */ var _components_Habit_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Habit.vue */ "./resources/js/components/Habit.vue");
+/* harmony import */ var _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./parts/MainSidebar.vue */ "./resources/js/parts/MainSidebar.vue");
+/* harmony import */ var _events_title_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./events/title.vue */ "./resources/js/events/title.vue");
+/* harmony import */ var _events_opening_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./events/opening.vue */ "./resources/js/events/opening.vue");
+/* harmony import */ var _events_testevent_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./events/testevent.vue */ "./resources/js/events/testevent.vue");
+
 
 
 
@@ -23551,40 +23714,63 @@ var routes = [{
   path: "/",
   name: "title",
   components: {
-    "default": _events_title_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    "default": _events_title_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 }, {
   path: "/home",
   name: "home",
   components: {
-    "default": _components_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    "default": _components_Home_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 }, {
   path: "/habit",
   name: "habit",
   components: {
-    "default": _components_Habit_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    "default": _components_Habit_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 }, {
   path: "/opening",
   name: "opening",
   components: {
-    "default": _events_opening_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    "default": _events_opening_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  },
+  beforeEnter: function beforeEnter(to, from, next) {
+    if (from.name === "title") {
+      next();
+    } else {
+      next({
+        name: "home"
+      });
+    }
   }
 }, {
   path: "/test",
   name: "test",
   components: {
-    "default": _events_testevent_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    "default": _events_testevent_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  mode: "history",
   routes: routes
+});
+router.beforeEach(function (to, from, next) {
+  if (to.name !== "title") {
+    if (_store_user__WEBPACK_IMPORTED_MODULE_2__["default"].state.isLogin === false && to.name !== "opening") {
+      next({
+        name: "title"
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
@@ -23633,7 +23819,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 __webpack_require__.r(__webpack_exports__);
 var state = {
   sceneCount: 0,
-  isClickable: false,
+  isNext: false,
   message: "storeメッセージ",
   charName: "",
   charImgL1: "",
@@ -23641,7 +23827,7 @@ var state = {
   charImgC: "",
   charImgR1: "",
   charImgR2: "",
-  bgImg: "shinden01.jpg",
+  bgImg: "tree",
   sound: {
     isPlay: false,
     bgm: "/bgm/bgm_maoudamashii_fantasy13.mp3",
@@ -23765,8 +23951,8 @@ var getters = {
   getSceneCount: function getSceneCount(state) {
     return state.sceneCount;
   },
-  getClickableFlag: function getClickableFlag(state) {
-    return state.isClickable;
+  getNextFlag: function getNextFlag(state) {
+    return state.isNext;
   },
   getMessage: function getMessage(state) {
     return state.message;
@@ -23794,14 +23980,14 @@ var getters = {
   }
 };
 var mutations = {
-  setBgImg: function setBgImg(state, path) {
-    state.bgImg = path;
+  setBgImg: function setBgImg(state, imgClass) {
+    state.bgImg = imgClass;
   },
   setSceneCount: function setSceneCount(state, count) {
     state.sceneCount = count;
   },
-  setClickableFlag: function setClickableFlag(state, bool) {
-    state.isClickable = bool;
+  setNextFlag: function setNextFlag(state, bool) {
+    state.isNext = bool;
   },
   setMessage: function setMessage(state, message) {
     state.message = message;
@@ -23892,7 +24078,7 @@ var mutations = {};
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  userId: "",
+  isLogin: false,
   user: {},
   userSt: {
     maxhp: 0,
@@ -24041,7 +24227,14 @@ var getters = {
     return state.userImg;
   }
 };
-var mutations = {};
+var mutations = {
+  setLoginFlag: function setLoginFlag(state, _boolean) {
+    state.isLogin = _boolean;
+  },
+  setUserInfo: function setUserInfo(state, user) {
+    state.user = user;
+  }
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
   getters: getters,

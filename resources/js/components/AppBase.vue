@@ -2,7 +2,7 @@
   <div class="wrapper">
     {{user}}
     <div class="content">
-      <router-view class="game-view" :style="{background:bgImg}"></router-view>
+      <router-view class="game-view" :class="bgImg"></router-view>
       <router-view name="sidebar"></router-view>
     </div>
     <div>
@@ -69,18 +69,21 @@ export default {
     ...mapGetters(["getUserInfo", "getUserSt", "getMessage", "getSound"]),
 
     bgImg: function() {
-      if (this.$store.state.eventStore.bgImg !== "") {
-        return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
-      } else {
-        return "#000000";
-      }
+      // if (this.$store.state.eventStore.bgImg !== "") {
+      //   return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
+      // } else {
+      //   return "#000000";
+      // }
+      return this.$store.state.eventStore.bgImg;
     }
   },
   created: function() {
     if (this.user == "") {
-      console.log("ng");
+      this.$store.commit("setLoginFlag", false);
+      this.$store.commit("setUserInfo", {});
     } else {
-      console.log("ok");
+      this.$store.commit("setLoginFlag", true);
+      this.$store.commit("setUserInfo", this.user);
       this.$router.push({ name: "home" });
     }
   },
@@ -183,6 +186,25 @@ export default {
   position: relative;
   background: #000000;
   color: #ffffff;
+
   /* background-image: url("../../../public/img/bg/shinden000.jpg"); */
+}
+
+.shinden {
+  background: url("../../../public/img/bg/shinden01.jpg");
+  animation: bgFadeIn 0.5s ease 0s 1 normal;
+}
+.tree {
+  background: url("../../../public/img/bg/old_tree000.jpg");
+  animation: bgFadeIn 0.5s ease 0s 1 normal;
+}
+
+@keyframes bgFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>

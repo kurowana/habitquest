@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import userStore from "./store/user";
 
 import home from "./components/Home.vue";
 import habit from "./components/Habit.vue";
@@ -44,6 +45,13 @@ const routes = [
         components: {
             default: opening,
             sidebar: MainSidebar
+        },
+        beforeEnter: (to, from, next) => {
+            if (from.name === "title") {
+                next();
+            } else {
+                next({ name: "home" });
+            }
         }
     },
     {
@@ -57,7 +65,20 @@ const routes = [
 ];
 
 const router = new VueRouter({
+    mode: "history",
     routes
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.name !== "title") {
+        if (userStore.state.isLogin === false && to.name !== "opening") {
+            next({ name: "title" });
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
 });
 
 export default router;

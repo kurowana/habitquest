@@ -1,6 +1,6 @@
 const state = {
     sceneCount: 0,
-    isClickable: false,
+    isNext: false,
     message: "storeメッセージ",
     charName: "",
     charImgL1: "",
@@ -8,7 +8,7 @@ const state = {
     charImgC: "",
     charImgR1: "",
     charImgR2: "",
-    bgImg: "shinden01.jpg",
+    bgImg: "tree",
 
     sound: {
         isPlay: false,
@@ -134,8 +134,8 @@ const getters = {
     getSceneCount: state => {
         return state.sceneCount;
     },
-    getClickableFlag: state => {
-        return state.isClickable;
+    getNextFlag: state => {
+        return state.isNext;
     },
     getMessage: state => {
         return state.message;
@@ -163,14 +163,14 @@ const getters = {
     }
 };
 const mutations = {
-    setBgImg(state, path) {
-        state.bgImg = path;
+    setBgImg(state, imgClass) {
+        state.bgImg = imgClass;
     },
     setSceneCount(state, count) {
         state.sceneCount = count;
     },
-    setClickableFlag(state, bool) {
-        state.isClickable = bool;
+    setNextFlag(state, bool) {
+        state.isNext = bool;
     },
     setMessage(state, message) {
         state.message = message;
