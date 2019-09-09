@@ -2,12 +2,18 @@
   <div>
     <modal v-if="isShowLoginModal" class="loginForm">
       <div class="form-item">
-        <label for="name">ユーザー名</label>
-        <input v-model="loginName" type="text" name="name" />
+        <ValidationProvider name="ユーザー名" rules="required" v-slot="{errors}">
+          <label for="name">ユーザー名</label>
+          <input v-model="loginName" type="text" name="name" />
+          <div>{{errors[0]}}</div>
+        </ValidationProvider>
       </div>
       <div class="form-item">
-        <label for="password">パスワード</label>
-        <input v-model="loginPassword" type="password" name="password" />
+        <ValidationProvider name="パスワード" rules="required" v-slot="{errors}">
+          <label for="password">パスワード</label>
+          <input v-model="loginPassword" type="password" name="password" />
+          <div>{{errors[0]}}</div>
+        </ValidationProvider>
       </div>
       <div class="form-button">
         <button @click="sentLoginData">ログインする</button>

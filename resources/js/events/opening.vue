@@ -15,17 +15,13 @@
     <modal v-if="isRegistModal" class="registerModal">
       {{registState}}
       <div v-show="registState===1">
-        <div>
+        <form>
           <label for="name">ユーザー名</label>
           <input v-model="name" type="text" name="name" />
-        </div>
-        <div>
           <label for="password">パスワード</label>
           <input v-model="password" type="password" name="password" />
-        </div>
-        <div>
           <button @click="saveName">決定</button>
-        </div>
+        </form>
       </div>
       <div v-show="registState===2">
         <div class="img-container">
