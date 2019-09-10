@@ -3076,15 +3076,19 @@ aaaaaaa");
       });
     },
     openSoundModal: function openSoundModal() {
+      this.$store.commit("setParallelFlag", true);
       this.isSoundCheckModal = true;
     },
     closeSoundModal: function closeSoundModal() {
+      this.$store.commit("setParallelFlag", false);
       this.isSoundCheckModal = false;
     },
     openRegistModal: function openRegistModal() {
+      this.$store.commit("setParallelFlag", true);
       this.isRegistModal = true;
     },
     closeRegistModal: function closeRegistModal() {
+      this.$store.commit("setParallelFlag", false);
       this.isRegistModal = false;
     } // openSelectModal: function() {
     //   this.isSelectImgModal = true;
@@ -3294,6 +3298,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     sceneCount: "getSceneCount",
     NextFlag: "getNextFlag",
+    ParallelFlag: "getParallelFlag",
     name: "getCharName",
     storeMessage: "getMessage"
   }), {
@@ -3320,8 +3325,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     onCompleted: function onCompleted() {
-      // this.isCompleted = true;
-      this.$store.commit("setNextFlag", true);
+      if (this.ParallelFlag === false) {
+        this.$store.commit("setNextFlag", true);
+      } else {
+        return;
+      }
     }
   }
 });
@@ -8499,9 +8507,18 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c("button", { on: { click: _vm.saveName } }, [
-                    _vm._v("決定")
-                  ])
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.saveName($event)
+                        }
+                      }
+                    },
+                    [_vm._v("決定")]
+                  )
                 ])
               ]
             ),
@@ -8530,9 +8547,6 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            if ($event.target !== $event.currentTarget) {
-                              return null
-                            }
                             return _vm.selectImg(img)
                           }
                         }
@@ -8566,13 +8580,31 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "button-container" }, [
-                    _c("button", { on: { click: _vm.saveImg } }, [
-                      _vm._v("なじむ。実に！なじむぞ。(決定)")
-                    ]),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.saveImg($event)
+                          }
+                        }
+                      },
+                      [_vm._v("なじむ。実に！なじむぞ。(決定)")]
+                    ),
                     _vm._v(" "),
-                    _c("button", { on: { click: _vm.returnImg } }, [
-                      _vm._v("残念だったな。トリックだよ(選びなおす)")
-                    ])
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.returnImg($event)
+                          }
+                        }
+                      },
+                      [_vm._v("残念だったな。トリックだよ(選びなおす)")]
+                    )
                   ])
                 ])
               ]
@@ -8787,9 +8819,6 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            if ($event.target !== $event.currentTarget) {
-                              return null
-                            }
                             return _vm.decideStatus($event)
                           }
                         }
@@ -8833,9 +8862,18 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", [_vm._v("LUC:" + _vm._s(_vm.luc))]),
                 _vm._v(" "),
-                _c("button", { on: { click: _vm.registUser } }, [
-                  _vm._v("登録")
-                ])
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.registUser($event)
+                      }
+                    }
+                  },
+                  [_vm._v("登録")]
+                )
               ]
             )
           ])
@@ -26392,6 +26430,7 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   sceneCount: 0,
   isNext: false,
+  isParallel: false,
   message: "storeメッセージ",
   charName: "",
   charImgL1: "",
@@ -26526,6 +26565,9 @@ var getters = {
   getNextFlag: function getNextFlag(state) {
     return state.isNext;
   },
+  getParallelFlag: function getParallelFlag(state) {
+    return state.isParallel;
+  },
   getMessage: function getMessage(state) {
     return state.message;
   },
@@ -26560,6 +26602,9 @@ var mutations = {
   },
   setNextFlag: function setNextFlag(state, bool) {
     state.isNext = bool;
+  },
+  setParallelFlag: function setParallelFlag(state, bool) {
+    state.isParallel = bool;
   },
   setMessage: function setMessage(state, message) {
     state.message = message;
