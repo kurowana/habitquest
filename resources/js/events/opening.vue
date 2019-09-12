@@ -16,10 +16,16 @@
       {{registState}}
       <div v-show="registState===1">
         <form>
-          <label for="name">ユーザー名</label>
-          <input v-model="name" type="text" name="name" />
-          <label for="password">パスワード</label>
-          <input v-model="password" type="password" name="password" />
+          <ValidationProvider name="ユーザー名" rules="required" v-slot="{errors}" ref="registerForm">
+            <label for="name">ユーザー名</label>
+            <input v-model="name" type="text" name="name" />
+            <span>{{errors[0]}}</span>
+          </ValidationProvider>
+          <ValidationProvider name="パスワード" rules="required" v-slot="{errors}" ref="registerForm">
+            <label for="password">パスワード</label>
+            <input v-model="password" type="password" name="password" />
+            <span>{{errors[0]}}</span>
+          </ValidationProvider>
           <button @click.prevent="saveName">決定</button>
         </form>
       </div>
@@ -36,8 +42,8 @@
             <img class="img-stand" :src="selectedImg" />
           </div>
           <div class="button-container">
-            <button @click.prevent="saveImg">なじむ。実に！なじむぞ。(決定)</button>
-            <button @click.prevent="returnImg">残念だったな。トリックだよ(選びなおす)</button>
+            <button @click.prevent="saveImg">決定</button>
+            <button @click.prevent="returnImg">選びなおす</button>
           </div>
         </div>
       </div>
