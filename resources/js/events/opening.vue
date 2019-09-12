@@ -16,17 +16,23 @@
       {{registState}}
       <div v-show="registState===1">
         <form>
-          <label for="name">ユーザー名</label>
-          <input v-model="name" type="text" name="name" />
-          <label for="password">パスワード</label>
-          <input v-model="password" type="password" name="password" />
-          <button @click="saveName">決定</button>
+          <ValidationProvider name="ユーザー名" rules="required" v-slot="{errors}" ref="registerForm">
+            <label for="name">ユーザー名</label>
+            <input v-model="name" type="text" name="name" />
+            <span>{{errors[0]}}</span>
+          </ValidationProvider>
+          <ValidationProvider name="パスワード" rules="required" v-slot="{errors}" ref="registerForm">
+            <label for="password">パスワード</label>
+            <input v-model="password" type="password" name="password" />
+            <span>{{errors[0]}}</span>
+          </ValidationProvider>
+          <button @click.prevent="saveName">決定</button>
         </form>
       </div>
       <div v-show="registState===2">
         <div class="img-container">
           <div class="img-card" v-for="(img,index) in userImg" :key="index">
-            <img class="img-face" @click.prevent.self="selectImg(img)" :src="img.face" />
+            <img class="img-face" @click.prevent="selectImg(img)" :src="img.face" />
           </div>
         </div>
       </div>
@@ -36,8 +42,8 @@
             <img class="img-stand" :src="selectedImg" />
           </div>
           <div class="button-container">
-            <button @click="saveImg">なじむ。実に！なじむぞ。(決定)</button>
-            <button @click="returnImg">残念だったな。トリックだよ(選びなおす)</button>
+            <button @click.prevent="saveImg">決定</button>
+            <button @click.prevent="returnImg">選びなおす</button>
           </div>
         </div>
       </div>
@@ -81,7 +87,7 @@
             <button @click="decStatus('luc')">-</button>
           </div>
           <div>
-            <button @click.prevent.self="decideStatus">確定</button>
+            <button @click.prevent="decideStatus">確定</button>
           </div>
         </div>
       </div>
@@ -94,7 +100,7 @@
         <div>INT:{{int}}</div>
         <div>DEX:{{dex}}</div>
         <div>LUC:{{luc}}</div>
-        <button @click="registUser">登録</button>
+        <button @click.prevent="registUser">登録</button>
       </div>
     </modal>
   </div>
@@ -346,15 +352,19 @@ aaaaaaa"
         });
     },
     openSoundModal: function() {
+      this.$store.commit("setParallelFlag", true);
       this.isSoundCheckModal = true;
     },
     closeSoundModal: function() {
+      this.$store.commit("setParallelFlag", false);
       this.isSoundCheckModal = false;
     },
     openRegistModal: function() {
+      this.$store.commit("setParallelFlag", true);
       this.isRegistModal = true;
     },
     closeRegistModal: function() {
+      this.$store.commit("setParallelFlag", false);
       this.isRegistModal = false;
     }
     // openSelectModal: function() {

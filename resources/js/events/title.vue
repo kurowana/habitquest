@@ -2,14 +2,14 @@
   <div>
     <modal v-if="isShowLoginModal" class="loginForm">
       <div class="form-item">
-        <ValidationProvider name="ユーザー名" rules="required" v-slot="{errors}">
+        <ValidationProvider name="ユーザー名" rules="required" v-slot="{errors}" ref="loginForm">
           <label for="name">ユーザー名</label>
           <input v-model="loginName" type="text" name="name" />
           <div>{{errors[0]}}</div>
         </ValidationProvider>
       </div>
       <div class="form-item">
-        <ValidationProvider name="パスワード" rules="required" v-slot="{errors}">
+        <ValidationProvider name="パスワード" rules="required" v-slot="{errors}" ref="loginForm">
           <label for="password">パスワード</label>
           <input v-model="loginPassword" type="password" name="password" />
           <div>{{errors[0]}}</div>
@@ -46,15 +46,20 @@ export default {
     };
   },
   methods: {
-    sentLoginData: function() {
-      axios
-        .post("./login", {
-          name: this.loginName,
-          password: this.loginPassword
-        })
-        .then(res => {
-          location.reload();
-        });
+    sentLoginData: async function() {
+      const result = await this.$refs.loginForm.validate();
+      if (result.valid === false) {
+        return false;
+      } else {
+        axios
+          .post("./login", {
+            name: this.loginName,
+            password: this.loginPassword
+          })
+          .then(res => {
+            location.reload();
+          });
+      }
     }
   }
 };

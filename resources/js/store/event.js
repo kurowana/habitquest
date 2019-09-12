@@ -1,6 +1,7 @@
 const state = {
     sceneCount: 0,
     isNext: false,
+    isParallel: false,
     message: "storeメッセージ",
     charName: "",
     charImgL1: "",
@@ -137,6 +138,9 @@ const getters = {
     getNextFlag: state => {
         return state.isNext;
     },
+    getParallelFlag: state => {
+        return state.isParallel;
+    },
     getMessage: state => {
         return state.message;
     },
@@ -171,6 +175,9 @@ const mutations = {
     },
     setNextFlag(state, bool) {
         state.isNext = bool;
+    },
+    setParallelFlag(state, bool) {
+        state.isParallel = bool;
     },
     setMessage(state, message) {
         state.message = message;

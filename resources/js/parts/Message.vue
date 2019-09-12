@@ -31,6 +31,7 @@ export default {
     ...mapGetters({
       sceneCount: "getSceneCount",
       NextFlag: "getNextFlag",
+      ParallelFlag: "getParallelFlag",
       name: "getCharName",
       storeMessage: "getMessage"
     }),
@@ -57,8 +58,11 @@ export default {
       }
     },
     onCompleted: function() {
-      // this.isCompleted = true;
-      this.$store.commit("setNextFlag", true);
+      if (this.ParallelFlag === false) {
+        this.$store.commit("setNextFlag", true);
+      } else {
+        return;
+      }
     }
   }
 };
