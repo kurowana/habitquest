@@ -42,7 +42,7 @@ export default {
         has_habit:function(){
             return this.$store.state.user.habit
         }*/
-    ...mapGetters(["getHasHabit"])
+    ...mapGetters([""])
   },
   created: function() {
     this.$store.commit("setBgImg", "");
