@@ -33,6 +33,7 @@
 <script>
 import axios from "axios";
 import modal from "../parts/modal";
+import { setTimeout } from "timers";
 
 export default {
   components: {
@@ -57,7 +58,12 @@ export default {
             password: this.loginPassword
           })
           .then(res => {
-            location.reload();
+            if (res.status === 419) {
+              alert("セッションエラーです。再ログインしてください。");
+              location.reload();
+            } else if (res.status === 200) {
+              location.reload();
+            }
           });
       }
     }

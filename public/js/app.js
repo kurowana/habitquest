@@ -2583,7 +2583,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tempAddHabit: ""
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getHasHabit"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([""])),
   created: function created() {
     this.$store.commit("setBgImg", "");
   },
@@ -3188,6 +3188,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../parts/modal */ "./resources/js/parts/modal.vue");
+/* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! timers */ "./node_modules/timers-browserify/main.js");
+/* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(timers__WEBPACK_IMPORTED_MODULE_3__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3226,6 +3228,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3267,7 +3270,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   name: this.loginName,
                   password: this.loginPassword
                 }).then(function (res) {
-                  location.reload();
+                  if (res.status === 419) {
+                    alert("セッションエラーです。再ログインしてください。");
+                    location.reload();
+                  } else if (res.status === 200) {
+                    location.reload();
+                  }
                 });
 
               case 8:
