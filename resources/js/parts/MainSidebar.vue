@@ -5,13 +5,39 @@
     <router-link :to="{name:'test'}" class="btn">ステータス</router-link>
     <router-link :to="{name:'test'}" class="btn">交流</router-link>
     <router-link :to="{name:'test'}" class="btn">探索</router-link>
+    <div v-if="userInfo.id!=undefined">
+      <div @click="logout" class="btn">ログアウト</div>
+    </div>
+    {{typeof userInfo}}
     <div class="anime"></div>
     <div class="anime2"></div>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+import { mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters({
+      userInfo: "getUserInfo"
+    })
+  },
+  methods: {
+    logout: function() {
+      axios.post("./logout", {}).then(res => {
+        console.log(res);
+        if (res.status === 419) {
+          alert("セッションエラーです。再ログインしてください。");
+          location.reload();
+        } else if (res.status === 200) {
+          location.reload();
+        }
+      });
+    }
+  }
+};
 </script>
 
 <style scoped>

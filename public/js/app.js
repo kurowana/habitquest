@@ -3306,6 +3306,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3318,7 +3325,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    userInfo: "getUserInfo"
+  })),
+  methods: {
+    logout: function logout() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./logout", {}).then(function (res) {
+        console.log(res);
+
+        if (res.status === 419) {
+          alert("セッションエラーです。再ログインしてください。");
+          location.reload();
+        } else if (res.status === 200) {
+          location.reload();
+        }
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -9997,6 +10028,14 @@ var render = function() {
         [_vm._v("探索")]
       ),
       _vm._v(" "),
+      _vm.userInfo.id != undefined
+        ? _c("div", [
+            _c("div", { staticClass: "btn", on: { click: _vm.logout } }, [
+              _vm._v("ログアウト")
+            ])
+          ])
+        : _vm._e(),
+      _vm._v("\n  " + _vm._s(typeof _vm.userInfo) + "\n  "),
       _c("div", { staticClass: "anime" }),
       _vm._v(" "),
       _c("div", { staticClass: "anime2" })
