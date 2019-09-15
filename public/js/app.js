@@ -1926,6 +1926,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -8173,7 +8174,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "wrapper" }, [
-    _vm._v("\n  " + _vm._s(_vm.user) + "\n  "),
+    _vm._v(
+      "\n  " +
+        _vm._s(_vm.user) +
+        "\n  " +
+        _vm._s(_vm.$store.state.userStore.isLogin) +
+        "\n  "
+    ),
     _c(
       "div",
       { staticClass: "content" },
@@ -10028,7 +10035,7 @@ var render = function() {
         [_vm._v("探索")]
       ),
       _vm._v(" "),
-      _vm.userInfo.id != undefined
+      _vm.userInfo.id
         ? _c("div", [
             _c("div", { staticClass: "btn", on: { click: _vm.logout } }, [
               _vm._v("ログアウト")

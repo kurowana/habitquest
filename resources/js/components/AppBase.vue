@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     {{user}}
+    {{$store.state.userStore.isLogin}}
     <div class="content">
       <router-view class="game-view" :class="bgImg"></router-view>
       <router-view name="sidebar"></router-view>
@@ -60,9 +61,7 @@ export default {
     };
   },
   props: {
-    user: {
-      type: String
-    }
+    user: { type: String }
   },
 
   computed: {
