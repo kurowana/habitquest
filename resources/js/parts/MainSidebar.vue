@@ -5,7 +5,7 @@
     <router-link :to="{name:'test'}" class="btn">ステータス</router-link>
     <router-link :to="{name:'test'}" class="btn">交流</router-link>
     <router-link :to="{name:'test'}" class="btn">探索</router-link>
-    <div v-if="userInfo.id!=undefined">
+    <div v-if="userInfo.id">
       <div @click="logout" class="btn">ログアウト</div>
     </div>
     {{typeof userInfo}}
