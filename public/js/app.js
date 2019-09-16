@@ -1896,8 +1896,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Habit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Habit */ "./resources/js/components/Habit.vue");
 /* harmony import */ var _MonsterCreate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MonsterCreate */ "./resources/js/components/MonsterCreate.vue");
 /* harmony import */ var _Battle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Battle */ "./resources/js/components/Battle.vue");
-/* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! timers */ "./node_modules/timers-browserify/main.js");
-/* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(timers__WEBPACK_IMPORTED_MODULE_7__);
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1927,7 +1925,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
+//
+//
+//
 
 
 
@@ -1950,14 +1950,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       // user:'',
-      userName: "",
-      password: "",
+      loginName: "",
+      loginPassword: "",
       isPlay: false,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
   props: {
-    user: {
+    userId: {
+      type: String
+    },
+    userName: {
       type: String
     }
   },
@@ -1972,12 +1975,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
-    if (this.user == "") {
+    if (this.userId === "" && this.userName === "") {
       this.$store.commit("setLoginFlag", false);
-      this.$store.commit("setUserInfo", {});
+      this.$store.commit("setUserInfo", {
+        id: "",
+        name: ""
+      });
     } else {
       this.$store.commit("setLoginFlag", true);
-      this.$store.commit("setUserInfo", this.user);
+      this.$store.commit("setUserInfo", {
+        id: this.userId,
+        name: this.userName
+      });
       this.$router.push({
         name: "home"
       });
@@ -2036,9 +2045,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     registTest: function registTest() {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./register", {
-        name: this.userName,
-        password: this.password,
-        password_confirmation: this.password
+        name: this.loginName,
+        password: this.loginPassword,
+        password_confirmation: this.loginPassword
       }).then(function (res) {
         console.log("post");
       });
@@ -3329,12 +3338,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    userInfo: "getUserInfo"
+    user: "getUserInfo"
   })),
   methods: {
     logout: function logout() {
@@ -8174,13 +8182,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "wrapper" }, [
-    _vm._v(
-      "\n  " +
-        _vm._s(_vm.user) +
-        "\n  " +
-        _vm._s(_vm.$store.state.userStore.isLogin) +
-        "\n  "
-    ),
+    _vm._v("\n  " + _vm._s(_vm.userId) + "\n  "),
+    _c("br"),
+    _vm._v("\n  " + _vm._s(_vm.userName) + "\n  "),
+    _c("br"),
+    _vm._v("\n  " + _vm._s(_vm.$store.state.userStore.isLogin) + "\n  "),
     _c(
       "div",
       { staticClass: "content" },
@@ -8205,18 +8211,18 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.userName,
-            expression: "userName"
+            value: _vm.loginName,
+            expression: "loginName"
           }
         ],
         attrs: { type: "text" },
-        domProps: { value: _vm.userName },
+        domProps: { value: _vm.loginName },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.userName = $event.target.value
+            _vm.loginName = $event.target.value
           }
         }
       }),
@@ -8228,18 +8234,18 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.password,
-            expression: "password"
+            value: _vm.loginPassword,
+            expression: "loginPassword"
           }
         ],
         attrs: { type: "text" },
-        domProps: { value: _vm.password },
+        domProps: { value: _vm.loginPassword },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.password = $event.target.value
+            _vm.loginPassword = $event.target.value
           }
         }
       }),
@@ -10035,14 +10041,14 @@ var render = function() {
         [_vm._v("探索")]
       ),
       _vm._v(" "),
-      _vm.userInfo.id
+      _vm.user.id
         ? _c("div", [
             _c("div", { staticClass: "btn", on: { click: _vm.logout } }, [
               _vm._v("ログアウト")
             ])
           ])
         : _vm._e(),
-      _vm._v("\n  " + _vm._s(typeof _vm.userInfo) + "\n  "),
+      _vm._v(" "),
       _c("div", { staticClass: "anime" }),
       _vm._v(" "),
       _c("div", { staticClass: "anime2" })
@@ -27597,7 +27603,10 @@ var mutations = {};
 __webpack_require__.r(__webpack_exports__);
 var state = {
   isLogin: false,
-  user: {},
+  user: {
+    id: "",
+    name: ""
+  },
   userSt: {
     maxhp: 0,
     hp: 0,

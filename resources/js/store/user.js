@@ -1,6 +1,9 @@
 const state = {
     isLogin: false,
-    user: {},
+    user: {
+        id: "",
+        name: ""
+    },
     userSt: {
         maxhp: 0,
         hp: 0,
