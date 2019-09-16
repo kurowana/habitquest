@@ -1,6 +1,9 @@
 <template>
   <div class="wrapper">
-    {{user}}
+    {{userId}}
+    <br />
+    {{userName}}
+    <br />
     {{$store.state.userStore.isLogin}}
     <div class="content">
       <router-view class="game-view" :class="bgImg"></router-view>
@@ -9,9 +12,9 @@
     <div>
       <label>name</label>
       <input type="hidden" name="_token" :value="csrf" />
-      <input type="text" v-model="userName" />
+      <input type="text" v-model="loginName" />
       <label>password</label>
-      <input type="text" v-model="password" />
+      <input type="text" v-model="loginPassword" />
       <button @click="registTest">登録</button>
     </div>
     {{getSound.isPlay}}
@@ -32,7 +35,7 @@ import charInfo from "./CharInfo";
 import habit from "./Habit";
 import monsterCreate from "./MonsterCreate";
 import Battle from "./Battle";
-import { setTimeout } from "timers";
+
 // import Message from "./Message";
 // import charImg from "./charImg";
 
@@ -50,8 +53,8 @@ export default {
     return {
       // user:'',
 
-      userName: "",
-      password: "",
+      loginName: "",
+      loginPassword: "",
 
       isPlay: false,
 
@@ -61,7 +64,8 @@ export default {
     };
   },
   props: {
-    user: { type: String }
+    userId: { type: String },
+    userName: { type: String }
   },
 
   computed: {
@@ -77,12 +81,15 @@ export default {
     }
   },
   created: function() {
-    if (this.user == "") {
+    if (this.userId === "" && this.userName === "") {
       this.$store.commit("setLoginFlag", false);
-      this.$store.commit("setUserInfo", {});
+      this.$store.commit("setUserInfo", { id: "", name: "" });
     } else {
       this.$store.commit("setLoginFlag", true);
-      this.$store.commit("setUserInfo", this.user);
+      this.$store.commit("setUserInfo", {
+        id: this.userId,
+        name: this.userName
+      });
       this.$router.push({ name: "home" });
     }
   },
@@ -141,9 +148,9 @@ export default {
     registTest: function() {
       axios
         .post("./register", {
-          name: this.userName,
-          password: this.password,
-          password_confirmation: this.password
+          name: this.loginName,
+          password: this.loginPassword,
+          password_confirmation: this.loginPassword
         })
         .then(res => {
           console.log("post");
