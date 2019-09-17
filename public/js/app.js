@@ -2565,45 +2565,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tempAddHabit: ""
+      inputHabit: ""
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([""])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    user: "getUserInfo"
+  })),
   created: function created() {
     this.$store.commit("setBgImg", "");
   },
   methods: {
-    addHabit: function addHabit() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/add_habit", {
-        user_id: this.$store.state.user.id,
-        habit_name: this.tempAddHabit
+    insertHabit: function insertHabit() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/insertHabit", {
+        userId: this.user.id,
+        habitName: this.inputHabit
       }).then(function (res) {
-        location.reload();
+        if (res.status === 419) {
+          alert("セッションエラー");
+          location.reload();
+        } else {
+          console.log("aaa");
+        }
       });
     },
     habitPlus: function habitPlus(habit_id) {
@@ -8855,89 +8842,28 @@ var render = function() {
         {
           name: "model",
           rawName: "v-model",
-          value: _vm.tempAddHabit,
-          expression: "tempAddHabit"
+          value: _vm.inputHabit,
+          expression: "inputHabit"
         }
       ],
       attrs: { type: "text" },
-      domProps: { value: _vm.tempAddHabit },
+      domProps: { value: _vm.inputHabit },
       on: {
         input: function($event) {
           if ($event.target.composing) {
             return
           }
-          _vm.tempAddHabit = $event.target.value
+          _vm.inputHabit = $event.target.value
         }
       }
     }),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.addHabit } }, [_vm._v("登録")]),
+    _c("button", { on: { click: _vm.insertHabit } }, [_vm._v("登録")]),
     _vm._v(" "),
-    _c("h2", [_vm._v("活動")]),
-    _vm._v(" "),
-    _c("table", [
-      _c(
-        "tbody",
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._l(_vm.getHasHabit, function(habit) {
-            return _c("tr", { key: habit.id }, [
-              _c("td", [_vm._v(_vm._s(habit.habit_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(habit.count) + "回")]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.habitPlus(habit.id)
-                      }
-                    }
-                  },
-                  [_vm._v("活動報告")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.habitDelete(habit.id)
-                      }
-                    }
-                  },
-                  [_vm._v("削除")]
-                )
-              ])
-            ])
-          })
-        ],
-        2
-      )
-    ])
+    _c("h2", [_vm._v("活動")])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("活動名")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("実行回数")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("活動報告")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("活動削除")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

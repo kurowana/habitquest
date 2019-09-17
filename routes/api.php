@@ -24,7 +24,8 @@ Route::post('/registUser', 'Controller@registUser');
 // Route::post('/set_status', 'StatusesController@set_status');
 // Route::post('/grow_status', 'StatusesController@grow_status');
 
-// Route::post('/add_habit', 'HabitsController@add_habit');
+//習慣登録
+Route::post('/insertHabit', 'HabitsController@insertHabit');
 // Route::post('/add_habit_count', 'HabitsController@add_habit_count');
 // Route::post('/delete_habit', 'HabitsController@delete_habit');
 
