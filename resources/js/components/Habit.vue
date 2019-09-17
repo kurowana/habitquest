@@ -1,29 +1,9 @@
 <template>
   <div>
     <h2>活動の登録</h2>
-    <input type="text" v-model="tempAddHabit" />
-    <button @click="addHabit">登録</button>
+    <input type="text" v-model="inputHabit" />
+    <button @click="insertHabit">登録</button>
     <h2>活動</h2>
-    <table>
-      <tbody>
-        <tr>
-          <th>活動名</th>
-          <th>実行回数</th>
-          <th>活動報告</th>
-          <th>活動削除</th>
-        </tr>
-        <tr v-for="habit in getHasHabit" :key="habit.id">
-          <td>{{habit.habit_name}}</td>
-          <td>{{habit.count}}回</td>
-          <td>
-            <button @click="habitPlus(habit.id)">活動報告</button>
-          </td>
-          <td>
-            <button @click="habitDelete(habit.id)">削除</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </template>
 
@@ -34,28 +14,31 @@ import { mapGetters } from "vuex";
 export default {
   data: function() {
     return {
-      tempAddHabit: ""
+      inputHabit: ""
     };
   },
   computed: {
-    /*
-        has_habit:function(){
-            return this.$store.state.user.habit
-        }*/
-    ...mapGetters([""])
+    ...mapGetters({
+      user: "getUserInfo"
+    })
   },
   created: function() {
     this.$store.commit("setBgImg", "");
   },
   methods: {
-    addHabit: function() {
+    insertHabit: function() {
       axios
-        .post("./api/add_habit", {
-          user_id: this.$store.state.user.id,
-          habit_name: this.tempAddHabit
+        .post("./api/insertHabit", {
+          userId: this.user.id,
+          habitName: this.inputHabit
         })
         .then(res => {
-          location.reload();
+          if (res.status === 419) {
+            alert("セッションエラー");
+            location.reload();
+          } else {
+            console.log("aaa");
+          }
         });
     },
     habitPlus: function(habit_id) {
