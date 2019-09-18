@@ -1,10 +1,18 @@
 const state = {
-    habit: {}
+    habits: ""
 };
 
-const getters = {};
+const getters = {
+    getMyHabits: state => {
+        return state.habits;
+    }
+};
 
-const mutations = {};
+const mutations = {
+    setMyHabits(state, habits) {
+        state.habits = habits;
+    }
+};
 
 export default {
     state,

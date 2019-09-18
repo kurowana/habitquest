@@ -2565,6 +2565,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2574,12 +2588,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    user: "getUserInfo"
+    user: "getUserInfo",
+    habits: "getMyHabits"
   })),
   created: function created() {
     this.$store.commit("setBgImg", "");
+    this.getMyHabits();
   },
   methods: {
+    getMyHabits: function getMyHabits() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/getMyHabits", {
+        userId: this.user.id
+      }).then(function (res) {
+        if (res.state === 419) {
+          alert("セッションエラー");
+          location.reload();
+        } else {
+          _this.$store.commit("setMyHabits", res.data);
+        }
+      });
+    },
     insertHabit: function insertHabit() {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/insertHabit", {
         userId: this.user.id,
@@ -2589,7 +2619,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           alert("セッションエラー");
           location.reload();
         } else {
-          console.log("aaa");
+          console.log("OK");
         }
       });
     },
@@ -8860,10 +8890,39 @@ var render = function() {
     _vm._v(" "),
     _c("button", { on: { click: _vm.insertHabit } }, [_vm._v("登録")]),
     _vm._v(" "),
-    _c("h2", [_vm._v("活動")])
+    _c("h2", [_vm._v("活動")]),
+    _vm._v(" "),
+    _c("table", [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.habits, function(habit) {
+          return _c("tr", { key: habit.id }, [
+            _c("td", [_vm._v(_vm._s(habit.habit_name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(habit.count))])
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("習慣")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("実効回数")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -27506,10 +27565,18 @@ var mutations = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  habit: {}
+  habits: ""
 };
-var getters = {};
-var mutations = {};
+var getters = {
+  getMyHabits: function getMyHabits(state) {
+    return state.habits;
+  }
+};
+var mutations = {
+  setMyHabits: function setMyHabits(state, habits) {
+    state.habits = habits;
+  }
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
   getters: getters,
