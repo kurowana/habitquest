@@ -4,6 +4,20 @@
     <input type="text" v-model="inputHabit" />
     <button @click="insertHabit">登録</button>
     <h2>活動</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>習慣</th>
+          <th>実効回数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="habit in habits" :key="habit.id">
+          <td>{{habit.habit_name}}</td>
+          <td>{{habit.count}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -19,13 +33,29 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "getUserInfo"
+      user: "getUserInfo",
+      habits: "getMyHabits"
     })
   },
   created: function() {
     this.$store.commit("setBgImg", "");
+    this.getMyHabits();
   },
   methods: {
+    getMyHabits: function() {
+      axios
+        .post("./api/getMyHabits", {
+          userId: this.user.id
+        })
+        .then(res => {
+          if (res.state === 419) {
+            alert("セッションエラー");
+            location.reload();
+          } else {
+            this.$store.commit("setMyHabits", res.data);
+          }
+        });
+    },
     insertHabit: function() {
       axios
         .post("./api/insertHabit", {
@@ -37,7 +67,7 @@ export default {
             alert("セッションエラー");
             location.reload();
           } else {
-            console.log("aaa");
+            console.log("OK");
           }
         });
     },

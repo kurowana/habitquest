@@ -9,6 +9,12 @@ use App\Models\Status;
 
 class HabitsController extends Controller
 {
+    public function getMyHabits(Request $request)
+    {
+        $habits = Habit::where("user_id", $request->userId)->get();
+        return $habits;
+    }
+
     public function insertHabit(Request $request)
     {
         $habit = new Habit;
