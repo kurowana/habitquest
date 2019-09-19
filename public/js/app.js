@@ -2579,6 +2579,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -8901,7 +8903,9 @@ var render = function() {
           return _c("tr", { key: habit.id }, [
             _c("td", [_vm._v(_vm._s(habit.habit_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(habit.count))])
+            _c("td", [_vm._v(_vm._s(habit.count))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(habit.last_date))])
           ])
         }),
         0
@@ -8918,7 +8922,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("習慣")]),
         _vm._v(" "),
-        _c("th", [_vm._v("実効回数")])
+        _c("th", [_vm._v("実効回数")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("最終実施日")])
       ])
     ])
   }
