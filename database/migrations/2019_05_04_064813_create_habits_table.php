@@ -17,6 +17,7 @@ class CreateHabitsTable extends Migration
             $table->bigIncrements('id');
             $table->string('habit_name');
             $table->integer('count')->default(0);
+            $table->date('last_date')->nullable();
             $table->timestamps();
         });
     }

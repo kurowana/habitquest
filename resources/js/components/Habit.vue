@@ -9,12 +9,14 @@
         <tr>
           <th>習慣</th>
           <th>実効回数</th>
+          <th>最終実施日</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="habit in habits" :key="habit.id">
           <td>{{habit.habit_name}}</td>
           <td>{{habit.count}}</td>
+          <td>{{habit.last_date}}</td>
         </tr>
       </tbody>
     </table>
