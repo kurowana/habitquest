@@ -10,6 +10,8 @@
           <th>習慣</th>
           <th>実効回数</th>
           <th>最終実施日</th>
+          <th>実行</th>
+          <th>削除</th>
         </tr>
       </thead>
       <tbody>
@@ -17,6 +19,12 @@
           <td>{{habit.habit_name}}</td>
           <td>{{habit.count}}</td>
           <td>{{habit.last_date}}</td>
+          <td>
+            <button @click="addHabitCount(habit.id)">実行</button>
+          </td>
+          <td>
+            <button @click="deleteHabit(habit.id)">削除</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -41,9 +49,12 @@ export default {
   },
   created: function() {
     this.$store.commit("setBgImg", "");
-    this.getMyHabits();
+    this.initPage();
   },
   methods: {
+    initPage: function() {
+      this.getMyHabits();
+    },
     getMyHabits: function() {
       axios
         .post("./api/getMyHabits", {
@@ -69,24 +80,23 @@ export default {
             alert("セッションエラー");
             location.reload();
           } else {
-            console.log("OK");
+            this.initPage();
           }
         });
     },
-    habitPlus: function(habit_id) {
+    addHabitCount: function(habitId) {
       axios
-        .post("./api/add_habit_count", {
-          user_id: this.$store.state.user.id,
-          habit_id: habit_id
+        .post("./api/addHabitCount", {
+          habitId: habitId
         })
         .then(res => {
-          location.reload();
+          this.initPage();
         });
     },
-    habitDelete: function(habit_id) {
+    deleteHabit: function(habitId) {
       axios
-        .post("./api/delete_habit", {
-          habit_id: habit_id
+        .post("./api/deleteHabit", {
+          habitId: habitId
         })
         .then(res => {
           location.reload();

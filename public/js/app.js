@@ -2581,6 +2581,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2595,9 +2603,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   created: function created() {
     this.$store.commit("setBgImg", "");
-    this.getMyHabits();
+    this.initPage();
   },
   methods: {
+    initPage: function initPage() {
+      this.getMyHabits();
+    },
     getMyHabits: function getMyHabits() {
       var _this = this;
 
@@ -2613,6 +2624,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     insertHabit: function insertHabit() {
+      var _this2 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/insertHabit", {
         userId: this.user.id,
         habitName: this.inputHabit
@@ -2621,21 +2634,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           alert("セッションエラー");
           location.reload();
         } else {
-          console.log("OK");
+          _this2.initPage();
         }
       });
     },
-    habitPlus: function habitPlus(habit_id) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/add_habit_count", {
-        user_id: this.$store.state.user.id,
-        habit_id: habit_id
+    addHabitCount: function addHabitCount(habitId) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/addHabitCount", {
+        habitId: habitId
       }).then(function (res) {
-        location.reload();
+        _this3.initPage();
       });
     },
-    habitDelete: function habitDelete(habit_id) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/delete_habit", {
-        habit_id: habit_id
+    deleteHabit: function deleteHabit(habitId) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/deleteHabit", {
+        habitId: habitId
       }).then(function (res) {
         location.reload();
       });
@@ -8905,7 +8919,35 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(habit.count))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(habit.last_date))])
+            _c("td", [_vm._v(_vm._s(habit.last_date))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.addHabitCount(habit.id)
+                    }
+                  }
+                },
+                [_vm._v("実行")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteHabit(habit.id)
+                    }
+                  }
+                },
+                [_vm._v("削除")]
+              )
+            ])
           ])
         }),
         0
@@ -8924,7 +8966,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("実効回数")]),
         _vm._v(" "),
-        _c("th", [_vm._v("最終実施日")])
+        _c("th", [_vm._v("最終実施日")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("実行")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("削除")])
       ])
     ])
   }

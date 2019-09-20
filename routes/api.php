@@ -27,8 +27,8 @@ Route::post('/registUser', 'Controller@registUser');
 //習慣登録
 Route::post('/getMyHabits', 'HabitsController@getMyHabits');
 Route::post('/insertHabit', 'HabitsController@insertHabit');
-// Route::post('/add_habit_count', 'HabitsController@add_habit_count');
-// Route::post('/delete_habit', 'HabitsController@delete_habit');
+Route::post('/addHabitCount', 'HabitsController@addHabitCount');
+Route::post('/deleteHabit', 'HabitsController@deleteHabit');
 
 // Route::post('/add_monster', 'MonstersController@add_monster');
 
