@@ -90,7 +90,12 @@ export default {
           habitId: habitId
         })
         .then(res => {
-          this.initPage();
+          if (res.status === 419) {
+            alert("セッションエラー");
+            location.reload();
+          } else {
+            this.initPage();
+          }
         });
     },
     deleteHabit: function(habitId) {
@@ -99,7 +104,12 @@ export default {
           habitId: habitId
         })
         .then(res => {
-          location.reload();
+          if (res.status === 419) {
+            alert("セッションエラー");
+            location.reload();
+          } else {
+            this.initPage();
+          }
         });
     }
   }

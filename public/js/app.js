@@ -2644,14 +2644,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/addHabitCount", {
         habitId: habitId
       }).then(function (res) {
-        _this3.initPage();
+        if (res.status === 419) {
+          alert("セッションエラー");
+          location.reload();
+        } else {
+          _this3.initPage();
+        }
       });
     },
     deleteHabit: function deleteHabit(habitId) {
+      var _this4 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/deleteHabit", {
         habitId: habitId
       }).then(function (res) {
-        location.reload();
+        if (res.status === 419) {
+          alert("セッションエラー");
+          location.reload();
+        } else {
+          _this4.initPage();
+        }
       });
     }
   }
