@@ -33,7 +33,7 @@ class HabitsController extends Controller
 
         $habit = Habit::find($request->habitId);
 
-        $now = new DateTime('2019-9-23');
+        $now = new DateTime();
         if ($habit->last_date != null) {
             $lastDate = new DateTime($habit->last_date);
         } else {
@@ -59,9 +59,9 @@ class HabitsController extends Controller
         return response('ok');
     }
 
-    public function delete_habit(Request $request)
+    public function deleteHabit(Request $request)
     {
-        $habit = Habit::find($request->habit_id);
+        $habit = Habit::find($request->habitId);
         $habit->delete();
 
         return response('ok');
