@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Habit;
 use App\Models\User;
 use App\Models\Status;
+use App\Models\ActionLog;
 use Illuminate\Support\Facades\Date;
 
 use DateTime;
@@ -46,15 +47,20 @@ class HabitsController extends Controller
             $habit->count += 1;
             $habit->last_date = $now;
             $habit->save();
-        }
 
-        // $status = Status::where('user_id', $request->user_id)
-        //     ->first();
-        // $status->exp += 10 * $habit->count;
-        // list($lv, $count) = $status->lvup($status->lv, $status->exp);
-        // $status->lv = $lv;
-        // $status->point += $count * 3;
-        // $status->save();
+            $status = Status::where('user_id', $request->user_id)
+                ->first();
+            $status->exp += 10 * $habit->count;
+            list($lv, $count) = $status->lvup($status->lv, $status->exp);
+            $status->lv = $lv;
+            $status->point += $count * 3;
+            $status->save();
+
+            $log = new ActionLog;
+            $log->past_count = $habit->count;
+            $log->habit_id = $habit->id;
+            $log->save();
+        }
 
         return response('ok');
     }
