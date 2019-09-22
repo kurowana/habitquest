@@ -12,6 +12,11 @@ class Habit extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function log()
+    {
+        return $this->belongsTo('App\Models\ActionLog', 'habit_id');
+    }
+
     //API
 
 }
