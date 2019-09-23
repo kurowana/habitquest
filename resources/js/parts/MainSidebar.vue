@@ -2,7 +2,7 @@
   <div class="sidebar">
     <router-link :to="{name:'test'}" class="btn">ホーム</router-link>
     <router-link :to="{name:'habit'}" class="btn">習慣</router-link>
-    <router-link :to="{name:'test'}" class="btn">ステータス</router-link>
+    <router-link :to="{name:'status'}" class="btn">ステータス</router-link>
     <router-link :to="{name:'test'}" class="btn">交流</router-link>
     <router-link :to="{name:'test'}" class="btn">探索</router-link>
     <div v-if="user.id">

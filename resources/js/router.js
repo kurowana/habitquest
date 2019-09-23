@@ -4,6 +4,7 @@ import userStore from "./store/user";
 
 import home from "./components/Home.vue";
 import habit from "./components/Habit.vue";
+import status from "./components/Status.vue";
 
 import MainSidebar from "./parts/MainSidebar.vue";
 
@@ -39,6 +40,16 @@ const routes = [
             sidebar: MainSidebar
         }
     },
+    {
+        path: "/status",
+        name: "status",
+        components: {
+            default: status,
+            sidebar: MainSidebar
+        }
+    },
+
+    //イベント系
     {
         path: "/opening",
         name: "opening",
