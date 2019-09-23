@@ -7,6 +7,9 @@ use App\Models\Habit;
 use App\Models\User;
 use App\Models\Status;
 use App\Models\ActionLog;
+
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Date;
 
 use DateTime;
@@ -34,21 +37,19 @@ class HabitsController extends Controller
 
         $habit = Habit::find($request->habitId);
 
-        $now = new DateTime();
+        $now = new Carbon();
         if ($habit->last_date != null) {
-            $lastDate = new DateTime($habit->last_date);
+            $lastDate = new Carbon($habit->last_date);
         } else {
-            $lastDate = new DateTime('1970-01-01');
+            $lastDate = new Carbon('1970-01-01');
         }
-        $diff = $now->diff($lastDate);
-        $diff_day = $diff->format('%d');
 
-        if ($diff_day > 1) {
+        if (!$lastDate->isToday()) {
             $habit->count += 1;
             $habit->last_date = $now;
             $habit->save();
 
-            $status = Status::where('user_id', $request->user_id)
+            $status = Status::where('user_id', $request->userId)
                 ->first();
             $status->exp += 10 * $habit->count;
             list($lv, $count) = $status->lvup($status->lv, $status->exp);
@@ -60,9 +61,10 @@ class HabitsController extends Controller
             $log->past_count = $habit->count;
             $log->habit_id = $habit->id;
             $log->save();
+            return response('習慣の実行を記録しました');
+        } else {
+            return response('本日の活動は記録しています。また明日がんばりましょう！');
         }
-
-        return response('ok');
     }
 
     public function deleteHabit(Request $request)

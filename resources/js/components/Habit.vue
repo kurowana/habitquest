@@ -28,6 +28,8 @@
         </tr>
       </tbody>
     </table>
+    <p>レベル：{{status.lv}}</p>
+    <p>累計経験値：{{status.exp}}</p>
   </div>
 </template>
 
@@ -38,7 +40,8 @@ import { mapGetters } from "vuex";
 export default {
   data: function() {
     return {
-      inputHabit: ""
+      inputHabit: "",
+      status: ""
     };
   },
   computed: {
@@ -54,6 +57,7 @@ export default {
   methods: {
     initPage: function() {
       this.getMyHabits();
+      this.getMyStatus();
     },
     getMyHabits: function() {
       axios
@@ -66,6 +70,20 @@ export default {
             location.reload();
           } else {
             this.$store.commit("setMyHabits", res.data);
+          }
+        });
+    },
+    getMyStatus: function() {
+      axios
+        .post("./api/getMyStatus", {
+          userId: this.user.id
+        })
+        .then(res => {
+          if (res.status === 419) {
+            alert("セッションエラー");
+            location.reload();
+          } else {
+            this.status = res.data;
           }
         });
     },
@@ -87,6 +105,7 @@ export default {
     addHabitCount: function(habitId) {
       axios
         .post("./api/addHabitCount", {
+          userId: this.user.id,
           habitId: habitId
         })
         .then(res => {
@@ -95,12 +114,14 @@ export default {
             location.reload();
           } else {
             this.initPage();
+            console.log(res.data);
           }
         });
     },
     deleteHabit: function(habitId) {
       axios
         .post("./api/deleteHabit", {
+          userId: this.user.id,
           habitId: habitId
         })
         .then(res => {
