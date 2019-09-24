@@ -4,7 +4,16 @@ const state = {
         id: "",
         name: ""
     },
-    userSt: {
+    point: 0,
+    baseSt: {
+        str: 0,
+        agi: 0,
+        vit: 0,
+        int: 0,
+        dex: 0,
+        luc: 0
+    },
+    battleSt: {
         maxhp: 0,
         hp: 0,
         maxmp: 0,
@@ -144,8 +153,14 @@ const getters = {
     getUserInfo: state => {
         return state.user;
     },
-    getUserSt: state => {
-        return state.userSt;
+    getPoint: state => {
+        return state.point;
+    },
+    getBaseSt: state => {
+        return state.baseSt;
+    },
+    getBattleSt: state => {
+        return state.battleSt;
     },
     getUserImg: state => {
         return state.userImg;
@@ -157,6 +172,15 @@ const mutations = {
     },
     setUserInfo(state, user) {
         state.user = user;
+    },
+    setPoint(state, point) {
+        state.point = point;
+    },
+    setBaseSt(state, status) {
+        state.baseSt = status;
+    },
+    setBattleSt(state, status) {
+        state.battleSt = status;
     }
 };
 

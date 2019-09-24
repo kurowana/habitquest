@@ -65,7 +65,8 @@ export default {
           userId: this.user.id
         })
         .then(res => {
-          if (res.state === 419) {
+          console.log(res.status);
+          if (res.status === 419) {
             alert("セッションエラー");
             location.reload();
           } else {
@@ -79,6 +80,7 @@ export default {
           userId: this.user.id
         })
         .then(res => {
+          console.log(res.status);
           if (res.status === 419) {
             alert("セッションエラー");
             location.reload();
@@ -94,6 +96,7 @@ export default {
           habitName: this.inputHabit
         })
         .then(res => {
+          console.log(res.status);
           if (res.status === 419) {
             alert("セッションエラー");
             location.reload();
@@ -109,6 +112,7 @@ export default {
           habitId: habitId
         })
         .then(res => {
+          console.log(res.status);
           if (res.status === 419) {
             alert("セッションエラー");
             location.reload();
@@ -125,6 +129,7 @@ export default {
           habitId: habitId
         })
         .then(res => {
+          console.log(res.status);
           if (res.status === 419) {
             alert("セッションエラー");
             location.reload();
