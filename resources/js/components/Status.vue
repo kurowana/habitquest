@@ -4,7 +4,7 @@
     {{status}}
     {{point}}
     {{baseSt}}
-    <base-st-chart></base-st-chart>
+    <base-st-chart :baseSt="baseSt" style="background:#fff"></base-st-chart>
   </div>
 </template>
 
@@ -44,14 +44,12 @@ export default {
           userId: this.user.id
         })
         .then(res => {
-          console.log(res.status);
           if (res.status === 419) {
             alert("セッションエラー");
             location.reload();
           } else {
             this.status = res.data;
             this.$store.commit("setPoint", res.data.point);
-            console.log(res.data.str);
             this.$store.commit("setBaseSt", {
               str: res.data.str,
               agi: res.data.agi,

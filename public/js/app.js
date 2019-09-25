@@ -1890,27 +1890,17 @@ module.exports = function isBuffer (obj) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BaseStChart",
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_1__["Radar"],
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    baseSt: "getBaseSt"
-  })),
+  mixins: [vue_chartjs__WEBPACK_IMPORTED_MODULE_1__["mixins"].reactiveData],
+  props: {
+    baseSt: null
+  },
   data: function data() {
     return {
-      chartData: {
-        labels: ["January", "February", "March", "April", "May", "June"],
-        datasets: [{
-          name: "Series 1",
-          data: [60, 50, 30, 40, 100, 60]
-        }]
-      },
       options: {
         title: {
           text: "Basic Radar Chart"
@@ -1924,8 +1914,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   mounted: function mounted() {
-    console.log(this.baseSt);
-    this.renderChart(this.chartData, this.options);
+    this.chartData = {
+      labels: ["str", "agi", "vit", "int", "dex", "luc"],
+      datasets: [{
+        label: "status",
+        data: [0, 0, 0, 0, 0, 0]
+      }]
+    };
+  },
+  watch: {
+    baseSt: function baseSt() {
+      this.updateChart();
+    }
+  },
+  methods: {
+    updateChart: function updateChart() {
+      var _this = this;
+
+      var newChart = {
+        labels: ["str", "agi", "vit", "int", "dex", "luc"],
+        datasets: [{
+          label: "status",
+          data: []
+        }]
+      };
+      Object.keys(this.baseSt).map(function (key) {
+        newChart.datasets[0].data.push(_this.baseSt[key]);
+      });
+      this.chartData = newChart;
+    }
   }
 });
 
@@ -2933,8 +2950,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/getMyStatus", {
         userId: this.user.id
       }).then(function (res) {
-        console.log(res.status);
-
         if (res.status === 419) {
           alert("セッションエラー");
           location.reload();
@@ -2942,8 +2957,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.status = res.data;
 
           _this.$store.commit("setPoint", res.data.point);
-
-          console.log(res.data.str);
 
           _this.$store.commit("setBaseSt", {
             str: res.data.str,
@@ -42065,7 +42078,10 @@ var render = function() {
           _vm._s(_vm.baseSt) +
           "\n  "
       ),
-      _c("base-st-chart")
+      _c("base-st-chart", {
+        staticStyle: { background: "#fff" },
+        attrs: { baseSt: _vm.baseSt }
+      })
     ],
     1
   )

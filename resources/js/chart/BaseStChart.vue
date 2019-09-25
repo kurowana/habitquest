@@ -1,27 +1,17 @@
 <script>
 import { mapGetters } from "vuex";
 
-import { Radar } from "vue-chartjs";
+import { Radar, mixins } from "vue-chartjs";
 
 export default {
   name: "BaseStChart",
   extends: Radar,
-  computed: {
-    ...mapGetters({
-      baseSt: "getBaseSt"
-    })
+  mixins: [mixins.reactiveData],
+  props: {
+    baseSt: null
   },
   data: function() {
     return {
-      chartData: {
-        labels: ["January", "February", "March", "April", "May", "June"],
-        datasets: [
-          {
-            name: "Series 1",
-            data: [60, 50, 30, 40, 100, 60]
-          }
-        ]
-      },
       options: {
         title: {
           text: "Basic Radar Chart"
@@ -33,8 +23,32 @@ export default {
     };
   },
   mounted: function() {
-    console.log(this.baseSt);
-    this.renderChart(this.chartData, this.options);
+    this.chartData = {
+      labels: ["str", "agi", "vit", "int", "dex", "luc"],
+      datasets: [
+        {
+          label: "status",
+          data: [0, 0, 0, 0, 0, 0]
+        }
+      ]
+    };
+  },
+  watch: {
+    baseSt: function() {
+      this.updateChart();
+    }
+  },
+  methods: {
+    updateChart: function() {
+      let newChart = {
+        labels: ["str", "agi", "vit", "int", "dex", "luc"],
+        datasets: [{ label: "status", data: [] }]
+      };
+      Object.keys(this.baseSt).map(key => {
+        newChart.datasets[0].data.push(this.baseSt[key]);
+      });
+      this.chartData = newChart;
+    }
   }
 };
 </script>
