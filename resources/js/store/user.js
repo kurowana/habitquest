@@ -179,6 +179,12 @@ const mutations = {
     setBaseSt(state, status) {
         state.baseSt = status;
     },
+    incBaseSt(state, type) {
+        state.baseSt[type]++;
+    },
+    decBaseSt(state, type) {
+        state.baseSt[type]--;
+    },
     setBattleSt(state, status) {
         state.battleSt = status;
     }

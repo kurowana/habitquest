@@ -1902,6 +1902,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         title: {
           text: "Basic Radar Chart"
         },
@@ -1924,6 +1926,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     baseSt: function baseSt() {
+      console.log(this.baseSt);
       this.updateChart();
     }
   },
@@ -2919,6 +2922,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2968,6 +2992,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           });
         }
       });
+    },
+    incTempSt: function incTempSt(type) {
+      this.$store.commit("incBaseSt", type);
+    },
+    decTempSt: function decTempSt(type) {
+      this.$store.commit("decBaseSt", type);
     }
   }
 });
@@ -42064,29 +42094,82 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._v(
-        "\n  " +
-          _vm._s(_vm.user) +
-          "\n  " +
-          _vm._s(_vm.status) +
-          "\n  " +
-          _vm._s(_vm.point) +
-          "\n  " +
-          _vm._s(_vm.baseSt) +
-          "\n  "
-      ),
-      _c("base-st-chart", {
-        staticStyle: { background: "#fff" },
-        attrs: { baseSt: _vm.baseSt }
-      })
-    ],
-    1
-  )
+  return _c("div", [
+    _vm._v("\n  " + _vm._s(_vm.user) + "\n  " + _vm._s(_vm.status) + "\n  "),
+    _c("p", [_vm._v("残りポイント：" + _vm._s(_vm.point))]),
+    _vm._v(" "),
+    _c("table", [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.baseSt, function(value, key) {
+          return _c("tr", { key: key }, [
+            _c("td", [_vm._v(_vm._s(key))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(value))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.incTempSt(key)
+                    }
+                  }
+                },
+                [_vm._v("+")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.decTempSt(key)
+                    }
+                  }
+                },
+                [_vm._v("-")]
+              )
+            ])
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v("\n  " + _vm._s(_vm.baseSt) + "\n  "),
+    _c(
+      "div",
+      {
+        staticStyle: {
+          background: "#fff",
+          width: "400px",
+          position: "relative"
+        }
+      },
+      [_c("base-st-chart", { attrs: { baseSt: _vm.baseSt } })],
+      1
+    )
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("能力")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("値")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("振り分け")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -60810,6 +60893,12 @@ var mutations = {
   },
   setBaseSt: function setBaseSt(state, status) {
     state.baseSt = status;
+  },
+  incBaseSt: function incBaseSt(state, type) {
+    state.baseSt[type]++;
+  },
+  decBaseSt: function decBaseSt(state, type) {
+    state.baseSt[type]--;
   },
   setBattleSt: function setBattleSt(state, status) {
     state.battleSt = status;
