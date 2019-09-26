@@ -2,9 +2,30 @@
   <div>
     {{user}}
     {{status}}
-    {{point}}
+    <p>残りポイント：{{point}}</p>
+    <table>
+      <thead>
+        <tr>
+          <th>能力</th>
+          <th>値</th>
+          <th>振り分け</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(value,key) in baseSt" :key="key">
+          <td>{{key}}</td>
+          <td>{{value}}</td>
+          <td>
+            <button @click="incTempSt(key)">+</button>
+            <button @click="decTempSt(key)">-</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
     {{baseSt}}
-    <base-st-chart :baseSt="baseSt" style="background:#fff"></base-st-chart>
+    <div style="background:#fff; width:400px; position:relative">
+      <base-st-chart :baseSt="baseSt"></base-st-chart>
+    </div>
   </div>
 </template>
 
@@ -60,6 +81,12 @@ export default {
             });
           }
         });
+    },
+    incTempSt: function(type) {
+      this.$store.commit("incBaseSt", type);
+    },
+    decTempSt: function(type) {
+      this.$store.commit("decBaseSt", type);
     }
   }
 };

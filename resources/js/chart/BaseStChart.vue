@@ -13,6 +13,8 @@ export default {
   data: function() {
     return {
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         title: {
           text: "Basic Radar Chart"
         },
@@ -35,6 +37,7 @@ export default {
   },
   watch: {
     baseSt: function() {
+      console.log(this.baseSt);
       this.updateChart();
     }
   },
