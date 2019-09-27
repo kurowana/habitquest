@@ -42096,14 +42096,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm._v("\n  " + _vm._s(_vm.user) + "\n  " + _vm._s(_vm.status) + "\n  "),
-    _c("p", [_vm._v("残りポイント：" + _vm._s(_vm.point))]),
+    _c("p", [_vm._v("残りポイント：" + _vm._s(_vm.point.temp))]),
     _vm._v(" "),
     _c("table", [
       _vm._m(0),
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.baseSt, function(value, key) {
+        _vm._l(_vm.baseSt.temp, function(value, key) {
           return _c("tr", { key: key }, [
             _c("td", [_vm._v(_vm._s(key))]),
             _vm._v(" "),
@@ -42149,7 +42149,7 @@ var render = function() {
           position: "relative"
         }
       },
-      [_c("base-st-chart", { attrs: { baseSt: _vm.baseSt } })],
+      [_c("base-st-chart", { attrs: { baseSt: _vm.baseSt.temp } })],
       1
     )
   ])
@@ -60719,14 +60719,27 @@ var state = {
     id: "",
     name: ""
   },
-  point: 0,
+  point: {
+    db: 0,
+    temp: 0
+  },
   baseSt: {
-    str: 0,
-    agi: 0,
-    vit: 0,
-    "int": 0,
-    dex: 0,
-    luc: 0
+    db: {
+      str: 0,
+      agi: 0,
+      vit: 0,
+      "int": 0,
+      dex: 0,
+      luc: 0
+    },
+    temp: {
+      str: 0,
+      agi: 0,
+      vit: 0,
+      "int": 0,
+      dex: 0,
+      luc: 0
+    }
   },
   battleSt: {
     maxhp: 0,
@@ -60889,16 +60902,26 @@ var mutations = {
     state.user = user;
   },
   setPoint: function setPoint(state, point) {
-    state.point = point;
+    state.point.db = point;
+    state.point.temp = point;
   },
   setBaseSt: function setBaseSt(state, status) {
-    state.baseSt = status;
+    state.baseSt.db = Object.assign({}, status);
+    state.baseSt.temp = Object.assign({}, status);
   },
   incBaseSt: function incBaseSt(state, type) {
-    state.baseSt[type]++;
+    if (state.point.temp > 0) {
+      state.baseSt.temp[type]++;
+      state.point.temp--;
+    }
   },
   decBaseSt: function decBaseSt(state, type) {
-    state.baseSt[type]--;
+    if (state.point.temp < state.point.db) {
+      if (state.baseSt.temp[type] > state.baseSt.db[type]) {
+        state.baseSt.temp[type]--;
+        state.point.temp++;
+      }
+    }
   },
   setBattleSt: function setBattleSt(state, status) {
     state.battleSt = status;
