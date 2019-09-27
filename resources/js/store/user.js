@@ -4,14 +4,27 @@ const state = {
         id: "",
         name: ""
     },
-    point: 0,
+    point: {
+        db: 0,
+        temp: 0
+    },
     baseSt: {
-        str: 0,
-        agi: 0,
-        vit: 0,
-        int: 0,
-        dex: 0,
-        luc: 0
+        db: {
+            str: 0,
+            agi: 0,
+            vit: 0,
+            int: 0,
+            dex: 0,
+            luc: 0
+        },
+        temp: {
+            str: 0,
+            agi: 0,
+            vit: 0,
+            int: 0,
+            dex: 0,
+            luc: 0
+        }
     },
     battleSt: {
         maxhp: 0,
@@ -174,16 +187,26 @@ const mutations = {
         state.user = user;
     },
     setPoint(state, point) {
-        state.point = point;
+        state.point.db = point;
+        state.point.temp = point;
     },
     setBaseSt(state, status) {
-        state.baseSt = status;
+        state.baseSt.db = Object.assign({}, status);
+        state.baseSt.temp = Object.assign({}, status);
     },
     incBaseSt(state, type) {
-        state.baseSt[type]++;
+        if (state.point.temp > 0) {
+            state.baseSt.temp[type]++;
+            state.point.temp--;
+        }
     },
     decBaseSt(state, type) {
-        state.baseSt[type]--;
+        if (state.point.temp < state.point.db) {
+            if (state.baseSt.temp[type] > state.baseSt.db[type]) {
+                state.baseSt.temp[type]--;
+                state.point.temp++;
+            }
+        }
     },
     setBattleSt(state, status) {
         state.battleSt = status;

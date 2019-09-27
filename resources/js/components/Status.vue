@@ -2,7 +2,7 @@
   <div>
     {{user}}
     {{status}}
-    <p>残りポイント：{{point}}</p>
+    <p>残りポイント：{{point.temp}}</p>
     <table>
       <thead>
         <tr>
@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(value,key) in baseSt" :key="key">
+        <tr v-for="(value,key) in baseSt.temp" :key="key">
           <td>{{key}}</td>
           <td>{{value}}</td>
           <td>
@@ -24,7 +24,7 @@
     </table>
     {{baseSt}}
     <div style="background:#fff; width:400px; position:relative">
-      <base-st-chart :baseSt="baseSt"></base-st-chart>
+      <base-st-chart :baseSt="baseSt.temp"></base-st-chart>
     </div>
   </div>
 </template>
