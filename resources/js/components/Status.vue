@@ -1,7 +1,7 @@
 <template>
   <div>
     {{user}}
-    {{status}}
+    {{myStatus}}
     <p>残りポイント：{{point.temp}}</p>
     <table>
       <thead>
@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(value,key) in baseSt.temp" :key="key">
+        <tr v-for="(value,key) in myStatus.temp" :key="key">
           <td>{{key}}</td>
           <td>{{value}}</td>
           <td>
@@ -22,9 +22,9 @@
         </tr>
       </tbody>
     </table>
-    {{baseSt}}
+    <button @click="updateStatus">決定</button>
     <div style="background:#fff; width:400px; position:relative">
-      <base-st-chart :baseSt="baseSt.temp"></base-st-chart>
+      <base-st-chart :baseSt="myStatus.temp"></base-st-chart>
     </div>
   </div>
 </template>
@@ -40,16 +40,13 @@ export default {
     BaseStChart
   },
   data: function() {
-    return {
-      status: ""
-    };
+    return {};
   },
   computed: {
     ...mapGetters({
       user: "getUserInfo",
       point: "getPoint",
-      baseSt: "getBaseSt",
-      battleSt: "getBattleSt"
+      myStatus: "getStatus"
     })
   },
   created: function() {
@@ -71,7 +68,7 @@ export default {
           } else {
             this.status = res.data;
             this.$store.commit("setPoint", res.data.point);
-            this.$store.commit("setBaseSt", {
+            this.$store.commit("setStatus", {
               str: res.data.str,
               agi: res.data.agi,
               vit: res.data.vit,
@@ -87,6 +84,21 @@ export default {
     },
     decTempSt: function(type) {
       this.$store.commit("decBaseSt", type);
+    },
+    updateStatus: function() {
+      axios
+        .post("./api/updateStatus", {
+          point: this.point.temp,
+          status: this.myStatus.temp
+        })
+        .then(res => {
+          if (res.data === 419) {
+            alert("セッションエラー");
+            location.reload();
+          } else {
+            this.initPage();
+          }
+        });
     }
   }
 };

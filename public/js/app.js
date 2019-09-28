@@ -1926,7 +1926,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     baseSt: function baseSt() {
-      console.log(this.baseSt);
       this.updateChart();
     }
   },
@@ -2951,15 +2950,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     BaseStChart: _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
-    return {
-      status: ""
-    };
+    return {};
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: "getUserInfo",
     point: "getPoint",
-    baseSt: "getBaseSt",
-    battleSt: "getBattleSt"
+    myStatus: "getStatus"
   })),
   created: function created() {
     this.initPage();
@@ -2982,7 +2978,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this.$store.commit("setPoint", res.data.point);
 
-          _this.$store.commit("setBaseSt", {
+          _this.$store.commit("setStatus", {
             str: res.data.str,
             agi: res.data.agi,
             vit: res.data.vit,
@@ -2998,6 +2994,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     decTempSt: function decTempSt(type) {
       this.$store.commit("decBaseSt", type);
+    },
+    updateStatus: function updateStatus() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/updateStatus", {
+        point: this.point.temp,
+        status: this.myStatus.temp
+      }).then(function (res) {
+        if (res.data === 419) {
+          alert("セッションエラー");
+          location.reload();
+        } else {
+          _this2.initPage();
+        }
+      });
     }
   }
 });
@@ -42095,7 +42106,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\n  " + _vm._s(_vm.user) + "\n  " + _vm._s(_vm.status) + "\n  "),
+    _vm._v("\n  " + _vm._s(_vm.user) + "\n  " + _vm._s(_vm.myStatus) + "\n  "),
     _c("p", [_vm._v("残りポイント：" + _vm._s(_vm.point.temp))]),
     _vm._v(" "),
     _c("table", [
@@ -42103,7 +42114,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.baseSt.temp, function(value, key) {
+        _vm._l(_vm.myStatus.temp, function(value, key) {
           return _c("tr", { key: key }, [
             _c("td", [_vm._v(_vm._s(key))]),
             _vm._v(" "),
@@ -42139,7 +42150,9 @@ var render = function() {
         0
       )
     ]),
-    _vm._v("\n  " + _vm._s(_vm.baseSt) + "\n  "),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.updateStatus } }, [_vm._v("決定")]),
+    _vm._v(" "),
     _c(
       "div",
       {
@@ -42149,7 +42162,7 @@ var render = function() {
           position: "relative"
         }
       },
-      [_c("base-st-chart", { attrs: { baseSt: _vm.baseSt.temp } })],
+      [_c("base-st-chart", { attrs: { baseSt: _vm.myStatus.temp } })],
       1
     )
   ])
@@ -60723,7 +60736,7 @@ var state = {
     db: 0,
     temp: 0
   },
-  baseSt: {
+  status: {
     db: {
       str: 0,
       agi: 0,
@@ -60739,20 +60752,20 @@ var state = {
       "int": 0,
       dex: 0,
       luc: 0
+    },
+    battle: {
+      maxhp: 0,
+      hp: 0,
+      maxmp: 0,
+      mp: 0,
+      atk: 0,
+      matk: 0,
+      def: 0,
+      mdef: 0,
+      spd: 0,
+      hit: 0,
+      flee: 0
     }
-  },
-  battleSt: {
-    maxhp: 0,
-    hp: 0,
-    maxmp: 0,
-    mp: 0,
-    atk: 0,
-    matk: 0,
-    def: 0,
-    mdef: 0,
-    spd: 0,
-    hit: 0,
-    flee: 0
   },
   userImg: {
     p001: {
@@ -60884,11 +60897,8 @@ var getters = {
   getPoint: function getPoint(state) {
     return state.point;
   },
-  getBaseSt: function getBaseSt(state) {
-    return state.baseSt;
-  },
-  getBattleSt: function getBattleSt(state) {
-    return state.battleSt;
+  getStatus: function getStatus(state) {
+    return state.status;
   },
   getUserImg: function getUserImg(state) {
     return state.userImg;
@@ -60905,26 +60915,36 @@ var mutations = {
     state.point.db = point;
     state.point.temp = point;
   },
-  setBaseSt: function setBaseSt(state, status) {
-    state.baseSt.db = Object.assign({}, status);
-    state.baseSt.temp = Object.assign({}, status);
+  setStatus: function setStatus(state, status) {
+    state.status.db = Object.assign({}, status);
+    state.status.temp = Object.assign({}, status);
+    var dST = state.status.db;
+    var bST = state.status.battle;
+    bST.maxhp = dST.vit * 10;
+    bST.hp = bST.maxhp;
+    bST.maxmp = dST["int"] * 5;
+    bST.mp = bST.maxmp;
+    bST.atk = dST.str * 2;
+    bST.matk = dST["int"] * 2;
+    bST.def = dST.vit * 2;
+    bST.mdef = dST["int"] * 2;
+    bST.spd = dST.agi;
+    bST.hit = dST.dex + dST.luc;
+    bST.flee = dST.agi + dST.luc;
   },
   incBaseSt: function incBaseSt(state, type) {
     if (state.point.temp > 0) {
-      state.baseSt.temp[type]++;
+      state.status.temp[type]++;
       state.point.temp--;
     }
   },
   decBaseSt: function decBaseSt(state, type) {
     if (state.point.temp < state.point.db) {
-      if (state.baseSt.temp[type] > state.baseSt.db[type]) {
-        state.baseSt.temp[type]--;
+      if (state.status.temp[type] > state.status.db[type]) {
+        state.status.temp[type]--;
         state.point.temp++;
       }
     }
-  },
-  setBattleSt: function setBattleSt(state, status) {
-    state.battleSt = status;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

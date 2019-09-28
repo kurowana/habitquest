@@ -33,6 +33,7 @@ Route::post('/deleteHabit', 'HabitsController@deleteHabit');
 
 //ステータス関連
 Route::post('/getMyStatus', 'StatusesController@getMyStatus');
+Route::post('/updateStatus', 'StatusesController@updateStatus');
 
 // Route::post('/add_monster', 'MonstersController@add_monster');
 

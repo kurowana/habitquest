@@ -8,7 +8,7 @@ const state = {
         db: 0,
         temp: 0
     },
-    baseSt: {
+    status: {
         db: {
             str: 0,
             agi: 0,
@@ -24,20 +24,20 @@ const state = {
             int: 0,
             dex: 0,
             luc: 0
+        },
+        battle: {
+            maxhp: 0,
+            hp: 0,
+            maxmp: 0,
+            mp: 0,
+            atk: 0,
+            matk: 0,
+            def: 0,
+            mdef: 0,
+            spd: 0,
+            hit: 0,
+            flee: 0
         }
-    },
-    battleSt: {
-        maxhp: 0,
-        hp: 0,
-        maxmp: 0,
-        mp: 0,
-        atk: 0,
-        matk: 0,
-        def: 0,
-        mdef: 0,
-        spd: 0,
-        hit: 0,
-        flee: 0
     },
     userImg: {
         p001: {
@@ -169,11 +169,8 @@ const getters = {
     getPoint: state => {
         return state.point;
     },
-    getBaseSt: state => {
-        return state.baseSt;
-    },
-    getBattleSt: state => {
-        return state.battleSt;
+    getStatus: state => {
+        return state.status;
     },
     getUserImg: state => {
         return state.userImg;
@@ -190,26 +187,38 @@ const mutations = {
         state.point.db = point;
         state.point.temp = point;
     },
-    setBaseSt(state, status) {
-        state.baseSt.db = Object.assign({}, status);
-        state.baseSt.temp = Object.assign({}, status);
+    setStatus(state, status) {
+        state.status.db = Object.assign({}, status);
+        state.status.temp = Object.assign({}, status);
+
+        const dST = state.status.db;
+        const bST = state.status.battle;
+
+        bST.maxhp = dST.vit * 10;
+        bST.hp = bST.maxhp;
+        bST.maxmp = dST.int * 5;
+        bST.mp = bST.maxmp;
+        bST.atk = dST.str * 2;
+        bST.matk = dST.int * 2;
+        bST.def = dST.vit * 2;
+        bST.mdef = dST.int * 2;
+        bST.spd = dST.agi;
+        bST.hit = dST.dex + dST.luc;
+        bST.flee = dST.agi + dST.luc;
     },
     incBaseSt(state, type) {
         if (state.point.temp > 0) {
-            state.baseSt.temp[type]++;
+            state.status.temp[type]++;
             state.point.temp--;
         }
     },
     decBaseSt(state, type) {
         if (state.point.temp < state.point.db) {
-            if (state.baseSt.temp[type] > state.baseSt.db[type]) {
-                state.baseSt.temp[type]--;
+            if (state.status.temp[type] > state.status.db[type]) {
+                state.status.temp[type]--;
                 state.point.temp++;
             }
         }
-    },
-    setBattleSt(state, status) {
-        state.battleSt = status;
     }
 };
 

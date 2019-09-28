@@ -37,4 +37,19 @@ class Status extends Model
 
         return $statusIns;
     }
+
+    public function updateStatus($userId, $point, $status)
+    {
+        $statusDB = $this->where('user_id', $userId)->first();
+        $statusDB->point = $point;
+        $statusDB->str = $status['str'];
+        $statusDB->agi = $status['agi'];
+        $statusDB->vit = $status['vit'];
+        $statusDB->int = $status['int'];
+        $statusDB->dex = $status['dex'];
+        $statusDB->luc = $status['luc'];
+        $statusDB->save();
+
+        return $statusDB;
+    }
 }
