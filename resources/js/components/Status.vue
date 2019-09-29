@@ -46,7 +46,8 @@ export default {
     ...mapGetters({
       user: "getUserInfo",
       point: "getPoint",
-      myStatus: "getStatus"
+      myStatus: "getStatus",
+      monster: "getMonster"
     })
   },
   created: function() {

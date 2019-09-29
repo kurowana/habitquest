@@ -2611,6 +2611,151 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dungeon.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {},
+  data: function data() {
+    return {
+      clearedStage: 0,
+      currentStage: 1
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    user: "getUserInfo",
+    point: "getPoint",
+    myStatus: "getStatus",
+    monster: "getMonster"
+  })),
+  created: function created() {
+    this.initPage();
+  },
+  methods: {
+    initPage: function initPage() {
+      this.getMyStatus();
+    },
+    getMyStatus: function getMyStatus() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/getMyStatus", {
+        userId: this.user.id
+      }).then(function (res) {
+        if (res.status === 419) {
+          alert("セッションエラー");
+          location.reload();
+        } else {
+          _this.status = res.data;
+
+          _this.$store.commit("setPoint", res.data.point);
+
+          _this.$store.commit("setStatus", {
+            str: res.data.str,
+            agi: res.data.agi,
+            vit: res.data.vit,
+            "int": res.data["int"],
+            dex: res.data.dex,
+            luc: res.data.luc
+          });
+
+          _this.stage = res.data.clearedStage;
+        }
+      });
+    },
+    startBattle: function startBattle() {
+      this.$store.commit("setMonster", this.currentStage);
+      this.battle();
+    },
+    battle: function battle() {
+      var player = this.myStatus.battle;
+      var endFlag = false;
+      console.log("戦闘開始");
+
+      while (!endFlag) {
+        if (player.spd >= this.monster.spd) {
+          this.playerAttack(player, this.monster);
+
+          if (this.monster.hp <= 0) {
+            console.log("倒した");
+            this.currentStage++;
+            this.$store.commit("setMonster", this.currentStage);
+          }
+
+          this.monsterAttack(player, this.monster);
+
+          if (player.hp <= 0) {
+            endFlag = true;
+          }
+        } else {
+          this.monsterAttack(player, this.monster);
+
+          if (player.hp <= 0) {
+            endFlag = true;
+          }
+
+          this.playerAttack(player, this.monster);
+
+          if (this.monster.hp <= 0) {
+            console.log("倒した");
+            this.currentStage++;
+            this.$store.commit("setMonster", this.currentStage);
+          }
+        }
+      }
+    },
+    playerAttack: function playerAttack(player, monster) {
+      console.log("プレイヤーの攻撃");
+      var damage = player.atk - monster.def;
+
+      if (damage > 0) {
+        monster.hp -= damage;
+      }
+
+      console.log(damage + ":" + monster.hp);
+      return;
+    },
+    monsterAttack: function monsterAttack(player, monster) {
+      console.log("モンスターの攻撃");
+      var damage = monster.atk - player.def;
+
+      if (damage > 0) {
+        player.hp -= damage;
+      }
+
+      return;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Habit.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Habit.vue?vue&type=script&lang=js& ***!
@@ -2955,7 +3100,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: "getUserInfo",
     point: "getPoint",
-    myStatus: "getStatus"
+    myStatus: "getStatus",
+    monster: "getMonster"
   })),
   created: function created() {
     this.initPage();
@@ -3592,6 +3738,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -41680,6 +41827,43 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h1", [_vm._v("ダンジョン")]),
+    _vm._v("\n  " + _vm._s(_vm.myStatus) + "\n  "),
+    _c("br"),
+    _vm._v(
+      "\n  最高到達ステージ" +
+        _vm._s(_vm.clearedStage) +
+        "\n  現在ステージ" +
+        _vm._s(_vm.currentStage) +
+        "\n  "
+    ),
+    _c("button", { on: { click: _vm.startBattle } }, [_vm._v("探索開始")]),
+    _vm._v("\n  " + _vm._s(_vm.monster) + "\n")
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Habit.vue?vue&type=template&id=644fc019&":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Habit.vue?vue&type=template&id=644fc019& ***!
@@ -42994,6 +43178,12 @@ var render = function() {
         "router-link",
         { staticClass: "btn", attrs: { to: { name: "test" } } },
         [_vm._v("探索")]
+      ),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        { staticClass: "btn", attrs: { to: { name: "dungeon" } } },
+        [_vm._v("ダンジョン")]
       ),
       _vm._v(" "),
       _vm.user.id
@@ -59454,6 +59644,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Dungeon.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Dungeon.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dungeon.vue?vue&type=template&id=6c4c51c2& */ "./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&");
+/* harmony import */ var _Dungeon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dungeon.vue?vue&type=script&lang=js& */ "./resources/js/components/Dungeon.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Dungeon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Dungeon.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Dungeon.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Dungeon.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Dungeon.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Dungeon.vue?vue&type=template&id=6c4c51c2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Habit.vue":
 /*!*******************************************!*\
   !*** ./resources/js/components/Habit.vue ***!
@@ -60321,10 +60580,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
 /* harmony import */ var _components_Habit_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Habit.vue */ "./resources/js/components/Habit.vue");
 /* harmony import */ var _components_Status_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Status.vue */ "./resources/js/components/Status.vue");
-/* harmony import */ var _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./parts/MainSidebar.vue */ "./resources/js/parts/MainSidebar.vue");
-/* harmony import */ var _events_title_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./events/title.vue */ "./resources/js/events/title.vue");
-/* harmony import */ var _events_opening_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./events/opening.vue */ "./resources/js/events/opening.vue");
-/* harmony import */ var _events_testevent_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./events/testevent.vue */ "./resources/js/events/testevent.vue");
+/* harmony import */ var _components_Dungeon_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Dungeon.vue */ "./resources/js/components/Dungeon.vue");
+/* harmony import */ var _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./parts/MainSidebar.vue */ "./resources/js/parts/MainSidebar.vue");
+/* harmony import */ var _events_title_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./events/title.vue */ "./resources/js/events/title.vue");
+/* harmony import */ var _events_opening_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./events/opening.vue */ "./resources/js/events/opening.vue");
+/* harmony import */ var _events_testevent_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./events/testevent.vue */ "./resources/js/events/testevent.vue");
+
 
 
 
@@ -60340,37 +60601,44 @@ var routes = [{
   path: "/",
   name: "title",
   components: {
-    "default": _events_title_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    "default": _events_title_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }
 }, {
   path: "/home",
   name: "home",
   components: {
     "default": _components_Home_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }
 }, {
   path: "/habit",
   name: "habit",
   components: {
     "default": _components_Habit_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }
 }, {
   path: "/status",
   name: "status",
   components: {
     "default": _components_Status_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }
+}, {
+  path: "/dungeon",
+  name: "dungeon",
+  components: {
+    "default": _components_Dungeon_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }
 }, //イベント系
 {
   path: "/opening",
   name: "opening",
   components: {
-    "default": _events_opening_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    "default": _events_opening_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   beforeEnter: function beforeEnter(to, from, next) {
     if (from.name === "title") {
@@ -60385,8 +60653,8 @@ var routes = [{
   path: "/test",
   name: "test",
   components: {
-    "default": _events_testevent_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    "default": _events_testevent_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -60425,6 +60693,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/user */ "./resources/js/store/user.js");
 /* harmony import */ var _store_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/event */ "./resources/js/store/event.js");
 /* harmony import */ var _store_habit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/habit */ "./resources/js/store/habit.js");
+/* harmony import */ var _store_monster__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/monster */ "./resources/js/store/monster.js");
+
 
 
 
@@ -60435,7 +60705,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     userStore: _store_user__WEBPACK_IMPORTED_MODULE_2__["default"],
     habitStore: _store_habit__WEBPACK_IMPORTED_MODULE_4__["default"],
-    eventStore: _store_event__WEBPACK_IMPORTED_MODULE_3__["default"]
+    eventStore: _store_event__WEBPACK_IMPORTED_MODULE_3__["default"],
+    monsterStore: _store_monster__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
@@ -60707,6 +60978,82 @@ var getters = {
 var mutations = {
   setMyHabits: function setMyHabits(state, habits) {
     state.habits = habits;
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  getters: getters,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/monster.js":
+/*!***************************************!*\
+  !*** ./resources/js/store/monster.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var state = {
+  monster: {
+    name: "",
+    hp: 0,
+    mp: 0,
+    atk: 0,
+    matk: 0,
+    def: 0,
+    mdef: 0,
+    spd: 0,
+    hit: 0,
+    flee: 0
+  },
+  monsterList: [{
+    name: "スライム",
+    hp: 50,
+    mp: 0,
+    atk: 10,
+    matk: 0,
+    def: 5,
+    mdef: 5,
+    spd: 10,
+    hit: 20,
+    flee: 20
+  }, {
+    name: "スケルトン",
+    hp: 60,
+    mp: 0,
+    atk: 14,
+    matk: 0,
+    def: 8,
+    mdef: 0,
+    spd: 20,
+    hit: 20,
+    flee: 20
+  }]
+};
+var getters = {
+  getMonster: function getMonster(state) {
+    return state.monster;
+  }
+};
+var mutations = {
+  setMonster: function setMonster(state, stage) {
+    var range = state.monsterList.length;
+    var randomNum = Math.floor(Math.random() * range);
+    state.monster = Object.assign({}, state.monsterList[randomNum]);
+    var correction = 1 + stage * 0.1;
+    state.monster.hp = Math.floor(state.monster.hp * correction);
+    state.monster.mp = Math.floor(state.monster.mp * correction);
+    state.monster.atk = Math.floor(state.monster.atk * correction);
+    state.monster.matk = Math.floor(state.monster.matk * correction);
+    state.monster.def = Math.floor(state.monster.def * correction);
+    state.monster.mdef = Math.floor(state.monster.mdef * correction);
+    state.monster.spd = Math.floor(state.monster.spd * correction);
+    state.monster.hit = Math.floor(state.monster.hit * correction);
+    state.monster.flee = Math.floor(state.monster.flee * correction);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
