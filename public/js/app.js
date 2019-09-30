@@ -2639,6 +2639,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2646,7 +2649,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       clearedStage: 0,
-      currentStage: 1
+      currentStage: 1,
+      tempMoney: 0
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
@@ -2704,6 +2708,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           if (this.monster.hp <= 0) {
             console.log("倒した");
+            this.winBattle();
             this.currentStage++;
             this.$store.commit("setMonster", this.currentStage);
           }
@@ -2711,12 +2716,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.monsterAttack(player, this.monster);
 
           if (player.hp <= 0) {
+            this.loseBattle();
             endFlag = true;
           }
         } else {
           this.monsterAttack(player, this.monster);
 
           if (player.hp <= 0) {
+            this.loseBattle();
             endFlag = true;
           }
 
@@ -2724,6 +2731,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           if (this.monster.hp <= 0) {
             console.log("倒した");
+            this.winBattle();
             this.currentStage++;
             this.$store.commit("setMonster", this.currentStage);
           }
@@ -2750,6 +2758,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       return;
+    },
+    winBattle: function winBattle() {
+      this.tempMoney += 10 * this.currentStage;
+    },
+    loseBattle: function loseBattle() {
+      this.currentStage = 1;
+      this.myStatus.battle.hp = this.myStatus.battle.maxhp;
     }
   }
 });
@@ -41851,6 +41866,8 @@ var render = function() {
         _vm._s(_vm.clearedStage) +
         "\n  現在ステージ" +
         _vm._s(_vm.currentStage) +
+        "\n  収入" +
+        _vm._s(_vm.tempMoney) +
         "\n  "
     ),
     _c("button", { on: { click: _vm.startBattle } }, [_vm._v("探索開始")]),
