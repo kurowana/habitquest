@@ -57,6 +57,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Skill', 'skill_user', 'user_id', 'skill_id');
     }
 
+    public function asset()
+    {
+        return $this->hasOne('App\Models\Asset', 'user_id');
+    }
+
     //
     public function registUserBase($name, $password)
     {

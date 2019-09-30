@@ -5,7 +5,10 @@
     <br />
     最高到達ステージ{{clearedStage}}
     現在ステージ{{currentStage}}
-    <button @click="startBattle">探索開始</button>
+    収入{{tempMoney}}
+    <button
+      @click="startBattle"
+    >探索開始</button>
     {{monster}}
   </div>
 </template>
@@ -19,7 +22,9 @@ export default {
   data: function() {
     return {
       clearedStage: 0,
-      currentStage: 1
+      currentStage: 1,
+
+      tempMoney: 0
     };
   },
   computed: {
@@ -74,21 +79,25 @@ export default {
           this.playerAttack(player, this.monster);
           if (this.monster.hp <= 0) {
             console.log("倒した");
+            this.winBattle();
             this.currentStage++;
             this.$store.commit("setMonster", this.currentStage);
           }
           this.monsterAttack(player, this.monster);
           if (player.hp <= 0) {
+            this.loseBattle();
             endFlag = true;
           }
         } else {
           this.monsterAttack(player, this.monster);
           if (player.hp <= 0) {
+            this.loseBattle();
             endFlag = true;
           }
           this.playerAttack(player, this.monster);
           if (this.monster.hp <= 0) {
             console.log("倒した");
+            this.winBattle();
             this.currentStage++;
             this.$store.commit("setMonster", this.currentStage);
           }
@@ -111,6 +120,13 @@ export default {
         player.hp -= damage;
       }
       return;
+    },
+    winBattle: function() {
+      this.tempMoney += 10 * this.currentStage;
+    },
+    loseBattle: function() {
+      this.currentStage = 1;
+      this.myStatus.battle.hp = this.myStatus.battle.maxhp;
     }
   }
 };
