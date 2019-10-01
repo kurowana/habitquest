@@ -105,21 +105,23 @@ export default {
       }
     },
     playerAttack: function(player, monster) {
-      console.log("プレイヤーの攻撃");
-      let damage = player.atk - monster.def;
-      if (damage > 0) {
-        monster.hp -= damage;
-      }
-      console.log(damage + ":" + monster.hp);
-      return;
+      setTimeout(() => {
+        console.log("プレイヤーの攻撃");
+        let damage = player.atk - monster.def;
+        if (damage > 0) {
+          monster.hp -= damage;
+        }
+        console.log(damage + ":" + monster.hp);
+      }, 1000);
     },
     monsterAttack: function(player, monster) {
-      console.log("モンスターの攻撃");
-      let damage = monster.atk - player.def;
-      if (damage > 0) {
-        player.hp -= damage;
-      }
-      return;
+      setTimeout(() => {
+        console.log("モンスターの攻撃");
+        let damage = monster.atk - player.def;
+        if (damage > 0) {
+          player.hp -= damage;
+        }
+      }, 1000);
     },
     winBattle: function() {
       this.tempMoney += 10 * this.currentStage;

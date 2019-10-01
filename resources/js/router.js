@@ -5,6 +5,7 @@ import userStore from "./store/user";
 import home from "./components/Home.vue";
 import habit from "./components/Habit.vue";
 import status from "./components/Status.vue";
+import collection from "./components/Collection.vue";
 import dungeon from "./components/Dungeon.vue";
 
 import MainSidebar from "./parts/MainSidebar.vue";
@@ -46,6 +47,14 @@ const routes = [
         name: "status",
         components: {
             default: status,
+            sidebar: MainSidebar
+        }
+    },
+    {
+        path: "/collection",
+        name: "collection",
+        components: {
+            default: collection,
             sidebar: MainSidebar
         }
     },
