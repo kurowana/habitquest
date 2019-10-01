@@ -4,7 +4,7 @@
     <router-link :to="{name:'habit'}" class="btn">習慣</router-link>
     <router-link :to="{name:'status'}" class="btn">ステータス</router-link>
     <router-link :to="{name:'test'}" class="btn">交流</router-link>
-    <router-link :to="{name:'test'}" class="btn">探索</router-link>
+    <router-link :to="{name:'collection'}" class="btn">採集</router-link>
     <router-link :to="{name:'dungeon'}" class="btn">ダンジョン</router-link>
     <div v-if="user.id">
       <div @click="logout" class="btn">ログアウト</div>
