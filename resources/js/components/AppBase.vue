@@ -69,7 +69,13 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getUserInfo", "getUserSt", "getMessage", "getSound"]),
+    // ...mapGetters(["getUserInfo", "getStatus", "getMessage", "getSound"]),
+    ...mapGetters({
+      user: "getUserInfo",
+      myStatus: "getStatus",
+      message: "getMessage",
+      getSound: "getSound"
+    }),
 
     bgImg: function() {
       // if (this.$store.state.eventStore.bgImg !== "") {
@@ -92,6 +98,7 @@ export default {
       });
       this.$router.push({ name: "home" });
     }
+    this.initPage();
   },
   mounted: function() {},
   // created: function() {
@@ -139,6 +146,33 @@ export default {
   //     });
   // },
   methods: {
+    initPage: function() {
+      this.getMyStatus();
+    },
+    getMyStatus: function() {
+      axios
+        .post("./api/getMyStatus", {
+          userId: this.user.id
+        })
+        .then(res => {
+          if (res.status === 419) {
+            alert("セッションエラー");
+            location.reload();
+          } else {
+            this.status = res.data;
+            this.$store.commit("setPoint", res.data.point);
+            this.$store.commit("setStatus", {
+              str: res.data.str,
+              agi: res.data.agi,
+              vit: res.data.vit,
+              int: res.data.int,
+              dex: res.data.dex,
+              luc: res.data.luc
+            });
+            this.stage = res.data.clearedStage;
+          }
+        });
+    },
     test: function() {
       this.$store.commit("strup");
     },
