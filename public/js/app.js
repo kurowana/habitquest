@@ -2035,7 +2035,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       type: String
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(["getUserInfo", "getUserSt", "getMessage", "getSound"]), {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    user: "getUserInfo",
+    myStatus: "getStatus",
+    message: "getMessage",
+    getSound: "getSound"
+  }), {
     bgImg: function bgImg() {
       // if (this.$store.state.eventStore.bgImg !== "") {
       //   return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
@@ -2062,6 +2067,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: "home"
       });
     }
+
+    this.initPage();
   },
   mounted: function mounted() {},
   // created: function() {
@@ -2108,6 +2115,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   //     });
   // },
   methods: {
+    initPage: function initPage() {
+      this.getMyStatus();
+    },
+    getMyStatus: function getMyStatus() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/getMyStatus", {
+        userId: this.user.id
+      }).then(function (res) {
+        if (res.status === 419) {
+          alert("セッションエラー");
+          location.reload();
+        } else {
+          _this.status = res.data;
+
+          _this.$store.commit("setPoint", res.data.point);
+
+          _this.$store.commit("setStatus", {
+            str: res.data.str,
+            agi: res.data.agi,
+            vit: res.data.vit,
+            "int": res.data["int"],
+            dex: res.data.dex,
+            luc: res.data.luc
+          });
+
+          _this.stage = res.data.clearedStage;
+        }
+      });
+    },
     test: function test() {
       this.$store.commit("strup");
     },
@@ -2620,6 +2657,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2651,6 +2695,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2660,36 +2707,41 @@ __webpack_require__.r(__webpack_exports__);
       getWood: false,
       getStone: false,
       getLeather: false,
-      tempIron: 0,
-      tempFeather: 0,
-      tempWood: 0,
-      tempStone: 0,
-      tempLeather: 0
+      tempAssets: {
+        iron: 0,
+        feather: 0,
+        wood: 0,
+        stone: 0,
+        leather: 0
+      }
     };
   },
-  computed: {},
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    myStatus: "getStatus"
+  })),
   mounted: function mounted() {
     var _this = this;
 
     setInterval(function () {
       if (_this.getIron) {
-        _this.tempIron = 1 + _this.tempIron;
+        console.log(_this.myStatus.db.str);
+        _this.tempAssets.iron = Math.ceil(1 + _this.myStatus.db.str / 10) + _this.tempAssets.iron;
       }
 
       if (_this.getFeather) {
-        _this.tempFeather = 1 + _this.tempFeather;
+        _this.tempAssets.feather = Math.ceil(1 + _this.myStatus.db.agi / 10) + _this.tempAssets.feather;
       }
 
       if (_this.getWood) {
-        _this.tempWood = 1 + _this.tempWood;
+        _this.tempAssets.wood = Math.ceil(1 + _this.myStatus.db.vit / 10) + _this.tempAssets.wood;
       }
 
       if (_this.getStone) {
-        _this.tempStone = 1 + _this.tempStone;
+        _this.tempAssets.stone = Math.ceil(1 + _this.myStatus.db["int"] / 10) + _this.tempAssets.stone;
       }
 
       if (_this.getLeather) {
-        _this.tempLeather = 1 + _this.tempLeather;
+        _this.tempAssets.leather = Math.ceil(1 + _this.myStatus.db.dex / 10) + _this.tempAssets.leather;
       }
     }, 1000);
   },
@@ -2779,6 +2831,12 @@ __webpack_require__.r(__webpack_exports__);
 
           break;
       }
+    },
+    insertAssets: function insertAssets(type) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/insertAssets", {
+        type: type,
+        assets: this.tempAssets[type]
+      }).then(function (res) {});
     }
   }
 });
@@ -2794,9 +2852,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2827,7 +2893,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tempMoney: 0
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
     user: "getUserInfo",
     point: "getPoint",
     myStatus: "getStatus",
@@ -2843,7 +2909,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getMyStatus: function getMyStatus() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/getMyStatus", {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("./api/getMyStatus", {
         userId: this.user.id
       }).then(function (res) {
         if (res.status === 419) {
@@ -2871,68 +2937,117 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit("setMonster", this.currentStage);
       this.battle();
     },
-    battle: function battle() {
-      var player = this.myStatus.battle;
-      var endFlag = false;
-      console.log("戦闘開始");
+    battle: function () {
+      var _battle = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var player, endFlag;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                player = this.myStatus.battle;
+                endFlag = false;
+                console.log("戦闘開始");
 
-      while (!endFlag) {
-        if (player.spd >= this.monster.spd) {
-          this.playerAttack(player, this.monster);
+              case 3:
+                if (endFlag) {
+                  _context.next = 25;
+                  break;
+                }
 
-          if (this.monster.hp <= 0) {
-            console.log("倒した");
-            this.winBattle();
-            this.currentStage++;
-            this.$store.commit("setMonster", this.currentStage);
+                if (!(player.spd >= this.monster.spd)) {
+                  _context.next = 15;
+                  break;
+                }
+
+                _context.next = 7;
+                return this.sleep(1000);
+
+              case 7:
+                this.playerAttack(player, this.monster);
+
+                if (this.monster.hp <= 0) {
+                  console.log("倒した");
+                  this.winBattle();
+                  this.currentStage++;
+                  this.$store.commit("setMonster", this.currentStage);
+                }
+
+                _context.next = 11;
+                return this.sleep(1000);
+
+              case 11:
+                this.monsterAttack(player, this.monster);
+
+                if (player.hp <= 0) {
+                  this.loseBattle();
+                  endFlag = true;
+                }
+
+                _context.next = 23;
+                break;
+
+              case 15:
+                _context.next = 17;
+                return this.sleep(1000);
+
+              case 17:
+                this.monsterAttack(player, this.monster);
+
+                if (player.hp <= 0) {
+                  this.loseBattle();
+                  endFlag = true;
+                }
+
+                _context.next = 21;
+                return this.sleep(1000);
+
+              case 21:
+                this.playerAttack(player, this.monster);
+
+                if (this.monster.hp <= 0) {
+                  console.log("倒した");
+                  this.winBattle();
+                  this.currentStage++;
+                  this.$store.commit("setMonster", this.currentStage);
+                }
+
+              case 23:
+                _context.next = 3;
+                break;
+
+              case 25:
+              case "end":
+                return _context.stop();
+            }
           }
+        }, _callee, this);
+      }));
 
-          this.monsterAttack(player, this.monster);
-
-          if (player.hp <= 0) {
-            this.loseBattle();
-            endFlag = true;
-          }
-        } else {
-          this.monsterAttack(player, this.monster);
-
-          if (player.hp <= 0) {
-            this.loseBattle();
-            endFlag = true;
-          }
-
-          this.playerAttack(player, this.monster);
-
-          if (this.monster.hp <= 0) {
-            console.log("倒した");
-            this.winBattle();
-            this.currentStage++;
-            this.$store.commit("setMonster", this.currentStage);
-          }
-        }
+      function battle() {
+        return _battle.apply(this, arguments);
       }
-    },
+
+      return battle;
+    }(),
     playerAttack: function playerAttack(player, monster) {
-      setTimeout(function () {
-        console.log("プレイヤーの攻撃");
-        var damage = player.atk - monster.def;
+      console.log("プレイヤーの攻撃");
+      var damage = player.atk - monster.def;
 
-        if (damage > 0) {
-          monster.hp -= damage;
-        }
+      if (damage > 0) {
+        monster.hp -= damage;
+      }
 
-        console.log(damage + ":" + monster.hp);
-      }, 1000);
+      console.log(damage + ":" + monster.hp);
     },
     monsterAttack: function monsterAttack(player, monster) {
-      setTimeout(function () {
-        console.log("モンスターの攻撃");
-        var damage = monster.atk - player.def;
+      console.log("モンスターの攻撃");
+      var damage = monster.atk - player.def;
 
-        if (damage > 0) {
-          player.hp -= damage;
-        }
-      }, 1000);
+      if (damage > 0) {
+        player.hp -= damage;
+      }
     },
     winBattle: function winBattle() {
       this.tempMoney += 10 * this.currentStage;
@@ -2940,6 +3055,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loseBattle: function loseBattle() {
       this.currentStage = 1;
       this.myStatus.battle.hp = this.myStatus.battle.maxhp;
+    },
+    sleep: function sleep(time) {
+      return new Promise(function (resolve) {
+        return setTimeout(resolve, time);
+      });
     }
   }
 });
@@ -42033,17 +42153,18 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm._v("\n  " + _vm._s(_vm.myStatus) + "\n  "),
     _c("h1", [_vm._v("採集")]),
     _vm._v(" "),
-    _c("p", [_vm._v("鉄：" + _vm._s(_vm.tempIron))]),
+    _c("p", [_vm._v("鉄：" + _vm._s(_vm.tempAssets.iron))]),
     _vm._v(" "),
-    _c("p", [_vm._v("羽毛：" + _vm._s(_vm.tempFeather))]),
+    _c("p", [_vm._v("羽毛：" + _vm._s(_vm.tempAssets.feather))]),
     _vm._v(" "),
-    _c("p", [_vm._v("木材：" + _vm._s(_vm.tempWood))]),
+    _c("p", [_vm._v("木材：" + _vm._s(_vm.tempAssets.wood))]),
     _vm._v(" "),
-    _c("p", [_vm._v("魔石：" + _vm._s(_vm.tempStone))]),
+    _c("p", [_vm._v("魔石：" + _vm._s(_vm.tempAssets.stone))]),
     _vm._v(" "),
-    _c("p", [_vm._v("革：" + _vm._s(_vm.tempLeather))]),
+    _c("p", [_vm._v("革：" + _vm._s(_vm.tempAssets.leather))]),
     _vm._v(" "),
     _c("div", [
       _c(

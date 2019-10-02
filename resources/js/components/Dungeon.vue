@@ -70,12 +70,13 @@ export default {
       this.$store.commit("setMonster", this.currentStage);
       this.battle();
     },
-    battle: function() {
+    battle: async function() {
       let player = this.myStatus.battle;
       let endFlag = false;
       console.log("戦闘開始");
       while (!endFlag) {
         if (player.spd >= this.monster.spd) {
+          await this.sleep(1000);
           this.playerAttack(player, this.monster);
           if (this.monster.hp <= 0) {
             console.log("倒した");
@@ -83,17 +84,20 @@ export default {
             this.currentStage++;
             this.$store.commit("setMonster", this.currentStage);
           }
+          await this.sleep(1000);
           this.monsterAttack(player, this.monster);
           if (player.hp <= 0) {
             this.loseBattle();
             endFlag = true;
           }
         } else {
+          await this.sleep(1000);
           this.monsterAttack(player, this.monster);
           if (player.hp <= 0) {
             this.loseBattle();
             endFlag = true;
           }
+          await this.sleep(1000);
           this.playerAttack(player, this.monster);
           if (this.monster.hp <= 0) {
             console.log("倒した");
@@ -105,23 +109,19 @@ export default {
       }
     },
     playerAttack: function(player, monster) {
-      setTimeout(() => {
-        console.log("プレイヤーの攻撃");
-        let damage = player.atk - monster.def;
-        if (damage > 0) {
-          monster.hp -= damage;
-        }
-        console.log(damage + ":" + monster.hp);
-      }, 1000);
+      console.log("プレイヤーの攻撃");
+      let damage = player.atk - monster.def;
+      if (damage > 0) {
+        monster.hp -= damage;
+      }
+      console.log(damage + ":" + monster.hp);
     },
     monsterAttack: function(player, monster) {
-      setTimeout(() => {
-        console.log("モンスターの攻撃");
-        let damage = monster.atk - player.def;
-        if (damage > 0) {
-          player.hp -= damage;
-        }
-      }, 1000);
+      console.log("モンスターの攻撃");
+      let damage = monster.atk - player.def;
+      if (damage > 0) {
+        player.hp -= damage;
+      }
     },
     winBattle: function() {
       this.tempMoney += 10 * this.currentStage;
@@ -129,6 +129,9 @@ export default {
     loseBattle: function() {
       this.currentStage = 1;
       this.myStatus.battle.hp = this.myStatus.battle.maxhp;
+    },
+    sleep: function(time) {
+      return new Promise(resolve => setTimeout(resolve, time));
     }
   }
 };
