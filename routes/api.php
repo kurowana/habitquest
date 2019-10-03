@@ -35,6 +35,9 @@ Route::post('/deleteHabit', 'HabitsController@deleteHabit');
 Route::post('/getMyStatus', 'StatusesController@getMyStatus');
 Route::post('/updateStatus', 'StatusesController@updateStatus');
 
+//資源関連
+Route::post('/insertAssets', 'AssetsController@insertAssets');
+
 // Route::post('/add_monster', 'MonstersController@add_monster');
 
 // Route::post('/appear_monster', 'MonstersController@appear_monster');

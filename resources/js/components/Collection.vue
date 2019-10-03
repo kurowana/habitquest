@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      // myStatus: "getStatus"
+      myStatus: "getStatus"
     })
   },
   mounted: function() {
@@ -151,6 +151,7 @@ export default {
           }
           break;
       }
+      this.insertAssets(type);
     },
     insertAssets: function(type) {
       axios
@@ -158,7 +159,8 @@ export default {
           type: type,
           assets: this.tempAssets[type]
         })
-        .then(res => {});
+        .then(res => {})
+        .catch(error => {});
     }
   }
 };
