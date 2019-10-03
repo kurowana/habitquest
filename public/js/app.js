@@ -2831,12 +2831,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           break;
       }
+
+      this.insertAssets(type);
     },
     insertAssets: function insertAssets(type) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/insertAssets", {
         type: type,
         assets: this.tempAssets[type]
-      }).then(function (res) {});
+      }).then(function (res) {})["catch"](function (error) {});
     }
   }
 });
