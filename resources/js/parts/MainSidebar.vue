@@ -8,7 +8,7 @@
     <router-link :to="{name:'maker'}" class="btn">制作</router-link>
     <router-link :to="{name:'dungeon'}" class="btn">ダンジョン</router-link>
     <div v-if="user.id">
-      <div @click="logout" class="btn">ログアウト</div>
+      <button @click="logout" class="btn">ログアウト</button>
     </div>
     <div class="anime"></div>
     <div class="anime2"></div>

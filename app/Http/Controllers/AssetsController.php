@@ -19,4 +19,14 @@ class AssetsController extends Controller
 
         return response($assets);
     }
+
+    public function getMyAssets(Request $request)
+    {
+        $userId = Auth::id();
+
+        $assetIns = new Asset;
+        $assets = $assetIns->getMyAssets($userId);
+
+        return response($assets);
+    }
 }

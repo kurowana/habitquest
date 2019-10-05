@@ -3294,17 +3294,90 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      temp: 0
+      inputIron: 0,
+      inputFeather: 0,
+      inputWood: 0,
+      inputStone: 0,
+      inputLeather: 0,
+      inputType: ""
     };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    myStatus: "getStatus",
+    myAssets: "getAssets"
+  })),
+  created: function created() {
+    this.initPage();
+  },
+  methods: {
+    initPage: function initPage() {
+      this.getMyAssets();
+    },
+    getMyAssets: function getMyAssets() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/getMyAssets", {}).then(function (res) {
+        _this.$store.commit("setAssets", {
+          monery: res.data.money,
+          iron: res.data.iron,
+          feather: res.data.feather,
+          wood: res.data.wood,
+          stone: res.data.stone,
+          leather: res.data.leather
+        });
+      });
+    },
+    createEquipment: function createEquipment() {}
   }
 });
 
@@ -42538,16 +42611,178 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._v("\n  " + _vm._s(_vm.myAssets) + "\n  "),
+    _c("h1", [_vm._v("武器制作")]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v("\n    鉄：\n    "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inputIron,
+            expression: "inputIron"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.inputIron },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.inputIron = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v("\n    羽毛：\n    "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inputFeather,
+            expression: "inputFeather"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.inputFeather },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.inputFeather = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v("\n    木材：\n    "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inputWood,
+            expression: "inputWood"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.inputWood },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.inputWood = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v("\n    魔石：\n    "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inputStone,
+            expression: "inputStone"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.inputStone },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.inputStone = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v("\n    革：\n    "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inputLeather,
+            expression: "inputLeather"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.inputLeather },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.inputLeather = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.inputType,
+              expression: "inputType"
+            }
+          ],
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.inputType = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "武器" } }, [_vm._v("武器")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "盾" } }, [_vm._v("盾")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "鎧" } }, [_vm._v("鎧")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "アクセサリー" } }, [
+            _vm._v("アクセサリー")
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("button", { on: { click: _vm.createEquipment } }, [_vm._v("装備制作")])
+    ])
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("武器制作")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -43732,7 +43967,7 @@ var render = function() {
       _vm._v(" "),
       _vm.user.id
         ? _c("div", [
-            _c("div", { staticClass: "btn", on: { click: _vm.logout } }, [
+            _c("button", { staticClass: "btn", on: { click: _vm.logout } }, [
               _vm._v("ログアウト")
             ])
           ])
@@ -61393,7 +61628,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/user */ "./resources/js/store/user.js");
 /* harmony import */ var _store_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/event */ "./resources/js/store/event.js");
 /* harmony import */ var _store_habit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/habit */ "./resources/js/store/habit.js");
-/* harmony import */ var _store_monster__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/monster */ "./resources/js/store/monster.js");
+/* harmony import */ var _store_asset_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/asset.js */ "./resources/js/store/asset.js");
+/* harmony import */ var _store_monster__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./store/monster */ "./resources/js/store/monster.js");
+
 
 
 
@@ -61405,11 +61642,54 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     userStore: _store_user__WEBPACK_IMPORTED_MODULE_2__["default"],
     habitStore: _store_habit__WEBPACK_IMPORTED_MODULE_4__["default"],
+    assetStore: _store_asset_js__WEBPACK_IMPORTED_MODULE_5__["default"],
     eventStore: _store_event__WEBPACK_IMPORTED_MODULE_3__["default"],
-    monsterStore: _store_monster__WEBPACK_IMPORTED_MODULE_5__["default"]
+    monsterStore: _store_monster__WEBPACK_IMPORTED_MODULE_6__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/js/store/asset.js":
+/*!*************************************!*\
+  !*** ./resources/js/store/asset.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var state = {
+  assets: {
+    money: 0,
+    iron: 0,
+    feather: 0,
+    wood: 0,
+    stone: 0,
+    leather: 0
+  }
+};
+var getters = {
+  getAssets: function getAssets(state) {
+    return state.assets;
+  }
+};
+var mutations = {
+  setAssets: function setAssets(state, assets) {
+    state.assets.money = assets.money;
+    state.assets.iron = assets.iron;
+    state.assets.feather = assets.feather;
+    state.assets.wood = assets.wood;
+    state.assets.stone = assets.stone;
+    state.assets.leather = assets.leather;
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  getters: getters,
+  mutations: mutations
+});
 
 /***/ }),
 

@@ -23,4 +23,10 @@ class Asset extends Model
 
         return $assets;
     }
+
+    public function getMyAssets($userId)
+    {
+        $assets = $this::where('user_id', $userId)->first();
+        return $assets;
+    }
 }
