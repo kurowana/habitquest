@@ -37,6 +37,10 @@ Route::post('/updateStatus', 'StatusesController@updateStatus');
 
 //資源関連
 Route::post('/insertAssets', 'AssetsController@insertAssets');
+Route::post('/getMyAssets', 'AssetsController@getMyAssets');
+
+//装備関連
+
 
 // Route::post('/add_monster', 'MonstersController@add_monster');
 
