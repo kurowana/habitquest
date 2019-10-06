@@ -1,10 +1,5 @@
 <template>
   <div class="wrapper">
-    {{userId}}
-    <br />
-    {{userName}}
-    <br />
-    {{$store.state.userStore.isLogin}}
     <div class="content">
       <router-view class="game-view" :class="bgImg"></router-view>
       <router-view name="sidebar"></router-view>
@@ -36,9 +31,6 @@ import habit from "./Habit";
 import monsterCreate from "./MonsterCreate";
 import Battle from "./Battle";
 
-// import Message from "./Message";
-// import charImg from "./charImg";
-
 export default {
   components: {
     "char-info": charInfo,
@@ -46,13 +38,9 @@ export default {
     habit: habit,
     "monster-create": monsterCreate,
     battle: Battle
-    // message: Message,
-    // "char-img": charImg,
   },
   data: function() {
     return {
-      // user:'',
-
       loginName: "",
       loginPassword: "",
 
@@ -69,7 +57,6 @@ export default {
   },
 
   computed: {
-    // ...mapGetters(["getUserInfo", "getStatus", "getMessage", "getSound"]),
     ...mapGetters({
       user: "getUserInfo",
       myStatus: "getStatus",
@@ -78,11 +65,6 @@ export default {
     }),
 
     bgImg: function() {
-      // if (this.$store.state.eventStore.bgImg !== "") {
-      //   return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
-      // } else {
-      //   return "#000000";
-      // }
       return this.$store.state.eventStore.bgImg;
     }
   },
@@ -101,50 +83,6 @@ export default {
     this.initPage();
   },
   mounted: function() {},
-  // created: function() {
-  //   axios
-  //     .post("./api/set_status", {
-  //       user_id: this.userId
-  //     })
-  //     .then(res => {
-  //       this.user = res.data;
-  //       this.$store.state.userStore.user = res.data;
-  //       this.$store.state.userStore.userId = this.UserId;
-
-  //       this.$store.state.userStore.userSt.maxhp = Math.round(
-  //         res.data.status.vit * 2 + res.data.status.str + 50
-  //       );
-  //       this.$store.state.userStore.userSt.hp = Math.round(
-  //         res.data.status.vit * 2 + res.data.status.str + 50
-  //       );
-  //       this.$store.state.userStore.userSt.maxmp = Math.round(
-  //         res.data.status.int * 2 + 20
-  //       );
-  //       this.$store.state.userStore.userSt.mp = Math.round(
-  //         res.data.status.int * 2 + 20
-  //       );
-  //       this.$store.state.userStore.userSt.atk = Math.round(
-  //         res.data.status.str * 2 + res.data.status.dex / 2
-  //       );
-  //       this.$store.state.userStore.userSt.matk = Math.round(
-  //         res.data.status.int * 2 + res.data.status.dex / 2
-  //       );
-  //       this.$store.state.userStore.userSt.def = Math.round(
-  //         res.data.status.vit + res.data.status.str / 2
-  //       );
-  //       this.$store.state.userStore.userSt.mdef = Math.round(
-  //         res.data.status.int + res.data.status.vit / 2
-  //       );
-  //       this.$store.state.userStore.userSt.spd = Math.round(
-  //         res.data.status.agi * 1.5
-  //       );
-  //       this.$store.state.userStore.userSt.hit =
-  //         Math.round(res.data.status.dex + res.data.status.luc / 2) + 80;
-  //       this.$store.state.userStore.userSt.flee = Math.round(
-  //         res.data.status.agi + res.data.status.luc / 2
-  //       );
-  //     });
-  // },
   methods: {
     initPage: function() {
       this.getMyStatus();
@@ -171,13 +109,10 @@ export default {
             });
             this.stage = res.data.clearedStage;
           }
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
-    },
-    test: function() {
-      this.$store.commit("strup");
-    },
-    test2: function() {
-      this.$store.commit("plus");
     },
     registTest: function() {
       axios
@@ -188,20 +123,15 @@ export default {
         })
         .then(res => {
           console.log("post");
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
     },
     playBgm: function() {
-      // const v = document.getElementById("bgm");
-      // v.volume = v.volume * 0.1;
-      // v.play();
-      // this.isPlay = true;
       this.$store.commit("setSoundFlag", true);
     },
     pauseBgm: function() {
-      // const v = document.getElementById("bgm");
-      // v.volume = v.volume * 10;
-      // v.pause();
-      // this.isPlay = false;
       this.$store.commit("setSoundFlag", false);
     },
     changeBgm: function() {
@@ -226,8 +156,6 @@ export default {
   position: relative;
   background: #000000;
   color: #ffffff;
-
-  /* background-image: url("../../../public/img/bg/shinden000.jpg"); */
 }
 
 .shinden {

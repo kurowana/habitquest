@@ -64,6 +64,9 @@ export default {
             } else if (res.status === 200) {
               location.reload();
             }
+          })
+          .catch(error => {
+            console.log(error);
           });
       }
     }

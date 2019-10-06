@@ -51,7 +51,10 @@
 <script>
 import axios from "axios";
 
+import baseMixin from "../mixins/baseMixin";
+
 export default {
+  mixins: [baseMixin],
   data: function() {
     return {
       imgList: {
@@ -166,6 +169,9 @@ export default {
           })
           .then(res => {
             location.reload();
+          })
+          .catch(error => {
+            this.apiDefaultError(error);
           });
       }
     }

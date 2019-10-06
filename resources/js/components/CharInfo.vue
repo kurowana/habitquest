@@ -89,9 +89,12 @@
 
 <script>
 import axios from "axios";
+
 import { mapGetters } from "vuex";
+import baseMixin from "../mixins/baseMixin";
 
 export default {
+  mixins: [baseMixin],
   data: function() {
     return {
       currentHP: null,
@@ -149,6 +152,9 @@ export default {
         })
         .then(res => {
           location.reload();
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
     }
   }

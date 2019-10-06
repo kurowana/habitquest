@@ -1994,19 +1994,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
 
 
 
- // import Message from "./Message";
-// import charImg from "./charImg";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2014,13 +2007,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     "char-create": _CharCreate__WEBPACK_IMPORTED_MODULE_2__["default"],
     habit: _Habit__WEBPACK_IMPORTED_MODULE_4__["default"],
     "monster-create": _MonsterCreate__WEBPACK_IMPORTED_MODULE_5__["default"],
-    battle: _Battle__WEBPACK_IMPORTED_MODULE_6__["default"] // message: Message,
-    // "char-img": charImg,
-
+    battle: _Battle__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   data: function data() {
     return {
-      // user:'',
       loginName: "",
       loginPassword: "",
       isPlay: false,
@@ -2042,11 +2032,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getSound: "getSound"
   }), {
     bgImg: function bgImg() {
-      // if (this.$store.state.eventStore.bgImg !== "") {
-      //   return "url(./img/bg/" + this.$store.state.eventStore.bgImg + ")";
-      // } else {
-      //   return "#000000";
-      // }
       return this.$store.state.eventStore.bgImg;
     }
   }),
@@ -2071,49 +2056,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.initPage();
   },
   mounted: function mounted() {},
-  // created: function() {
-  //   axios
-  //     .post("./api/set_status", {
-  //       user_id: this.userId
-  //     })
-  //     .then(res => {
-  //       this.user = res.data;
-  //       this.$store.state.userStore.user = res.data;
-  //       this.$store.state.userStore.userId = this.UserId;
-  //       this.$store.state.userStore.userSt.maxhp = Math.round(
-  //         res.data.status.vit * 2 + res.data.status.str + 50
-  //       );
-  //       this.$store.state.userStore.userSt.hp = Math.round(
-  //         res.data.status.vit * 2 + res.data.status.str + 50
-  //       );
-  //       this.$store.state.userStore.userSt.maxmp = Math.round(
-  //         res.data.status.int * 2 + 20
-  //       );
-  //       this.$store.state.userStore.userSt.mp = Math.round(
-  //         res.data.status.int * 2 + 20
-  //       );
-  //       this.$store.state.userStore.userSt.atk = Math.round(
-  //         res.data.status.str * 2 + res.data.status.dex / 2
-  //       );
-  //       this.$store.state.userStore.userSt.matk = Math.round(
-  //         res.data.status.int * 2 + res.data.status.dex / 2
-  //       );
-  //       this.$store.state.userStore.userSt.def = Math.round(
-  //         res.data.status.vit + res.data.status.str / 2
-  //       );
-  //       this.$store.state.userStore.userSt.mdef = Math.round(
-  //         res.data.status.int + res.data.status.vit / 2
-  //       );
-  //       this.$store.state.userStore.userSt.spd = Math.round(
-  //         res.data.status.agi * 1.5
-  //       );
-  //       this.$store.state.userStore.userSt.hit =
-  //         Math.round(res.data.status.dex + res.data.status.luc / 2) + 80;
-  //       this.$store.state.userStore.userSt.flee = Math.round(
-  //         res.data.status.agi + res.data.status.luc / 2
-  //       );
-  //     });
-  // },
   methods: {
     initPage: function initPage() {
       this.getMyStatus();
@@ -2143,35 +2085,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this.stage = res.data.clearedStage;
         }
+      })["catch"](function (error) {
+        _this.apiDefaultError(error);
       });
     },
-    test: function test() {
-      this.$store.commit("strup");
-    },
-    test2: function test2() {
-      this.$store.commit("plus");
-    },
     registTest: function registTest() {
+      var _this2 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./register", {
         name: this.loginName,
         password: this.loginPassword,
         password_confirmation: this.loginPassword
       }).then(function (res) {
         console.log("post");
+      })["catch"](function (error) {
+        _this2.apiDefaultError(error);
       });
     },
     playBgm: function playBgm() {
-      // const v = document.getElementById("bgm");
-      // v.volume = v.volume * 0.1;
-      // v.play();
-      // this.isPlay = true;
       this.$store.commit("setSoundFlag", true);
     },
     pauseBgm: function pauseBgm() {
-      // const v = document.getElementById("bgm");
-      // v.volume = v.volume * 10;
-      // v.pause();
-      // this.isPlay = false;
       this.$store.commit("setSoundFlag", false);
     },
     changeBgm: function changeBgm() {
@@ -2197,6 +2131,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2255,23 +2190,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {};
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    monster: 'getMonster'
+    monster: "getMonster"
   })),
   methods: {
     appearMonster: function appearMonster() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/appear_monster', {}).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/appear_monster", {}).then(function (res) {
         _this.$store.state.monster = res.data;
         _this.$store.state.monsterHp = res.data.hp;
         _this.$store.state.monsterMp = res.data.mp;
+      })["catch"](function (error) {
+        _this.apiDefaultError(error);
       });
     },
     attack: function attack() {
@@ -2294,6 +2235,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
 //
 //
 //
@@ -2345,7 +2287,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
       imgList: {
@@ -2455,6 +2399,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     createChar: function createChar() {
+      var _this = this;
+
       if (this.statusPoint > 0) {
         alert("振り分けポイントが残っています");
       } else {
@@ -2469,6 +2415,8 @@ __webpack_require__.r(__webpack_exports__);
           img: this.selectedImg
         }).then(function (res) {
           location.reload();
+        })["catch"](function (error) {
+          _this.apiDefaultError(error);
         });
       }
     }
@@ -2489,6 +2437,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
 //
 //
 //
@@ -2578,9 +2527,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {
       currentHP: null,
@@ -2630,6 +2581,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     growStatus: function growStatus() {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/grow_status", {
         user_id: this.userinfo.id,
         str: this.userinfo.status.str,
@@ -2641,6 +2594,8 @@ __webpack_require__.r(__webpack_exports__);
         point: this.userinfo.status.point
       }).then(function (res) {
         location.reload();
+      })["catch"](function (error) {
+        _this.apiDefaultError(error);
       });
     }
   }
@@ -2660,6 +2615,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2696,9 +2652,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {
       getAny: false,
@@ -2724,7 +2687,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     setInterval(function () {
       if (_this.getIron) {
-        console.log(_this.myStatus.db.str);
         _this.tempAssets.iron = Math.ceil(1 + _this.myStatus.db.str / 10) + _this.tempAssets.iron;
       }
 
@@ -2809,7 +2771,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         case "wood":
           if (this.getWood === true) {
-            this.getwood = false;
+            this.getWood = false;
             this.getAny = false;
           }
 
@@ -2835,10 +2797,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.insertAssets(type);
     },
     insertAssets: function insertAssets(type) {
+      var _this2 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/insertAssets", {
         type: type,
         assets: this.tempAssets[type]
-      }).then(function (res) {})["catch"](function (error) {});
+      }).then(function (res) {})["catch"](function (error) {
+        _this2.apiDefaultError(error);
+      });
     }
   }
 });
@@ -2859,6 +2825,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2886,8 +2853,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
       clearedStage: 0,
@@ -2933,6 +2902,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           _this.stage = res.data.clearedStage;
         }
+      })["catch"](function (error) {
+        _this.apiDefaultError(error);
       });
     },
     startBattle: function startBattle() {
@@ -3057,11 +3028,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loseBattle: function loseBattle() {
       this.currentStage = 1;
       this.myStatus.battle.hp = this.myStatus.battle.maxhp;
-    },
-    sleep: function sleep(time) {
-      return new Promise(function (resolve) {
-        return setTimeout(resolve, time);
-      });
     }
   }
 });
@@ -3080,6 +3046,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3121,7 +3088,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {
       inputHabit: "",
@@ -3155,6 +3124,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else {
           _this.$store.commit("setMyHabits", res.data);
         }
+      })["catch"](function (error) {
+        _this.apiDefaultError(error);
       });
     },
     getMyStatus: function getMyStatus() {
@@ -3171,6 +3142,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else {
           _this2.status = res.data;
         }
+      })["catch"](function (error) {
+        _this2.apiDefaultError(error);
       });
     },
     insertHabit: function insertHabit() {
@@ -3188,6 +3161,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else {
           _this3.initPage();
         }
+      })["catch"](function (error) {
+        _this3.apiDefaultError(error);
       });
     },
     addHabitCount: function addHabitCount(habitId) {
@@ -3207,6 +3182,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
           console.log(res.data);
         }
+      })["catch"](function (error) {
+        _this4.apiDefaultError(error);
       });
     },
     deleteHabit: function deleteHabit(habitId) {
@@ -3224,6 +3201,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else {
           _this5.initPage();
         }
+      })["catch"](function (error) {
+        _this5.apiDefaultError(error);
       });
     }
   }
@@ -3243,8 +3222,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
-/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
+/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3260,11 +3240,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    message: _parts_Message__WEBPACK_IMPORTED_MODULE_2__["default"],
-    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_3__["default"]
+    message: _parts_Message__WEBPACK_IMPORTED_MODULE_3__["default"],
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {};
   },
@@ -3297,6 +3279,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3341,7 +3324,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {
       inputIron: 0,
@@ -3375,6 +3360,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           stone: res.data.stone,
           leather: res.data.leather
         });
+      })["catch"](function (error) {
+        _this.apiDefaultError(error);
       });
     },
     createEquipment: function createEquipment() {}
@@ -3394,6 +3381,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3412,24 +3430,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
-      name: '',
-      hp: '',
-      mp: '',
-      atk: '',
-      matk: '',
-      def: '',
-      mdef: '',
-      spd: '',
-      hit: '',
-      flee: ''
+      name: "",
+      hp: "",
+      mp: "",
+      atk: "",
+      matk: "",
+      def: "",
+      mdef: "",
+      spd: "",
+      hit: "",
+      flee: ""
     };
   },
   methods: {
     addMonster: function addMonster() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/add_monster', {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("api/add_monster", {
         name: this.name,
         hp: this.hp,
         mp: this.mp,
@@ -3442,6 +3464,8 @@ __webpack_require__.r(__webpack_exports__);
         flee: this.flee
       }).then(function (res) {
         location.reload();
+      })["catch"](function (error) {
+        _this.apiDefaultError(error);
       });
     }
   }
@@ -3461,7 +3485,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../chart/BaseStChart.vue */ "./resources/js/chart/BaseStChart.vue");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../chart/BaseStChart.vue */ "./resources/js/chart/BaseStChart.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3500,10 +3525,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    BaseStChart: _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    BaseStChart: _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {};
   },
@@ -3564,6 +3591,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else {
           _this2.initPage();
         }
+      })["catch"](function (error) {
+        _this2.apiDefaultError(error);
       });
     }
   }
@@ -3926,6 +3955,8 @@ aaaaaaa");
         }).then(function (res) {
           location.reload();
         }); // this.$router.push({ name: "home" });
+      })["catch"](function (error) {
+        console.log(error);
       });
     },
     openSoundModal: function openSoundModal() {
@@ -4111,6 +4142,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   } else if (res.status === 200) {
                     location.reload();
                   }
+                })["catch"](function (error) {
+                  console.log(error);
                 });
 
               case 8:
@@ -4164,7 +4197,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4173,6 +4205,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   methods: {
     logout: function logout() {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./logout", {}).then(function (res) {
         console.log(res);
 
@@ -4182,6 +4216,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else if (res.status === 200) {
           location.reload();
         }
+      })["catch"](function (error) {
+        _this.apiDefaultError(error);
       });
     }
   }
@@ -19019,7 +19055,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1000px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\r\n\r\n  /* background-image: url(\"../../../public/img/bg/shinden000.jpg\"); */\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden01.jpg */ "./public/img/bg/shinden01.jpg")) + ");\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree000.jpg */ "./public/img/bg/old_tree000.jpg")) + ");\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1000px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden01.jpg */ "./public/img/bg/shinden01.jpg")) + ");\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree000.jpg */ "./public/img/bg/old_tree000.jpg")) + ");\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -19077,7 +19113,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.sidebar[data-v-7cf8fe06] {\r\n  width: 200px;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/ui/sidebar.png */ "./public/img/ui/sidebar.png")) + ") repeat;\n}\n.btn[data-v-7cf8fe06] {\r\n  width: 180px;\r\n  height: 40px;\r\n  margin: 10px;\r\n  padding: 5px;\r\n  background: linear-gradient(#333, #666);\r\n  border: double 2px gold;\r\n  border-radius: 5px;\r\n  color: white;\r\n  font-size: 16px;\n}\n.anime[data-v-7cf8fe06] {\r\n  width: 192px;\r\n  height: 192px;\r\n  padding: 0;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/effect/test.png */ "./public/img/effect/test.png")) + ") 0 0 no-repeat;\r\n  -webkit-animation: sprite1-data-v-7cf8fe06 0.5s step-end infinite;\r\n          animation: sprite1-data-v-7cf8fe06 0.5s step-end infinite;\n}\n.anime2[data-v-7cf8fe06] {\r\n  width: 192px;\r\n  height: 192px;\r\n  padding: 0;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/effect/test2.png */ "./public/img/effect/test2.png")) + ") 0 0 no-repeat;\r\n  -webkit-animation: sprite1-data-v-7cf8fe06 0.5s step-end infinite;\r\n          animation: sprite1-data-v-7cf8fe06 0.5s step-end infinite;\n}\n@-webkit-keyframes sprite1-data-v-7cf8fe06 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite1-data-v-7cf8fe06 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.sidebar[data-v-7cf8fe06] {\r\n  width: 200px;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/ui/sidebar.png */ "./public/img/ui/sidebar.png")) + ") repeat;\n}\n.btn[data-v-7cf8fe06] {\r\n  width: 180px;\r\n  height: 40px;\r\n  margin: 10px;\r\n  padding: 5px;\r\n  background: linear-gradient(#333, #666);\r\n  border: double 2px gold;\r\n  border-radius: 5px;\r\n  color: white;\r\n  font-size: 16px;\n}\n.anime[data-v-7cf8fe06] {\r\n  width: 192px;\r\n  height: 192px;\r\n  padding: 0;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/effect/test.png */ "./public/img/effect/test.png")) + ") 0 0 no-repeat;\r\n  -webkit-animation: sprite1-data-v-7cf8fe06 0.5s step-end infinite;\r\n          animation: sprite1-data-v-7cf8fe06 0.5s step-end infinite;\n}\n@-webkit-keyframes sprite1-data-v-7cf8fe06 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite1-data-v-7cf8fe06 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -41588,11 +41624,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "wrapper" }, [
-    _vm._v("\n  " + _vm._s(_vm.userId) + "\n  "),
-    _c("br"),
-    _vm._v("\n  " + _vm._s(_vm.userName) + "\n  "),
-    _c("br"),
-    _vm._v("\n  " + _vm._s(_vm.$store.state.userStore.isLogin) + "\n  "),
     _c(
       "div",
       { staticClass: "content" },
@@ -42290,7 +42321,8 @@ var render = function() {
           }
         },
         [_vm._v("鉄の採集停止")]
-      )
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getIron) + "\n  ")
     ]),
     _vm._v(" "),
     _c("div", [
@@ -42316,7 +42348,8 @@ var render = function() {
           }
         },
         [_vm._v("羽毛の採集停止")]
-      )
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getFeather) + "\n  ")
     ]),
     _vm._v(" "),
     _c("div", [
@@ -42325,7 +42358,7 @@ var render = function() {
         {
           on: {
             click: function($event) {
-              return _vm.startCollection("Wood")
+              return _vm.startCollection("wood")
             }
           }
         },
@@ -42337,12 +42370,13 @@ var render = function() {
         {
           on: {
             click: function($event) {
-              return _vm.stopCollection("Wood")
+              return _vm.stopCollection("wood")
             }
           }
         },
         [_vm._v("木材の採集停止")]
-      )
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getWood) + "\n  ")
     ]),
     _vm._v(" "),
     _c("div", [
@@ -42351,7 +42385,7 @@ var render = function() {
         {
           on: {
             click: function($event) {
-              return _vm.startCollection("Stone")
+              return _vm.startCollection("stone")
             }
           }
         },
@@ -42363,12 +42397,13 @@ var render = function() {
         {
           on: {
             click: function($event) {
-              return _vm.stopCollection("Stone")
+              return _vm.stopCollection("stone")
             }
           }
         },
         [_vm._v("魔石の採集停止")]
-      )
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getStone) + "\n  ")
     ]),
     _vm._v(" "),
     _c("div", [
@@ -42377,7 +42412,7 @@ var render = function() {
         {
           on: {
             click: function($event) {
-              return _vm.startCollection("Leather")
+              return _vm.startCollection("leather")
             }
           }
         },
@@ -42389,12 +42424,13 @@ var render = function() {
         {
           on: {
             click: function($event) {
-              return _vm.stopCollection("Leather")
+              return _vm.stopCollection("leather")
             }
           }
         },
         [_vm._v("革の採集停止")]
-      )
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getLeather) + "\n  ")
     ])
   ])
 }
@@ -42808,7 +42844,7 @@ var render = function() {
     _c("h2", [_vm._v("モンスター登録")]),
     _vm._v(" "),
     _c("div", [
-      _vm._v("モンスター名："),
+      _vm._v("\n    モンスター名：\n    "),
       _c("input", {
         directives: [
           {
@@ -42832,7 +42868,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _vm._v("HP："),
+      _vm._v("\n    HP：\n    "),
       _c("input", {
         directives: [
           { name: "model", rawName: "v-model", value: _vm.hp, expression: "hp" }
@@ -42851,7 +42887,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _vm._v("MP："),
+      _vm._v("\n    MP：\n    "),
       _c("input", {
         directives: [
           { name: "model", rawName: "v-model", value: _vm.mp, expression: "mp" }
@@ -42870,7 +42906,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _vm._v("ATK："),
+      _vm._v("\n    ATK：\n    "),
       _c("input", {
         directives: [
           {
@@ -42894,7 +42930,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _vm._v("MATK："),
+      _vm._v("\n    MATK：\n    "),
       _c("input", {
         directives: [
           {
@@ -42918,7 +42954,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _vm._v("DEF："),
+      _vm._v("\n    DEF：\n    "),
       _c("input", {
         directives: [
           {
@@ -42942,7 +42978,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _vm._v("MDEF："),
+      _vm._v("\n    MDEF：\n    "),
       _c("input", {
         directives: [
           {
@@ -42966,7 +43002,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _vm._v("SPD："),
+      _vm._v("\n    SPD：\n    "),
       _c("input", {
         directives: [
           {
@@ -42990,7 +43026,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _vm._v("HIT："),
+      _vm._v("\n    HIT：\n    "),
       _c("input", {
         directives: [
           {
@@ -43014,7 +43050,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", [
-      _vm._v("FLEE："),
+      _vm._v("\n    FLEE：\n    "),
       _c("input", {
         directives: [
           {
@@ -43973,9 +44009,7 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "anime" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "anime2" })
+      _c("div", { staticClass: "anime" })
     ],
     1
   )
@@ -59986,17 +60020,6 @@ module.exports = "/images/test.png?bee5ebc154e208d9cd1d3fa6332eb1e6";
 
 /***/ }),
 
-/***/ "./public/img/effect/test2.png":
-/*!*************************************!*\
-  !*** ./public/img/effect/test2.png ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/test2.png?405f84ecb4f2eb9af6527c6999e825cc";
-
-/***/ }),
-
 /***/ "./public/img/ui/msg-window.png":
 /*!**************************************!*\
   !*** ./public/img/ui/msg-window.png ***!
@@ -61146,6 +61169,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_title_vue_vue_type_template_id_61246860_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/mixins/baseMixin.js":
+/*!******************************************!*\
+  !*** ./resources/js/mixins/baseMixin.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    this.$store.commit("setBgImg", "");
+  },
+  methods: {
+    //汎用スリープ処理。戦闘時の時間調整とかに。
+    sleep: function sleep(time) {
+      return new Promise(function (resolve) {
+        return setTimeout(resolve, time);
+      });
+    },
+    //axiosの通信処理でエラーをキャッチした時用
+    apiDefaultError: function apiDefaultError(error) {
+      console.log(error);
+      var result = confirm("ネットワークエラーです。更新しますか？");
+
+      if (result) {
+        location.reload();
+      } else {
+        return false;
+      }
+    }
+  }
+});
 
 /***/ }),
 
