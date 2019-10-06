@@ -32,6 +32,7 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
+import baseMixin from "../mixins/baseMixin";
 
 import BaseStChart from "../chart/BaseStChart.vue";
 
@@ -39,6 +40,7 @@ export default {
   components: {
     BaseStChart
   },
+  mixins: [baseMixin],
   data: function() {
     return {};
   },
@@ -99,6 +101,9 @@ export default {
           } else {
             this.initPage();
           }
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
     }
   }

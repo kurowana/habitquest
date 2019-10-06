@@ -10,31 +10,39 @@
     <div>
       <button @click="startCollection('iron')">鉄の採集</button>
       <button @click="stopCollection('iron')">鉄の採集停止</button>
+      {{getIron}}
     </div>
     <div>
       <button @click="startCollection('feather')">羽毛の採集</button>
       <button @click="stopCollection('feather')">羽毛の採集停止</button>
+      {{getFeather}}
     </div>
     <div>
-      <button @click="startCollection('Wood')">木材の採集</button>
-      <button @click="stopCollection('Wood')">木材の採集停止</button>
+      <button @click="startCollection('wood')">木材の採集</button>
+      <button @click="stopCollection('wood')">木材の採集停止</button>
+      {{getWood}}
     </div>
     <div>
-      <button @click="startCollection('Stone')">魔石の採集</button>
-      <button @click="stopCollection('Stone')">魔石の採集停止</button>
+      <button @click="startCollection('stone')">魔石の採集</button>
+      <button @click="stopCollection('stone')">魔石の採集停止</button>
+      {{getStone}}
     </div>
     <div>
-      <button @click="startCollection('Leather')">革の採集</button>
-      <button @click="stopCollection('Leather')">革の採集停止</button>
+      <button @click="startCollection('leather')">革の採集</button>
+      <button @click="stopCollection('leather')">革の採集停止</button>
+      {{getLeather}}
     </div>
   </div>
 </template>
     
 <script>
 import axios from "axios";
+
 import { mapGetters } from "vuex";
+import baseMixin from "../mixins/baseMixin";
 
 export default {
+  mixins: [baseMixin],
   data: function() {
     return {
       getAny: false,
@@ -61,7 +69,6 @@ export default {
   mounted: function() {
     setInterval(() => {
       if (this.getIron) {
-        console.log(this.myStatus.db.str);
         this.tempAssets.iron =
           Math.ceil(1 + this.myStatus.db.str / 10) + this.tempAssets.iron;
       }
@@ -134,7 +141,7 @@ export default {
           break;
         case "wood":
           if (this.getWood === true) {
-            this.getwood = false;
+            this.getWood = false;
             this.getAny = false;
           }
           break;
@@ -160,7 +167,9 @@ export default {
           assets: this.tempAssets[type]
         })
         .then(res => {})
-        .catch(error => {});
+        .catch(error => {
+          this.apiDefaultError(error);
+        });
     }
   }
 };

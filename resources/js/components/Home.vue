@@ -8,6 +8,7 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
+import baseMixin from "../mixins/baseMixin";
 
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
@@ -17,6 +18,7 @@ export default {
     message: message,
     "char-img": charImg
   },
+  mixins: [baseMixin],
   data: function() {
     return {};
   },

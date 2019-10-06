@@ -11,7 +11,6 @@
       <button @click="logout" class="btn">ログアウト</button>
     </div>
     <div class="anime"></div>
-    <div class="anime2"></div>
   </div>
 </template>
 
@@ -27,15 +26,20 @@ export default {
   },
   methods: {
     logout: function() {
-      axios.post("./logout", {}).then(res => {
-        console.log(res);
-        if (res.status === 419) {
-          alert("セッションエラーです。再ログインしてください。");
-          location.reload();
-        } else if (res.status === 200) {
-          location.reload();
-        }
-      });
+      axios
+        .post("./logout", {})
+        .then(res => {
+          console.log(res);
+          if (res.status === 419) {
+            alert("セッションエラーです。再ログインしてください。");
+            location.reload();
+          } else if (res.status === 200) {
+            location.reload();
+          }
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
+        });
     }
   }
 };
@@ -63,13 +67,6 @@ export default {
   height: 192px;
   padding: 0;
   background: url("../../../public/img/effect/test.png") 0 0 no-repeat;
-  animation: sprite1 0.5s step-end infinite;
-}
-.anime2 {
-  width: 192px;
-  height: 192px;
-  padding: 0;
-  background: url("../../../public/img/effect/test2.png") 0 0 no-repeat;
   animation: sprite1 0.5s step-end infinite;
 }
 @keyframes sprite1 {

@@ -25,19 +25,6 @@
 
 <body>
     <div id="app">
-        <div class="header">
-            <a href="{{ url('/') }}">
-                {{ config('app.name', 'HabitQuest') }}
-            </a>
-
-            <a href="{{ route('login') }}">{{ __('Login') }}</a>
-            <a href="{{ route('register') }}">{{ __('Register') }}</a>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit">ログアウト</button>
-            </form>
-
-        </div>
         <main class="py-4">
             @yield('content')
         </main>

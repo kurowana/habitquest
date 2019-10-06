@@ -35,9 +35,12 @@
 
 <script>
 import axios from "axios";
+
 import { mapGetters } from "vuex";
+import baseMixin from "../mixins/baseMixin";
 
 export default {
+  mixins: [baseMixin],
   data: function() {
     return {
       inputHabit: "",
@@ -72,6 +75,9 @@ export default {
           } else {
             this.$store.commit("setMyHabits", res.data);
           }
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
     },
     getMyStatus: function() {
@@ -87,6 +93,9 @@ export default {
           } else {
             this.status = res.data;
           }
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
     },
     insertHabit: function() {
@@ -103,6 +112,9 @@ export default {
           } else {
             this.initPage();
           }
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
     },
     addHabitCount: function(habitId) {
@@ -120,6 +132,9 @@ export default {
             this.initPage();
             console.log(res.data);
           }
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
     },
     deleteHabit: function(habitId) {
@@ -136,6 +151,9 @@ export default {
           } else {
             this.initPage();
           }
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
     }
   }

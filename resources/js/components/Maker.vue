@@ -38,9 +38,12 @@
 
 <script>
 import axios from "axios";
+
 import { mapGetters } from "vuex";
+import baseMixin from "../mixins/baseMixin";
 
 export default {
+  mixins: [baseMixin],
   data: function() {
     return {
       inputIron: 0,
@@ -65,16 +68,21 @@ export default {
       this.getMyAssets();
     },
     getMyAssets: function() {
-      axios.post("./api/getMyAssets", {}).then(res => {
-        this.$store.commit("setAssets", {
-          monery: res.data.money,
-          iron: res.data.iron,
-          feather: res.data.feather,
-          wood: res.data.wood,
-          stone: res.data.stone,
-          leather: res.data.leather
+      axios
+        .post("./api/getMyAssets", {})
+        .then(res => {
+          this.$store.commit("setAssets", {
+            monery: res.data.money,
+            iron: res.data.iron,
+            feather: res.data.feather,
+            wood: res.data.wood,
+            stone: res.data.stone,
+            leather: res.data.leather
+          });
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
-      });
     },
     createEquipment: function() {}
   }

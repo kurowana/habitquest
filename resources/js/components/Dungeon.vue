@@ -15,10 +15,13 @@
 
 <script>
 import axios from "axios";
+
 import { mapGetters } from "vuex";
+import baseMixin from "../mixins/baseMixin";
 
 export default {
   components: {},
+  mixins: [baseMixin],
   data: function() {
     return {
       clearedStage: 0,
@@ -64,6 +67,9 @@ export default {
             });
             this.stage = res.data.clearedStage;
           }
+        })
+        .catch(error => {
+          this.apiDefaultError(error);
         });
     },
     startBattle: function() {
@@ -129,9 +135,6 @@ export default {
     loseBattle: function() {
       this.currentStage = 1;
       this.myStatus.battle.hp = this.myStatus.battle.maxhp;
-    },
-    sleep: function(time) {
-      return new Promise(resolve => setTimeout(resolve, time));
     }
   }
 };

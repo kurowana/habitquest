@@ -349,6 +349,9 @@ aaaaaaa"
               location.reload();
             });
           // this.$router.push({ name: "home" });
+        })
+        .catch(error => {
+          console.log(error);
         });
     },
     openSoundModal: function() {
