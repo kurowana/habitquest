@@ -55,7 +55,6 @@ export default {
     userId: { type: String },
     userName: { type: String }
   },
-
   computed: {
     ...mapGetters({
       user: "getUserInfo",
@@ -66,6 +65,14 @@ export default {
 
     bgImg: function() {
       return this.$store.state.eventStore.bgImg;
+    }
+  },
+  watch: {
+    //イベント途中でページ移動した場合はシーンカウントをリセット
+    $route: function(to, from) {
+      if (to.path !== from.path) {
+        this.$store.commit("setSceneCount", 0);
+      }
     }
   },
   created: function() {

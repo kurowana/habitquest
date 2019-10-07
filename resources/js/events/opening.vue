@@ -109,6 +109,8 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
+import baseMixin from "../mixins/baseMixin";
+import eventMixin from "../mixins/eventMixin";
 
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
@@ -121,6 +123,7 @@ export default {
     "char-img": charImg,
     modal: modal
   },
+  mixins: [baseMixin, eventMixin],
   data: function() {
     return {
       isSoundCheckModal: false,
@@ -176,11 +179,9 @@ aaaaaaa"
           vm.$store.commit("setMessage", "あなたの名前を教えてね");
         },
         function(vm) {
-          // vm.openSelectModal();
           vm.$store.commit("setMessage", "あなたの姿を教えてね");
         },
         function(vm) {
-          // vm.openConfirmImgModal();
           vm.$store.commit("setMessage", "この姿で間違いない？");
         },
         function(vm) {
@@ -213,48 +214,28 @@ aaaaaaa"
     this.$store.commit("setMessage", "これはオープニングです");
   },
   methods: {
-    getScene: function(count) {
-      const vm = this;
-      const eventLength = this.eventObj.length;
-      if (count <= eventLength) {
-        this.eventObj[count - 1](vm);
-      } else {
-        console.log("イベント終了");
-      }
-    },
-    soundSet(boolean) {
-      this.$store.commit("setSoundFlag", boolean);
-      this.closeSoundModal();
-      this.$store.commit("setSceneCount", this.sceneCount + 1);
-      this.getScene(this.sceneCount);
-    },
     saveName: function() {
       this.registState++;
-      // this.closeRegistModal();
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     selectImg: function(img) {
       this.selectedImg = img.stand;
       this.registState++;
-      // this.closeSelectModal();
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     saveImg: function() {
       this.registState++;
-      // this.closeConfirmImgModal();
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     returnImg: function() {
       this.registState--;
-      // this.closeConfirmImgModal();
       this.$store.commit("setSceneCount", this.sceneCount - 1);
       this.getScene(this.sceneCount);
     },
     decideStatus: function() {
-      // this.closeStatusModal();
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
       this.registState++;
