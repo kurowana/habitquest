@@ -2035,6 +2035,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.$store.state.eventStore.bgImg;
     }
   }),
+  watch: {
+    //イベント途中でページ移動した場合はシーンカウントをリセット
+    $route: function $route(to, from) {
+      if (to.path !== from.path) {
+        this.$store.commit("setSceneCount", 0);
+      }
+    }
+  },
   created: function created() {
     if (this.userId === "" && this.userName === "") {
       this.$store.commit("setLoginFlag", false);
@@ -3612,9 +3620,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
-/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
-/* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/modal */ "./resources/js/parts/modal.vue");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
+/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
+/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
+/* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../parts/modal */ "./resources/js/parts/modal.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3732,12 +3742,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    message: _parts_Message__WEBPACK_IMPORTED_MODULE_2__["default"],
-    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_3__["default"],
-    modal: _parts_modal__WEBPACK_IMPORTED_MODULE_4__["default"]
+    message: _parts_Message__WEBPACK_IMPORTED_MODULE_4__["default"],
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_5__["default"],
+    modal: _parts_modal__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
       isSoundCheckModal: false,
@@ -3776,10 +3789,8 @@ aaaaaaa");
         vm.openRegistModal();
         vm.$store.commit("setMessage", "あなたの名前を教えてね");
       }, function (vm) {
-        // vm.openSelectModal();
         vm.$store.commit("setMessage", "あなたの姿を教えてね");
       }, function (vm) {
-        // vm.openConfirmImgModal();
         vm.$store.commit("setMessage", "この姿で間違いない？");
       }, function (vm) {
         vm.$store.commit("setMessage", "能力の振り分けを行ってね"); // vm.openStatusModal();
@@ -3804,49 +3815,28 @@ aaaaaaa");
     this.$store.commit("setMessage", "これはオープニングです");
   },
   methods: {
-    getScene: function getScene(count) {
-      var vm = this;
-      var eventLength = this.eventObj.length;
-
-      if (count <= eventLength) {
-        this.eventObj[count - 1](vm);
-      } else {
-        console.log("イベント終了");
-      }
-    },
-    soundSet: function soundSet(_boolean) {
-      this.$store.commit("setSoundFlag", _boolean);
-      this.closeSoundModal();
-      this.$store.commit("setSceneCount", this.sceneCount + 1);
-      this.getScene(this.sceneCount);
-    },
     saveName: function saveName() {
-      this.registState++; // this.closeRegistModal();
-
+      this.registState++;
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     selectImg: function selectImg(img) {
       this.selectedImg = img.stand;
-      this.registState++; // this.closeSelectModal();
-
+      this.registState++;
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     saveImg: function saveImg() {
-      this.registState++; // this.closeConfirmImgModal();
-
+      this.registState++;
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     returnImg: function returnImg() {
-      this.registState--; // this.closeConfirmImgModal();
-
+      this.registState--;
       this.$store.commit("setSceneCount", this.sceneCount - 1);
       this.getScene(this.sceneCount);
     },
     decideStatus: function decideStatus() {
-      // this.closeStatusModal();
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
       this.registState++;
@@ -61202,6 +61192,38 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return false;
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/mixins/eventMixin.js":
+/*!*******************************************!*\
+  !*** ./resources/js/mixins/eventMixin.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    getScene: function getScene(count) {
+      var vm = this;
+      var eventLength = this.eventObj.length;
+
+      if (count <= eventLength) {
+        this.eventObj[count - 1](vm);
+      } else {
+        console.log("イベント終了");
+      }
+    },
+    soundSet: function soundSet(_boolean) {
+      this.$store.commit("setSoundFlag", _boolean);
+      this.closeSoundModal();
+      this.$store.commit("setSceneCount", this.sceneCount + 1);
+      this.getScene(this.sceneCount);
     }
   }
 });
