@@ -31,7 +31,7 @@ export default {
     ...mapGetters({
       sceneCount: "getSceneCount",
       NextFlag: "getNextFlag",
-      ParallelFlag: "getParallelFlag",
+      eventType: "getEventType",
       name: "getCharName",
       storeMessage: "getMessage"
     }),
@@ -58,7 +58,7 @@ export default {
       }
     },
     onCompleted: function() {
-      if (this.ParallelFlag === false) {
+      if (this.eventType === "msg" || this.eventType === "") {
         this.$store.commit("setNextFlag", true);
       } else {
         return;

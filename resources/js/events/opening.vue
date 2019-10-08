@@ -1,108 +1,118 @@
 <template>
   <div>
-    {{this.sceneCount}}
-    <message @get-scene="getScene"></message>
-    <char-img></char-img>
-    <!--音楽再生確認モーダル-->
-    <modal v-if="isSoundCheckModal" class="soundCheckModal">
-      <div>
-        <p>このアプリでは音声が流れます。よろしいですか？</p>
-        <button @click="soundSet(true)">音楽再生ON</button>
-        <button @click="soundSet(false)">音楽再生OFF</button>
-      </div>
-    </modal>
-    <!-- 登録モーダル -->
-    <modal v-if="isRegistModal" class="registerModal">
-      {{registState}}
-      <div v-show="registState===1">
-        <form>
-          <ValidationProvider name="ユーザー名" rules="required" v-slot="{errors}" ref="registerForm">
-            <label for="name">ユーザー名</label>
-            <input v-model="name" type="text" name="name" />
-            <span>{{errors[0]}}</span>
-          </ValidationProvider>
-          <ValidationProvider name="パスワード" rules="required" v-slot="{errors}" ref="registerForm">
-            <label for="password">パスワード</label>
-            <input v-model="password" type="password" name="password" />
-            <span>{{errors[0]}}</span>
-          </ValidationProvider>
-          <button @click.prevent="saveName">決定</button>
-        </form>
-      </div>
-      <div v-show="registState===2">
-        <div class="img-container">
-          <div class="img-card" v-for="(img,index) in userImg" :key="index">
-            <img class="img-face" @click.prevent="selectImg(img)" :src="img.face" />
-          </div>
+    <div class="event">
+      {{this.sceneCount}}
+      {{this.NextFlag}}
+      <message @get-scene="getScene"></message>
+      <char-img></char-img>
+      <!--音楽再生確認モーダル-->
+      <modal v-if="isSoundCheckModal" class="soundCheckModal">
+        <div>
+          <p>このアプリでは音声が流れます。よろしいですか？</p>
+          <button @click="soundSet(true)">音楽再生ON</button>
+          <button @click="soundSet(false)">音楽再生OFF</button>
         </div>
-      </div>
-      <div v-show="registState===3">
-        <div class="confirm-content">
+      </modal>
+      <modal v-if="isTestModal" class="soundCheckModal">
+        <div>
+          <p>このアプリでは音声が流れます。よろしいですか？</p>
+          <button @click="soundSet(true)">音楽再生ON</button>
+          <button @click="soundSet(false)">音楽再生OFF</button>
+        </div>
+      </modal>
+      <!-- 登録モーダル -->
+      <modal v-if="isRegistModal" class="registerModal">
+        {{registState}}
+        <div v-show="registState===1">
+          <form>
+            <ValidationProvider name="ユーザー名" rules="required" v-slot="{errors}" ref="registerForm">
+              <label for="name">ユーザー名</label>
+              <input v-model="name" type="text" name="name" />
+              <span>{{errors[0]}}</span>
+            </ValidationProvider>
+            <ValidationProvider name="パスワード" rules="required" v-slot="{errors}" ref="registerForm">
+              <label for="password">パスワード</label>
+              <input v-model="password" type="password" name="password" />
+              <span>{{errors[0]}}</span>
+            </ValidationProvider>
+            <button @click.prevent="saveName">決定</button>
+          </form>
+        </div>
+        <div v-show="registState===2">
           <div class="img-container">
-            <img class="img-stand" :src="selectedImg" />
-          </div>
-          <div class="button-container">
-            <button @click.prevent="saveImg">決定</button>
-            <button @click.prevent="returnImg">選びなおす</button>
+            <div class="img-card" v-for="(img,index) in userImg" :key="index">
+              <img class="img-face" @click.prevent="selectImg(img)" :src="img.face" />
+            </div>
           </div>
         </div>
-      </div>
-      <div v-show="registState===4">
-        <div class="status-content">
-          振り分け可能ポイント：{{point}}
-          <div>
-            STR
-            {{str}}
-            <button @click="incStatus('str')">+</button>
-            <button @click="decStatus('str')">-</button>
-          </div>
-          <div>
-            <label for="agi">AGI</label>
-            {{agi}}
-            <button @click="incStatus('agi')">+</button>
-            <button @click="decStatus('agi')">-</button>
-          </div>
-          <div>
-            VIT
-            {{vit}}
-            <button @click="incStatus('vit')">+</button>
-            <button @click="decStatus('vit')">-</button>
-          </div>
-          <div>
-            INT
-            {{int}}
-            <button @click="incStatus('int')">+</button>
-            <button @click="decStatus('int')">-</button>
-          </div>
-          <div>
-            DEX
-            {{dex}}
-            <button @click="incStatus('dex')">+</button>
-            <button @click="decStatus('dex')">-</button>
-          </div>
-          <div>
-            LUC
-            {{luc}}
-            <button @click="incStatus('luc')">+</button>
-            <button @click="decStatus('luc')">-</button>
-          </div>
-          <div>
-            <button @click.prevent="decideStatus">確定</button>
+        <div v-show="registState===3">
+          <div class="confirm-content">
+            <div class="img-container">
+              <img class="img-stand" :src="selectedImg" />
+            </div>
+            <div class="button-container">
+              <button @click.prevent="saveImg">決定</button>
+              <button @click.prevent="returnImg">選びなおす</button>
+            </div>
           </div>
         </div>
-      </div>
-      <div v-show="registState===5">
-        <div>名前：{{name}}</div>
-        <img class="img-stand" :src="selectedImg" />
-        <div>STR:{{str}}</div>
-        <div>AGI:{{agi}}</div>
-        <div>VIT:{{vit}}</div>
-        <div>INT:{{int}}</div>
-        <div>DEX:{{dex}}</div>
-        <div>LUC:{{luc}}</div>
-        <button @click.prevent="registUser">登録</button>
-      </div>
-    </modal>
+        <div v-show="registState===4">
+          <div class="status-content">
+            振り分け可能ポイント：{{point}}
+            <div>
+              STR
+              {{str}}
+              <button @click="incStatus('str')">+</button>
+              <button @click="decStatus('str')">-</button>
+            </div>
+            <div>
+              <label for="agi">AGI</label>
+              {{agi}}
+              <button @click="incStatus('agi')">+</button>
+              <button @click="decStatus('agi')">-</button>
+            </div>
+            <div>
+              VIT
+              {{vit}}
+              <button @click="incStatus('vit')">+</button>
+              <button @click="decStatus('vit')">-</button>
+            </div>
+            <div>
+              INT
+              {{int}}
+              <button @click="incStatus('int')">+</button>
+              <button @click="decStatus('int')">-</button>
+            </div>
+            <div>
+              DEX
+              {{dex}}
+              <button @click="incStatus('dex')">+</button>
+              <button @click="decStatus('dex')">-</button>
+            </div>
+            <div>
+              LUC
+              {{luc}}
+              <button @click="incStatus('luc')">+</button>
+              <button @click="decStatus('luc')">-</button>
+            </div>
+            <div>
+              <button @click.prevent="decideStatus">確定</button>
+            </div>
+          </div>
+        </div>
+        <div v-show="registState===5">
+          <div>名前：{{name}}</div>
+          <img class="img-stand" :src="selectedImg" />
+          <div>STR:{{str}}</div>
+          <div>AGI:{{agi}}</div>
+          <div>VIT:{{vit}}</div>
+          <div>INT:{{int}}</div>
+          <div>DEX:{{dex}}</div>
+          <div>LUC:{{luc}}</div>
+          <button @click.prevent="registUser">登録</button>
+        </div>
+      </modal>
+    </div>
   </div>
 </template>
 
@@ -133,6 +143,8 @@ export default {
       isStatusModal: false,
       isConfirmModal: false,
 
+      isTestModal: false,
+
       registState: 1,
 
       name: "",
@@ -150,49 +162,66 @@ export default {
 
       eventObj: [
         function(vm) {
-          vm.$store.commit(
-            "setMessage",
-            "１番目のメッセージ\n\
-てすとだよ\n\
-長のの文章テストああああああ"
-          );
+          vm.setEvent({ type: "msg", content: "メッセージのテスト" });
         },
         function(vm) {
-          vm.$store.commit("setMessage", "");
-          vm.$store.commit("setNextFlag", true);
-          vm.$store.commit("setBgImg", "shinden");
+          vm.setEvent({ type: "msg", content: "メッセージのテスト2" });
         },
         function(vm) {
-          vm.$store.commit(
-            "setMessage",
-            "2番目のメッセージ\n\
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
-aaaaaaa"
-          );
-        },
-        function(vm) {
-          vm.openSoundModal();
-          vm.$store.commit("setMessage", "音声再生の設定をしてね");
-        },
-        function(vm) {
-          vm.openRegistModal();
-          vm.$store.commit("setMessage", "あなたの名前を教えてね");
-        },
-        function(vm) {
-          vm.$store.commit("setMessage", "あなたの姿を教えてね");
-        },
-        function(vm) {
-          vm.$store.commit("setMessage", "この姿で間違いない？");
-        },
-        function(vm) {
-          vm.$store.commit("setMessage", "能力の振り分けを行ってね");
-          // vm.openStatusModal();
-        },
-        function(vm) {
-          vm.$store.commit("setMessage", "これでいいかな？");
-          // vm.openConfirmModal();
+          vm.setEvent({
+            type: "window",
+            content: { window: "isTestModal", msg: "メッセージ" }
+          });
         }
       ]
+      //       eventObj: [
+      //         function(vm) {
+      //           vm.$store.commit(
+      //             "setMessage",
+      //             "１番目のメッセージ\n\
+      // てすとだよ\n\
+      // 長のの文章テストああああああ"
+      //           );
+      //         },
+      //         function(vm) {
+      //           vm.changeTest("isTestModal");
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit("setMessage", "");
+      //           vm.$store.commit("setNextFlag", true);
+      //           vm.$store.commit("setBgImg", "shinden");
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit(
+      //             "setMessage",
+      //             "2番目のメッセージ\n\
+      // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
+      // aaaaaaa"
+      //           );
+      //         },
+      //         function(vm) {
+      //           vm.openSoundModal();
+      //           vm.$store.commit("setMessage", "音声再生の設定をしてね");
+      //         },
+      //         function(vm) {
+      //           vm.openRegistModal();
+      //           vm.$store.commit("setMessage", "あなたの名前を教えてね");
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit("setMessage", "あなたの姿を教えてね");
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit("setMessage", "この姿で間違いない？");
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit("setMessage", "能力の振り分けを行ってね");
+      //           // vm.openStatusModal();
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit("setMessage", "これでいいかな？");
+      //           // vm.openConfirmModal();
+      //         }
+      //       ]
     };
   },
   computed: {
@@ -205,11 +234,11 @@ aaaaaaa"
   },
   created: function() {
     this.$store.commit("setBgImg", "");
-    // this.$store.commit("setCharImgL1", "npc001l.png");
-    // this.$store.commit("setCharImgL2", "npc006l.png");
-    // this.$store.commit("setCharImgC", "npc001_1.png");
-    // this.$store.commit("setCharImgR1", "npc001r.png");
-    // this.$store.commit("setCharImgR2", "npc007r.png");
+    this.$store.commit("setCharImgL1", "npc001l.png");
+    this.$store.commit("setCharImgL2", "npc006l.png");
+    this.$store.commit("setCharImgC", "npc001_1.png");
+    this.$store.commit("setCharImgR1", "npc001r.png");
+    this.$store.commit("setCharImgR2", "npc007r.png");
 
     this.$store.commit("setMessage", "これはオープニングです");
   },
