@@ -3737,6 +3737,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3759,6 +3769,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isConfirmImgModal: false,
       isStatusModal: false,
       isConfirmModal: false,
+      isTestModal: false,
       registState: 1,
       name: "",
       password: "",
@@ -3771,32 +3782,72 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dex: 10,
       luc: 10,
       eventObj: [function (vm) {
-        vm.$store.commit("setMessage", "１番目のメッセージ\n\
-てすとだよ\n\
-長のの文章テストああああああ");
+        vm.setEvent({
+          type: "msg",
+          content: "メッセージのテスト"
+        });
       }, function (vm) {
-        vm.$store.commit("setMessage", "");
-        vm.$store.commit("setNextFlag", true);
-        vm.$store.commit("setBgImg", "shinden");
+        vm.setEvent({
+          type: "msg",
+          content: "メッセージのテスト2"
+        });
       }, function (vm) {
-        vm.$store.commit("setMessage", "2番目のメッセージ\n\
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
-aaaaaaa");
-      }, function (vm) {
-        vm.openSoundModal();
-        vm.$store.commit("setMessage", "音声再生の設定をしてね");
-      }, function (vm) {
-        vm.openRegistModal();
-        vm.$store.commit("setMessage", "あなたの名前を教えてね");
-      }, function (vm) {
-        vm.$store.commit("setMessage", "あなたの姿を教えてね");
-      }, function (vm) {
-        vm.$store.commit("setMessage", "この姿で間違いない？");
-      }, function (vm) {
-        vm.$store.commit("setMessage", "能力の振り分けを行ってね"); // vm.openStatusModal();
-      }, function (vm) {
-        vm.$store.commit("setMessage", "これでいいかな？"); // vm.openConfirmModal();
-      }]
+        vm.setEvent({
+          type: "window",
+          content: {
+            window: "isTestModal",
+            msg: "メッセージ"
+          }
+        });
+      }] //       eventObj: [
+      //         function(vm) {
+      //           vm.$store.commit(
+      //             "setMessage",
+      //             "１番目のメッセージ\n\
+      // てすとだよ\n\
+      // 長のの文章テストああああああ"
+      //           );
+      //         },
+      //         function(vm) {
+      //           vm.changeTest("isTestModal");
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit("setMessage", "");
+      //           vm.$store.commit("setNextFlag", true);
+      //           vm.$store.commit("setBgImg", "shinden");
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit(
+      //             "setMessage",
+      //             "2番目のメッセージ\n\
+      // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
+      // aaaaaaa"
+      //           );
+      //         },
+      //         function(vm) {
+      //           vm.openSoundModal();
+      //           vm.$store.commit("setMessage", "音声再生の設定をしてね");
+      //         },
+      //         function(vm) {
+      //           vm.openRegistModal();
+      //           vm.$store.commit("setMessage", "あなたの名前を教えてね");
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit("setMessage", "あなたの姿を教えてね");
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit("setMessage", "この姿で間違いない？");
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit("setMessage", "能力の振り分けを行ってね");
+      //           // vm.openStatusModal();
+      //         },
+      //         function(vm) {
+      //           vm.$store.commit("setMessage", "これでいいかな？");
+      //           // vm.openConfirmModal();
+      //         }
+      //       ]
+
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
@@ -3806,12 +3857,12 @@ aaaaaaa");
     NextFlag: "getNextFlag"
   })),
   created: function created() {
-    this.$store.commit("setBgImg", ""); // this.$store.commit("setCharImgL1", "npc001l.png");
-    // this.$store.commit("setCharImgL2", "npc006l.png");
-    // this.$store.commit("setCharImgC", "npc001_1.png");
-    // this.$store.commit("setCharImgR1", "npc001r.png");
-    // this.$store.commit("setCharImgR2", "npc007r.png");
-
+    this.$store.commit("setBgImg", "");
+    this.$store.commit("setCharImgL1", "npc001l.png");
+    this.$store.commit("setCharImgL2", "npc006l.png");
+    this.$store.commit("setCharImgC", "npc001_1.png");
+    this.$store.commit("setCharImgR1", "npc001r.png");
+    this.$store.commit("setCharImgR2", "npc007r.png");
     this.$store.commit("setMessage", "これはオープニングです");
   },
   methods: {
@@ -4261,7 +4312,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     sceneCount: "getSceneCount",
     NextFlag: "getNextFlag",
-    ParallelFlag: "getParallelFlag",
+    eventType: "getEventType",
     name: "getCharName",
     storeMessage: "getMessage"
   }), {
@@ -4288,7 +4339,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     onCompleted: function onCompleted() {
-      if (this.ParallelFlag === false) {
+      if (this.eventType === "msg" || this.eventType === "") {
         this.$store.commit("setNextFlag", true);
       } else {
         return;
@@ -43187,535 +43238,587 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._v("\n  " + _vm._s(this.sceneCount) + "\n  "),
-      _c("message", { on: { "get-scene": _vm.getScene } }),
-      _vm._v(" "),
-      _c("char-img"),
-      _vm._v(" "),
-      _vm.isSoundCheckModal
-        ? _c("modal", { staticClass: "soundCheckModal" }, [
-            _c("div", [
-              _c("p", [
-                _vm._v("このアプリでは音声が流れます。よろしいですか？")
-              ]),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.soundSet(true)
-                    }
-                  }
-                },
-                [_vm._v("音楽再生ON")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.soundSet(false)
-                    }
-                  }
-                },
-                [_vm._v("音楽再生OFF")]
-              )
-            ])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.isRegistModal
-        ? _c("modal", { staticClass: "registerModal" }, [
-            _vm._v("\n    " + _vm._s(_vm.registState) + "\n    "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.registState === 1,
-                    expression: "registState===1"
-                  }
-                ]
-              },
-              [
-                _c(
-                  "form",
-                  [
-                    _c("ValidationProvider", {
-                      ref: "registerForm",
-                      attrs: { name: "ユーザー名", rules: "required" },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var errors = ref.errors
-                              return [
-                                _c("label", { attrs: { for: "name" } }, [
-                                  _vm._v("ユーザー名")
-                                ]),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.name,
-                                      expression: "name"
-                                    }
-                                  ],
-                                  attrs: { type: "text", name: "name" },
-                                  domProps: { value: _vm.name },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.name = $event.target.value
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("span", [_vm._v(_vm._s(errors[0]))])
-                              ]
-                            }
-                          }
-                        ],
-                        null,
-                        false,
-                        2308374777
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c("ValidationProvider", {
-                      ref: "registerForm",
-                      attrs: { name: "パスワード", rules: "required" },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "default",
-                            fn: function(ref) {
-                              var errors = ref.errors
-                              return [
-                                _c("label", { attrs: { for: "password" } }, [
-                                  _vm._v("パスワード")
-                                ]),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.password,
-                                      expression: "password"
-                                    }
-                                  ],
-                                  attrs: { type: "password", name: "password" },
-                                  domProps: { value: _vm.password },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.password = $event.target.value
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("span", [_vm._v(_vm._s(errors[0]))])
-                              ]
-                            }
-                          }
-                        ],
-                        null,
-                        false,
-                        1824040180
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.saveName($event)
-                          }
-                        }
-                      },
-                      [_vm._v("決定")]
-                    )
-                  ],
-                  1
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.registState === 2,
-                    expression: "registState===2"
-                  }
-                ]
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "img-container" },
-                  _vm._l(_vm.userImg, function(img, index) {
-                    return _c("div", { key: index, staticClass: "img-card" }, [
-                      _c("img", {
-                        staticClass: "img-face",
-                        attrs: { src: img.face },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.selectImg(img)
-                          }
-                        }
-                      })
-                    ])
-                  }),
-                  0
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.registState === 3,
-                    expression: "registState===3"
-                  }
-                ]
-              },
-              [
-                _c("div", { staticClass: "confirm-content" }, [
-                  _c("div", { staticClass: "img-container" }, [
-                    _c("img", {
-                      staticClass: "img-stand",
-                      attrs: { src: _vm.selectedImg }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "button-container" }, [
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.saveImg($event)
-                          }
-                        }
-                      },
-                      [_vm._v("決定")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.returnImg($event)
-                          }
-                        }
-                      },
-                      [_vm._v("選びなおす")]
-                    )
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.registState === 4,
-                    expression: "registState===4"
-                  }
-                ]
-              },
-              [
-                _c("div", { staticClass: "status-content" }, [
-                  _vm._v(
-                    "\n        振り分け可能ポイント：" +
-                      _vm._s(_vm.point) +
-                      "\n        "
-                  ),
-                  _c("div", [
-                    _vm._v(
-                      "\n          STR\n          " +
-                        _vm._s(_vm.str) +
-                        "\n          "
-                    ),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.incStatus("str")
-                          }
-                        }
-                      },
-                      [_vm._v("+")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.decStatus("str")
-                          }
-                        }
-                      },
-                      [_vm._v("-")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c("label", { attrs: { for: "agi" } }, [_vm._v("AGI")]),
-                    _vm._v("\n          " + _vm._s(_vm.agi) + "\n          "),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.incStatus("agi")
-                          }
-                        }
-                      },
-                      [_vm._v("+")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.decStatus("agi")
-                          }
-                        }
-                      },
-                      [_vm._v("-")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "\n          VIT\n          " +
-                        _vm._s(_vm.vit) +
-                        "\n          "
-                    ),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.incStatus("vit")
-                          }
-                        }
-                      },
-                      [_vm._v("+")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.decStatus("vit")
-                          }
-                        }
-                      },
-                      [_vm._v("-")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "\n          INT\n          " +
-                        _vm._s(_vm.int) +
-                        "\n          "
-                    ),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.incStatus("int")
-                          }
-                        }
-                      },
-                      [_vm._v("+")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.decStatus("int")
-                          }
-                        }
-                      },
-                      [_vm._v("-")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "\n          DEX\n          " +
-                        _vm._s(_vm.dex) +
-                        "\n          "
-                    ),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.incStatus("dex")
-                          }
-                        }
-                      },
-                      [_vm._v("+")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.decStatus("dex")
-                          }
-                        }
-                      },
-                      [_vm._v("-")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _vm._v(
-                      "\n          LUC\n          " +
-                        _vm._s(_vm.luc) +
-                        "\n          "
-                    ),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.incStatus("luc")
-                          }
-                        }
-                      },
-                      [_vm._v("+")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            return _vm.decStatus("luc")
-                          }
-                        }
-                      },
-                      [_vm._v("-")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c(
-                      "button",
-                      {
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.decideStatus($event)
-                          }
-                        }
-                      },
-                      [_vm._v("確定")]
-                    )
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.registState === 5,
-                    expression: "registState===5"
-                  }
-                ]
-              },
-              [
-                _c("div", [_vm._v("名前：" + _vm._s(_vm.name))]),
-                _vm._v(" "),
-                _c("img", {
-                  staticClass: "img-stand",
-                  attrs: { src: _vm.selectedImg }
-                }),
-                _vm._v(" "),
-                _c("div", [_vm._v("STR:" + _vm._s(_vm.str))]),
-                _vm._v(" "),
-                _c("div", [_vm._v("AGI:" + _vm._s(_vm.agi))]),
-                _vm._v(" "),
-                _c("div", [_vm._v("VIT:" + _vm._s(_vm.vit))]),
-                _vm._v(" "),
-                _c("div", [_vm._v("INT:" + _vm._s(_vm.int))]),
-                _vm._v(" "),
-                _c("div", [_vm._v("DEX:" + _vm._s(_vm.dex))]),
-                _vm._v(" "),
-                _c("div", [_vm._v("LUC:" + _vm._s(_vm.luc))]),
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "event" },
+      [
+        _vm._v(
+          "\n    " +
+            _vm._s(this.sceneCount) +
+            "\n    " +
+            _vm._s(this.NextFlag) +
+            "\n    "
+        ),
+        _c("message", { on: { "get-scene": _vm.getScene } }),
+        _vm._v(" "),
+        _c("char-img"),
+        _vm._v(" "),
+        _vm.isSoundCheckModal
+          ? _c("modal", { staticClass: "soundCheckModal" }, [
+              _c("div", [
+                _c("p", [
+                  _vm._v("このアプリでは音声が流れます。よろしいですか？")
+                ]),
                 _vm._v(" "),
                 _c(
                   "button",
                   {
                     on: {
                       click: function($event) {
-                        $event.preventDefault()
-                        return _vm.registUser($event)
+                        return _vm.soundSet(true)
                       }
                     }
                   },
-                  [_vm._v("登録")]
+                  [_vm._v("音楽再生ON")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.soundSet(false)
+                      }
+                    }
+                  },
+                  [_vm._v("音楽再生OFF")]
                 )
-              ]
-            )
-          ])
-        : _vm._e()
-    ],
-    1
-  )
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.isTestModal
+          ? _c("modal", { staticClass: "soundCheckModal" }, [
+              _c("div", [
+                _c("p", [
+                  _vm._v("このアプリでは音声が流れます。よろしいですか？")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.soundSet(true)
+                      }
+                    }
+                  },
+                  [_vm._v("音楽再生ON")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.soundSet(false)
+                      }
+                    }
+                  },
+                  [_vm._v("音楽再生OFF")]
+                )
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.isRegistModal
+          ? _c("modal", { staticClass: "registerModal" }, [
+              _vm._v("\n      " + _vm._s(_vm.registState) + "\n      "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.registState === 1,
+                      expression: "registState===1"
+                    }
+                  ]
+                },
+                [
+                  _c(
+                    "form",
+                    [
+                      _c("ValidationProvider", {
+                        ref: "registerForm",
+                        attrs: { name: "ユーザー名", rules: "required" },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var errors = ref.errors
+                                return [
+                                  _c("label", { attrs: { for: "name" } }, [
+                                    _vm._v("ユーザー名")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.name,
+                                        expression: "name"
+                                      }
+                                    ],
+                                    attrs: { type: "text", name: "name" },
+                                    domProps: { value: _vm.name },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.name = $event.target.value
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", [_vm._v(_vm._s(errors[0]))])
+                                ]
+                              }
+                            }
+                          ],
+                          null,
+                          false,
+                          2308374777
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("ValidationProvider", {
+                        ref: "registerForm",
+                        attrs: { name: "パスワード", rules: "required" },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var errors = ref.errors
+                                return [
+                                  _c("label", { attrs: { for: "password" } }, [
+                                    _vm._v("パスワード")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.password,
+                                        expression: "password"
+                                      }
+                                    ],
+                                    attrs: {
+                                      type: "password",
+                                      name: "password"
+                                    },
+                                    domProps: { value: _vm.password },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.password = $event.target.value
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", [_vm._v(_vm._s(errors[0]))])
+                                ]
+                              }
+                            }
+                          ],
+                          null,
+                          false,
+                          1824040180
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.saveName($event)
+                            }
+                          }
+                        },
+                        [_vm._v("決定")]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.registState === 2,
+                      expression: "registState===2"
+                    }
+                  ]
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "img-container" },
+                    _vm._l(_vm.userImg, function(img, index) {
+                      return _c(
+                        "div",
+                        { key: index, staticClass: "img-card" },
+                        [
+                          _c("img", {
+                            staticClass: "img-face",
+                            attrs: { src: img.face },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.selectImg(img)
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.registState === 3,
+                      expression: "registState===3"
+                    }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "confirm-content" }, [
+                    _c("div", { staticClass: "img-container" }, [
+                      _c("img", {
+                        staticClass: "img-stand",
+                        attrs: { src: _vm.selectedImg }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "button-container" }, [
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.saveImg($event)
+                            }
+                          }
+                        },
+                        [_vm._v("決定")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.returnImg($event)
+                            }
+                          }
+                        },
+                        [_vm._v("選びなおす")]
+                      )
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.registState === 4,
+                      expression: "registState===4"
+                    }
+                  ]
+                },
+                [
+                  _c("div", { staticClass: "status-content" }, [
+                    _vm._v(
+                      "\n          振り分け可能ポイント：" +
+                        _vm._s(_vm.point) +
+                        "\n          "
+                    ),
+                    _c("div", [
+                      _vm._v(
+                        "\n            STR\n            " +
+                          _vm._s(_vm.str) +
+                          "\n            "
+                      ),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.incStatus("str")
+                            }
+                          }
+                        },
+                        [_vm._v("+")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.decStatus("str")
+                            }
+                          }
+                        },
+                        [_vm._v("-")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("label", { attrs: { for: "agi" } }, [_vm._v("AGI")]),
+                      _vm._v(
+                        "\n            " + _vm._s(_vm.agi) + "\n            "
+                      ),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.incStatus("agi")
+                            }
+                          }
+                        },
+                        [_vm._v("+")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.decStatus("agi")
+                            }
+                          }
+                        },
+                        [_vm._v("-")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._v(
+                        "\n            VIT\n            " +
+                          _vm._s(_vm.vit) +
+                          "\n            "
+                      ),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.incStatus("vit")
+                            }
+                          }
+                        },
+                        [_vm._v("+")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.decStatus("vit")
+                            }
+                          }
+                        },
+                        [_vm._v("-")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._v(
+                        "\n            INT\n            " +
+                          _vm._s(_vm.int) +
+                          "\n            "
+                      ),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.incStatus("int")
+                            }
+                          }
+                        },
+                        [_vm._v("+")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.decStatus("int")
+                            }
+                          }
+                        },
+                        [_vm._v("-")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._v(
+                        "\n            DEX\n            " +
+                          _vm._s(_vm.dex) +
+                          "\n            "
+                      ),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.incStatus("dex")
+                            }
+                          }
+                        },
+                        [_vm._v("+")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.decStatus("dex")
+                            }
+                          }
+                        },
+                        [_vm._v("-")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _vm._v(
+                        "\n            LUC\n            " +
+                          _vm._s(_vm.luc) +
+                          "\n            "
+                      ),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.incStatus("luc")
+                            }
+                          }
+                        },
+                        [_vm._v("+")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.decStatus("luc")
+                            }
+                          }
+                        },
+                        [_vm._v("-")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.decideStatus($event)
+                            }
+                          }
+                        },
+                        [_vm._v("確定")]
+                      )
+                    ])
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.registState === 5,
+                      expression: "registState===5"
+                    }
+                  ]
+                },
+                [
+                  _c("div", [_vm._v("名前：" + _vm._s(_vm.name))]),
+                  _vm._v(" "),
+                  _c("img", {
+                    staticClass: "img-stand",
+                    attrs: { src: _vm.selectedImg }
+                  }),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("STR:" + _vm._s(_vm.str))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("AGI:" + _vm._s(_vm.agi))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("VIT:" + _vm._s(_vm.vit))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("INT:" + _vm._s(_vm.int))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("DEX:" + _vm._s(_vm.dex))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v("LUC:" + _vm._s(_vm.luc))]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.registUser($event)
+                        }
+                      }
+                    },
+                    [_vm._v("登録")]
+                  )
+                ]
+              )
+            ])
+          : _vm._e()
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -61209,7 +61312,24 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
+    // nextScene: function() {
+    //     this.$store.commit("setNextFlag", false);
+    //     this.$store.commit("setSceneCount", this.sceneCount + 1);
+    //     this.$emit("get-scene", this.sceneCount);
+    // },
+    // changeScene: function() {
+    //     if (this.NextFlag === true) {
+    //         this.nextScene();
+    //     } else {
+    //         return;
+    //     }
+    // },
     getScene: function getScene(count) {
+      if (!Array.isArray(this.eventObj)) {
+        console.log("データが不正です。");
+        return false;
+      }
+
       var vm = this;
       var eventLength = this.eventObj.length;
 
@@ -61217,8 +61337,44 @@ __webpack_require__.r(__webpack_exports__);
         this.eventObj[count - 1](vm);
       } else {
         console.log("イベント終了");
+        this.$store.commit("setSceneCount", 0);
       }
     },
+    setEvent: function setEvent(event) {
+      switch (event.type) {
+        case "msg":
+          this.$store.commit("setEventType", "msg");
+          this.messageEvent(event.content);
+          break;
+
+        case "select":
+          this.$store.commit("setEventType", "select");
+          this.selectEvent(event.content);
+          break;
+
+        case "window":
+          this.$store.commit("setEventType", "window");
+          this.windowEvent(event.content);
+          break;
+      }
+    },
+    messageEvent: function messageEvent(message) {
+      this.$store.commit("setMessage", message);
+    },
+    selectEvent: function selectEvent(array) {},
+    windowEvent: function windowEvent(event) {
+      this[event.window] = true;
+      this.$store.commit("setMessage", event.msg);
+    },
+    // getScene: function(count) {
+    //     const vm = this;
+    //     const eventLength = this.eventObj.length;
+    //     if (count <= eventLength) {
+    //         this.eventObj[count - 1](vm);
+    //     } else {
+    //         console.log("イベント終了");
+    //     }
+    // },
     soundSet: function soundSet(_boolean) {
       this.$store.commit("setSoundFlag", _boolean);
       this.closeSoundModal();
@@ -61786,7 +61942,7 @@ __webpack_require__.r(__webpack_exports__);
 var state = {
   sceneCount: 0,
   isNext: false,
-  isParallel: false,
+  eventType: "",
   message: "storeメッセージ",
   charName: "",
   charImgL1: "",
@@ -61921,8 +62077,8 @@ var getters = {
   getNextFlag: function getNextFlag(state) {
     return state.isNext;
   },
-  getParallelFlag: function getParallelFlag(state) {
-    return state.isParallel;
+  getEventType: function getEventType(state) {
+    return state.eventType;
   },
   getMessage: function getMessage(state) {
     return state.message;
@@ -61959,8 +62115,8 @@ var mutations = {
   setNextFlag: function setNextFlag(state, bool) {
     state.isNext = bool;
   },
-  setParallelFlag: function setParallelFlag(state, bool) {
-    state.isParallel = bool;
+  setEventType: function setEventType(state, type) {
+    state.eventType = type;
   },
   setMessage: function setMessage(state, message) {
     state.message = message;
