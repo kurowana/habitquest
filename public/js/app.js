@@ -3793,61 +3793,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }, function (vm) {
         vm.setEvent({
+          type: "select",
+          content: {
+            msg: "どちらを選ぶ？",
+            choice: [{
+              text: "選択肢1",
+              event: function event() {}
+            }, {
+              text: "選択肢2",
+              event: function event() {}
+            }]
+          }
+        });
+      }, function (vm) {
+        vm.setEvent({
           type: "window",
           content: {
             window: "isTestModal",
             msg: "メッセージ"
           }
         });
-      }] //       eventObj: [
-      //         function(vm) {
-      //           vm.$store.commit(
-      //             "setMessage",
-      //             "１番目のメッセージ\n\
-      // てすとだよ\n\
-      // 長のの文章テストああああああ"
-      //           );
-      //         },
-      //         function(vm) {
-      //           vm.changeTest("isTestModal");
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit("setMessage", "");
-      //           vm.$store.commit("setNextFlag", true);
-      //           vm.$store.commit("setBgImg", "shinden");
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit(
-      //             "setMessage",
-      //             "2番目のメッセージ\n\
-      // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
-      // aaaaaaa"
-      //           );
-      //         },
-      //         function(vm) {
-      //           vm.openSoundModal();
-      //           vm.$store.commit("setMessage", "音声再生の設定をしてね");
-      //         },
-      //         function(vm) {
-      //           vm.openRegistModal();
-      //           vm.$store.commit("setMessage", "あなたの名前を教えてね");
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit("setMessage", "あなたの姿を教えてね");
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit("setMessage", "この姿で間違いない？");
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit("setMessage", "能力の振り分けを行ってね");
-      //           // vm.openStatusModal();
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit("setMessage", "これでいいかな？");
-      //           // vm.openConfirmModal();
-      //         }
-      //       ]
-
+      }]
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
@@ -61312,29 +61278,19 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
-    // nextScene: function() {
-    //     this.$store.commit("setNextFlag", false);
-    //     this.$store.commit("setSceneCount", this.sceneCount + 1);
-    //     this.$emit("get-scene", this.sceneCount);
-    // },
-    // changeScene: function() {
-    //     if (this.NextFlag === true) {
-    //         this.nextScene();
-    //     } else {
-    //         return;
-    //     }
-    // },
     getScene: function getScene(count) {
-      if (!Array.isArray(this.eventObj)) {
+      var currentEvent = this["eventObj"];
+
+      if (!Array.isArray(currentEvent)) {
         console.log("データが不正です。");
         return false;
       }
 
       var vm = this;
-      var eventLength = this.eventObj.length;
+      var eventLength = currentEvent.length;
 
       if (count <= eventLength) {
-        this.eventObj[count - 1](vm);
+        currentEvent[count - 1](vm);
       } else {
         console.log("イベント終了");
         this.$store.commit("setSceneCount", 0);
@@ -61361,20 +61317,15 @@ __webpack_require__.r(__webpack_exports__);
     messageEvent: function messageEvent(message) {
       this.$store.commit("setMessage", message);
     },
-    selectEvent: function selectEvent(array) {},
+    selectEvent: function selectEvent(event) {
+      this.$store.commit("setMessage", event.msg);
+      this.$store.commit("setChoice1", event.choice[0]);
+      this.$store.commit("setChoice2", event.choice[1]);
+    },
     windowEvent: function windowEvent(event) {
       this[event.window] = true;
       this.$store.commit("setMessage", event.msg);
     },
-    // getScene: function(count) {
-    //     const vm = this;
-    //     const eventLength = this.eventObj.length;
-    //     if (count <= eventLength) {
-    //         this.eventObj[count - 1](vm);
-    //     } else {
-    //         console.log("イベント終了");
-    //     }
-    // },
     soundSet: function soundSet(_boolean) {
       this.$store.commit("setSoundFlag", _boolean);
       this.closeSoundModal();
@@ -61940,10 +61891,13 @@ var mutations = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
+  eventObj: "eventObj",
   sceneCount: 0,
   isNext: false,
   eventType: "",
   message: "storeメッセージ",
+  choice1: "",
+  choice2: "",
   charName: "",
   charImgL1: "",
   charImgL2: "",
@@ -62071,6 +62025,9 @@ var state = {
   }
 };
 var getters = {
+  getEventObj: function getEventObj(state) {
+    return state.eventObj;
+  },
   getSceneCount: function getSceneCount(state) {
     return state.sceneCount;
   },
@@ -62082,6 +62039,12 @@ var getters = {
   },
   getMessage: function getMessage(state) {
     return state.message;
+  },
+  getChoice1: function getChoice1(state) {
+    return state.choice1;
+  },
+  getChoice2: function getChoice2(state) {
+    return state.choice2;
   },
   getCharName: function getCharName(state) {
     return state.charName;
@@ -62106,6 +62069,9 @@ var getters = {
   }
 };
 var mutations = {
+  setEventObj: function setEventObj(state, obj) {
+    state.eventObj = obj;
+  },
   setBgImg: function setBgImg(state, imgClass) {
     state.bgImg = imgClass;
   },
@@ -62120,6 +62086,12 @@ var mutations = {
   },
   setMessage: function setMessage(state, message) {
     state.message = message;
+  },
+  setChoice1: function setChoice1(state, event) {
+    state.choice1 = event;
+  },
+  setChoice2: function setChoice2(state, event) {
+    state.choice2 = event;
   },
   setCharName: function setCharName(state, name) {
     state.charName = name;

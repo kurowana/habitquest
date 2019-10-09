@@ -1,26 +1,15 @@
 export default {
     methods: {
-        // nextScene: function() {
-        //     this.$store.commit("setNextFlag", false);
-        //     this.$store.commit("setSceneCount", this.sceneCount + 1);
-        //     this.$emit("get-scene", this.sceneCount);
-        // },
-        // changeScene: function() {
-        //     if (this.NextFlag === true) {
-        //         this.nextScene();
-        //     } else {
-        //         return;
-        //     }
-        // },
         getScene: function(count) {
-            if (!Array.isArray(this.eventObj)) {
+            const currentEvent = this["eventObj"];
+            if (!Array.isArray(currentEvent)) {
                 console.log("データが不正です。");
                 return false;
             }
             const vm = this;
-            const eventLength = this.eventObj.length;
+            const eventLength = currentEvent.length;
             if (count <= eventLength) {
-                this.eventObj[count - 1](vm);
+                currentEvent[count - 1](vm);
             } else {
                 console.log("イベント終了");
                 this.$store.commit("setSceneCount", 0);
@@ -45,20 +34,15 @@ export default {
         messageEvent: function(message) {
             this.$store.commit("setMessage", message);
         },
-        selectEvent: function(array) {},
+        selectEvent: function(event) {
+            this.$store.commit("setMessage", event.msg);
+            this.$store.commit("setChoice1", event.choice[0]);
+            this.$store.commit("setChoice2", event.choice[1]);
+        },
         windowEvent(event) {
             this[event.window] = true;
             this.$store.commit("setMessage", event.msg);
         },
-        // getScene: function(count) {
-        //     const vm = this;
-        //     const eventLength = this.eventObj.length;
-        //     if (count <= eventLength) {
-        //         this.eventObj[count - 1](vm);
-        //     } else {
-        //         console.log("イベント終了");
-        //     }
-        // },
         soundSet(boolean) {
             this.$store.commit("setSoundFlag", boolean);
             this.closeSoundModal();

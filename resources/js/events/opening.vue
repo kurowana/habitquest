@@ -169,59 +169,23 @@ export default {
         },
         function(vm) {
           vm.setEvent({
+            type: "select",
+            content: {
+              msg: "どちらを選ぶ？",
+              choice: [
+                { text: "選択肢1", event: function() {} },
+                { text: "選択肢2", event: function() {} }
+              ]
+            }
+          });
+        },
+        function(vm) {
+          vm.setEvent({
             type: "window",
             content: { window: "isTestModal", msg: "メッセージ" }
           });
         }
       ]
-      //       eventObj: [
-      //         function(vm) {
-      //           vm.$store.commit(
-      //             "setMessage",
-      //             "１番目のメッセージ\n\
-      // てすとだよ\n\
-      // 長のの文章テストああああああ"
-      //           );
-      //         },
-      //         function(vm) {
-      //           vm.changeTest("isTestModal");
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit("setMessage", "");
-      //           vm.$store.commit("setNextFlag", true);
-      //           vm.$store.commit("setBgImg", "shinden");
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit(
-      //             "setMessage",
-      //             "2番目のメッセージ\n\
-      // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\
-      // aaaaaaa"
-      //           );
-      //         },
-      //         function(vm) {
-      //           vm.openSoundModal();
-      //           vm.$store.commit("setMessage", "音声再生の設定をしてね");
-      //         },
-      //         function(vm) {
-      //           vm.openRegistModal();
-      //           vm.$store.commit("setMessage", "あなたの名前を教えてね");
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit("setMessage", "あなたの姿を教えてね");
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit("setMessage", "この姿で間違いない？");
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit("setMessage", "能力の振り分けを行ってね");
-      //           // vm.openStatusModal();
-      //         },
-      //         function(vm) {
-      //           vm.$store.commit("setMessage", "これでいいかな？");
-      //           // vm.openConfirmModal();
-      //         }
-      //       ]
     };
   },
   computed: {
