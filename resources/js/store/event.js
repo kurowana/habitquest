@@ -1,8 +1,11 @@
 const state = {
+    eventObj: "eventObj",
     sceneCount: 0,
     isNext: false,
     eventType: "",
     message: "storeメッセージ",
+    choice1: "",
+    choice2: "",
     charName: "",
     charImgL1: "",
     charImgL2: "",
@@ -132,6 +135,9 @@ const state = {
     }
 };
 const getters = {
+    getEventObj: state => {
+        return state.eventObj;
+    },
     getSceneCount: state => {
         return state.sceneCount;
     },
@@ -143,6 +149,12 @@ const getters = {
     },
     getMessage: state => {
         return state.message;
+    },
+    getChoice1: state => {
+        return state.choice1;
+    },
+    getChoice2: state => {
+        return state.choice2;
     },
     getCharName: state => {
         return state.charName;
@@ -167,6 +179,9 @@ const getters = {
     }
 };
 const mutations = {
+    setEventObj(state, obj) {
+        state.eventObj = obj;
+    },
     setBgImg(state, imgClass) {
         state.bgImg = imgClass;
     },
@@ -181,6 +196,12 @@ const mutations = {
     },
     setMessage(state, message) {
         state.message = message;
+    },
+    setChoice1(state, event) {
+        state.choice1 = event;
+    },
+    setChoice2(state, event) {
+        state.choice2 = event;
     },
     setCharName(state, name) {
         state.charName = name;
