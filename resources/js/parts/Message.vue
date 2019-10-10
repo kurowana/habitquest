@@ -1,7 +1,7 @@
 <template>
   <div v-if="isShowMsg">
     <div class="msg-window" @click="changeScene">
-      <p class="name">{{name}}</p>
+      <p class="name">{{name}}{{charList.スフィア.name}}</p>
       <p class="message" v-if="message">
         <vue-typer :text="message" :repeat="0" :type-delay="delayTime" @completed="onCompleted"></vue-typer>
       </p>
@@ -33,7 +33,8 @@ export default {
       NextFlag: "getNextFlag",
       eventType: "getEventType",
       name: "getCharName",
-      storeMessage: "getMessage"
+      storeMessage: "getMessage",
+      charList: "getCharList"
     }),
     message: function() {
       if (this.storeMessage !== "") {

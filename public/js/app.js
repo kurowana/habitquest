@@ -3782,16 +3782,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dex: 10,
       luc: 10,
       eventObj: [function (vm) {
+        vm.showChar("スフィア", "l2");
         vm.setEvent({
           type: "msg",
           content: "メッセージのテスト"
         });
       }, function (vm) {
+        vm.showChar("エイル", "r2");
         vm.setEvent({
           type: "msg",
           content: "メッセージのテスト2"
         });
       }, function (vm) {
+        vm.showChar("", "r2");
         vm.setEvent({
           type: "select",
           content: {
@@ -3823,12 +3826,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     NextFlag: "getNextFlag"
   })),
   created: function created() {
-    this.$store.commit("setBgImg", "");
-    this.$store.commit("setCharImgL1", "npc001l.png");
-    this.$store.commit("setCharImgL2", "npc006l.png");
-    this.$store.commit("setCharImgC", "npc001_1.png");
-    this.$store.commit("setCharImgR1", "npc001r.png");
-    this.$store.commit("setCharImgR2", "npc007r.png");
+    this.$store.commit("setBgImg", ""); // this.$store.commit("setCharImgL1", "npc001l.png");
+    // this.$store.commit("setCharImgL2", "npc006l.png");
+    // this.$store.commit("setCharImgC", "npc001_1.png");
+    // this.$store.commit("setCharImgR1", "npc001r.png");
+    // this.$store.commit("setCharImgR2", "npc007r.png");
+
     this.$store.commit("setMessage", "これはオープニングです");
   },
   methods: {
@@ -4280,7 +4283,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     NextFlag: "getNextFlag",
     eventType: "getEventType",
     name: "getCharName",
-    storeMessage: "getMessage"
+    storeMessage: "getMessage",
+    charList: "getCharList"
   }), {
     message: function message() {
       if (this.storeMessage !== "") {
@@ -4326,6 +4330,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -19159,7 +19177,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  z-index: 30;\r\n  opacity: 0.7;\n}\n.img-l2[data-v-6ca2f060] {\r\n  width: 42%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 10%;\r\n  z-index: 50;\n}\n.img-c[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-r1[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 60%;\n}\n.img-r2[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 50%;\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-l2[data-v-6ca2f060] {\r\n  width: 42%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 10%;\r\n  opacity: 0.7;\n}\n.img-c[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\r\n  opacity: 0.7;\n}\n.img-r1[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 60%;\r\n  opacity: 0.7;\n}\n.img-r2[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 50%;\r\n  opacity: 0.7;\n}\nbounce-transition[data-v-6ca2f060] {\r\n  display: inline-block; /* 他の場合、スケールアニメーションは動作しません */\n}\n.bounce-enter[data-v-6ca2f060] {\r\n  -webkit-animation: bounce-in-data-v-6ca2f060 0.5s;\r\n          animation: bounce-in-data-v-6ca2f060 0.5s;\n}\n.bounce-leave[data-v-6ca2f060] {\r\n  -webkit-animation: bounce-out-data-v-6ca2f060 0.5s;\r\n          animation: bounce-out-data-v-6ca2f060 0.5s;\n}\n@-webkit-keyframes bounce-in-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: scale(0);\r\n            transform: scale(0);\n}\n50% {\r\n    -webkit-transform: scale(1.5);\r\n            transform: scale(1.5);\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n}\n@keyframes bounce-in-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: scale(0);\r\n            transform: scale(0);\n}\n50% {\r\n    -webkit-transform: scale(1.5);\r\n            transform: scale(1.5);\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n}\n@-webkit-keyframes bounce-out-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n50% {\r\n    -webkit-transform: scale(1.5);\r\n            transform: scale(1.5);\n}\n100% {\r\n    -webkit-transform: scale(0);\r\n            transform: scale(0);\n}\n}\n@keyframes bounce-out-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n50% {\r\n    -webkit-transform: scale(1.5);\r\n            transform: scale(1.5);\n}\n100% {\r\n    -webkit-transform: scale(0);\r\n            transform: scale(0);\n}\n}\r\n", ""]);
 
 // exports
 
@@ -44101,7 +44119,9 @@ var render = function() {
           "div",
           { staticClass: "msg-window", on: { click: _vm.changeScene } },
           [
-            _c("p", { staticClass: "name" }, [_vm._v(_vm._s(_vm.name))]),
+            _c("p", { staticClass: "name" }, [
+              _vm._v(_vm._s(_vm.name) + _vm._s(_vm.charList.スフィア.name))
+            ]),
             _vm._v(" "),
             _vm.message
               ? _c(
@@ -44159,17 +44179,85 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "img-view" }, [
-    _c("img", { staticClass: "img-l1", attrs: { src: _vm.showCharL1 } }),
-    _vm._v(" "),
-    _c("img", { staticClass: "img-l2", attrs: { src: _vm.showCharL2 } }),
-    _vm._v(" "),
-    _c("img", { staticClass: "img-c", attrs: { src: _vm.showCharC } }),
-    _vm._v(" "),
-    _c("img", { staticClass: "img-r1", attrs: { src: _vm.showCharR1 } }),
-    _vm._v(" "),
-    _c("img", { staticClass: "img-r2", attrs: { src: _vm.showCharR2 } })
-  ])
+  return _c(
+    "div",
+    { staticClass: "img-view" },
+    [
+      _c("transition", { attrs: { name: "fade" } }, [
+        _vm.showCharL1
+          ? _c("div", [
+              _c("img", {
+                staticClass: "img-l1",
+                attrs: { src: _vm.showCharL1 }
+              })
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "fade" } }, [
+        _vm.showCharL2
+          ? _c("div", [
+              _c("img", {
+                staticClass: "img-l2",
+                attrs: { src: _vm.showCharL2 }
+              })
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _vm.showCharC
+        ? _c("img", {
+            staticClass: "img-c",
+            attrs: { src: _vm.showCharC, transition: "bounce" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showCharR1
+        ? _c("img", {
+            staticClass: "img-r1",
+            attrs: { src: _vm.showCharR1, transition: "bounce" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showCharR2
+        ? _c("img", {
+            staticClass: "img-r2",
+            attrs: { src: _vm.showCharR2, transition: "bounce" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showCharL1
+        ? _c("p", { staticClass: "bounce", attrs: { transition: "bounce" } }, [
+            _vm._v("aaa")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showCharL2
+        ? _c("p", { staticClass: "bounce", attrs: { transition: "bounce" } }, [
+            _vm._v("bbb")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showCharC
+        ? _c("p", { staticClass: "bounce", attrs: { transition: "bounce" } }, [
+            _vm._v("ccc")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showCharR1
+        ? _c("p", { staticClass: "bounce", attrs: { transition: "bounce" } }, [
+            _vm._v("ddd")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showCharR2
+        ? _c("p", { staticClass: "bounce", attrs: { transition: "bounce" } }, [
+            _vm._v("eee")
+          ])
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -61276,7 +61364,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    charList: "getCharList"
+  })),
   methods: {
     getScene: function getScene(count) {
       var currentEvent = this["eventObj"];
@@ -61325,6 +61422,46 @@ __webpack_require__.r(__webpack_exports__);
     windowEvent: function windowEvent(event) {
       this[event.window] = true;
       this.$store.commit("setMessage", event.msg);
+    },
+    showChar: function showChar(name, pos) {
+      var _char = null;
+
+      if (name) {
+        _char = this.charList[name];
+      } else {
+        _char = {
+          name: "",
+          imgL: "",
+          imgR: ""
+        };
+      }
+
+      switch (pos) {
+        case "l1":
+          this.$store.commit("setCharImgL1", _char.imgL);
+          console.log(_char);
+          break;
+
+        case "l2":
+          this.$store.commit("setCharImgL2", _char.imgL);
+          console.log(_char);
+          break;
+
+        case "c":
+          this.$store.commit("setCharImgC", _char.imgL);
+          console.log(_char);
+          break;
+
+        case "r1":
+          this.$store.commit("setCharImgR1", _char.imgR);
+          console.log(_char);
+          break;
+
+        case "r2":
+          this.$store.commit("setCharImgR2", _char.imgR);
+          console.log(_char);
+          break;
+      }
     },
     soundSet: function soundSet(_boolean) {
       this.$store.commit("setSoundFlag", _boolean);
@@ -61898,7 +62035,7 @@ var state = {
   message: "storeメッセージ",
   choice1: "",
   choice2: "",
-  charName: "",
+  charName: "test",
   charImgL1: "",
   charImgL2: "",
   charImgC: "",
@@ -61912,112 +62049,134 @@ var state = {
   },
   //立ち絵変更用のキャラデータオブジェクト
   npc: {
-    sphere: {
+    // sphere
+    スフィア: {
       name: "スフィア",
       imgR: "./img/npc/npc001r",
       imgL: "./img/npc/npc001l"
     },
-    eir: {
+    // eir
+    エイル: {
       name: "エイル",
       imgR: "./img/npc/npc002r",
       imgL: "./img/npc/npc002l"
     },
-    vulcan: {
+    // vulcan
+    ヴァルカン: {
       name: "ヴァルカン",
       imgR: "./img/npc/npc003r",
       imgL: "./img/npc/npc003l"
     },
-    fried: {
+    // fried
+    フリート: {
       name: "フリート",
       imgR: "./img/npc/npc004r",
       imgL: "./img/npc/npc004l"
     },
-    isaac: {
+    // isaac
+    アイザック: {
       name: "アイザック",
       imgR: "./img/npc/npc005r",
       imgL: "./img/npc/npc005l"
     },
-    arthur: {
+    // arthur
+    アーサー: {
       name: "アーサー",
       imgR: "./img/npc/npc006r",
       imgL: "./img/npc/npc006l"
     },
-    zenobia: {
+    // zenobia
+    ゼノビア: {
       name: "ゼノビア",
       imgR: "./img/npc/npc007r",
       imgL: "./img/npc/npc007l"
     },
-    hecatia: {
+    // hecatia
+    ヘカテア: {
       name: "ヘカテア",
       imgR: "./img/npc/npc008r",
       imgL: "./img/npc/npc008l"
     },
-    micha: {
+    // micha
+    ミカ: {
       name: "ミカ",
       imgR: "./img/npc/npc009r",
       imgL: "./img/npc/npc009l"
     },
-    luci: {
+    // luci
+    ルシ: {
       name: "ルシ",
       imgR: "./img/npc/npc010r",
       imgL: "./img/npc/npc010l"
     },
-    gerbera: {
+    // gerbera
+    ガーベラ: {
       name: "ガーベラ",
       imgR: "./img/npc/npc011r",
       imgL: "./img/npc/npc011l"
     },
-    cattleya: {
+    // cattleya
+    カトレア: {
       name: "カトレア",
       imgR: "./img/npc/npc012r",
       imgL: "./img/npc/npc012l"
     },
-    yanagi: {
+    // yanagi
+    ヤナギ: {
       name: "ヤナギ",
       imgR: "./img/npc/npc013r",
       imgL: "./img/npc/npc013l"
     },
-    al: {
+    // al
+    アル: {
       name: "アル",
       imgR: "./img/npc/npc014r",
       imgL: "./img/npc/npc014l"
     },
-    zelos: {
+    // zelos
+    ゼーロス: {
       name: "ゼーロス",
       imgR: "./img/npc/npc015r",
       imgL: "./img/npc/npc015l"
     },
-    kratos: {
+    // kratos
+    クラトス: {
       name: "クラトス",
       imgR: "./img/npc/npc016r",
       imgL: "./img/npc/npc016l"
     },
-    sibyl: {
+    // sibyl
+    シビュラ: {
       name: "シビュラ",
       imgR: "./img/npc/npc017r",
       imgL: "./img/npc/npc017l"
     },
-    wodan: {
+    // wodan
+    ウォーダン: {
       name: "ウォーダン",
       imgR: "./img/npc/npc018r",
       imgL: "./img/npc/npc018l"
     },
-    ullr: {
+    // ullr
+    ウル: {
       name: "ウル",
       imgR: "./img/npc/npc019r",
       imgL: "./img/npc/npc019l"
     },
-    ask: {
+    // ask
+    アスク: {
       name: "アスク",
       imgR: "./img/npc/npc020r",
       imgL: "./img/npc/npc020l"
     },
-    minerva: {
+    // minerva
+    ミナーヴァ: {
       name: "ミナーヴァ",
       imgR: "./img/npc/npc021r",
       imgL: "./img/npc/npc021l"
     },
-    nata: {
+    // nata
+    ナタ: {
       name: "ナタ",
       imgR: "./img/npc/npc022r",
       imgL: "./img/npc/npc022l"
@@ -62045,6 +62204,9 @@ var getters = {
   },
   getChoice2: function getChoice2(state) {
     return state.choice2;
+  },
+  getCharList: function getCharList(state) {
+    return state.npc;
   },
   getCharName: function getCharName(state) {
     return state.charName;
@@ -62100,35 +62262,40 @@ var mutations = {
     if (imgPath === "") {
       state.charImgL1 = "";
     } else {
-      state.charImgL1 = "./img/npc/" + imgPath;
+      // state.charImgL1 = "./img/npc/" + imgPath;
+      state.charImgL1 = imgPath + ".png";
     }
   },
   setCharImgL2: function setCharImgL2(state, imgPath) {
     if (imgPath === "") {
       state.charImgL2 = "";
     } else {
-      state.charImgL2 = "./img/npc/" + imgPath;
+      // state.charImgL2 = "./img/npc/" + imgPath;
+      state.charImgL2 = imgPath + ".png";
     }
   },
   setCharImgC: function setCharImgC(state, imgPath) {
     if (imgPath === "") {
       state.charImgC = "";
     } else {
-      state.charImgC = "./img/npc/" + imgPath;
+      // state.charImgC = "./img/npc/" + imgPath;
+      state.charImgC = imgPath + ".png";
     }
   },
   setCharImgR1: function setCharImgR1(state, imgPath) {
     if (imgPath === "") {
       state.charImgR1 = "";
     } else {
-      state.charImgR1 = "./img/npc/" + imgPath;
+      // state.charImgR1 = "./img/npc/" + imgPath;
+      state.charImgR1 = imgPath + ".png";
     }
   },
   setCharImgR2: function setCharImgR2(state, imgPath) {
     if (imgPath === "") {
       state.charImgR2 = "";
     } else {
-      state.charImgR2 = "./img/npc/" + imgPath;
+      // state.charImgR2 = "./img/npc/" + imgPath;
+      state.charImgR2 = imgPath + ".png";
     }
   },
   setSoundFlag: function setSoundFlag(state, flag) {

@@ -6,7 +6,7 @@ const state = {
     message: "storeメッセージ",
     choice1: "",
     choice2: "",
-    charName: "",
+    charName: "test",
     charImgL1: "",
     charImgL2: "",
     charImgC: "",
@@ -22,112 +22,134 @@ const state = {
 
     //立ち絵変更用のキャラデータオブジェクト
     npc: {
-        sphere: {
+        // sphere
+        スフィア: {
             name: "スフィア",
             imgR: "./img/npc/npc001r",
             imgL: "./img/npc/npc001l"
         },
-        eir: {
+        // eir
+        エイル: {
             name: "エイル",
             imgR: "./img/npc/npc002r",
             imgL: "./img/npc/npc002l"
         },
-        vulcan: {
+        // vulcan
+        ヴァルカン: {
             name: "ヴァルカン",
             imgR: "./img/npc/npc003r",
             imgL: "./img/npc/npc003l"
         },
-        fried: {
+        // fried
+        フリート: {
             name: "フリート",
             imgR: "./img/npc/npc004r",
             imgL: "./img/npc/npc004l"
         },
-        isaac: {
+        // isaac
+        アイザック: {
             name: "アイザック",
             imgR: "./img/npc/npc005r",
             imgL: "./img/npc/npc005l"
         },
-        arthur: {
+        // arthur
+        アーサー: {
             name: "アーサー",
             imgR: "./img/npc/npc006r",
             imgL: "./img/npc/npc006l"
         },
-        zenobia: {
+        // zenobia
+        ゼノビア: {
             name: "ゼノビア",
             imgR: "./img/npc/npc007r",
             imgL: "./img/npc/npc007l"
         },
-        hecatia: {
+        // hecatia
+        ヘカテア: {
             name: "ヘカテア",
             imgR: "./img/npc/npc008r",
             imgL: "./img/npc/npc008l"
         },
-        micha: {
+        // micha
+        ミカ: {
             name: "ミカ",
             imgR: "./img/npc/npc009r",
             imgL: "./img/npc/npc009l"
         },
-        luci: {
+        // luci
+        ルシ: {
             name: "ルシ",
             imgR: "./img/npc/npc010r",
             imgL: "./img/npc/npc010l"
         },
-        gerbera: {
+        // gerbera
+        ガーベラ: {
             name: "ガーベラ",
             imgR: "./img/npc/npc011r",
             imgL: "./img/npc/npc011l"
         },
-        cattleya: {
+        // cattleya
+        カトレア: {
             name: "カトレア",
             imgR: "./img/npc/npc012r",
             imgL: "./img/npc/npc012l"
         },
-        yanagi: {
+        // yanagi
+        ヤナギ: {
             name: "ヤナギ",
             imgR: "./img/npc/npc013r",
             imgL: "./img/npc/npc013l"
         },
-        al: {
+        // al
+        アル: {
             name: "アル",
             imgR: "./img/npc/npc014r",
             imgL: "./img/npc/npc014l"
         },
-        zelos: {
+        // zelos
+        ゼーロス: {
             name: "ゼーロス",
             imgR: "./img/npc/npc015r",
             imgL: "./img/npc/npc015l"
         },
-        kratos: {
+        // kratos
+        クラトス: {
             name: "クラトス",
             imgR: "./img/npc/npc016r",
             imgL: "./img/npc/npc016l"
         },
-        sibyl: {
+        // sibyl
+        シビュラ: {
             name: "シビュラ",
             imgR: "./img/npc/npc017r",
             imgL: "./img/npc/npc017l"
         },
-        wodan: {
+        // wodan
+        ウォーダン: {
             name: "ウォーダン",
             imgR: "./img/npc/npc018r",
             imgL: "./img/npc/npc018l"
         },
-        ullr: {
+        // ullr
+        ウル: {
             name: "ウル",
             imgR: "./img/npc/npc019r",
             imgL: "./img/npc/npc019l"
         },
-        ask: {
+        // ask
+        アスク: {
             name: "アスク",
             imgR: "./img/npc/npc020r",
             imgL: "./img/npc/npc020l"
         },
-        minerva: {
+        // minerva
+        ミナーヴァ: {
             name: "ミナーヴァ",
             imgR: "./img/npc/npc021r",
             imgL: "./img/npc/npc021l"
         },
-        nata: {
+        // nata
+        ナタ: {
             name: "ナタ",
             imgR: "./img/npc/npc022r",
             imgL: "./img/npc/npc022l"
@@ -155,6 +177,9 @@ const getters = {
     },
     getChoice2: state => {
         return state.choice2;
+    },
+    getCharList: state => {
+        return state.npc;
     },
     getCharName: state => {
         return state.charName;
@@ -210,35 +235,40 @@ const mutations = {
         if (imgPath === "") {
             state.charImgL1 = "";
         } else {
-            state.charImgL1 = "./img/npc/" + imgPath;
+            // state.charImgL1 = "./img/npc/" + imgPath;
+            state.charImgL1 = imgPath + ".png";
         }
     },
     setCharImgL2(state, imgPath) {
         if (imgPath === "") {
             state.charImgL2 = "";
         } else {
-            state.charImgL2 = "./img/npc/" + imgPath;
+            // state.charImgL2 = "./img/npc/" + imgPath;
+            state.charImgL2 = imgPath + ".png";
         }
     },
     setCharImgC(state, imgPath) {
         if (imgPath === "") {
             state.charImgC = "";
         } else {
-            state.charImgC = "./img/npc/" + imgPath;
+            // state.charImgC = "./img/npc/" + imgPath;
+            state.charImgC = imgPath + ".png";
         }
     },
     setCharImgR1(state, imgPath) {
         if (imgPath === "") {
             state.charImgR1 = "";
         } else {
-            state.charImgR1 = "./img/npc/" + imgPath;
+            // state.charImgR1 = "./img/npc/" + imgPath;
+            state.charImgR1 = imgPath + ".png";
         }
     },
     setCharImgR2(state, imgPath) {
         if (imgPath === "") {
             state.charImgR2 = "";
         } else {
-            state.charImgR2 = "./img/npc/" + imgPath;
+            // state.charImgR2 = "./img/npc/" + imgPath;
+            state.charImgR2 = imgPath + ".png";
         }
     },
     setSoundFlag(state, flag) {

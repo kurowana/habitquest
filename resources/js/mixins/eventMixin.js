@@ -1,4 +1,11 @@
+import { mapGetters } from "vuex";
+
 export default {
+    computed: {
+        ...mapGetters({
+            charList: "getCharList"
+        })
+    },
     methods: {
         getScene: function(count) {
             const currentEvent = this["eventObj"];
@@ -42,6 +49,36 @@ export default {
         windowEvent(event) {
             this[event.window] = true;
             this.$store.commit("setMessage", event.msg);
+        },
+        showChar(name, pos) {
+            let char = null;
+            if (name) {
+                char = this.charList[name];
+            } else {
+                char = { name: "", imgL: "", imgR: "" };
+            }
+            switch (pos) {
+                case "l1":
+                    this.$store.commit("setCharImgL1", char.imgL);
+                    console.log(char);
+                    break;
+                case "l2":
+                    this.$store.commit("setCharImgL2", char.imgL);
+                    console.log(char);
+                    break;
+                case "c":
+                    this.$store.commit("setCharImgC", char.imgL);
+                    console.log(char);
+                    break;
+                case "r1":
+                    this.$store.commit("setCharImgR1", char.imgR);
+                    console.log(char);
+                    break;
+                case "r2":
+                    this.$store.commit("setCharImgR2", char.imgR);
+                    console.log(char);
+                    break;
+            }
         },
         soundSet(boolean) {
             this.$store.commit("setSoundFlag", boolean);

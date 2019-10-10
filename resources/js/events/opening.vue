@@ -162,12 +162,15 @@ export default {
 
       eventObj: [
         function(vm) {
+          vm.showChar("スフィア", "l2");
           vm.setEvent({ type: "msg", content: "メッセージのテスト" });
         },
         function(vm) {
+          vm.showChar("エイル", "r2");
           vm.setEvent({ type: "msg", content: "メッセージのテスト2" });
         },
         function(vm) {
+          vm.showChar("", "r2");
           vm.setEvent({
             type: "select",
             content: {
@@ -198,11 +201,11 @@ export default {
   },
   created: function() {
     this.$store.commit("setBgImg", "");
-    this.$store.commit("setCharImgL1", "npc001l.png");
-    this.$store.commit("setCharImgL2", "npc006l.png");
-    this.$store.commit("setCharImgC", "npc001_1.png");
-    this.$store.commit("setCharImgR1", "npc001r.png");
-    this.$store.commit("setCharImgR2", "npc007r.png");
+    // this.$store.commit("setCharImgL1", "npc001l.png");
+    // this.$store.commit("setCharImgL2", "npc006l.png");
+    // this.$store.commit("setCharImgC", "npc001_1.png");
+    // this.$store.commit("setCharImgR1", "npc001r.png");
+    // this.$store.commit("setCharImgR2", "npc007r.png");
 
     this.$store.commit("setMessage", "これはオープニングです");
   },
