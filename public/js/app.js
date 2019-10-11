@@ -4354,8 +4354,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
   computed: {
     showCharL1: function showCharL1() {
       return this.$store.state.eventStore.charImgL1;
@@ -19177,7 +19186,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-l2[data-v-6ca2f060] {\r\n  width: 42%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 10%;\r\n  opacity: 0.7;\n}\n.img-c[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\r\n  opacity: 0.7;\n}\n.img-r1[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 60%;\r\n  opacity: 0.7;\n}\n.img-r2[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 50%;\r\n  opacity: 0.7;\n}\nbounce-transition[data-v-6ca2f060] {\r\n  display: inline-block; /* 他の場合、スケールアニメーションは動作しません */\n}\n.bounce-enter[data-v-6ca2f060] {\r\n  -webkit-animation: bounce-in-data-v-6ca2f060 0.5s;\r\n          animation: bounce-in-data-v-6ca2f060 0.5s;\n}\n.bounce-leave[data-v-6ca2f060] {\r\n  -webkit-animation: bounce-out-data-v-6ca2f060 0.5s;\r\n          animation: bounce-out-data-v-6ca2f060 0.5s;\n}\n@-webkit-keyframes bounce-in-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: scale(0);\r\n            transform: scale(0);\n}\n50% {\r\n    -webkit-transform: scale(1.5);\r\n            transform: scale(1.5);\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n}\n@keyframes bounce-in-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: scale(0);\r\n            transform: scale(0);\n}\n50% {\r\n    -webkit-transform: scale(1.5);\r\n            transform: scale(1.5);\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n}\n@-webkit-keyframes bounce-out-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n50% {\r\n    -webkit-transform: scale(1.5);\r\n            transform: scale(1.5);\n}\n100% {\r\n    -webkit-transform: scale(0);\r\n            transform: scale(0);\n}\n}\n@keyframes bounce-out-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\n}\n50% {\r\n    -webkit-transform: scale(1.5);\r\n            transform: scale(1.5);\n}\n100% {\r\n    -webkit-transform: scale(0);\r\n            transform: scale(0);\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-l2[data-v-6ca2f060] {\r\n  width: 42%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 10%;\r\n  opacity: 0.7;\n}\n.img-c[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\r\n  opacity: 0.7;\n}\n.img-r1[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 60%;\r\n  opacity: 0.7;\n}\n.img-r2[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 50%;\r\n  opacity: 0.7;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -44205,56 +44214,35 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _vm.showCharC
-        ? _c("img", {
-            staticClass: "img-c",
-            attrs: { src: _vm.showCharC, transition: "bounce" }
-          })
-        : _vm._e(),
+      _c("transition", { attrs: { name: "fade" } }, [
+        _vm.showCharC
+          ? _c("div", [
+              _c("img", { staticClass: "img-c", attrs: { src: _vm.showCharC } })
+            ])
+          : _vm._e()
+      ]),
       _vm._v(" "),
-      _vm.showCharR1
-        ? _c("img", {
-            staticClass: "img-r1",
-            attrs: { src: _vm.showCharR1, transition: "bounce" }
-          })
-        : _vm._e(),
+      _c("transition", { attrs: { name: "fade" } }, [
+        _vm.showCharR1
+          ? _c("div", [
+              _c("img", {
+                staticClass: "img-r1",
+                attrs: { src: _vm.showCharR1 }
+              })
+            ])
+          : _vm._e()
+      ]),
       _vm._v(" "),
-      _vm.showCharR2
-        ? _c("img", {
-            staticClass: "img-r2",
-            attrs: { src: _vm.showCharR2, transition: "bounce" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.showCharL1
-        ? _c("p", { staticClass: "bounce", attrs: { transition: "bounce" } }, [
-            _vm._v("aaa")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.showCharL2
-        ? _c("p", { staticClass: "bounce", attrs: { transition: "bounce" } }, [
-            _vm._v("bbb")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.showCharC
-        ? _c("p", { staticClass: "bounce", attrs: { transition: "bounce" } }, [
-            _vm._v("ccc")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.showCharR1
-        ? _c("p", { staticClass: "bounce", attrs: { transition: "bounce" } }, [
-            _vm._v("ddd")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.showCharR2
-        ? _c("p", { staticClass: "bounce", attrs: { transition: "bounce" } }, [
-            _vm._v("eee")
-          ])
-        : _vm._e()
+      _c("transition", { attrs: { name: "fade" } }, [
+        _vm.showCharR2
+          ? _c("div", [
+              _c("img", {
+                staticClass: "img-r2",
+                attrs: { src: _vm.showCharR2 }
+              })
+            ])
+          : _vm._e()
+      ])
     ],
     1
   )
