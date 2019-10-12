@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="event">
+      {{this.eventObj.length}}
       {{this.sceneCount}}
       {{this.NextFlag}}
       <message @get-scene="getScene"></message>
@@ -112,6 +113,11 @@
           <button @click.prevent="registUser">登録</button>
         </div>
       </modal>
+      <choice v-if="testChoice" @get-scene="getScene">
+        あいうえお
+        <template v-slot:choice1>123</template>
+        <template v-slot:choice2>456</template>
+      </choice>
     </div>
   </div>
 </template>
@@ -126,12 +132,14 @@ import message from "../parts/Message";
 import charImg from "../parts/charImg";
 
 import modal from "../parts/modal";
+import choice from "../parts/choice";
 
 export default {
   components: {
     message: message,
     "char-img": charImg,
-    modal: modal
+    modal: modal,
+    choice: choice
   },
   mixins: [baseMixin, eventMixin],
   data: function() {
@@ -144,6 +152,7 @@ export default {
       isConfirmModal: false,
 
       isTestModal: false,
+      testChoice: true,
 
       registState: 1,
 
@@ -171,16 +180,33 @@ export default {
         },
         function(vm) {
           vm.showChar("", "r2");
+          this.testChoice = false;
+          console.log(this.testChoice);
           vm.setEvent({
             type: "select",
             content: {
               msg: "どちらを選ぶ？",
               choice: [
-                { text: "選択肢1", event: function() {} },
-                { text: "選択肢2", event: function() {} }
+                {
+                  text: "選択肢1",
+                  event: function() {
+                    console.log(1);
+                  }
+                },
+                {
+                  text: "選択肢2",
+                  event: function() {
+                    console.log(2);
+                  }
+                }
               ]
             }
           });
+          console.log(this.testChoice);
+        },
+        function(vm) {
+          vm.showChar("エイル", "r2");
+          vm.setEvent({ type: "msg", content: "メッセージのテスト2" });
         },
         function(vm) {
           vm.setEvent({
