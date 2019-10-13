@@ -3750,10 +3750,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -3779,7 +3775,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isStatusModal: false,
       isConfirmModal: false,
       isTestModal: false,
-      testChoice: true,
+      isShowChoice: false,
+      isEffect: false,
+      activeEffect: "none",
       registState: 1,
       name: "",
       password: "",
@@ -3792,7 +3790,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dex: 10,
       luc: 10,
       eventObj: [function (vm) {
-        vm.showChar("スフィア", "l2");
+        vm.showChar("スフィア", "l1");
+        vm.showChar("ヴァルカン", "l2");
+        vm.showChar("フリート", "c");
+        vm.showChar("アイザック", "r1");
+        vm.showChar("アーサー", "r2");
         vm.setEvent({
           type: "msg",
           content: "メッセージのテスト"
@@ -3804,9 +3806,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           content: "メッセージのテスト2"
         });
       }, function (vm) {
+        // vm.isEffect = true;
+        vm.activeEffect = "anime1";
+        vm.setEvent({
+          type: "msg",
+          content: "メッセージのテスト3"
+        });
+      }, function (vm) {
+        // vm.isEffect = true;
+        vm.activeEffect = "anime2";
+        vm.setEvent({
+          type: "msg",
+          content: "アニメ2"
+        });
+      }, function (vm) {
         vm.showChar("", "r2");
-        this.testChoice = false;
-        console.log(this.testChoice);
         vm.setEvent({
           type: "select",
           content: {
@@ -3815,11 +3829,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               text: "選択肢1",
               event: function event() {
                 console.log(1);
+                vm.$store.commit("setEventObj", "eventObj1");
+                vm.$store.commit("setSceneCount", 0);
               }
             }, {
               text: "選択肢2",
               event: function event() {
                 console.log(2);
+                vm.$store.commit("setEventObj", "eventObj2");
+                vm.$store.commit("setSceneCount", 0);
               }
             }]
           }
@@ -3838,6 +3856,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             window: "isTestModal",
             msg: "メッセージ"
           }
+        });
+      }],
+      eventObj1: [function (vm) {
+        vm.showChar("スフィア", "l2");
+        vm.setEvent({
+          type: "msg",
+          content: "選択肢1を選んだよ"
+        });
+      }, function (vm) {
+        vm.setEvent({
+          type: "msg",
+          content: "選択肢1を選んだよ。続き"
+        });
+      }],
+      eventObj2: [function (vm) {
+        vm.showChar("スフィア", "l2");
+        vm.setEvent({
+          type: "msg",
+          content: "選択し２"
+        });
+      }, function (vm) {
+        vm.setEvent({
+          type: "msg",
+          content: "選択肢２を選んだよ。続き"
         });
       }]
     };
@@ -4383,10 +4425,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
+  },
+  props: {
+    isEffect: Boolean,
+    activeEffect: String
   },
   computed: {
     showCharL1: function showCharL1() {
@@ -4403,6 +4450,22 @@ __webpack_require__.r(__webpack_exports__);
     },
     showCharR2: function showCharR2() {
       return this.$store.state.eventStore.charImgR2;
+    },
+    effectClass: function effectClass() {
+      console.log(this.activeEffect);
+
+      switch (this.activeEffect) {
+        case "anime1":
+          return "effect";
+          break;
+
+        case "anime2":
+          return "effect2";
+          break;
+
+        default:
+          return;
+      }
     }
   }
 });
@@ -4432,6 +4495,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -4444,12 +4509,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   methods: {
     choiced1: function choiced1() {
+      console.log(this.choice1);
       this.choice1.event();
+      this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
     },
     choiced2: function choiced2() {
-      this.choice1.event();
+      console.log(this.choice2);
+      this.choice2.event();
+      this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
     }
@@ -19258,7 +19327,26 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-l2[data-v-6ca2f060] {\r\n  width: 42%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 10%;\r\n  opacity: 0.7;\n}\n.img-c[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\r\n  opacity: 0.7;\n}\n.img-r1[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 60%;\r\n  opacity: 0.7;\n}\n.img-r2[data-v-6ca2f060] {\r\n  width: 40%;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 50%;\r\n  opacity: 0.7;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  /* width: 60%; */\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  /* width: 60%; */\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  /* width: 60%; */\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 60%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  /* width: 60%; */\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  /* width: 60%; */\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\n.effect[data-v-6ca2f060] {\r\n  -webkit-animation: anime1-data-v-6ca2f060 0.2s ease-in-out 0s 10;\r\n          animation: anime1-data-v-6ca2f060 0.2s ease-in-out 0s 10;\n}\n.effect2[data-v-6ca2f060] {\r\n  -webkit-animation: anime2-data-v-6ca2f060 0.2s ease-in-out 0s 10;\r\n          animation: anime2-data-v-6ca2f060 0.2s ease-in-out 0s 10;\n}\n@-webkit-keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/parts/choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/parts/choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.choiceWrapper[data-v-17ebb1a4] {\r\n  position: absolute;\r\n  margin-top: 140px;\n}\n.choiceBox[data-v-17ebb1a4] {\r\n  width: 600px;\r\n  height: 50px;\r\n  background: black;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 0px 0px 50px 100px;\r\n  padding-top: 9px;\r\n  z-index: 200;\r\n  font-size: 1.3em;\r\n  text-align: center;\n}\n.choiceBox[data-v-17ebb1a4]:hover {\r\n  background: #ffe4b5;\r\n  border: 2px double red;\r\n  color: black;\r\n  font-weight: bold;\n}\r\n", ""]);
 
 // exports
 
@@ -38313,6 +38401,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/parts/choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/parts/choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/parts/choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/parts/modal.vue?vue&type=style&index=0&id=5ed17cb0&scoped=true&lang=css&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/parts/modal.vue?vue&type=style&index=0&id=5ed17cb0&scoped=true&lang=css& ***!
@@ -43319,7 +43437,12 @@ var render = function() {
         ),
         _c("message", { on: { "get-scene": _vm.getScene } }),
         _vm._v(" "),
-        _c("char-img"),
+        _c("char-img", {
+          attrs: {
+            "is-effect": _vm.isEffect,
+            "active-effect": _vm.activeEffect
+          }
+        }),
         _vm._v(" "),
         _vm.isSoundCheckModal
           ? _c("modal", { staticClass: "soundCheckModal" }, [
@@ -43883,35 +44006,13 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _vm.testChoice
-          ? _c(
-              "choice",
-              {
-                on: { "get-scene": _vm.getScene },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "choice1",
-                      fn: function() {
-                        return [_vm._v("123")]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "choice2",
-                      fn: function() {
-                        return [_vm._v("456")]
-                      },
-                      proxy: true
-                    }
-                  ],
-                  null,
-                  false,
-                  2972020301
-                )
-              },
-              [_vm._v("\n      あいうえお\n      ")]
-            )
+        _vm.isShowChoice
+          ? _c("choice", {
+              on: {
+                "get-scene": _vm.getScene,
+                "complete-choice": _vm.completeChoice
+              }
+            })
           : _vm._e()
       ],
       1
@@ -44299,9 +44400,9 @@ var render = function() {
     [
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharL1
-          ? _c("div", [
+          ? _c("div", { staticClass: "img-l1" }, [
               _c("img", {
-                staticClass: "img-l1",
+                class: _vm.effectClass,
                 attrs: { src: _vm.showCharL1 }
               })
             ])
@@ -44310,9 +44411,9 @@ var render = function() {
       _vm._v(" "),
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharL2
-          ? _c("div", [
+          ? _c("div", { staticClass: "img-l2" }, [
               _c("img", {
-                staticClass: "img-l2",
+                class: _vm.effectClass,
                 attrs: { src: _vm.showCharL2 }
               })
             ])
@@ -44321,17 +44422,20 @@ var render = function() {
       _vm._v(" "),
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharC
-          ? _c("div", [
-              _c("img", { staticClass: "img-c", attrs: { src: _vm.showCharC } })
+          ? _c("div", { staticClass: "img-c" }, [
+              _c("img", {
+                class: _vm.effectClass,
+                attrs: { src: _vm.showCharC }
+              })
             ])
           : _vm._e()
       ]),
       _vm._v(" "),
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharR1
-          ? _c("div", [
+          ? _c("div", { staticClass: "img-r1" }, [
               _c("img", {
-                staticClass: "img-r1",
+                class: _vm.effectClass,
                 attrs: { src: _vm.showCharR1 }
               })
             ])
@@ -44340,9 +44444,9 @@ var render = function() {
       _vm._v(" "),
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharR2
-          ? _c("div", [
+          ? _c("div", { staticClass: "img-r2" }, [
               _c("img", {
-                staticClass: "img-r2",
+                class: _vm.effectClass,
                 attrs: { src: _vm.showCharR2 }
               })
             ])
@@ -44375,12 +44479,34 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { on: { click: _vm.choiced1 } }, [
-      _vm._v(_vm._s(_vm.choice1.text))
-    ]),
-    _vm._v(" "),
-    _c("div", { on: { click: _vm.choiced2 } }, [
-      _vm._v(_vm._s(_vm.choice2.text))
+    _c("div", { staticClass: "choiceWrapper" }, [
+      _c(
+        "div",
+        {
+          staticClass: "choiceBox",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.choiced1($event)
+            }
+          }
+        },
+        [_vm._v(_vm._s(_vm.choice1.text))]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "choiceBox",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.choiced2($event)
+            }
+          }
+        },
+        [_vm._v(_vm._s(_vm.choice2.text))]
+      )
     ])
   ])
 }
@@ -61497,11 +61623,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    currentEventObj: "getEventObj",
     charList: "getCharList"
   })),
   methods: {
     getScene: function getScene(count) {
-      var currentEvent = this["eventObj"];
+      var currentEvent = this[this.currentEventObj];
 
       if (!Array.isArray(currentEvent)) {
         console.log("データが不正です。");
@@ -61543,10 +61670,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit("setMessage", event.msg);
       this.$store.commit("setChoice1", event.choice[0]);
       this.$store.commit("setChoice2", event.choice[1]);
+      this.isShowChoice = true;
     },
     windowEvent: function windowEvent(event) {
       this[event.window] = true;
       this.$store.commit("setMessage", event.msg);
+    },
+    completeChoice: function completeChoice() {
+      this.isShowChoice = false;
     },
     showChar: function showChar(name, pos) {
       var _char = null;
@@ -61871,7 +62002,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _choice_vue_vue_type_template_id_17ebb1a4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./choice.vue?vue&type=template&id=17ebb1a4&scoped=true& */ "./resources/js/parts/choice.vue?vue&type=template&id=17ebb1a4&scoped=true&");
 /* harmony import */ var _choice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./choice.vue?vue&type=script&lang=js& */ "./resources/js/parts/choice.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _choice_vue_vue_type_style_index_0_id_17ebb1a4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css& */ "./resources/js/parts/choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -61879,7 +62012,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _choice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _choice_vue_vue_type_template_id_17ebb1a4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _choice_vue_vue_type_template_id_17ebb1a4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -61908,6 +62041,22 @@ component.options.__file = "resources/js/parts/choice.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_choice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./choice.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/parts/choice.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_choice_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/parts/choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/parts/choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css& ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_choice_vue_vue_type_style_index_0_id_17ebb1a4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/parts/choice.vue?vue&type=style&index=0&id=17ebb1a4&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_choice_vue_vue_type_style_index_0_id_17ebb1a4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_choice_vue_vue_type_style_index_0_id_17ebb1a4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_choice_vue_vue_type_style_index_0_id_17ebb1a4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_choice_vue_vue_type_style_index_0_id_17ebb1a4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_choice_vue_vue_type_style_index_0_id_17ebb1a4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

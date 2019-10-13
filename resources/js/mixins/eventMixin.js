@@ -3,12 +3,13 @@ import { mapGetters } from "vuex";
 export default {
     computed: {
         ...mapGetters({
+            currentEventObj: "getEventObj",
             charList: "getCharList"
         })
     },
     methods: {
         getScene: function(count) {
-            const currentEvent = this["eventObj"];
+            const currentEvent = this[this.currentEventObj];
             if (!Array.isArray(currentEvent)) {
                 console.log("データが不正です。");
                 return false;
@@ -45,10 +46,14 @@ export default {
             this.$store.commit("setMessage", event.msg);
             this.$store.commit("setChoice1", event.choice[0]);
             this.$store.commit("setChoice2", event.choice[1]);
+            this.isShowChoice = true;
         },
         windowEvent(event) {
             this[event.window] = true;
             this.$store.commit("setMessage", event.msg);
+        },
+        completeChoice() {
+            this.isShowChoice = false;
         },
         showChar(name, pos) {
             let char = null;

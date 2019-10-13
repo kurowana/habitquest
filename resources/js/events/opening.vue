@@ -5,7 +5,7 @@
       {{this.sceneCount}}
       {{this.NextFlag}}
       <message @get-scene="getScene"></message>
-      <char-img></char-img>
+      <char-img :is-effect="isEffect" :active-effect="activeEffect"></char-img>
       <!--音楽再生確認モーダル-->
       <modal v-if="isSoundCheckModal" class="soundCheckModal">
         <div>
@@ -113,11 +113,7 @@
           <button @click.prevent="registUser">登録</button>
         </div>
       </modal>
-      <choice v-if="testChoice" @get-scene="getScene">
-        あいうえお
-        <template v-slot:choice1>123</template>
-        <template v-slot:choice2>456</template>
-      </choice>
+      <choice v-if="isShowChoice" @get-scene="getScene" @complete-choice="completeChoice"></choice>
     </div>
   </div>
 </template>
@@ -152,7 +148,10 @@ export default {
       isConfirmModal: false,
 
       isTestModal: false,
-      testChoice: true,
+      isShowChoice: false,
+
+      isEffect: false,
+      activeEffect: "none",
 
       registState: 1,
 
@@ -171,7 +170,11 @@ export default {
 
       eventObj: [
         function(vm) {
-          vm.showChar("スフィア", "l2");
+          vm.showChar("スフィア", "l1");
+          vm.showChar("ヴァルカン", "l2");
+          vm.showChar("フリート", "c");
+          vm.showChar("アイザック", "r1");
+          vm.showChar("アーサー", "r2");
           vm.setEvent({ type: "msg", content: "メッセージのテスト" });
         },
         function(vm) {
@@ -179,9 +182,17 @@ export default {
           vm.setEvent({ type: "msg", content: "メッセージのテスト2" });
         },
         function(vm) {
+          // vm.isEffect = true;
+          vm.activeEffect = "anime1";
+          vm.setEvent({ type: "msg", content: "メッセージのテスト3" });
+        },
+        function(vm) {
+          // vm.isEffect = true;
+          vm.activeEffect = "anime2";
+          vm.setEvent({ type: "msg", content: "アニメ2" });
+        },
+        function(vm) {
           vm.showChar("", "r2");
-          this.testChoice = false;
-          console.log(this.testChoice);
           vm.setEvent({
             type: "select",
             content: {
@@ -191,12 +202,16 @@ export default {
                   text: "選択肢1",
                   event: function() {
                     console.log(1);
+                    vm.$store.commit("setEventObj", "eventObj1");
+                    vm.$store.commit("setSceneCount", 0);
                   }
                 },
                 {
                   text: "選択肢2",
                   event: function() {
                     console.log(2);
+                    vm.$store.commit("setEventObj", "eventObj2");
+                    vm.$store.commit("setSceneCount", 0);
                   }
                 }
               ]
@@ -213,6 +228,24 @@ export default {
             type: "window",
             content: { window: "isTestModal", msg: "メッセージ" }
           });
+        }
+      ],
+      eventObj1: [
+        function(vm) {
+          vm.showChar("スフィア", "l2");
+          vm.setEvent({ type: "msg", content: "選択肢1を選んだよ" });
+        },
+        function(vm) {
+          vm.setEvent({ type: "msg", content: "選択肢1を選んだよ。続き" });
+        }
+      ],
+      eventObj2: [
+        function(vm) {
+          vm.showChar("スフィア", "l2");
+          vm.setEvent({ type: "msg", content: "選択し２" });
+        },
+        function(vm) {
+          vm.setEvent({ type: "msg", content: "選択肢２を選んだよ。続き" });
         }
       ]
     };
