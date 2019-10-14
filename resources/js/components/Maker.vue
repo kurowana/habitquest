@@ -41,9 +41,10 @@ import axios from "axios";
 
 import { mapGetters } from "vuex";
 import baseMixin from "../mixins/baseMixin";
+import eventMixin from "../mixins/eventMixin";
 
 export default {
-  mixins: [baseMixin],
+  mixins: [baseMixin, eventMixin],
   data: function() {
     return {
       inputIron: 0,
@@ -61,6 +62,7 @@ export default {
     })
   },
   created: function() {
+    this.changeBg("武器屋");
     this.initPage();
   },
   methods: {

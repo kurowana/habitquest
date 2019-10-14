@@ -33,6 +33,7 @@
 import axios from "axios";
 import { mapGetters } from "vuex";
 import baseMixin from "../mixins/baseMixin";
+import eventMixin from "../mixins/eventMixin";
 
 import BaseStChart from "../chart/BaseStChart.vue";
 
@@ -40,7 +41,7 @@ export default {
   components: {
     BaseStChart
   },
-  mixins: [baseMixin],
+  mixins: [baseMixin, eventMixin],
   data: function() {
     return {};
   },
@@ -53,6 +54,7 @@ export default {
     })
   },
   created: function() {
+    this.changeBg("ホーム");
     this.initPage();
   },
   methods: {

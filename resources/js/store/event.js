@@ -6,13 +6,37 @@ const state = {
     message: "storeメッセージ",
     choice1: "",
     choice2: "",
-    charName: "test",
-    charImgL1: "",
-    charImgL2: "",
-    charImgC: "",
-    charImgR1: "",
-    charImgR2: "",
-    bgImg: "tree",
+    charName: "",
+    charImgL1: {
+        path: "",
+        opacity: 1,
+        zIndex: 10,
+        effect: ""
+    },
+    charImgL2: {
+        path: "",
+        opacity: 1,
+        zIndex: 10,
+        effect: ""
+    },
+    charImgC: {
+        path: "",
+        opacity: 1,
+        zIndex: 10,
+        effect: ""
+    },
+    charImgR1: {
+        path: "",
+        opacity: 1,
+        zIndex: 10,
+        effect: ""
+    },
+    charImgR2: {
+        path: "",
+        opacity: 1,
+        zIndex: 10
+    },
+    bgImg: "",
 
     sound: {
         isPlay: false,
@@ -23,10 +47,15 @@ const state = {
     //立ち絵変更用のキャラデータオブジェクト
     npc: {
         // sphere
-        スフィア: {
+        スフィア1: {
             name: "スフィア",
             imgR: "./img/npc/npc001r",
             imgL: "./img/npc/npc001l"
+        },
+        スフィア2: {
+            name: "スフィア",
+            imgR: "./img/npc/npc001_1",
+            imgL: "./img/npc/npc001_1"
         },
         // eir
         エイル: {
@@ -201,14 +230,17 @@ const getters = {
     },
     getSound: state => {
         return state.sound;
+    },
+    getBgImg: state => {
+        return state.bgImg;
     }
 };
 const mutations = {
     setEventObj(state, obj) {
         state.eventObj = obj;
     },
-    setBgImg(state, imgClass) {
-        state.bgImg = imgClass;
+    setBgImg(state, bgImgClass) {
+        state.bgImg = bgImgClass;
     },
     setSceneCount(state, count) {
         state.sceneCount = count;
@@ -233,43 +265,68 @@ const mutations = {
     },
     setCharImgL1(state, imgPath) {
         if (imgPath === "") {
-            state.charImgL1 = "";
+            state.charImgL1.path = "";
         } else {
-            // state.charImgL1 = "./img/npc/" + imgPath;
-            state.charImgL1 = imgPath + ".png";
+            state.charImgL1.path = imgPath + ".png";
         }
     },
     setCharImgL2(state, imgPath) {
         if (imgPath === "") {
-            state.charImgL2 = "";
+            state.charImgL2.path = "";
         } else {
-            // state.charImgL2 = "./img/npc/" + imgPath;
-            state.charImgL2 = imgPath + ".png";
+            state.charImgL2.path = imgPath + ".png";
         }
     },
     setCharImgC(state, imgPath) {
         if (imgPath === "") {
-            state.charImgC = "";
+            state.charImgC.path = "";
         } else {
-            // state.charImgC = "./img/npc/" + imgPath;
-            state.charImgC = imgPath + ".png";
+            state.charImgC.path = imgPath + ".png";
         }
     },
     setCharImgR1(state, imgPath) {
         if (imgPath === "") {
-            state.charImgR1 = "";
+            state.charImgR1.path = "";
         } else {
-            // state.charImgR1 = "./img/npc/" + imgPath;
-            state.charImgR1 = imgPath + ".png";
+            state.charImgR1.path = imgPath + ".png";
         }
     },
     setCharImgR2(state, imgPath) {
         if (imgPath === "") {
-            state.charImgR2 = "";
+            state.charImgR2.path = "";
         } else {
-            // state.charImgR2 = "./img/npc/" + imgPath;
-            state.charImgR2 = imgPath + ".png";
+            state.charImgR2.path = imgPath + ".png";
         }
+    },
+    setOpacityL1(state, opacity) {
+        state.charImgL1.opacity = opacity;
+    },
+    setOpacityL2(state, opacity) {
+        state.charImgL2.opacity = opacity;
+    },
+    setOpacityC(state, opacity) {
+        state.charImgC.opacity = opacity;
+    },
+    setOpacityR1(state, opacity) {
+        state.charImgR1.opacity = opacity;
+    },
+    setOpacityR2(state, opacity) {
+        state.charImgR2.opacity = opacity;
+    },
+    setZIndexL1(state, index) {
+        state.charImgL1.zIndex = index;
+    },
+    setZIndexL2(state, index) {
+        state.charImgL2.zIndex = index;
+    },
+    setZIndexC(state, index) {
+        state.charImgC.zIndex = index;
+    },
+    setZIndexR1(state, index) {
+        state.charImgR1.zIndex = index;
+    },
+    setZIndexR2(state, index) {
+        state.charImgR2.zIndex = index;
     },
     setSoundFlag(state, flag) {
         state.sound.isPlay = flag;

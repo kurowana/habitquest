@@ -11,12 +11,13 @@
     <title>{{ config('app.name', 'HabitQuest') }}</title>
 
     <!-- Scripts -->
+
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/72b273d99c.js"></script>
+    <script src="https://kit.fontawesome.com/72b273d99c.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

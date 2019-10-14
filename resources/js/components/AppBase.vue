@@ -165,13 +165,55 @@ export default {
   color: #ffffff;
 }
 
+.home {
+  background: url("../../../public/img/bg/yadoya_room.jpg");
+  background-size: 800px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
+}
+.town {
+  background: url("../../../public/img/bg/Europe_House.jpg");
+  background-size: 800px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
+}
+.itemshop {
+  background: url("../../../public/img/bg/item_shop.jpg");
+  background-size: 800px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
+}
+.weaponshop {
+  background: url("../../../public/img/bg/bukiya.jpg");
+  background-size: 800px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
+}
+.bar {
+  background: url("../../../public/img/bg/bar.jpg");
+  background-size: 800px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
+}
 .shinden {
-  background: url("../../../public/img/bg/shinden01.jpg");
-  animation: bgFadeIn 0.5s ease 0s 1 normal;
+  background: url("../../../public/img/bg/shinden.jpg");
+  background-size: 800px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
 }
 .tree {
-  background: url("../../../public/img/bg/old_tree000.jpg");
-  animation: bgFadeIn 0.5s ease 0s 1 normal;
+  background: url("../../../public/img/bg/old_tree.jpg");
+  background-size: 800px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
+}
+.dungeon {
+  background: url("../../../public/img/bg/tika_ko.jpg");
+  background-size: 800px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
+}
+.dungeon {
+  background: url("../../../public/img/bg/tika_ko.jpg");
+  background-size: 800px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
+}
+.stream {
+  background: url("../../../public/img/bg/keiryuu.jpg");
+  background-size: 800px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
 }
 
 @keyframes bgFadeIn {

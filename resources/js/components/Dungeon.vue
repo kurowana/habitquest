@@ -10,6 +10,8 @@
       @click="startBattle"
     >探索開始</button>
     {{monster}}
+    <message @get-scene="getScene"></message>
+    <char-img :active-effect="activeMotion"></char-img>
   </div>
 </template>
 
@@ -18,10 +20,18 @@ import axios from "axios";
 
 import { mapGetters } from "vuex";
 import baseMixin from "../mixins/baseMixin";
+import eventMixin from "../mixins/eventMixin";
+import battleMixin from "../mixins/baseMixin";
+
+import message from "../parts/Message";
+import charImg from "../parts/charImg";
 
 export default {
-  components: {},
-  mixins: [baseMixin],
+  components: {
+    message: message,
+    "char-img": charImg
+  },
+  mixins: [baseMixin, eventMixin, battleMixin],
   data: function() {
     return {
       clearedStage: 0,
@@ -39,6 +49,7 @@ export default {
     })
   },
   created: function() {
+    this.changeBg("ダンジョン");
     this.initPage();
   },
   methods: {
