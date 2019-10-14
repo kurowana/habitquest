@@ -38,9 +38,10 @@ import axios from "axios";
 
 import { mapGetters } from "vuex";
 import baseMixin from "../mixins/baseMixin";
+import eventMixin from "../mixins/eventMixin";
 
 export default {
-  mixins: [baseMixin],
+  mixins: [baseMixin, eventMixin],
   data: function() {
     return {
       inputHabit: "",
@@ -54,7 +55,7 @@ export default {
     })
   },
   created: function() {
-    this.$store.commit("setBgImg", "");
+    this.changeBg("ホーム");
     this.initPage();
   },
   methods: {

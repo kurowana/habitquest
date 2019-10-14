@@ -1,7 +1,5 @@
 export default {
-    created: function() {
-        this.$store.commit("setBgImg", "");
-    },
+    created: function() {},
     methods: {
         //汎用スリープ処理。戦闘時の時間調整とかに。
         sleep: function(time) {

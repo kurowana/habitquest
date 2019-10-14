@@ -40,9 +40,10 @@ import axios from "axios";
 
 import { mapGetters } from "vuex";
 import baseMixin from "../mixins/baseMixin";
+import eventMixin from "../mixins/eventMixin";
 
 export default {
-  mixins: [baseMixin],
+  mixins: [baseMixin, eventMixin],
   data: function() {
     return {
       getAny: false,
@@ -65,6 +66,9 @@ export default {
     ...mapGetters({
       myStatus: "getStatus"
     })
+  },
+  created: function() {
+    this.changeBg("採集");
   },
   mounted: function() {
     setInterval(() => {

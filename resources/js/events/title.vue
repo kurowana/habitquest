@@ -35,16 +35,23 @@ import axios from "axios";
 import modal from "../parts/modal";
 import { setTimeout } from "timers";
 
+import baseMixin from "../mixins/baseMixin";
+import eventMixin from "../mixins/eventMixin";
+
 export default {
   components: {
     modal: modal
   },
+  mixins: [baseMixin, eventMixin],
   data: function() {
     return {
       loginName: "",
       loginPassword: "",
       isShowLoginModal: false
     };
+  },
+  created: function() {
+    this.changeBg("大樹");
   },
   methods: {
     sentLoginData: async function() {
@@ -127,23 +134,24 @@ export default {
 
 .loginForm {
   width: 400px;
-  height: 200px;
+  height: 240px;
   top: 300px;
   left: 200px;
-  border: 2px double gold;
-  border-radius: 30px;
   box-shadow: 5px 5px 4px 4px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(45deg, #000000, #666666);
+  overflow: hidden;
+  opacity: 1;
   color: white;
 }
 
 .form-item {
   margin: 20px 0;
   text-align: center;
+  opacity: 1;
 }
 
 .form-button {
   margin: 30px 0;
   text-align: center;
+  opacity: 1;
 }
 </style>

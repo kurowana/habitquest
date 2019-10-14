@@ -1,7 +1,8 @@
 <template>
   <div>
     <message @get-scene="getScene"></message>
-    <char-img></char-img>
+    <char-img :active-effect="activeMotion"></char-img>
+    <!-- <char-img></char-img> -->
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import axios from "axios";
 import { mapGetters } from "vuex";
 import baseMixin from "../mixins/baseMixin";
+import eventMixin from "../mixins/eventMixin";
 
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
@@ -18,9 +20,33 @@ export default {
     message: message,
     "char-img": charImg
   },
-  mixins: [baseMixin],
+  mixins: [baseMixin, eventMixin],
   data: function() {
-    return {};
+    return {
+      eventObjList: ["eventObj", "eventObj2"],
+      eventObj: [
+        function(vm) {
+          vm.setEvent({ type: "msg", content: "ホームメッセージの1" });
+        },
+        function(vm) {
+          vm.setEvent({ type: "msg", content: "ホームメッセージの2" });
+        },
+        function(vm) {
+          vm.randomEvent(vm.eventObjList);
+        }
+      ],
+      eventObj2: [
+        function(vm) {
+          vm.setEvent({ type: "msg", content: "ホームメッセージの1-1" });
+        },
+        function(vm) {
+          vm.setEvent({ type: "msg", content: "ホームメッセージの2-1" });
+        },
+        function(vm) {
+          vm.randomEvent(vm.eventObjList);
+        }
+      ]
+    };
   },
   computed: {
     ...mapGetters({
@@ -30,12 +56,11 @@ export default {
       clickableFlag: "getClickableFlag"
     })
   },
-  methods: {
-    getScene: function(count) {
-      if (count === 1) {
-        this.$store.commit("setMessage", "本編メッセージ");
-      }
-    }
-  }
+  created: function() {
+    this.changeBg("ホーム");
+    this.clearChar();
+    this.showChar("スフィア2", "c");
+  },
+  methods: {}
 };
 </script>

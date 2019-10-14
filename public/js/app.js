@@ -2624,6 +2624,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2668,8 +2669,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
       getAny: false,
@@ -2690,6 +2692,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     myStatus: "getStatus"
   })),
+  created: function created() {
+    this.changeBg("採集");
+  },
   mounted: function mounted() {
     var _this = this;
 
@@ -2819,6 +2824,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Communication.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Communication.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
+/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
+/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    message: _parts_Message__WEBPACK_IMPORTED_MODULE_4__["default"],
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_5__["default"]
+  },
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    this.changeBg("町");
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dungeon.vue?vue&type=script&lang=js& ***!
@@ -2834,6 +2885,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
+/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
+/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2859,12 +2913,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
+
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
-  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
+  components: {
+    message: _parts_Message__WEBPACK_IMPORTED_MODULE_5__["default"],
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_6__["default"]
+  },
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_4__["default"], _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
       clearedStage: 0,
@@ -2879,6 +2942,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     monster: "getMonster"
   })),
   created: function created() {
+    this.changeBg("ダンジョン");
     this.initPage();
   },
   methods: {
@@ -3055,6 +3119,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3097,8 +3162,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
       inputHabit: "",
@@ -3110,7 +3176,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     habits: "getMyHabits"
   })),
   created: function created() {
-    this.$store.commit("setBgImg", "");
+    this.changeBg("ホーム");
     this.initPage();
   },
   methods: {
@@ -3231,8 +3297,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
-/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
-/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
+/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
+/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3244,6 +3311,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 
@@ -3251,12 +3320,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    message: _parts_Message__WEBPACK_IMPORTED_MODULE_3__["default"],
-    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_4__["default"]
+    message: _parts_Message__WEBPACK_IMPORTED_MODULE_4__["default"],
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
-    return {};
+    return {
+      eventObjList: ["eventObj", "eventObj2"],
+      eventObj: [function (vm) {
+        vm.setEvent({
+          type: "msg",
+          content: "ホームメッセージの1"
+        });
+      }, function (vm) {
+        vm.setEvent({
+          type: "msg",
+          content: "ホームメッセージの2"
+        });
+      }, function (vm) {
+        vm.randomEvent(vm.eventObjList);
+      }],
+      eventObj2: [function (vm) {
+        vm.setEvent({
+          type: "msg",
+          content: "ホームメッセージの1-1"
+        });
+      }, function (vm) {
+        vm.setEvent({
+          type: "msg",
+          content: "ホームメッセージの2-1"
+        });
+      }, function (vm) {
+        vm.randomEvent(vm.eventObjList);
+      }]
+    };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     userInfo: "getUserInfo",
@@ -3264,13 +3361,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     sceneCount: "getSceneCount",
     clickableFlag: "getClickableFlag"
   })),
-  methods: {
-    getScene: function getScene(count) {
-      if (count === 1) {
-        this.$store.commit("setMessage", "本編メッセージ");
-      }
-    }
-  }
+  created: function created() {
+    this.changeBg("ホーム");
+    this.clearChar();
+    this.showChar("スフィア2", "c");
+  },
+  methods: {}
 });
 
 /***/ }),
@@ -3288,6 +3384,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3333,8 +3430,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
       inputIron: 0,
@@ -3350,6 +3448,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     myAssets: "getAssets"
   })),
   created: function created() {
+    this.changeBg("武器屋");
     this.initPage();
   },
   methods: {
@@ -3494,7 +3593,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
-/* harmony import */ var _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../chart/BaseStChart.vue */ "./resources/js/chart/BaseStChart.vue");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
+/* harmony import */ var _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../chart/BaseStChart.vue */ "./resources/js/chart/BaseStChart.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3534,11 +3634,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    BaseStChart: _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    BaseStChart: _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {};
   },
@@ -3549,6 +3650,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     monster: "getMonster"
   })),
   created: function created() {
+    this.changeBg("ホーム");
     this.initPage();
   },
   methods: {
@@ -3742,14 +3844,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3774,11 +3868,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       isConfirmImgModal: false,
       isStatusModal: false,
       isConfirmModal: false,
-      isTestModal: false,
-      isShowChoice: false,
-      isEffect: false,
-      activeEffect: "none",
-      registState: 1,
       name: "",
       password: "",
       selectedImg: "",
@@ -3790,7 +3879,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dex: 10,
       luc: 10,
       eventObj: [function (vm) {
-        vm.showChar("スフィア", "l1");
+        vm.showChar("スフィア1", "l1");
         vm.showChar("ヴァルカン", "l2");
         vm.showChar("フリート", "c");
         vm.showChar("アイザック", "r1");
@@ -3805,44 +3894,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           type: "msg",
           content: "メッセージのテスト2"
         });
+        vm.setSpeaker("エイル", "r2");
       }, function (vm) {
-        // vm.isEffect = true;
-        vm.activeEffect = "anime1";
+        vm.setEffect("l1", "anime1");
+        vm.setEffect("r1", "anime2");
         vm.setEvent({
           type: "msg",
           content: "メッセージのテスト3"
         });
+        vm.setSpeaker("スフィア", "l1");
       }, function (vm) {
-        // vm.isEffect = true;
-        vm.activeEffect = "anime2";
         vm.setEvent({
           type: "msg",
           content: "アニメ2"
         });
-      }, function (vm) {
-        vm.showChar("", "r2");
-        vm.setEvent({
-          type: "select",
-          content: {
-            msg: "どちらを選ぶ？",
-            choice: [{
-              text: "選択肢1",
-              event: function event() {
-                console.log(1);
-                vm.$store.commit("setEventObj", "eventObj1");
-                vm.$store.commit("setSceneCount", 0);
-              }
-            }, {
-              text: "選択肢2",
-              event: function event() {
-                console.log(2);
-                vm.$store.commit("setEventObj", "eventObj2");
-                vm.$store.commit("setSceneCount", 0);
-              }
-            }]
-          }
-        });
-        console.log(this.testChoice);
       }, function (vm) {
         vm.showChar("エイル", "r2");
         vm.setEvent({
@@ -3853,13 +3918,58 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         vm.setEvent({
           type: "window",
           content: {
-            window: "isTestModal",
+            window: "isSoundCheckModal",
             msg: "メッセージ"
+          }
+        });
+      }, function (vm) {
+        vm.setEvent({
+          type: "window",
+          content: {
+            window: "isRegistModal",
+            msg: "モーダル2"
+          }
+        });
+      }, function (vm) {
+        vm.setEvent({
+          type: "window",
+          content: {
+            window: "isSelectImgModal",
+            msg: "モーダル2"
+          }
+        });
+      }, function (vm) {
+        vm.setEvent({
+          type: "window",
+          content: {
+            window: "isConfirmImgModal",
+            msg: "モーダル2"
+          }
+        });
+      }, function (vm) {
+        vm.showChar("", "r2");
+        vm.setEvent({
+          type: "select",
+          content: {
+            msg: "どちらを選ぶ？",
+            choice: [{
+              text: "選択肢1",
+              event: function event() {
+                vm.$store.commit("setEventObj", "eventObj1");
+                vm.$store.commit("setSceneCount", 0);
+              }
+            }, {
+              text: "選択肢2",
+              event: function event() {
+                vm.$store.commit("setEventObj", "eventObj2");
+                vm.$store.commit("setSceneCount", 0);
+              }
+            }]
           }
         });
       }],
       eventObj1: [function (vm) {
-        vm.showChar("スフィア", "l2");
+        vm.showChar("スフィア2", "l2");
         vm.setEvent({
           type: "msg",
           content: "選択肢1を選んだよ"
@@ -3891,40 +4001,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     NextFlag: "getNextFlag"
   })),
   created: function created() {
-    this.$store.commit("setBgImg", ""); // this.$store.commit("setCharImgL1", "npc001l.png");
-    // this.$store.commit("setCharImgL2", "npc006l.png");
-    // this.$store.commit("setCharImgC", "npc001_1.png");
-    // this.$store.commit("setCharImgR1", "npc001r.png");
-    // this.$store.commit("setCharImgR2", "npc007r.png");
-
+    // this.$store.commit("setBgImg", "");
+    this.changeBg("神殿");
     this.$store.commit("setMessage", "これはオープニングです");
   },
   methods: {
+    soundSet: function soundSet(_boolean) {
+      this.isSoundCheckModal = false;
+      this.$store.commit("setSoundFlag", _boolean);
+      this.$store.commit("setSceneCount", this.sceneCount + 1);
+      this.getScene(this.sceneCount);
+    },
     saveName: function saveName() {
-      this.registState++;
+      this.isRegistModal = false;
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     selectImg: function selectImg(img) {
       this.selectedImg = img.stand;
-      this.registState++;
+      this.isSelectImgModal = false;
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     saveImg: function saveImg() {
-      this.registState++;
+      this.isConfirmImgModal = false;
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
     },
     returnImg: function returnImg() {
-      this.registState--;
+      this.isConfirmImgModal = false;
       this.$store.commit("setSceneCount", this.sceneCount - 1);
       this.getScene(this.sceneCount);
     },
     decideStatus: function decideStatus() {
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
-      this.registState++;
     },
     incStatus: function incStatus(status) {
       if (this.point > 0) {
@@ -4033,83 +4144,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (error) {
         console.log(error);
       });
-    },
-    openSoundModal: function openSoundModal() {
-      this.$store.commit("setParallelFlag", true);
-      this.isSoundCheckModal = true;
-    },
-    closeSoundModal: function closeSoundModal() {
-      this.$store.commit("setParallelFlag", false);
-      this.isSoundCheckModal = false;
-    },
-    openRegistModal: function openRegistModal() {
-      this.$store.commit("setParallelFlag", true);
-      this.isRegistModal = true;
-    },
-    closeRegistModal: function closeRegistModal() {
-      this.$store.commit("setParallelFlag", false);
-      this.isRegistModal = false;
-    } // openSelectModal: function() {
-    //   this.isSelectImgModal = true;
-    // },
-    // closeSelectModal: function() {
-    //   this.isSelectImgModal = false;
-    // },
-    // openConfirmImgModal: function() {
-    //   this.isConfirmImgModal = true;
-    // },
-    // closeConfirmImgModal: function() {
-    //   this.isConfirmImgModal = false;
-    // },
-    // openStatusModal: function() {
-    //   this.isStatusModal = true;
-    // },
-    // closeStatusModal: function() {
-    //   this.isStatusModal = false;
-    // },
-    // openConfirmModal: function() {
-    //   this.isConfirmModal = true;
-    // },
-    // closeConfirmModal: function() {
-    //   this.isConfirmModal = false;
-    // }
-
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/events/testevent.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/events/testevent.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
-/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    message: _parts_Message__WEBPACK_IMPORTED_MODULE_0__["default"],
-    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  data: function data() {
-    return {};
-  },
-  created: function created() {
-    this.$store.commit("setCharImgR1", "");
-    this.$store.commit("setMessage", "これはTestです");
+    }
   }
 });
 
@@ -4131,6 +4166,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../parts/modal */ "./resources/js/parts/modal.vue");
 /* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! timers */ "./node_modules/timers-browserify/main.js");
 /* harmony import */ var timers__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(timers__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4172,16 +4209,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     modal: _parts_modal__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_4__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_5__["default"]],
   data: function data() {
     return {
       loginName: "",
       loginPassword: "",
       isShowLoginModal: false
     };
+  },
+  created: function created() {
+    this.changeBg("大樹");
   },
   methods: {
     sentLoginData: function () {
@@ -4395,6 +4438,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4432,29 +4479,79 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   props: {
-    isEffect: Boolean,
-    activeEffect: String
+    activeMotion: Object
   },
-  computed: {
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    imgL1: "getCharImgL1",
+    imgL2: "getCharImgL2",
+    imgC: "getCharImgC",
+    imgR1: "getCharImgR1",
+    imgR2: "getCharImgR2"
+  }), {
     showCharL1: function showCharL1() {
-      return this.$store.state.eventStore.charImgL1;
+      return this.imgL1.path;
     },
     showCharL2: function showCharL2() {
-      return this.$store.state.eventStore.charImgL2;
+      return this.imgL2.path;
     },
     showCharC: function showCharC() {
-      return this.$store.state.eventStore.charImgC;
+      return this.imgC.path;
     },
     showCharR1: function showCharR1() {
-      return this.$store.state.eventStore.charImgR1;
+      return this.imgR1.path;
     },
     showCharR2: function showCharR2() {
-      return this.$store.state.eventStore.charImgR2;
+      return this.imgR2.path;
     },
-    effectClass: function effectClass() {
-      console.log(this.activeEffect);
-
-      switch (this.activeEffect) {
+    styleL1: function styleL1() {
+      return {
+        opacity: this.imgL1.opacity,
+        zIndex: this.imgL1.zIndex
+      };
+    },
+    styleL2: function styleL2() {
+      return {
+        opacity: this.imgL2.opacity,
+        zIndex: this.imgL2.zIndex
+      };
+    },
+    styleC: function styleC() {
+      return {
+        opacity: this.imgC.opacity,
+        zIndex: this.imgC.zIndex
+      };
+    },
+    styleR1: function styleR1() {
+      return {
+        opacity: this.imgR1.opacity,
+        zIndex: this.imgR1.zIndex
+      };
+    },
+    styleR2: function styleR2() {
+      return {
+        opacity: this.imgR2.opacity,
+        zIndex: this.imgR2.zIndex
+      };
+    },
+    effectL1: function effectL1() {
+      return this.changeEffect(this.activeMotion.l1);
+    },
+    effectL2: function effectL2() {
+      return this.changeEffect(this.activeMotion.l2);
+    },
+    effectC: function effectC() {
+      return this.changeEffect(this.activeMotion.c);
+    },
+    effectR1: function effectR1() {
+      return this.changeEffect(this.activeMotion.r1);
+    },
+    effectR2: function effectR2() {
+      return this.changeEffect(this.activeMotion.r2);
+    }
+  }),
+  methods: {
+    changeEffect: function changeEffect(effect) {
+      switch (effect.type) {
         case "anime1":
           return "effect";
           break;
@@ -4509,14 +4606,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   methods: {
     choiced1: function choiced1() {
-      console.log(this.choice1);
       this.choice1.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
     },
     choiced2: function choiced2() {
-      console.log(this.choice2);
       this.choice2.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
@@ -19230,7 +19325,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1000px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden01.jpg */ "./public/img/bg/shinden01.jpg")) + ");\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree000.jpg */ "./public/img/bg/old_tree000.jpg")) + ");\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 0.5s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1000px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\n}\n.home[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/yadoya_room.jpg */ "./public/img/bg/yadoya_room.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.town[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/Europe_House.jpg */ "./public/img/bg/Europe_House.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.itemshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/item_shop.jpg */ "./public/img/bg/item_shop.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.weaponshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bukiya.jpg */ "./public/img/bg/bukiya.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.bar[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bar.jpg */ "./public/img/bg/bar.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden.jpg */ "./public/img/bg/shinden.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree.jpg */ "./public/img/bg/old_tree.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.stream[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/keiryuu.jpg */ "./public/img/bg/keiryuu.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -19249,7 +19344,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.soundCheckModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.registerModal[data-v-625c0140] {\r\n  background: linear-gradient(90deg, #000000, #666666);\r\n  width: 720px;\r\n  height: 380px;\r\n  top: 40px;\r\n  left: 40px;\r\n  overflow: auto;\r\n  color: white;\n}\n.img-container[data-v-625c0140] {\r\n  display: flex;\r\n  padding-bottom: 15px;\r\n  flex-wrap: wrap;\n}\n.img-card img[data-v-625c0140] {\r\n  width: 100px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 15px 0px 0px 15px;\n}\n.confirm-content[data-v-625c0140] {\r\n  display: flex;\n}\n.img-stand[data-v-625c0140] {\r\n  width: 240px;\r\n  height: 320px;\n}\r\n", ""]);
+exports.push([module.i, "\n.img-container[data-v-625c0140] {\r\n  display: flex;\r\n  padding-bottom: 15px;\r\n  flex-wrap: wrap;\n}\n.img-card img[data-v-625c0140] {\r\n  width: 100px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 15px 0px 0px 15px;\n}\n.confirm-content[data-v-625c0140] {\r\n  display: flex;\n}\n.img-stand[data-v-625c0140] {\r\n  width: 240px;\r\n  height: 320px;\n}\r\n", ""]);
 
 // exports
 
@@ -19268,7 +19363,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.title[data-v-61246860] {\r\n  margin: 120px 0;\r\n  color: white;\r\n  text-shadow: rgb(255, 199, 0) 4px 0px 0px,\r\n    rgb(255, 199, 0) 3.87565px 0.989616px 0px,\r\n    rgb(255, 199, 0) 3.51033px 1.9177px 0px,\r\n    rgb(255, 199, 0) 2.92676px 2.72656px 0px,\r\n    rgb(255, 199, 0) 2.16121px 3.36588px 0px,\r\n    rgb(255, 199, 0) 1.26129px 3.79594px 0px,\r\n    rgb(255, 199, 0) 0.282949px 3.98998px 0px,\r\n    rgb(255, 199, 0) -0.712984px 3.93594px 0px,\r\n    rgb(255, 199, 0) -1.66459px 3.63719px 0px,\r\n    rgb(255, 199, 0) -2.51269px 3.11229px 0px,\r\n    rgb(255, 199, 0) -3.20457px 2.39389px 0px,\r\n    rgb(255, 199, 0) -3.69721px 1.52664px 0px,\r\n    rgb(255, 199, 0) -3.95997px 0.56448px 0px,\r\n    rgb(255, 199, 0) -3.97652px -0.432781px 0px,\r\n    rgb(255, 199, 0) -3.74583px -1.40313px 0px,\r\n    rgb(255, 199, 0) -3.28224px -2.28625px 0px,\r\n    rgb(255, 199, 0) -2.61457px -3.02721px 0px,\r\n    rgb(255, 199, 0) -1.78435px -3.57996px 0px,\r\n    rgb(255, 199, 0) -0.843183px -3.91012px 0px,\r\n    rgb(255, 199, 0) 0.150409px -3.99717px 0px,\r\n    rgb(255, 199, 0) 1.13465px -3.8357px 0px,\r\n    rgb(255, 199, 0) 2.04834px -3.43574px 0px,\r\n    rgb(255, 199, 0) 2.83468px -2.82216px 0px,\r\n    rgb(255, 199, 0) 3.44477px -2.03312px 0px,\r\n    rgb(255, 199, 0) 3.84068px -1.11766px 0px,\r\n    rgb(255, 199, 0) 3.9978px -0.132717px 0px;\r\n  font-size: 6em;\r\n  text-align: center;\n}\n.title-window[data-v-61246860] {\r\n  width: 300px;\r\n  margin: 0 auto;\n}\n.title-item[data-v-61246860] {\r\n  width: 300px;\r\n  height: 45px;\r\n  padding-top: 4px;\r\n  margin-bottom: 20px;\r\n  background: linear-gradient(0.45deg, #666666, #000000);\r\n  border: double gold 2px;\r\n  border-radius: 10px;\r\n  color: white;\r\n  font-size: 1.5em;\r\n  text-align: center;\n}\n.loginForm[data-v-61246860] {\r\n  width: 400px;\r\n  height: 200px;\r\n  top: 300px;\r\n  left: 200px;\r\n  border: 2px double gold;\r\n  border-radius: 30px;\r\n  box-shadow: 5px 5px 4px 4px rgba(0, 0, 0, 0.4);\r\n  background: linear-gradient(45deg, #000000, #666666);\r\n  color: white;\n}\n.form-item[data-v-61246860] {\r\n  margin: 20px 0;\r\n  text-align: center;\n}\n.form-button[data-v-61246860] {\r\n  margin: 30px 0;\r\n  text-align: center;\n}\r\n", ""]);
+exports.push([module.i, "\n.title[data-v-61246860] {\r\n  margin: 120px 0;\r\n  color: white;\r\n  text-shadow: rgb(255, 199, 0) 4px 0px 0px,\r\n    rgb(255, 199, 0) 3.87565px 0.989616px 0px,\r\n    rgb(255, 199, 0) 3.51033px 1.9177px 0px,\r\n    rgb(255, 199, 0) 2.92676px 2.72656px 0px,\r\n    rgb(255, 199, 0) 2.16121px 3.36588px 0px,\r\n    rgb(255, 199, 0) 1.26129px 3.79594px 0px,\r\n    rgb(255, 199, 0) 0.282949px 3.98998px 0px,\r\n    rgb(255, 199, 0) -0.712984px 3.93594px 0px,\r\n    rgb(255, 199, 0) -1.66459px 3.63719px 0px,\r\n    rgb(255, 199, 0) -2.51269px 3.11229px 0px,\r\n    rgb(255, 199, 0) -3.20457px 2.39389px 0px,\r\n    rgb(255, 199, 0) -3.69721px 1.52664px 0px,\r\n    rgb(255, 199, 0) -3.95997px 0.56448px 0px,\r\n    rgb(255, 199, 0) -3.97652px -0.432781px 0px,\r\n    rgb(255, 199, 0) -3.74583px -1.40313px 0px,\r\n    rgb(255, 199, 0) -3.28224px -2.28625px 0px,\r\n    rgb(255, 199, 0) -2.61457px -3.02721px 0px,\r\n    rgb(255, 199, 0) -1.78435px -3.57996px 0px,\r\n    rgb(255, 199, 0) -0.843183px -3.91012px 0px,\r\n    rgb(255, 199, 0) 0.150409px -3.99717px 0px,\r\n    rgb(255, 199, 0) 1.13465px -3.8357px 0px,\r\n    rgb(255, 199, 0) 2.04834px -3.43574px 0px,\r\n    rgb(255, 199, 0) 2.83468px -2.82216px 0px,\r\n    rgb(255, 199, 0) 3.44477px -2.03312px 0px,\r\n    rgb(255, 199, 0) 3.84068px -1.11766px 0px,\r\n    rgb(255, 199, 0) 3.9978px -0.132717px 0px;\r\n  font-size: 6em;\r\n  text-align: center;\n}\n.title-window[data-v-61246860] {\r\n  width: 300px;\r\n  margin: 0 auto;\n}\n.title-item[data-v-61246860] {\r\n  width: 300px;\r\n  height: 45px;\r\n  padding-top: 4px;\r\n  margin-bottom: 20px;\r\n  background: linear-gradient(0.45deg, #666666, #000000);\r\n  border: double gold 2px;\r\n  border-radius: 10px;\r\n  color: white;\r\n  font-size: 1.5em;\r\n  text-align: center;\n}\n.loginForm[data-v-61246860] {\r\n  width: 400px;\r\n  height: 240px;\r\n  top: 300px;\r\n  left: 200px;\r\n  box-shadow: 5px 5px 4px 4px rgba(0, 0, 0, 0.4);\r\n  overflow: hidden;\r\n  opacity: 1;\r\n  color: white;\n}\n.form-item[data-v-61246860] {\r\n  margin: 20px 0;\r\n  text-align: center;\r\n  opacity: 1;\n}\n.form-button[data-v-61246860] {\r\n  margin: 30px 0;\r\n  text-align: center;\r\n  opacity: 1;\n}\r\n", ""]);
 
 // exports
 
@@ -19327,7 +19422,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  /* width: 60%; */\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  /* width: 60%; */\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  /* width: 60%; */\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 60%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  /* width: 60%; */\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  /* width: 60%; */\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\r\n  opacity: 0.7;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\n.effect[data-v-6ca2f060] {\r\n  -webkit-animation: anime1-data-v-6ca2f060 0.2s ease-in-out 0s 10;\r\n          animation: anime1-data-v-6ca2f060 0.2s ease-in-out 0s 10;\n}\n.effect2[data-v-6ca2f060] {\r\n  -webkit-animation: anime2-data-v-6ca2f060 0.2s ease-in-out 0s 10;\r\n          animation: anime2-data-v-6ca2f060 0.2s ease-in-out 0s 10;\n}\n@-webkit-keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 60%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\n.effect[data-v-6ca2f060] {\r\n  -webkit-animation: anime1-data-v-6ca2f060 0.2s ease-in-out 0s infinite;\r\n          animation: anime1-data-v-6ca2f060 0.2s ease-in-out 0s infinite;\n}\n.effect2[data-v-6ca2f060] {\r\n  -webkit-animation: anime2-data-v-6ca2f060 0.2s ease-in-out 0s infinite;\r\n          animation: anime2-data-v-6ca2f060 0.2s ease-in-out 0s infinite;\n}\n.fa-bolt[data-v-6ca2f060] {\r\n  position: absolute;\r\n  top: 10px;\r\n  left: 220px;\r\n  color: orange;\r\n  font-size: 50px;\r\n  z-index: 50;\r\n  -webkit-animation: furiko-data-v-6ca2f060 0.5s ease 0s infinite;\r\n          animation: furiko-data-v-6ca2f060 0.5s ease 0s infinite;\n}\n@-webkit-keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@-webkit-keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -19365,7 +19460,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal-window[data-v-5ed17cb0] {\r\n  display: block;\r\n  position: absolute;\r\n  z-index: 100;\n}\r\n", ""]);
+exports.push([module.i, "\n.modal-window[data-v-5ed17cb0] {\r\n  display: block;\r\n  position: absolute;\r\n  background: linear-gradient(45deg, #000000, #666666);\r\n  width: 760px;\r\n  height: 400px;\r\n  padding: 20px;\r\n  top: 20px;\r\n  left: 20px;\r\n  overflow: auto;\r\n  z-index: 100;\r\n  opacity: 0.9;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  color: white;\n}\r\n", ""]);
 
 // exports
 
@@ -42665,6 +42760,40 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Communication.vue?vue&type=template&id=2235df0a&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Communication.vue?vue&type=template&id=2235df0a&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v("交流イベント")]),
+      _vm._v(" "),
+      _c("message", { on: { "get-scene": _vm.getScene } }),
+      _vm._v(" "),
+      _c("char-img", { attrs: { "active-effect": _vm.activeMotion } })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&":
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2& ***!
@@ -42680,22 +42809,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h1", [_vm._v("ダンジョン")]),
-    _vm._v("\n  " + _vm._s(_vm.myStatus) + "\n  "),
-    _c("br"),
-    _vm._v(
-      "\n  最高到達ステージ" +
-        _vm._s(_vm.clearedStage) +
-        "\n  現在ステージ" +
-        _vm._s(_vm.currentStage) +
-        "\n  収入" +
-        _vm._s(_vm.tempMoney) +
-        "\n  "
-    ),
-    _c("button", { on: { click: _vm.startBattle } }, [_vm._v("探索開始")]),
-    _vm._v("\n  " + _vm._s(_vm.monster) + "\n")
-  ])
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v("ダンジョン")]),
+      _vm._v("\n  " + _vm._s(_vm.myStatus) + "\n  "),
+      _c("br"),
+      _vm._v(
+        "\n  最高到達ステージ" +
+          _vm._s(_vm.clearedStage) +
+          "\n  現在ステージ" +
+          _vm._s(_vm.currentStage) +
+          "\n  収入" +
+          _vm._s(_vm.tempMoney) +
+          "\n  "
+      ),
+      _c("button", { on: { click: _vm.startBattle } }, [_vm._v("探索開始")]),
+      _vm._v("\n  " + _vm._s(_vm.monster) + "\n  "),
+      _c("message", { on: { "get-scene": _vm.getScene } }),
+      _vm._v(" "),
+      _c("char-img", { attrs: { "active-effect": _vm.activeMotion } })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42844,7 +42980,7 @@ var render = function() {
     [
       _c("message", { on: { "get-scene": _vm.getScene } }),
       _vm._v(" "),
-      _c("char-img")
+      _c("char-img", { attrs: { "active-effect": _vm.activeMotion } })
     ],
     1
   )
@@ -43437,49 +43573,10 @@ var render = function() {
         ),
         _c("message", { on: { "get-scene": _vm.getScene } }),
         _vm._v(" "),
-        _c("char-img", {
-          attrs: {
-            "is-effect": _vm.isEffect,
-            "active-effect": _vm.activeEffect
-          }
-        }),
+        _c("char-img", { attrs: { "active-effect": _vm.activeMotion } }),
         _vm._v(" "),
         _vm.isSoundCheckModal
-          ? _c("modal", { staticClass: "soundCheckModal" }, [
-              _c("div", [
-                _c("p", [
-                  _vm._v("このアプリでは音声が流れます。よろしいですか？")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.soundSet(true)
-                      }
-                    }
-                  },
-                  [_vm._v("音楽再生ON")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.soundSet(false)
-                      }
-                    }
-                  },
-                  [_vm._v("音楽再生OFF")]
-                )
-              ])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.isTestModal
-          ? _c("modal", { staticClass: "soundCheckModal" }, [
+          ? _c("modal", [
               _c("div", [
                 _c("p", [
                   _vm._v("このアプリでは音声が流れます。よろしいですか？")
@@ -43513,481 +43610,101 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.isRegistModal
-          ? _c("modal", { staticClass: "registerModal" }, [
-              _vm._v("\n      " + _vm._s(_vm.registState) + "\n      "),
+          ? _c("modal", [
               _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.registState === 1,
-                      expression: "registState===1"
-                    }
-                  ]
-                },
+                "form",
                 [
-                  _c(
-                    "form",
-                    [
-                      _c("ValidationProvider", {
-                        ref: "registerForm",
-                        attrs: { name: "ユーザー名", rules: "required" },
-                        scopedSlots: _vm._u(
-                          [
-                            {
-                              key: "default",
-                              fn: function(ref) {
-                                var errors = ref.errors
-                                return [
-                                  _c("label", { attrs: { for: "name" } }, [
-                                    _vm._v("ユーザー名")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.name,
-                                        expression: "name"
-                                      }
-                                    ],
-                                    attrs: { type: "text", name: "name" },
-                                    domProps: { value: _vm.name },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.name = $event.target.value
-                                      }
+                  _c("ValidationProvider", {
+                    ref: "registerForm",
+                    attrs: { name: "ユーザー名", rules: "required" },
+                    scopedSlots: _vm._u(
+                      [
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "name" } }, [
+                                _vm._v("ユーザー名")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.name,
+                                    expression: "name"
+                                  }
+                                ],
+                                attrs: { type: "text", name: "name" },
+                                domProps: { value: _vm.name },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
                                     }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("span", [_vm._v(_vm._s(errors[0]))])
-                                ]
-                              }
-                            }
-                          ],
-                          null,
-                          false,
-                          2308374777
-                        )
-                      }),
-                      _vm._v(" "),
-                      _c("ValidationProvider", {
-                        ref: "registerForm",
-                        attrs: { name: "パスワード", rules: "required" },
-                        scopedSlots: _vm._u(
-                          [
-                            {
-                              key: "default",
-                              fn: function(ref) {
-                                var errors = ref.errors
-                                return [
-                                  _c("label", { attrs: { for: "password" } }, [
-                                    _vm._v("パスワード")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.password,
-                                        expression: "password"
-                                      }
-                                    ],
-                                    attrs: {
-                                      type: "password",
-                                      name: "password"
-                                    },
-                                    domProps: { value: _vm.password },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.password = $event.target.value
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("span", [_vm._v(_vm._s(errors[0]))])
-                                ]
-                              }
-                            }
-                          ],
-                          null,
-                          false,
-                          1824040180
-                        )
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.saveName($event)
-                            }
+                                    _vm.name = $event.target.value
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v(_vm._s(errors[0]))])
+                            ]
                           }
-                        },
-                        [_vm._v("決定")]
-                      )
-                    ],
-                    1
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.registState === 2,
-                      expression: "registState===2"
-                    }
-                  ]
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "img-container" },
-                    _vm._l(_vm.userImg, function(img, index) {
-                      return _c(
-                        "div",
-                        { key: index, staticClass: "img-card" },
-                        [
-                          _c("img", {
-                            staticClass: "img-face",
-                            attrs: { src: img.face },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.selectImg(img)
-                              }
-                            }
-                          })
-                        ]
-                      )
-                    }),
-                    0
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.registState === 3,
-                      expression: "registState===3"
-                    }
-                  ]
-                },
-                [
-                  _c("div", { staticClass: "confirm-content" }, [
-                    _c("div", { staticClass: "img-container" }, [
-                      _c("img", {
-                        staticClass: "img-stand",
-                        attrs: { src: _vm.selectedImg }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "button-container" }, [
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.saveImg($event)
-                            }
-                          }
-                        },
-                        [_vm._v("決定")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.returnImg($event)
-                            }
-                          }
-                        },
-                        [_vm._v("選びなおす")]
-                      )
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.registState === 4,
-                      expression: "registState===4"
-                    }
-                  ]
-                },
-                [
-                  _c("div", { staticClass: "status-content" }, [
-                    _vm._v(
-                      "\n          振り分け可能ポイント：" +
-                        _vm._s(_vm.point) +
-                        "\n          "
-                    ),
-                    _c("div", [
-                      _vm._v(
-                        "\n            STR\n            " +
-                          _vm._s(_vm.str) +
-                          "\n            "
-                      ),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.incStatus("str")
-                            }
-                          }
-                        },
-                        [_vm._v("+")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.decStatus("str")
-                            }
-                          }
-                        },
-                        [_vm._v("-")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c("label", { attrs: { for: "agi" } }, [_vm._v("AGI")]),
-                      _vm._v(
-                        "\n            " + _vm._s(_vm.agi) + "\n            "
-                      ),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.incStatus("agi")
-                            }
-                          }
-                        },
-                        [_vm._v("+")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.decStatus("agi")
-                            }
-                          }
-                        },
-                        [_vm._v("-")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(
-                        "\n            VIT\n            " +
-                          _vm._s(_vm.vit) +
-                          "\n            "
-                      ),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.incStatus("vit")
-                            }
-                          }
-                        },
-                        [_vm._v("+")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.decStatus("vit")
-                            }
-                          }
-                        },
-                        [_vm._v("-")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(
-                        "\n            INT\n            " +
-                          _vm._s(_vm.int) +
-                          "\n            "
-                      ),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.incStatus("int")
-                            }
-                          }
-                        },
-                        [_vm._v("+")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.decStatus("int")
-                            }
-                          }
-                        },
-                        [_vm._v("-")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(
-                        "\n            DEX\n            " +
-                          _vm._s(_vm.dex) +
-                          "\n            "
-                      ),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.incStatus("dex")
-                            }
-                          }
-                        },
-                        [_vm._v("+")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.decStatus("dex")
-                            }
-                          }
-                        },
-                        [_vm._v("-")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _vm._v(
-                        "\n            LUC\n            " +
-                          _vm._s(_vm.luc) +
-                          "\n            "
-                      ),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.incStatus("luc")
-                            }
-                          }
-                        },
-                        [_vm._v("+")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.decStatus("luc")
-                            }
-                          }
-                        },
-                        [_vm._v("-")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.decideStatus($event)
-                            }
-                          }
-                        },
-                        [_vm._v("確定")]
-                      )
-                    ])
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.registState === 5,
-                      expression: "registState===5"
-                    }
-                  ]
-                },
-                [
-                  _c("div", [_vm._v("名前：" + _vm._s(_vm.name))]),
-                  _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-stand",
-                    attrs: { src: _vm.selectedImg }
+                        }
+                      ],
+                      null,
+                      false,
+                      2308374777
+                    )
                   }),
                   _vm._v(" "),
-                  _c("div", [_vm._v("STR:" + _vm._s(_vm.str))]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("AGI:" + _vm._s(_vm.agi))]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("VIT:" + _vm._s(_vm.vit))]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("INT:" + _vm._s(_vm.int))]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("DEX:" + _vm._s(_vm.dex))]),
-                  _vm._v(" "),
-                  _c("div", [_vm._v("LUC:" + _vm._s(_vm.luc))]),
+                  _c("ValidationProvider", {
+                    ref: "registerForm",
+                    attrs: { name: "パスワード", rules: "required" },
+                    scopedSlots: _vm._u(
+                      [
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "password" } }, [
+                                _vm._v("パスワード")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.password,
+                                    expression: "password"
+                                  }
+                                ],
+                                attrs: { type: "password", name: "password" },
+                                domProps: { value: _vm.password },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.password = $event.target.value
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v(_vm._s(errors[0]))])
+                            ]
+                          }
+                        }
+                      ],
+                      null,
+                      false,
+                      1824040180
+                    )
+                  }),
                   _vm._v(" "),
                   _c(
                     "button",
@@ -43995,13 +43712,324 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          return _vm.registUser($event)
+                          return _vm.saveName($event)
                         }
                       }
                     },
-                    [_vm._v("登録")]
+                    [_vm._v("決定")]
                   )
-                ]
+                ],
+                1
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.isSelectImgModal
+          ? _c("modal", [
+              _c(
+                "div",
+                { staticClass: "img-container" },
+                _vm._l(_vm.userImg, function(img, index) {
+                  return _c("div", { key: index, staticClass: "img-card" }, [
+                    _c("img", {
+                      staticClass: "img-face",
+                      attrs: { src: img.face },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.selectImg(img)
+                        }
+                      }
+                    })
+                  ])
+                }),
+                0
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.isConfirmImgModal
+          ? _c("modal", [
+              _c("div", { staticClass: "confirm-content" }, [
+                _c("div", { staticClass: "img-container" }, [
+                  _c("img", {
+                    staticClass: "img-stand",
+                    attrs: { src: _vm.selectedImg }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "button-container" }, [
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.saveImg($event)
+                        }
+                      }
+                    },
+                    [_vm._v("決定")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.returnImg($event)
+                        }
+                      }
+                    },
+                    [_vm._v("選びなおす")]
+                  )
+                ])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.isStatusModal
+          ? _c("modal", [
+              _c("div", { staticClass: "status-content" }, [
+                _vm._v(
+                  "\n        振り分け可能ポイント：" +
+                    _vm._s(_vm.point) +
+                    "\n        "
+                ),
+                _c("div", [
+                  _vm._v(
+                    "\n          STR\n          " +
+                      _vm._s(_vm.str) +
+                      "\n          "
+                  ),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.incStatus("str")
+                        }
+                      }
+                    },
+                    [_vm._v("+")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.decStatus("str")
+                        }
+                      }
+                    },
+                    [_vm._v("-")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("label", { attrs: { for: "agi" } }, [_vm._v("AGI")]),
+                  _vm._v("\n          " + _vm._s(_vm.agi) + "\n          "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.incStatus("agi")
+                        }
+                      }
+                    },
+                    [_vm._v("+")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.decStatus("agi")
+                        }
+                      }
+                    },
+                    [_vm._v("-")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _vm._v(
+                    "\n          VIT\n          " +
+                      _vm._s(_vm.vit) +
+                      "\n          "
+                  ),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.incStatus("vit")
+                        }
+                      }
+                    },
+                    [_vm._v("+")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.decStatus("vit")
+                        }
+                      }
+                    },
+                    [_vm._v("-")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _vm._v(
+                    "\n          INT\n          " +
+                      _vm._s(_vm.int) +
+                      "\n          "
+                  ),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.incStatus("int")
+                        }
+                      }
+                    },
+                    [_vm._v("+")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.decStatus("int")
+                        }
+                      }
+                    },
+                    [_vm._v("-")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _vm._v(
+                    "\n          DEX\n          " +
+                      _vm._s(_vm.dex) +
+                      "\n          "
+                  ),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.incStatus("dex")
+                        }
+                      }
+                    },
+                    [_vm._v("+")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.decStatus("dex")
+                        }
+                      }
+                    },
+                    [_vm._v("-")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _vm._v(
+                    "\n          LUC\n          " +
+                      _vm._s(_vm.luc) +
+                      "\n          "
+                  ),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.incStatus("luc")
+                        }
+                      }
+                    },
+                    [_vm._v("+")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          return _vm.decStatus("luc")
+                        }
+                      }
+                    },
+                    [_vm._v("-")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.decideStatus($event)
+                        }
+                      }
+                    },
+                    [_vm._v("確定")]
+                  )
+                ])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.isConfirmModal
+          ? _c("modal", [
+              _c("div", [_vm._v("名前：" + _vm._s(_vm.name))]),
+              _vm._v(" "),
+              _c("img", {
+                staticClass: "img-stand",
+                attrs: { src: _vm.selectedImg }
+              }),
+              _vm._v(" "),
+              _c("div", [_vm._v("STR:" + _vm._s(_vm.str))]),
+              _vm._v(" "),
+              _c("div", [_vm._v("AGI:" + _vm._s(_vm.agi))]),
+              _vm._v(" "),
+              _c("div", [_vm._v("VIT:" + _vm._s(_vm.vit))]),
+              _vm._v(" "),
+              _c("div", [_vm._v("INT:" + _vm._s(_vm.int))]),
+              _vm._v(" "),
+              _c("div", [_vm._v("DEX:" + _vm._s(_vm.dex))]),
+              _vm._v(" "),
+              _c("div", [_vm._v("LUC:" + _vm._s(_vm.luc))]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.registUser($event)
+                    }
+                  }
+                },
+                [_vm._v("登録")]
               )
             ])
           : _vm._e(),
@@ -44018,30 +44046,6 @@ var render = function() {
       1
     )
   ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/events/testevent.vue?vue&type=template&id=f4c76160&scoped=true&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/events/testevent.vue?vue&type=template&id=f4c76160&scoped=true& ***!
-  \********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [_c("message"), _vm._v(" "), _c("char-img")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -44253,7 +44257,7 @@ var render = function() {
     [
       _c(
         "router-link",
-        { staticClass: "btn", attrs: { to: { name: "test" } } },
+        { staticClass: "btn", attrs: { to: { name: "home" } } },
         [_vm._v("ホーム")]
       ),
       _vm._v(" "),
@@ -44271,7 +44275,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "router-link",
-        { staticClass: "btn", attrs: { to: { name: "test" } } },
+        { staticClass: "btn", attrs: { to: { name: "communication" } } },
         [_vm._v("交流")]
       ),
       _vm._v(" "),
@@ -44334,9 +44338,7 @@ var render = function() {
           "div",
           { staticClass: "msg-window", on: { click: _vm.changeScene } },
           [
-            _c("p", { staticClass: "name" }, [
-              _vm._v(_vm._s(_vm.name) + _vm._s(_vm.charList.スフィア.name))
-            ]),
+            _c("p", { staticClass: "name" }, [_vm._v(_vm._s(_vm.name))]),
             _vm._v(" "),
             _vm.message
               ? _c(
@@ -44400,22 +44402,16 @@ var render = function() {
     [
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharL1
-          ? _c("div", { staticClass: "img-l1" }, [
-              _c("img", {
-                class: _vm.effectClass,
-                attrs: { src: _vm.showCharL1 }
-              })
+          ? _c("div", { staticClass: "img-l1", style: _vm.styleL1 }, [
+              _c("img", { class: _vm.effectL1, attrs: { src: _vm.showCharL1 } })
             ])
           : _vm._e()
       ]),
       _vm._v(" "),
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharL2
-          ? _c("div", { staticClass: "img-l2" }, [
-              _c("img", {
-                class: _vm.effectClass,
-                attrs: { src: _vm.showCharL2 }
-              })
+          ? _c("div", { staticClass: "img-l2", style: _vm.styleL2 }, [
+              _c("img", { class: _vm.effectL2, attrs: { src: _vm.showCharL2 } })
             ])
           : _vm._e()
       ]),
@@ -44424,9 +44420,12 @@ var render = function() {
         _vm.showCharC
           ? _c("div", { staticClass: "img-c" }, [
               _c("img", {
-                class: _vm.effectClass,
+                class: _vm.effectC,
+                style: _vm.styleC,
                 attrs: { src: _vm.showCharC }
-              })
+              }),
+              _vm._v(" "),
+              _c("i", { staticClass: "fas fa-bolt" })
             ])
           : _vm._e()
       ]),
@@ -44435,7 +44434,8 @@ var render = function() {
         _vm.showCharR1
           ? _c("div", { staticClass: "img-r1" }, [
               _c("img", {
-                class: _vm.effectClass,
+                class: _vm.effectR1,
+                style: _vm.styleR1,
                 attrs: { src: _vm.showCharR1 }
               })
             ])
@@ -44446,7 +44446,8 @@ var render = function() {
         _vm.showCharR2
           ? _c("div", { staticClass: "img-r2" }, [
               _c("img", {
-                class: _vm.effectClass,
+                class: _vm.effectR2,
+                style: _vm.styleR2,
                 attrs: { src: _vm.showCharR2 }
               })
             ])
@@ -60385,25 +60386,102 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./public/img/bg/old_tree000.jpg":
-/*!***************************************!*\
-  !*** ./public/img/bg/old_tree000.jpg ***!
-  \***************************************/
+/***/ "./public/img/bg/Europe_House.jpg":
+/*!****************************************!*\
+  !*** ./public/img/bg/Europe_House.jpg ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/old_tree000.jpg?168c60cb256363d3d4c47395939d839c";
+module.exports = "/images/Europe_House.jpg?3e0157f4eb6b537fa04d683650ae9588";
 
 /***/ }),
 
-/***/ "./public/img/bg/shinden01.jpg":
+/***/ "./public/img/bg/bar.jpg":
+/*!*******************************!*\
+  !*** ./public/img/bg/bar.jpg ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/bar.jpg?c2dd9307d5e4073917ddd35c33bac1c7";
+
+/***/ }),
+
+/***/ "./public/img/bg/bukiya.jpg":
+/*!**********************************!*\
+  !*** ./public/img/bg/bukiya.jpg ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/bukiya.jpg?0f850ae1a91bee0dbd735db1a3ad99f1";
+
+/***/ }),
+
+/***/ "./public/img/bg/item_shop.jpg":
 /*!*************************************!*\
-  !*** ./public/img/bg/shinden01.jpg ***!
+  !*** ./public/img/bg/item_shop.jpg ***!
   \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/shinden01.jpg?f37e0d4df742dbe0cef74d82d655b035";
+module.exports = "/images/item_shop.jpg?c7732548c6faf5cc165028afc48f8dfe";
+
+/***/ }),
+
+/***/ "./public/img/bg/keiryuu.jpg":
+/*!***********************************!*\
+  !*** ./public/img/bg/keiryuu.jpg ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/keiryuu.jpg?7f27e34dfd4552294984261fb1454ec4";
+
+/***/ }),
+
+/***/ "./public/img/bg/old_tree.jpg":
+/*!************************************!*\
+  !*** ./public/img/bg/old_tree.jpg ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/old_tree.jpg?168c60cb256363d3d4c47395939d839c";
+
+/***/ }),
+
+/***/ "./public/img/bg/shinden.jpg":
+/*!***********************************!*\
+  !*** ./public/img/bg/shinden.jpg ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/shinden.jpg?f37e0d4df742dbe0cef74d82d655b035";
+
+/***/ }),
+
+/***/ "./public/img/bg/tika_ko.jpg":
+/*!***********************************!*\
+  !*** ./public/img/bg/tika_ko.jpg ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/tika_ko.jpg?dff20b775b2224ba4a8ec6a999e71ce4";
+
+/***/ }),
+
+/***/ "./public/img/bg/yadoya_room.jpg":
+/*!***************************************!*\
+  !*** ./public/img/bg/yadoya_room.jpg ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/yadoya_room.jpg?8c703fad1843d03a3011c6eb7273db3a";
 
 /***/ }),
 
@@ -60913,6 +60991,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Communication.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Communication.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Communication_vue_vue_type_template_id_2235df0a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Communication.vue?vue&type=template&id=2235df0a&scoped=true& */ "./resources/js/components/Communication.vue?vue&type=template&id=2235df0a&scoped=true&");
+/* harmony import */ var _Communication_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Communication.vue?vue&type=script&lang=js& */ "./resources/js/components/Communication.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Communication_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Communication_vue_vue_type_template_id_2235df0a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Communication_vue_vue_type_template_id_2235df0a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "2235df0a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Communication.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Communication.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Communication.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Communication_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Communication.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Communication.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Communication_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Communication.vue?vue&type=template&id=2235df0a&scoped=true&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/Communication.vue?vue&type=template&id=2235df0a&scoped=true& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Communication_vue_vue_type_template_id_2235df0a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Communication.vue?vue&type=template&id=2235df0a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Communication.vue?vue&type=template&id=2235df0a&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Communication_vue_vue_type_template_id_2235df0a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Communication_vue_vue_type_template_id_2235df0a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Dungeon.vue":
 /*!*********************************************!*\
   !*** ./resources/js/components/Dungeon.vue ***!
@@ -61414,75 +61561,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/events/testevent.vue":
-/*!*******************************************!*\
-  !*** ./resources/js/events/testevent.vue ***!
-  \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _testevent_vue_vue_type_template_id_f4c76160_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./testevent.vue?vue&type=template&id=f4c76160&scoped=true& */ "./resources/js/events/testevent.vue?vue&type=template&id=f4c76160&scoped=true&");
-/* harmony import */ var _testevent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./testevent.vue?vue&type=script&lang=js& */ "./resources/js/events/testevent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _testevent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _testevent_vue_vue_type_template_id_f4c76160_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _testevent_vue_vue_type_template_id_f4c76160_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "f4c76160",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/events/testevent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/events/testevent.vue?vue&type=script&lang=js&":
-/*!********************************************************************!*\
-  !*** ./resources/js/events/testevent.vue?vue&type=script&lang=js& ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_testevent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./testevent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/events/testevent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_testevent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/events/testevent.vue?vue&type=template&id=f4c76160&scoped=true&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/events/testevent.vue?vue&type=template&id=f4c76160&scoped=true& ***!
-  \**************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_testevent_vue_vue_type_template_id_f4c76160_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./testevent.vue?vue&type=template&id=f4c76160&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/events/testevent.vue?vue&type=template&id=f4c76160&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_testevent_vue_vue_type_template_id_f4c76160_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_testevent_vue_vue_type_template_id_f4c76160_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/events/title.vue":
 /*!***************************************!*\
   !*** ./resources/js/events/title.vue ***!
@@ -61580,9 +61658,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  created: function created() {
-    this.$store.commit("setBgImg", "");
-  },
+  created: function created() {},
   methods: {
     //汎用スリープ処理。戦闘時の時間調整とかに。
     sleep: function sleep(time) {
@@ -61622,12 +61698,89 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      isShowChoice: false,
+      activeMotion: {
+        l1: {
+          type: "none"
+        },
+        l2: {
+          type: "none"
+        },
+        c: {
+          type: "none"
+        },
+        r1: {
+          type: "none"
+        },
+        r2: {
+          type: "none"
+        }
+      }
+    };
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     currentEventObj: "getEventObj",
     charList: "getCharList"
-  })),
+  }), {
+    modalBase: function modalBase() {
+      return {
+        color: "red",
+        fontSize: "20px"
+      };
+    }
+  }),
   methods: {
+    changeBg: function changeBg(place) {
+      switch (place) {
+        case "ホーム":
+          this.$store.commit("setBgImg", "home");
+          break;
+
+        case "町":
+          this.$store.commit("setBgImg", "town");
+          break;
+
+        case "道具屋":
+          this.$store.commit("setBgImg", "itemshop");
+          break;
+
+        case "武器屋":
+          this.$store.commit("setBgImg", "weaponshop");
+          break;
+
+        case "酒場":
+          this.$store.commit("setBgImg", "bar");
+          break;
+
+        case "神殿":
+          this.$store.commit("setBgImg", "shinden");
+          break;
+
+        case "大樹":
+          this.$store.commit("setBgImg", "tree");
+          break;
+
+        case "ダンジョン":
+          this.$store.commit("setBgImg", "dungeon");
+          break;
+
+        case "採集":
+          this.$store.commit("setBgImg", "stream");
+          break;
+
+        case "":
+          this.$store.commit("setBgImg", "");
+          break;
+      }
+    },
     getScene: function getScene(count) {
+      this.activeMotion.l1.type = "none";
+      this.activeMotion.l2.type = "none";
+      this.activeMotion.c.type = "none";
+      this.activeMotion.r1.type = "none";
+      this.activeMotion.r2.type = "none";
       var currentEvent = this[this.currentEventObj];
 
       if (!Array.isArray(currentEvent)) {
@@ -61644,6 +61797,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log("イベント終了");
         this.$store.commit("setSceneCount", 0);
       }
+    },
+    randomEvent: function randomEvent(list) {
+      if (!Array.isArray(list)) {
+        console.log("データが不正です。");
+        return false;
+      }
+
+      var count = list.length;
+      var random = Math.floor(Math.random() * count);
+      this.$store.commit("setEventObj", list[random]);
+      this.$store.commit("setSceneCount", 0);
+      this.$store.commit("setCharName", "");
+      this.setEvent({
+        type: "msg",
+        content: "――――――"
+      });
     },
     setEvent: function setEvent(event) {
       switch (event.type) {
@@ -61695,35 +61864,92 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       switch (pos) {
         case "l1":
           this.$store.commit("setCharImgL1", _char.imgL);
-          console.log(_char);
           break;
 
         case "l2":
           this.$store.commit("setCharImgL2", _char.imgL);
-          console.log(_char);
           break;
 
         case "c":
           this.$store.commit("setCharImgC", _char.imgL);
-          console.log(_char);
           break;
 
         case "r1":
           this.$store.commit("setCharImgR1", _char.imgR);
-          console.log(_char);
           break;
 
         case "r2":
           this.$store.commit("setCharImgR2", _char.imgR);
-          console.log(_char);
           break;
       }
     },
-    soundSet: function soundSet(_boolean) {
-      this.$store.commit("setSoundFlag", _boolean);
-      this.closeSoundModal();
-      this.$store.commit("setSceneCount", this.sceneCount + 1);
-      this.getScene(this.sceneCount);
+    setSpeaker: function setSpeaker(name, pos) {
+      this.downOpacity();
+      this.$store.commit("setCharName", name);
+
+      switch (pos) {
+        case "l1":
+          this.$store.commit("setOpacityL1", 1);
+          this.$store.commit("setZIndexL1", 20);
+          break;
+
+        case "l2":
+          this.$store.commit("setOpacityL2", 1);
+          this.$store.commit("setZIndexL2", 20);
+          break;
+
+        case "c":
+          this.$store.commit("setOpacityC", 1);
+          this.$store.commit("setZIndexC", 20);
+          break;
+
+        case "r1":
+          this.$store.commit("setOpacityR1", 1);
+          this.$store.commit("setZIndexR1", 20);
+          break;
+
+        case "r2":
+          this.$store.commit("setOpacityR2", 1);
+          this.$store.commit("setZIndexR2", 20);
+          break;
+
+        default:
+          break;
+      }
+    },
+    clearChar: function clearChar() {
+      this.$store.commit("setCharImgL1", "");
+      this.$store.commit("setCharImgL2", "");
+      this.$store.commit("setCharImgC", "");
+      this.$store.commit("setCharImgR1", "");
+      this.$store.commit("setCharImgR2", "");
+    },
+    resetOpacity: function resetOpacity() {
+      this.$store.commit("setOpacityL1", 1);
+      this.$store.commit("setOpacityL2", 1);
+      this.$store.commit("setOpacityC", 1);
+      this.$store.commit("setOpacityR1", 1);
+      this.$store.commit("setOpacityR2", 1);
+      this.$store.commit("setZIndexL1", 10);
+      this.$store.commit("setZIndexL2", 10);
+      this.$store.commit("setZIndexC", 10);
+      this.$store.commit("setZIndexR1", 10);
+      this.$store.commit("setZIndexR2", 10);
+    },
+    downOpacity: function downOpacity() {
+      this.$store.commit("setOpacityL1", 0.8);
+      this.$store.commit("setOpacityL2", 0.8);
+      this.$store.commit("setOpacityC", 0.8);
+      this.$store.commit("setOpacityR1", 0.8);
+      this.$store.commit("setOpacityR2", 0.8);
+      this.$store.commit("setZIndexL1", 10);
+      this.$store.commit("setZIndexL2", 10);
+      this.$store.commit("setZIndexC", 10);
+      this.$store.commit("setZIndexR1", 10);
+      this.$store.commit("setZIndexR2", 10);
+    },
+    setEffect: function setEffect(target, effect) {
+      this.activeMotion[target]["type"] = effect;
     }
   }
 });
@@ -62165,13 +62391,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
 /* harmony import */ var _components_Habit_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Habit.vue */ "./resources/js/components/Habit.vue");
 /* harmony import */ var _components_Status_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Status.vue */ "./resources/js/components/Status.vue");
-/* harmony import */ var _components_Collection_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Collection.vue */ "./resources/js/components/Collection.vue");
-/* harmony import */ var _components_Maker_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Maker.vue */ "./resources/js/components/Maker.vue");
-/* harmony import */ var _components_Dungeon_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Dungeon.vue */ "./resources/js/components/Dungeon.vue");
-/* harmony import */ var _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./parts/MainSidebar.vue */ "./resources/js/parts/MainSidebar.vue");
-/* harmony import */ var _events_title_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./events/title.vue */ "./resources/js/events/title.vue");
-/* harmony import */ var _events_opening_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./events/opening.vue */ "./resources/js/events/opening.vue");
-/* harmony import */ var _events_testevent_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./events/testevent.vue */ "./resources/js/events/testevent.vue");
+/* harmony import */ var _components_Communication_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Communication.vue */ "./resources/js/components/Communication.vue");
+/* harmony import */ var _components_Collection_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Collection.vue */ "./resources/js/components/Collection.vue");
+/* harmony import */ var _components_Maker_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Maker.vue */ "./resources/js/components/Maker.vue");
+/* harmony import */ var _components_Dungeon_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Dungeon.vue */ "./resources/js/components/Dungeon.vue");
+/* harmony import */ var _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./parts/MainSidebar.vue */ "./resources/js/parts/MainSidebar.vue");
+/* harmony import */ var _events_title_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./events/title.vue */ "./resources/js/events/title.vue");
+/* harmony import */ var _events_opening_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./events/opening.vue */ "./resources/js/events/opening.vue");
 
 
 
@@ -62190,58 +62416,65 @@ var routes = [{
   path: "/",
   name: "title",
   components: {
-    "default": _events_title_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    "default": _events_title_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 }, {
   path: "/home",
   name: "home",
   components: {
     "default": _components_Home_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 }, {
   path: "/habit",
   name: "habit",
   components: {
     "default": _components_Habit_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 }, {
   path: "/status",
   name: "status",
   components: {
     "default": _components_Status_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }
+}, {
+  path: "/communication",
+  name: "communication",
+  components: {
+    "default": _components_Communication_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 }, {
   path: "/collection",
   name: "collection",
   components: {
-    "default": _components_Collection_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    "default": _components_Collection_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 }, {
   path: "/maker",
   name: "maker",
   components: {
-    "default": _components_Maker_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    "default": _components_Maker_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 }, {
   path: "/dungeon",
   name: "dungeon",
   components: {
-    "default": _components_Dungeon_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    "default": _components_Dungeon_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }
 }, //イベント系
 {
   path: "/opening",
   name: "opening",
   components: {
-    "default": _events_opening_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    "default": _events_opening_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   },
   beforeEnter: function beforeEnter(to, from, next) {
     if (from.name === "title") {
@@ -62251,13 +62484,6 @@ var routes = [{
         name: "home"
       });
     }
-  }
-}, {
-  path: "/test",
-  name: "test",
-  components: {
-    "default": _events_testevent_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -62378,13 +62604,37 @@ var state = {
   message: "storeメッセージ",
   choice1: "",
   choice2: "",
-  charName: "test",
-  charImgL1: "",
-  charImgL2: "",
-  charImgC: "",
-  charImgR1: "",
-  charImgR2: "",
-  bgImg: "tree",
+  charName: "",
+  charImgL1: {
+    path: "",
+    opacity: 1,
+    zIndex: 10,
+    effect: ""
+  },
+  charImgL2: {
+    path: "",
+    opacity: 1,
+    zIndex: 10,
+    effect: ""
+  },
+  charImgC: {
+    path: "",
+    opacity: 1,
+    zIndex: 10,
+    effect: ""
+  },
+  charImgR1: {
+    path: "",
+    opacity: 1,
+    zIndex: 10,
+    effect: ""
+  },
+  charImgR2: {
+    path: "",
+    opacity: 1,
+    zIndex: 10
+  },
+  bgImg: "",
   sound: {
     isPlay: false,
     bgm: "/bgm/bgm_maoudamashii_fantasy13.mp3",
@@ -62393,10 +62643,15 @@ var state = {
   //立ち絵変更用のキャラデータオブジェクト
   npc: {
     // sphere
-    スフィア: {
+    スフィア1: {
       name: "スフィア",
       imgR: "./img/npc/npc001r",
       imgL: "./img/npc/npc001l"
+    },
+    スフィア2: {
+      name: "スフィア",
+      imgR: "./img/npc/npc001_1",
+      imgL: "./img/npc/npc001_1"
     },
     // eir
     エイル: {
@@ -62571,14 +62826,17 @@ var getters = {
   },
   getSound: function getSound(state) {
     return state.sound;
+  },
+  getBgImg: function getBgImg(state) {
+    return state.bgImg;
   }
 };
 var mutations = {
   setEventObj: function setEventObj(state, obj) {
     state.eventObj = obj;
   },
-  setBgImg: function setBgImg(state, imgClass) {
-    state.bgImg = imgClass;
+  setBgImg: function setBgImg(state, bgImgClass) {
+    state.bgImg = bgImgClass;
   },
   setSceneCount: function setSceneCount(state, count) {
     state.sceneCount = count;
@@ -62603,43 +62861,68 @@ var mutations = {
   },
   setCharImgL1: function setCharImgL1(state, imgPath) {
     if (imgPath === "") {
-      state.charImgL1 = "";
+      state.charImgL1.path = "";
     } else {
-      // state.charImgL1 = "./img/npc/" + imgPath;
-      state.charImgL1 = imgPath + ".png";
+      state.charImgL1.path = imgPath + ".png";
     }
   },
   setCharImgL2: function setCharImgL2(state, imgPath) {
     if (imgPath === "") {
-      state.charImgL2 = "";
+      state.charImgL2.path = "";
     } else {
-      // state.charImgL2 = "./img/npc/" + imgPath;
-      state.charImgL2 = imgPath + ".png";
+      state.charImgL2.path = imgPath + ".png";
     }
   },
   setCharImgC: function setCharImgC(state, imgPath) {
     if (imgPath === "") {
-      state.charImgC = "";
+      state.charImgC.path = "";
     } else {
-      // state.charImgC = "./img/npc/" + imgPath;
-      state.charImgC = imgPath + ".png";
+      state.charImgC.path = imgPath + ".png";
     }
   },
   setCharImgR1: function setCharImgR1(state, imgPath) {
     if (imgPath === "") {
-      state.charImgR1 = "";
+      state.charImgR1.path = "";
     } else {
-      // state.charImgR1 = "./img/npc/" + imgPath;
-      state.charImgR1 = imgPath + ".png";
+      state.charImgR1.path = imgPath + ".png";
     }
   },
   setCharImgR2: function setCharImgR2(state, imgPath) {
     if (imgPath === "") {
-      state.charImgR2 = "";
+      state.charImgR2.path = "";
     } else {
-      // state.charImgR2 = "./img/npc/" + imgPath;
-      state.charImgR2 = imgPath + ".png";
+      state.charImgR2.path = imgPath + ".png";
     }
+  },
+  setOpacityL1: function setOpacityL1(state, opacity) {
+    state.charImgL1.opacity = opacity;
+  },
+  setOpacityL2: function setOpacityL2(state, opacity) {
+    state.charImgL2.opacity = opacity;
+  },
+  setOpacityC: function setOpacityC(state, opacity) {
+    state.charImgC.opacity = opacity;
+  },
+  setOpacityR1: function setOpacityR1(state, opacity) {
+    state.charImgR1.opacity = opacity;
+  },
+  setOpacityR2: function setOpacityR2(state, opacity) {
+    state.charImgR2.opacity = opacity;
+  },
+  setZIndexL1: function setZIndexL1(state, index) {
+    state.charImgL1.zIndex = index;
+  },
+  setZIndexL2: function setZIndexL2(state, index) {
+    state.charImgL2.zIndex = index;
+  },
+  setZIndexC: function setZIndexC(state, index) {
+    state.charImgC.zIndex = index;
+  },
+  setZIndexR1: function setZIndexR1(state, index) {
+    state.charImgR1.zIndex = index;
+  },
+  setZIndexR2: function setZIndexR2(state, index) {
+    state.charImgR2.zIndex = index;
   },
   setSoundFlag: function setSoundFlag(state, flag) {
     state.sound.isPlay = flag;

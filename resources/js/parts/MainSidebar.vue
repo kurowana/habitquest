@@ -1,9 +1,9 @@
 <template>
   <div class="sidebar">
-    <router-link :to="{name:'test'}" class="btn">ホーム</router-link>
+    <router-link :to="{name:'home'}" class="btn">ホーム</router-link>
     <router-link :to="{name:'habit'}" class="btn">習慣</router-link>
     <router-link :to="{name:'status'}" class="btn">ステータス</router-link>
-    <router-link :to="{name:'test'}" class="btn">交流</router-link>
+    <router-link :to="{name:'communication'}" class="btn">交流</router-link>
     <router-link :to="{name:'collection'}" class="btn">採集</router-link>
     <router-link :to="{name:'maker'}" class="btn">制作</router-link>
     <router-link :to="{name:'dungeon'}" class="btn">ダンジョン</router-link>

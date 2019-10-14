@@ -24,14 +24,12 @@ export default {
   },
   methods: {
     choiced1: function() {
-      console.log(this.choice1);
       this.choice1.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
     },
     choiced2: function() {
-      console.log(this.choice2);
       this.choice2.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
