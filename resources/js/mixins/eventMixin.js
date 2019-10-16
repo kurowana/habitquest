@@ -10,6 +10,13 @@ export default {
                 c: { type: "none" },
                 r1: { type: "none" },
                 r2: { type: "none" }
+            },
+            activeEffect: {
+                l1: { type: "none" },
+                l2: { type: "none" },
+                c: { type: "none" },
+                r1: { type: "none" },
+                r2: { type: "none" }
             }
         };
     },
@@ -212,8 +219,11 @@ export default {
             this.$store.commit("setZIndexR1", 10);
             this.$store.commit("setZIndexR2", 10);
         },
-        setEffect(target, effect) {
+        setMotion(target, effect) {
             this.activeMotion[target]["type"] = effect;
+        },
+        setEffect(target, effect) {
+            this.activeEffect[target]["type"] = effect;
         }
     }
 };
