@@ -11,7 +11,7 @@
     >探索開始</button>
     {{monster}}
     <message @get-scene="getScene"></message>
-    <char-img :active-effect="activeMotion"></char-img>
+    <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
   </div>
 </template>
 

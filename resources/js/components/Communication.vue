@@ -2,7 +2,7 @@
   <div>
     <h1>交流イベント</h1>
     <message @get-scene="getScene"></message>
-    <char-img :active-effect="activeMotion"></char-img>
+    <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
   </div>
 </template>
 

@@ -2,28 +2,32 @@
   <div class="img-view">
     <transition name="fade">
       <div v-if="showCharL1" class="img-l1" :style="styleL1">
-        <img :class="effectL1" :src="showCharL1" />
+        <img :class="motionL1" :src="showCharL1" />
+        <i :class="effectL1"></i>
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharL2" class="img-l2" :style="styleL2">
-        <img :class="effectL2" :src="showCharL2" />
+        <img :class="motionL2" :src="showCharL2" />
+        <i :class="effectL2"></i>
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharC" class="img-c">
-        <img :class="effectC" :src="showCharC" :style="styleC" />
-        <i class="fas fa-bolt"></i>
+        <img :class="motionC" :src="showCharC" :style="styleC" />
+        <i :class="effectC"></i>
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharR1" class="img-r1">
-        <img :class="effectR1" :src="showCharR1" :style="styleR1" />
+        <img :class="motionR1" :src="showCharR1" :style="styleR1" />
+        <i :class="effectR1"></i>
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharR2" class="img-r2">
-        <img :class="effectR2" :src="showCharR2" :style="styleR2" />
+        <img :class="motionR2" :src="showCharR2" :style="styleR2" />
+        <i :class="effectR2"></i>
       </div>
     </transition>
   </div>
@@ -37,7 +41,8 @@ export default {
     return {};
   },
   props: {
-    activeMotion: Object
+    activeMotion: Object,
+    activeEffect: Object
   },
   computed: {
     ...mapGetters({
@@ -92,25 +97,40 @@ export default {
         zIndex: this.imgR2.zIndex
       };
     },
+    motionL1: function() {
+      return this.changeMotion(this.activeMotion.l1);
+    },
+    motionL2: function() {
+      return this.changeMotion(this.activeMotion.l2);
+    },
+    motionC: function() {
+      return this.changeMotion(this.activeMotion.c);
+    },
+    motionR1: function() {
+      return this.changeMotion(this.activeMotion.r1);
+    },
+    motionR2: function() {
+      return this.changeMotion(this.activeMotion.r2);
+    },
     effectL1: function() {
-      return this.changeEffect(this.activeMotion.l1);
+      return this.changeEffect(this.activeEffect.l1);
     },
     effectL2: function() {
-      return this.changeEffect(this.activeMotion.l2);
+      return this.changeEffect(this.activeEffect.l2);
     },
     effectC: function() {
-      return this.changeEffect(this.activeMotion.c);
+      return this.changeEffect(this.activeEffect.c);
     },
     effectR1: function() {
-      return this.changeEffect(this.activeMotion.r1);
+      return this.changeEffect(this.activeEffect.r1);
     },
     effectR2: function() {
-      return this.changeEffect(this.activeMotion.r2);
+      return this.changeEffect(this.activeEffect.r2);
     }
   },
   methods: {
-    changeEffect: function(effect) {
-      switch (effect.type) {
+    changeMotion: function(motion) {
+      switch (motion.type) {
         case "anime1":
           return "effect";
           break;
@@ -120,7 +140,8 @@ export default {
         default:
           return;
       }
-    }
+    },
+    changeEffect: function() {}
   }
 };
 </script>

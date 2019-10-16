@@ -3896,8 +3896,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         vm.setSpeaker("エイル", "r2");
       }, function (vm) {
-        vm.setEffect("l1", "anime1");
-        vm.setEffect("r1", "anime2");
+        vm.setMotion("l1", "anime1");
+        vm.setMotion("r1", "anime2");
         vm.setEvent({
           type: "msg",
           content: "メッセージのテスト3"
@@ -4473,13 +4473,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
   },
   props: {
-    activeMotion: Object
+    activeMotion: Object,
+    activeEffect: Object
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     imgL1: "getCharImgL1",
@@ -4533,25 +4538,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         zIndex: this.imgR2.zIndex
       };
     },
+    motionL1: function motionL1() {
+      return this.changeMotion(this.activeMotion.l1);
+    },
+    motionL2: function motionL2() {
+      return this.changeMotion(this.activeMotion.l2);
+    },
+    motionC: function motionC() {
+      return this.changeMotion(this.activeMotion.c);
+    },
+    motionR1: function motionR1() {
+      return this.changeMotion(this.activeMotion.r1);
+    },
+    motionR2: function motionR2() {
+      return this.changeMotion(this.activeMotion.r2);
+    },
     effectL1: function effectL1() {
-      return this.changeEffect(this.activeMotion.l1);
+      return this.changeEffect(this.activeEffect.l1);
     },
     effectL2: function effectL2() {
-      return this.changeEffect(this.activeMotion.l2);
+      return this.changeEffect(this.activeEffect.l2);
     },
     effectC: function effectC() {
-      return this.changeEffect(this.activeMotion.c);
+      return this.changeEffect(this.activeEffect.c);
     },
     effectR1: function effectR1() {
-      return this.changeEffect(this.activeMotion.r1);
+      return this.changeEffect(this.activeEffect.r1);
     },
     effectR2: function effectR2() {
-      return this.changeEffect(this.activeMotion.r2);
+      return this.changeEffect(this.activeEffect.r2);
     }
   }),
   methods: {
-    changeEffect: function changeEffect(effect) {
-      switch (effect.type) {
+    changeMotion: function changeMotion(motion) {
+      switch (motion.type) {
         case "anime1":
           return "effect";
           break;
@@ -4563,7 +4583,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         default:
           return;
       }
-    }
+    },
+    changeEffect: function changeEffect() {}
   }
 });
 
@@ -42782,7 +42803,12 @@ var render = function() {
       _vm._v(" "),
       _c("message", { on: { "get-scene": _vm.getScene } }),
       _vm._v(" "),
-      _c("char-img", { attrs: { "active-effect": _vm.activeMotion } })
+      _c("char-img", {
+        attrs: {
+          "active-motion": _vm.activeMotion,
+          "active-effect": _vm.activeEffect
+        }
+      })
     ],
     1
   )
@@ -42828,7 +42854,12 @@ var render = function() {
       _vm._v("\n  " + _vm._s(_vm.monster) + "\n  "),
       _c("message", { on: { "get-scene": _vm.getScene } }),
       _vm._v(" "),
-      _c("char-img", { attrs: { "active-effect": _vm.activeMotion } })
+      _c("char-img", {
+        attrs: {
+          "active-motion": _vm.activeMotion,
+          "active-effect": _vm.activeEffect
+        }
+      })
     ],
     1
   )
@@ -42980,7 +43011,12 @@ var render = function() {
     [
       _c("message", { on: { "get-scene": _vm.getScene } }),
       _vm._v(" "),
-      _c("char-img", { attrs: { "active-effect": _vm.activeMotion } })
+      _c("char-img", {
+        attrs: {
+          "active-motion": _vm.activeMotion,
+          "active-effect": _vm.activeEffect
+        }
+      })
     ],
     1
   )
@@ -43573,7 +43609,12 @@ var render = function() {
         ),
         _c("message", { on: { "get-scene": _vm.getScene } }),
         _vm._v(" "),
-        _c("char-img", { attrs: { "active-effect": _vm.activeMotion } }),
+        _c("char-img", {
+          attrs: {
+            "active-motion": _vm.activeMotion,
+            "active-effect": _vm.activeEffect
+          }
+        }),
         _vm._v(" "),
         _vm.isSoundCheckModal
           ? _c("modal", [
@@ -44403,7 +44444,12 @@ var render = function() {
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharL1
           ? _c("div", { staticClass: "img-l1", style: _vm.styleL1 }, [
-              _c("img", { class: _vm.effectL1, attrs: { src: _vm.showCharL1 } })
+              _c("img", {
+                class: _vm.motionL1,
+                attrs: { src: _vm.showCharL1 }
+              }),
+              _vm._v(" "),
+              _c("i", { class: _vm.effectL1 })
             ])
           : _vm._e()
       ]),
@@ -44411,7 +44457,12 @@ var render = function() {
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharL2
           ? _c("div", { staticClass: "img-l2", style: _vm.styleL2 }, [
-              _c("img", { class: _vm.effectL2, attrs: { src: _vm.showCharL2 } })
+              _c("img", {
+                class: _vm.motionL2,
+                attrs: { src: _vm.showCharL2 }
+              }),
+              _vm._v(" "),
+              _c("i", { class: _vm.effectL2 })
             ])
           : _vm._e()
       ]),
@@ -44420,12 +44471,12 @@ var render = function() {
         _vm.showCharC
           ? _c("div", { staticClass: "img-c" }, [
               _c("img", {
-                class: _vm.effectC,
+                class: _vm.motionC,
                 style: _vm.styleC,
                 attrs: { src: _vm.showCharC }
               }),
               _vm._v(" "),
-              _c("i", { staticClass: "fas fa-bolt" })
+              _c("i", { class: _vm.effectC })
             ])
           : _vm._e()
       ]),
@@ -44434,10 +44485,12 @@ var render = function() {
         _vm.showCharR1
           ? _c("div", { staticClass: "img-r1" }, [
               _c("img", {
-                class: _vm.effectR1,
+                class: _vm.motionR1,
                 style: _vm.styleR1,
                 attrs: { src: _vm.showCharR1 }
-              })
+              }),
+              _vm._v(" "),
+              _c("i", { class: _vm.effectR1 })
             ])
           : _vm._e()
       ]),
@@ -44446,10 +44499,12 @@ var render = function() {
         _vm.showCharR2
           ? _c("div", { staticClass: "img-r2" }, [
               _c("img", {
-                class: _vm.effectR2,
+                class: _vm.motionR2,
                 style: _vm.styleR2,
                 attrs: { src: _vm.showCharR2 }
-              })
+              }),
+              _vm._v(" "),
+              _c("i", { class: _vm.effectR2 })
             ])
           : _vm._e()
       ])
@@ -61717,6 +61772,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         r2: {
           type: "none"
         }
+      },
+      activeEffect: {
+        l1: {
+          type: "none"
+        },
+        l2: {
+          type: "none"
+        },
+        c: {
+          type: "none"
+        },
+        r1: {
+          type: "none"
+        },
+        r2: {
+          type: "none"
+        }
       }
     };
   },
@@ -61948,8 +62020,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit("setZIndexR1", 10);
       this.$store.commit("setZIndexR2", 10);
     },
-    setEffect: function setEffect(target, effect) {
+    setMotion: function setMotion(target, effect) {
       this.activeMotion[target]["type"] = effect;
+    },
+    setEffect: function setEffect(target, effect) {
+      this.activeEffect[target]["type"] = effect;
     }
   }
 });

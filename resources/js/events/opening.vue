@@ -5,7 +5,7 @@
       {{this.sceneCount}}
       {{this.NextFlag}}
       <message @get-scene="getScene"></message>
-      <char-img :active-effect="activeMotion"></char-img>
+      <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
       <!--音楽再生確認モーダル-->
       <modal v-if="isSoundCheckModal">
         <div>
@@ -167,8 +167,8 @@ export default {
           vm.setSpeaker("エイル", "r2");
         },
         function(vm) {
-          vm.setEffect("l1", "anime1");
-          vm.setEffect("r1", "anime2");
+          vm.setMotion("l1", "anime1");
+          vm.setMotion("r1", "anime2");
           vm.setEvent({ type: "msg", content: "メッセージのテスト3" });
           vm.setSpeaker("スフィア", "l1");
         },
