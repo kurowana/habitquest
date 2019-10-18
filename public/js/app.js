@@ -2915,6 +2915,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2947,6 +2950,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     initPage: function initPage() {
+      this.showChar("スフィア1", "c");
       this.getMyStatus();
     },
     getMyStatus: function getMyStatus() {
@@ -2980,6 +2984,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     startBattle: function startBattle() {
       this.$store.commit("setMonster", this.currentStage);
+      this.showChar("", "c");
       this.battle();
     },
     battle: function () {
@@ -2993,7 +2998,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 player = this.myStatus.battle;
                 endFlag = false;
-                console.log("戦闘開始");
+                this.$store.commit("setMessage", "戦闘開始");
 
               case 3:
                 if (endFlag) {
@@ -3013,7 +3018,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.playerAttack(player, this.monster);
 
                 if (this.monster.hp <= 0) {
-                  console.log("倒した");
+                  this.$store.commit("setMessage", "倒した");
                   this.winBattle();
                   this.currentStage++;
                   this.$store.commit("setMonster", this.currentStage);
@@ -3052,7 +3057,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.playerAttack(player, this.monster);
 
                 if (this.monster.hp <= 0) {
-                  console.log("倒した");
+                  this.$store.commit("setMessage", "倒した");
                   this.winBattle();
                   this.currentStage++;
                   this.$store.commit("setMonster", this.currentStage);
@@ -3085,14 +3090,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       console.log(damage + ":" + monster.hp);
+      this.$store.commit("setMessage", monster.name + "に" + damage + "のダメージ");
     },
     monsterAttack: function monsterAttack(player, monster) {
-      console.log("モンスターの攻撃");
       var damage = monster.atk - player.def;
 
       if (damage > 0) {
         player.hp -= damage;
       }
+
+      this.$store.commit("setMessage", "主人公に" + damage + "のダメージ");
     },
     winBattle: function winBattle() {
       this.tempMoney += 10 * this.currentStage;
@@ -19347,6 +19354,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1000px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\n}\n.home[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/yadoya_room.jpg */ "./public/img/bg/yadoya_room.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.town[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/Europe_House.jpg */ "./public/img/bg/Europe_House.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.itemshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/item_shop.jpg */ "./public/img/bg/item_shop.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.weaponshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bukiya.jpg */ "./public/img/bg/bukiya.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.bar[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bar.jpg */ "./public/img/bg/bar.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden.jpg */ "./public/img/bg/shinden.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree.jpg */ "./public/img/bg/old_tree.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.stream[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/keiryuu.jpg */ "./public/img/bg/keiryuu.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.img-c[data-v-6c4c51c2] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6c4c51c2] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -38367,6 +38393,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/events/opening.vue?vue&type=style&index=0&id=625c0140&scoped=true&lang=css&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/events/opening.vue?vue&type=style&index=0&id=625c0140&scoped=true&lang=css& ***!
@@ -42820,10 +42876,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2& ***!
-  \**********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -42853,6 +42909,10 @@ var render = function() {
       _c("button", { on: { click: _vm.startBattle } }, [_vm._v("探索開始")]),
       _vm._v("\n  " + _vm._s(_vm.monster) + "\n  "),
       _c("message", { on: { "get-scene": _vm.getScene } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "img-c" }, [
+        _c("img", { attrs: { src: "./" + _vm.monster.img } })
+      ]),
       _vm._v(" "),
       _c("char-img", {
         attrs: {
@@ -61124,9 +61184,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dungeon.vue?vue&type=template&id=6c4c51c2& */ "./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&");
+/* harmony import */ var _Dungeon_vue_vue_type_template_id_6c4c51c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dungeon.vue?vue&type=template&id=6c4c51c2&scoped=true& */ "./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&scoped=true&");
 /* harmony import */ var _Dungeon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dungeon.vue?vue&type=script&lang=js& */ "./resources/js/components/Dungeon.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _Dungeon_vue_vue_type_style_index_0_id_6c4c51c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css& */ "./resources/js/components/Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -61134,13 +61196,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _Dungeon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Dungeon_vue_vue_type_template_id_6c4c51c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Dungeon_vue_vue_type_template_id_6c4c51c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "6c4c51c2",
   null
   
 )
@@ -61166,19 +61228,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2& ***!
-  \****************************************************************************/
+/***/ "./resources/js/components/Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css& ***!
+  \******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_style_index_0_id_6c4c51c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=style&index=0&id=6c4c51c2&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_style_index_0_id_6c4c51c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_style_index_0_id_6c4c51c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_style_index_0_id_6c4c51c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_style_index_0_id_6c4c51c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_style_index_0_id_6c4c51c2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&scoped=true&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&scoped=true& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Dungeon.vue?vue&type=template&id=6c4c51c2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_template_id_6c4c51c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Dungeon.vue?vue&type=template&id=6c4c51c2&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dungeon.vue?vue&type=template&id=6c4c51c2&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_template_id_6c4c51c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_template_id_6c4c51c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Dungeon_vue_vue_type_template_id_6c4c51c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -63068,28 +63146,455 @@ var state = {
     flee: 0
   },
   monsterList: [{
-    name: "スライム",
-    hp: 50,
+    name: "ハーピー",
+    hp: 100,
     mp: 0,
-    atk: 10,
+    atk: 20,
+    matk: 0,
+    def: 10,
+    mdef: 10,
+    spd: 15,
+    hit: 100,
+    flee: 10,
+    img: "img/monster/m001a.png"
+  }, {
+    name: "熟れハーピー",
+    hp: 150,
+    mp: 0,
+    atk: 30,
+    matk: 0,
+    def: 15,
+    mdef: 15,
+    spd: 25,
+    hit: 110,
+    flee: 20,
+    img: "img/monster/m001b.png"
+  }, {
+    name: "パリピーピー",
+    hp: 200,
+    mp: 0,
+    atk: 45,
+    matk: 0,
+    def: 20,
+    mdef: 20,
+    spd: 40,
+    hit: 120,
+    flee: 30,
+    img: "img/monster/m001c.png"
+  }, {
+    name: "ハンマーヘッド",
+    hp: 150,
+    mp: 0,
+    atk: 30,
     matk: 0,
     def: 5,
     mdef: 5,
     spd: 10,
-    hit: 20,
-    flee: 20
+    hit: 100,
+    flee: 0,
+    img: "img/monster/m004a.png"
   }, {
-    name: "スケルトン",
-    hp: 60,
+    name: "エラツキヘッド",
+    hp: 200,
     mp: 0,
-    atk: 14,
+    atk: 50,
     matk: 0,
-    def: 8,
-    mdef: 0,
+    def: 10,
+    mdef: 5,
+    spd: 10,
+    hit: 100,
+    flee: 0,
+    img: "img/monster/m004b.png"
+  }, {
+    name: "火毛ボーボー",
+    hp: 300,
+    mp: 0,
+    atk: 80,
+    matk: 0,
+    def: 10,
+    mdef: 5,
+    spd: 10,
+    hit: 100,
+    flee: 0,
+    img: "img/monster/m004c.png"
+  }, {
+    name: "ラムダ",
+    hp: 80,
+    mp: 30,
+    atk: 10,
+    matk: 30,
+    def: 10,
+    mdef: 25,
+    spd: 10,
+    hit: 100,
+    flee: 10,
+    img: "img/monster/m005a.png"
+  }, {
+    name: "ソユーズ",
+    hp: 120,
+    mp: 50,
+    atk: 20,
+    matk: 50,
+    def: 20,
+    mdef: 40,
     spd: 20,
-    hit: 20,
-    flee: 20
-  }]
+    hit: 100,
+    flee: 15,
+    img: "img/monster/m005b.png"
+  }, {
+    name: "トップゴールド",
+    hp: 160,
+    mp: 80,
+    atk: 30,
+    matk: 80,
+    def: 30,
+    mdef: 60,
+    spd: 30,
+    hit: 100,
+    flee: 20,
+    img: "img/monster/m005c.png"
+  }, {
+    name: "シザーズ",
+    hp: 70,
+    mp: 0,
+    atk: 30,
+    matk: 0,
+    def: 0,
+    mdef: 0,
+    spd: 30,
+    hit: 100,
+    flee: 20,
+    img: "img/monster/m006a.png"
+  }, {
+    name: "ちょい出シザーズ",
+    hp: 100,
+    mp: 0,
+    atk: 50,
+    matk: 0,
+    def: 0,
+    mdef: 0,
+    spd: 50,
+    hit: 100,
+    flee: 30,
+    img: "img/monster/m006b.png"
+  }, {
+    name: "丸出シザーズ",
+    hp: 150,
+    mp: 0,
+    atk: 70,
+    matk: 0,
+    def: 0,
+    mdef: 0,
+    spd: 70,
+    hit: 100,
+    flee: 30,
+    img: "img/monster/m006c.png"
+  }, {
+    name: "ピンクヘッド",
+    hp: 80,
+    mp: 20,
+    atk: 20,
+    matk: 20,
+    def: 20,
+    mdef: 20,
+    spd: 10,
+    hit: 100,
+    flee: 10,
+    img: "img/monster/m007a.png"
+  }, {
+    name: "ピンクヘッド(発情)",
+    hp: 120,
+    mp: 40,
+    atk: 30,
+    matk: 30,
+    def: 30,
+    mdef: 30,
+    spd: 20,
+    hit: 100,
+    flee: 20,
+    img: "img/monster/m007b.png"
+  }, {
+    name: "ピンクヘッド(昇天)",
+    hp: 180,
+    mp: 60,
+    atk: 50,
+    matk: 50,
+    def: 50,
+    mdef: 50,
+    spd: 30,
+    hit: 100,
+    flee: 25,
+    img: "img/monster/m007c.png"
+  }, {
+    name: "叫び",
+    hp: 50,
+    mp: 100,
+    atk: 5,
+    matk: 40,
+    def: 0,
+    mdef: 40,
+    spd: 10,
+    hit: 100,
+    flee: 0,
+    img: "img/monster/m008a.png"
+  }, {
+    name: "絶叫",
+    hp: 80,
+    mp: 200,
+    atk: 10,
+    matk: 70,
+    def: 0,
+    mdef: 60,
+    spd: 30,
+    hit: 100,
+    flee: 0,
+    img: "img/monster/m008b.png"
+  }, {
+    name: "ひとりコーラス",
+    hp: 160,
+    mp: 300,
+    atk: 10,
+    matk: 100,
+    def: 0,
+    mdef: 80,
+    spd: 50,
+    hit: 100,
+    flee: 0,
+    img: "img/monster/m008c.png"
+  }, {
+    name: "ダクソ",
+    hp: 100,
+    mp: 30,
+    atk: 40,
+    matk: 40,
+    def: 30,
+    mdef: 30,
+    spd: 30,
+    hit: 100,
+    flee: 10,
+    img: "img/monster/m009a.png"
+  }, {
+    name: "ダクソII",
+    hp: 180,
+    mp: 60,
+    atk: 60,
+    matk: 60,
+    def: 50,
+    mdef: 50,
+    spd: 50,
+    hit: 110,
+    flee: 20,
+    img: "img/monster/m009b.png"
+  }, {
+    name: "ダクソIII",
+    hp: 260,
+    mp: 100,
+    atk: 100,
+    matk: 100,
+    def: 80,
+    mdef: 80,
+    spd: 70,
+    hit: 120,
+    flee: 30,
+    img: "img/monster/m009c.png"
+  }],
+  bossList: {
+    グリフォン1: {
+      name: "グリフォン",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m002a.png"
+    },
+    グリフォン2: {
+      name: "グリフォン",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m002b.png"
+    },
+    グリフォン3: {
+      name: "グリフォン",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m002c.png"
+    },
+    ナイトメア1: {
+      name: "ナイトメア",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m003a.png"
+    },
+    ナイトメア2: {
+      name: "ナイトメア",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m003b.png"
+    },
+    ナイトメア3: {
+      name: "ナイトメア",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m003c.png"
+    },
+    ドラゴン1: {
+      name: "ドラゴン",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m010a.png"
+    },
+    ドラゴン2: {
+      name: "ドラゴン",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m010b.png"
+    },
+    ドラゴン3: {
+      name: "ドラゴン",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m010c.png"
+    },
+    スレイプニル1: {
+      name: "スレイプニル",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m011a.png"
+    },
+    スレイプニル2: {
+      name: "スレイプニル",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m011b.png"
+    },
+    スレイプニル3: {
+      name: "スレイプニル",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m011c.png"
+    },
+    リヴァイアサン1: {
+      name: "リヴァイアサン",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m012a.png"
+    },
+    リヴァイアサン2: {
+      name: "リヴァイアサン",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m012b.png"
+    },
+    リヴァイアサン3: {
+      name: "リヴァイアサン",
+      hp: 50,
+      mp: 0,
+      atk: 10,
+      matk: 0,
+      def: 5,
+      mdef: 5,
+      spd: 10,
+      hit: 20,
+      flee: 20,
+      img: "img/monster/m012c.png"
+    }
+  }
 };
 var getters = {
   getMonster: function getMonster(state) {

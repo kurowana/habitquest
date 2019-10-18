@@ -11,6 +11,9 @@
     >探索開始</button>
     {{monster}}
     <message @get-scene="getScene"></message>
+    <div class="img-c">
+      <img :src="'./'+monster.img" />
+    </div>
     <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
   </div>
 </template>
@@ -54,6 +57,7 @@ export default {
   },
   methods: {
     initPage: function() {
+      this.showChar("スフィア1", "c");
       this.getMyStatus();
     },
     getMyStatus: function() {
@@ -85,18 +89,19 @@ export default {
     },
     startBattle: function() {
       this.$store.commit("setMonster", this.currentStage);
+      this.showChar("", "c");
       this.battle();
     },
     battle: async function() {
       let player = this.myStatus.battle;
       let endFlag = false;
-      console.log("戦闘開始");
+      this.$store.commit("setMessage", "戦闘開始");
       while (!endFlag) {
         if (player.spd >= this.monster.spd) {
           await this.sleep(1000);
           this.playerAttack(player, this.monster);
           if (this.monster.hp <= 0) {
-            console.log("倒した");
+            this.$store.commit("setMessage", "倒した");
             this.winBattle();
             this.currentStage++;
             this.$store.commit("setMonster", this.currentStage);
@@ -117,7 +122,7 @@ export default {
           await this.sleep(1000);
           this.playerAttack(player, this.monster);
           if (this.monster.hp <= 0) {
-            console.log("倒した");
+            this.$store.commit("setMessage", "倒した");
             this.winBattle();
             this.currentStage++;
             this.$store.commit("setMonster", this.currentStage);
@@ -132,13 +137,17 @@ export default {
         monster.hp -= damage;
       }
       console.log(damage + ":" + monster.hp);
+      this.$store.commit(
+        "setMessage",
+        monster.name + "に" + damage + "のダメージ"
+      );
     },
     monsterAttack: function(player, monster) {
-      console.log("モンスターの攻撃");
       let damage = monster.atk - player.def;
       if (damage > 0) {
         player.hp -= damage;
       }
+      this.$store.commit("setMessage", "主人公に" + damage + "のダメージ");
     },
     winBattle: function() {
       this.tempMoney += 10 * this.currentStage;
@@ -150,3 +159,17 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.img-c {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+}
+.img-c img {
+  width: 320px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+</style>
