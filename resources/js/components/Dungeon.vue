@@ -15,6 +15,7 @@
       <img :src="'./'+monster.img" />
     </div>
     <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
+    <battle-effect :battle-effect="battleEffect"></battle-effect>
   </div>
 </template>
 
@@ -28,11 +29,13 @@ import battleMixin from "../mixins/baseMixin";
 
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
+import battleEffect from "../parts/battleEffect";
 
 export default {
   components: {
     message: message,
-    "char-img": charImg
+    "char-img": charImg,
+    "battle-effect": battleEffect
   },
   mixins: [baseMixin, eventMixin, battleMixin],
   data: function() {
