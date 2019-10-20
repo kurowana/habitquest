@@ -3016,7 +3016,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }
 
                 _context.next = 7;
-                return this.sleep(1000);
+                return this.sleep(500);
 
               case 7:
                 this.playerAttack(player, this.monster);
@@ -3029,7 +3029,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }
 
                 _context.next = 11;
-                return this.sleep(1000);
+                return this.sleep(500);
 
               case 11:
                 this.monsterAttack(player, this.monster);
@@ -3044,7 +3044,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 15:
                 _context.next = 17;
-                return this.sleep(1000);
+                return this.sleep(500);
 
               case 17:
                 this.monsterAttack(player, this.monster);
@@ -3055,7 +3055,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }
 
                 _context.next = 21;
-                return this.sleep(1000);
+                return this.sleep(500);
 
               case 21:
                 this.playerAttack(player, this.monster);
@@ -4389,7 +4389,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       isShowMsg: true,
       msgCount: 0,
-      delayTime: 30,
+      delayTime: 10,
       isCompleted: false
     };
   },
@@ -63377,8 +63377,8 @@ var state = {
     mp: 0,
     atk: 20,
     matk: 0,
-    def: 10,
-    mdef: 10,
+    def: 5,
+    mdef: 5,
     spd: 15,
     hit: 100,
     flee: 10,
@@ -63389,8 +63389,8 @@ var state = {
     mp: 0,
     atk: 30,
     matk: 0,
-    def: 15,
-    mdef: 15,
+    def: 10,
+    mdef: 10,
     spd: 25,
     hit: 110,
     flee: 20,
@@ -63401,8 +63401,8 @@ var state = {
     mp: 0,
     atk: 45,
     matk: 0,
-    def: 20,
-    mdef: 20,
+    def: 15,
+    mdef: 15,
     spd: 40,
     hit: 120,
     flee: 30,
@@ -63413,8 +63413,8 @@ var state = {
     mp: 0,
     atk: 30,
     matk: 0,
-    def: 5,
-    mdef: 5,
+    def: 0,
+    mdef: 0,
     spd: 10,
     hit: 100,
     flee: 0,
@@ -63425,8 +63425,8 @@ var state = {
     mp: 0,
     atk: 50,
     matk: 0,
-    def: 10,
-    mdef: 5,
+    def: 0,
+    mdef: 0,
     spd: 10,
     hit: 100,
     flee: 0,
@@ -63437,8 +63437,8 @@ var state = {
     mp: 0,
     atk: 80,
     matk: 0,
-    def: 10,
-    mdef: 5,
+    def: 0,
+    mdef: 0,
     spd: 10,
     hit: 100,
     flee: 0,
@@ -63450,7 +63450,7 @@ var state = {
     atk: 10,
     matk: 30,
     def: 10,
-    mdef: 25,
+    mdef: 15,
     spd: 10,
     hit: 100,
     flee: 10,
@@ -63461,8 +63461,8 @@ var state = {
     mp: 50,
     atk: 20,
     matk: 50,
-    def: 20,
-    mdef: 40,
+    def: 15,
+    mdef: 20,
     spd: 20,
     hit: 100,
     flee: 15,
@@ -63473,8 +63473,8 @@ var state = {
     mp: 80,
     atk: 30,
     matk: 80,
-    def: 30,
-    mdef: 60,
+    def: 20,
+    mdef: 30,
     spd: 30,
     hit: 100,
     flee: 20,
@@ -63521,8 +63521,8 @@ var state = {
     mp: 20,
     atk: 20,
     matk: 20,
-    def: 20,
-    mdef: 20,
+    def: 10,
+    mdef: 10,
     spd: 10,
     hit: 100,
     flee: 10,
@@ -63532,8 +63532,8 @@ var state = {
     hp: 120,
     mp: 40,
     atk: 30,
-    matk: 30,
-    def: 30,
+    matk: 15,
+    def: 15,
     mdef: 30,
     spd: 20,
     hit: 100,
@@ -63545,8 +63545,8 @@ var state = {
     mp: 60,
     atk: 50,
     matk: 50,
-    def: 50,
-    mdef: 50,
+    def: 25,
+    mdef: 25,
     spd: 30,
     hit: 100,
     flee: 25,
@@ -63558,7 +63558,7 @@ var state = {
     atk: 5,
     matk: 40,
     def: 0,
-    mdef: 40,
+    mdef: 20,
     spd: 10,
     hit: 100,
     flee: 0,
@@ -63570,7 +63570,7 @@ var state = {
     atk: 10,
     matk: 70,
     def: 0,
-    mdef: 60,
+    mdef: 30,
     spd: 30,
     hit: 100,
     flee: 0,
@@ -63582,7 +63582,7 @@ var state = {
     atk: 10,
     matk: 100,
     def: 0,
-    mdef: 80,
+    mdef: 40,
     spd: 50,
     hit: 100,
     flee: 0,
@@ -63591,10 +63591,10 @@ var state = {
     name: "ダクソ",
     hp: 100,
     mp: 30,
-    atk: 40,
-    matk: 40,
-    def: 30,
-    mdef: 30,
+    atk: 25,
+    matk: 25,
+    def: 10,
+    mdef: 10,
     spd: 30,
     hit: 100,
     flee: 10,
@@ -63603,10 +63603,10 @@ var state = {
     name: "ダクソII",
     hp: 180,
     mp: 60,
-    atk: 60,
-    matk: 60,
-    def: 50,
-    mdef: 50,
+    atk: 30,
+    matk: 30,
+    def: 20,
+    mdef: 20,
     spd: 50,
     hit: 110,
     flee: 20,
@@ -63615,10 +63615,10 @@ var state = {
     name: "ダクソIII",
     hp: 260,
     mp: 100,
-    atk: 100,
-    matk: 100,
-    def: 80,
-    mdef: 80,
+    atk: 50,
+    matk: 50,
+    def: 30,
+    mdef: 30,
     spd: 70,
     hit: 120,
     flee: 30,
