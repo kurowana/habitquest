@@ -101,7 +101,7 @@ export default {
       this.$store.commit("setMessage", "戦闘開始");
       while (!endFlag) {
         if (player.spd >= this.monster.spd) {
-          await this.sleep(1000);
+          await this.sleep(500);
           this.playerAttack(player, this.monster);
           if (this.monster.hp <= 0) {
             this.$store.commit("setMessage", "倒した");
@@ -109,20 +109,20 @@ export default {
             this.currentStage++;
             this.$store.commit("setMonster", this.currentStage);
           }
-          await this.sleep(1000);
+          await this.sleep(500);
           this.monsterAttack(player, this.monster);
           if (player.hp <= 0) {
             this.loseBattle();
             endFlag = true;
           }
         } else {
-          await this.sleep(1000);
+          await this.sleep(500);
           this.monsterAttack(player, this.monster);
           if (player.hp <= 0) {
             this.loseBattle();
             endFlag = true;
           }
-          await this.sleep(1000);
+          await this.sleep(500);
           this.playerAttack(player, this.monster);
           if (this.monster.hp <= 0) {
             this.$store.commit("setMessage", "倒した");
