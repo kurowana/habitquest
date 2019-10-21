@@ -25,7 +25,7 @@ import axios from "axios";
 import { mapGetters } from "vuex";
 import baseMixin from "../mixins/baseMixin";
 import eventMixin from "../mixins/eventMixin";
-import battleMixin from "../mixins/baseMixin";
+import battleMixin from "../mixins/battleMixin";
 
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
@@ -51,7 +51,8 @@ export default {
       user: "getUserInfo",
       point: "getPoint",
       myStatus: "getStatus",
-      monster: "getMonster"
+      monster: "getMonster",
+      battleEffect: "getBattleEffectPath"
     })
   },
   created: function() {
@@ -134,6 +135,7 @@ export default {
       }
     },
     playerAttack: function(player, monster) {
+      this.showBattleEffect("剣", this);
       console.log("プレイヤーの攻撃");
       let damage = player.atk - monster.def;
       if (damage > 0) {
@@ -146,6 +148,7 @@ export default {
       );
     },
     monsterAttack: function(player, monster) {
+      this.showBattleEffect("火", this);
       let damage = monster.atk - player.def;
       if (damage > 0) {
         player.hp -= damage;

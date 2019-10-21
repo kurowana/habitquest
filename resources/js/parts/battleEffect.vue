@@ -1,8 +1,8 @@
 <template>
-  <div class="img-view">
+  <div class="effect-view">
     <transition name="fade">
-      <div v-if="showEffect" class="battleEffect">
-        <img :class="effectImg" :src="showEffect" />
+      <div v-if="showEffect" class="img-c">
+        <img :src="effectImg" />
       </div>
     </transition>
   </div>
@@ -14,16 +14,16 @@ import { mapGetters } from "vuex";
 export default {
   data: function() {
     return {
-      showEffect
+      showEffect: true
     };
   },
   props: {
-    battleEffect: Object
+    battleEffect: String
   },
   computed: {
     ...mapGetters({}),
-    showEffect: function() {
-      return this.effect.path;
+    effectImg: function() {
+      return "./img/effect/" + this.battleEffect;
     }
   },
   methods: {}
@@ -31,33 +31,11 @@ export default {
 </script>
 
 <style scoped>
-.img-view {
+.effect-view {
   width: 100%;
   height: 100%;
 }
 
-.img-l1 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-.img-l1 img {
-  width: 320px;
-  position: relative;
-  bottom: 0;
-  left: 0;
-}
-.img-l2 {
-  position: absolute;
-  bottom: 0;
-  left: 12%;
-}
-.img-l2 img {
-  width: 320px;
-  position: relative;
-  bottom: 0;
-  left: 0;
-}
 .img-c {
   position: absolute;
   bottom: 0;
@@ -66,29 +44,7 @@ export default {
 .img-c img {
   width: 320px;
   position: relative;
-  bottom: 0;
-  left: 0;
-}
-.img-r1 {
-  position: absolute;
-  bottom: 0;
-  left: 60%;
-}
-.img-r1 img {
-  width: 320px;
-  position: relative;
-  bottom: 0;
-  left: 0;
-}
-.img-r2 {
-  position: absolute;
-  bottom: 0;
-  left: 48%;
-}
-.img-r2 img {
-  width: 320px;
-  position: relative;
-  bottom: 0;
+  bottom: 200px;
   left: 0;
 }
 .fade-enter-active,

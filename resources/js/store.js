@@ -3,7 +3,8 @@ import Vuex from "vuex";
 import userStore from "./store/user";
 import eventStore from "./store/event";
 import habitStore from "./store/habit";
-import assetStore from "./store/asset.js";
+import assetStore from "./store/asset";
+import battleStore from "./store/battle";
 import monsterStore from "./store/monster";
 
 Vue.use(Vuex);
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
         habitStore,
         assetStore,
         eventStore,
+        battleStore,
         monsterStore
     }
 });

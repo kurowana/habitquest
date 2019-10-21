@@ -1,60 +1,161 @@
 const state = {
-    activeBattleEffect: "",
-    battleEffect: {
-        闇1: {
-            img: "dark01.png"
+    battleEffectPath: "",
+    swordEffect: [
+        {
+            img: "sword01_54.png"
         },
-        地1: {
-            img: "earth01.png"
+        {
+            img: "sword02_54.png"
         },
-        火1: {
-            img: "fire01.png"
+        {
+            img: "sword03_54.png"
         },
-        火2: {
-            img: "fire02.png"
+        {
+            img: "sword04_54.png"
         },
-        回復1: {
-            img: "heal01.png"
+        {
+            img: "sword05_54.png"
         },
-        光1: {
-            img: "light01.png"
-        },
-        光2: {
-            img: "light02.png"
-        },
-        剣1: {
-            img: "sword01.png"
-        },
-        剣2: {
-            img: "sword02.png"
-        },
-        剣3: {
-            img: "sword03.png"
-        },
-        剣4: {
-            img: "sword04.png"
-        },
-        剣5: {
-            img: "sword05.png"
-        },
-        水1: {
-            img: "water01.png"
-        },
-        風1: {
-            img: "wind01.png"
-        },
-        風2: {
-            img: "wind02.png"
+        {
+            img: "sword06_54.png"
         }
-    }
+    ],
+    fireEffect: [
+        {
+            img: "fire01_54.png"
+        },
+        {
+            img: "fire02_54.png"
+        },
+        {
+            img: "fire03_54.png"
+        },
+        {
+            img: "fire04_54.png"
+        },
+        {
+            img: "fire05_54.png"
+        }
+    ],
+    thunderEffect: [
+        {
+            img: "thunder01_54.png"
+        },
+        {
+            img: "thunder02_54.png"
+        },
+        {
+            img: "thunder03_54.png"
+        }
+    ],
+    waterEffect: [
+        {
+            img: "water01_54.png"
+        },
+        {
+            img: "water02_54.png"
+        },
+        {
+            img: "water03_54.png"
+        },
+        {
+            img: "water04_54.png"
+        }
+    ],
+    windEffect: [
+        {
+            img: "wind01_54.png"
+        },
+        {
+            img: "wind02_54.png"
+        },
+        {
+            img: "wind03_54.png"
+        },
+        {
+            img: "wind04_54.png"
+        }
+    ],
+    earthEffect: [
+        {
+            img: "earth01_54.png"
+        },
+        {
+            img: "earth02_54.png"
+        },
+        {
+            img: "earth03_54.png"
+        },
+        {
+            img: "earth04_54.png"
+        }
+    ],
+    darkEffect: [
+        {
+            img: "dark01_54.png"
+        },
+        {
+            img: "dark02_54.png"
+        },
+        {
+            img: "dark03_54.png"
+        },
+        {
+            img: "dark04_54.png"
+        },
+        {
+            img: "dark05_54.png"
+        },
+        {
+            img: "dark06_54.png"
+        },
+        {
+            img: "dark07_54.png"
+        }
+    ],
+    healEffect: [
+        {
+            img: "heal01_54.png"
+        }
+    ]
 };
 const getters = {
-    getActiveBattleEffect: state => {
-        return state.activeBattleEffect;
+    getBattleEffectPath: state => {
+        return state.battleEffectPath;
+    },
+    getSwordEffect: state => {
+        return state.swordEffect;
+    },
+    getFireEffect: state => {
+        return state.fireEffect;
+    },
+    getThunderEffect: state => {
+        return state.thunderEffect;
+    },
+    getWaterEffect: state => {
+        return state.waterEffect;
+    },
+    getWindEffect: state => {
+        return state.windEffect;
+    },
+    getEarthEffect: state => {
+        return state.earthEffect;
+    },
+    getDarkEffect: state => {
+        return state.darkEffect;
+    },
+    getHealEffect: state => {
+        return state.healEffect;
     }
 };
 const mutations = {
-    setBattleEffect(state, effect) {
-        state.activeBattleEffect = effect;
+    setBattleEffectPath(state, imgPath) {
+        state.battleEffectPath = imgPath;
     }
+};
+
+export default {
+    state,
+    getters,
+    mutations
 };
