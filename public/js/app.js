@@ -2886,9 +2886,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
 /* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
-/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
-/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
-/* harmony import */ var _parts_battleEffect__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../parts/battleEffect */ "./resources/js/parts/battleEffect.vue");
+/* harmony import */ var _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/battleMixin */ "./resources/js/mixins/battleMixin.js");
+/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
+/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
+/* harmony import */ var _parts_battleEffect__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../parts/battleEffect */ "./resources/js/parts/battleEffect.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2930,11 +2931,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    message: _parts_Message__WEBPACK_IMPORTED_MODULE_5__["default"],
-    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_6__["default"],
-    "battle-effect": _parts_battleEffect__WEBPACK_IMPORTED_MODULE_7__["default"]
+    message: _parts_Message__WEBPACK_IMPORTED_MODULE_6__["default"],
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_7__["default"],
+    "battle-effect": _parts_battleEffect__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
-  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_4__["default"], _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_4__["default"], _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_5__["default"]],
   data: function data() {
     return {
       clearedStage: 0,
@@ -2946,7 +2947,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     user: "getUserInfo",
     point: "getPoint",
     myStatus: "getStatus",
-    monster: "getMonster"
+    monster: "getMonster",
+    battleEffect: "getBattleEffectPath"
   })),
   created: function created() {
     this.changeBg("ダンジョン");
@@ -3086,6 +3088,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return battle;
     }(),
     playerAttack: function playerAttack(player, monster) {
+      this.showBattleEffect("剣", this);
       console.log("プレイヤーの攻撃");
       var damage = player.atk - monster.def;
 
@@ -3097,6 +3100,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.commit("setMessage", monster.name + "に" + damage + "のダメージ");
     },
     monsterAttack: function monsterAttack(player, monster) {
+      this.showBattleEffect("火", this);
       var damage = monster.atk - player.def;
 
       if (damage > 0) {
@@ -4389,7 +4393,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       isShowMsg: true,
       msgCount: 0,
-      delayTime: 10,
+      delayTime: 30,
       isCompleted: false
     };
   },
@@ -4467,15 +4471,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      showEffect: showEffect
+      showEffect: true
     };
   },
   props: {
-    battleEffect: Object
+    battleEffect: String
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({}), {
-    showEffect: function showEffect() {
-      return this.effect.path;
+    effectImg: function effectImg() {
+      return "./img/effect/" + this.battleEffect;
     }
   }),
   methods: {}
@@ -19517,7 +19521,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-8fc6f394] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.img-l1[data-v-8fc6f394] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l1 img[data-v-8fc6f394] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-8fc6f394] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-8fc6f394] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-8fc6f394] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-8fc6f394] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-8fc6f394] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 60%;\n}\n.img-r1 img[data-v-8fc6f394] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-8fc6f394] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-8fc6f394] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-8fc6f394],\r\n.fade-leave-active[data-v-8fc6f394] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-8fc6f394],\r\n.fade-leave-to[data-v-8fc6f394] {\r\n  opacity: 0;\n}\n.effect[data-v-8fc6f394] {\r\n  -webkit-animation: anime1-data-v-8fc6f394 0.2s ease-in-out 0s infinite;\r\n          animation: anime1-data-v-8fc6f394 0.2s ease-in-out 0s infinite;\n}\n.effect2[data-v-8fc6f394] {\r\n  -webkit-animation: anime2-data-v-8fc6f394 0.2s ease-in-out 0s infinite;\r\n          animation: anime2-data-v-8fc6f394 0.2s ease-in-out 0s infinite;\n}\n.fa-bolt[data-v-8fc6f394] {\r\n  position: absolute;\r\n  top: 10px;\r\n  left: 220px;\r\n  color: orange;\r\n  font-size: 50px;\r\n  z-index: 50;\r\n  -webkit-animation: furiko-data-v-8fc6f394 0.5s ease 0s infinite;\r\n          animation: furiko-data-v-8fc6f394 0.5s ease 0s infinite;\n}\n@-webkit-keyframes furiko-data-v-8fc6f394 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@keyframes furiko-data-v-8fc6f394 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@-webkit-keyframes anime1-data-v-8fc6f394 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-8fc6f394 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-8fc6f394 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-8fc6f394 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.effect-view[data-v-8fc6f394] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.img-c[data-v-8fc6f394] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-8fc6f394] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 200px;\r\n  left: 0;\n}\n.fade-enter-active[data-v-8fc6f394],\r\n.fade-leave-active[data-v-8fc6f394] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-8fc6f394],\r\n.fade-leave-to[data-v-8fc6f394] {\r\n  opacity: 0;\n}\n.effect[data-v-8fc6f394] {\r\n  -webkit-animation: anime1-data-v-8fc6f394 0.2s ease-in-out 0s infinite;\r\n          animation: anime1-data-v-8fc6f394 0.2s ease-in-out 0s infinite;\n}\n.effect2[data-v-8fc6f394] {\r\n  -webkit-animation: anime2-data-v-8fc6f394 0.2s ease-in-out 0s infinite;\r\n          animation: anime2-data-v-8fc6f394 0.2s ease-in-out 0s infinite;\n}\n.fa-bolt[data-v-8fc6f394] {\r\n  position: absolute;\r\n  top: 10px;\r\n  left: 220px;\r\n  color: orange;\r\n  font-size: 50px;\r\n  z-index: 50;\r\n  -webkit-animation: furiko-data-v-8fc6f394 0.5s ease 0s infinite;\r\n          animation: furiko-data-v-8fc6f394 0.5s ease 0s infinite;\n}\n@-webkit-keyframes furiko-data-v-8fc6f394 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@keyframes furiko-data-v-8fc6f394 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@-webkit-keyframes anime1-data-v-8fc6f394 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-8fc6f394 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-8fc6f394 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-8fc6f394 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -44598,15 +44602,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "img-view" },
+    { staticClass: "effect-view" },
     [
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showEffect
-          ? _c("div", { staticClass: "battleEffect" }, [
-              _c("img", {
-                class: _vm.effectImg,
-                attrs: { src: _vm.showEffect }
-              })
+          ? _c("div", { staticClass: "img-c" }, [
+              _c("img", { attrs: { src: _vm.effectImg } })
             ])
           : _vm._e()
       ])
@@ -61954,6 +61955,91 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/mixins/battleMixin.js":
+/*!********************************************!*\
+  !*** ./resources/js/mixins/battleMixin.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {},
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    swordEffect: "getSwordEffect",
+    fireEffect: "getFireEffect",
+    thunderEffect: "getThunderEffect",
+    waterEffect: "getWaterEffect",
+    windEffect: "getWindEffect",
+    earthEffect: "getEarthEffect",
+    darkEffect: "getDarkEffect",
+    healEffect: "getHealEffect"
+  })),
+  methods: {
+    showBattleEffect: function showBattleEffect(type, vm) {
+      var effectArray = this.selectBattleEffect(type, vm);
+      this.$store.commit("setBattleEffectPath", effectArray.img);
+    },
+    selectBattleEffect: function selectBattleEffect(type, vm) {
+      console.log(vm.swordEffect);
+      var effectArray = [];
+      var effectLength = 0;
+      var index = 0;
+
+      switch (type) {
+        case "剣":
+          effectArray = vm.swordEffect;
+          console.log(effectArray);
+          break;
+
+        case "火":
+          effectArray = vm.fireEffect;
+          break;
+
+        case "雷":
+          effectArray = vm.thunderEffect;
+          break;
+
+        case "水":
+          effectArray = vm.waterEffect;
+          break;
+
+        case "風":
+          effectArray = vm.windEffect;
+          break;
+
+        case "地":
+          effectArray = vm.earthEffect;
+          break;
+
+        case "闇":
+          effectArray = vm.darkEffect;
+          break;
+
+        case "回復":
+          effectArray = vm.healEffect;
+          break;
+      }
+
+      effectLength = effectArray.length;
+      index = Math.floor(Math.random() * effectLength);
+      return effectArray[index];
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/mixins/eventMixin.js":
 /*!*******************************************!*\
   !*** ./resources/js/mixins/eventMixin.js ***!
@@ -62901,8 +62987,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/user */ "./resources/js/store/user.js");
 /* harmony import */ var _store_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/event */ "./resources/js/store/event.js");
 /* harmony import */ var _store_habit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/habit */ "./resources/js/store/habit.js");
-/* harmony import */ var _store_asset_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/asset.js */ "./resources/js/store/asset.js");
-/* harmony import */ var _store_monster__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./store/monster */ "./resources/js/store/monster.js");
+/* harmony import */ var _store_asset__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/asset */ "./resources/js/store/asset.js");
+/* harmony import */ var _store_battle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./store/battle */ "./resources/js/store/battle.js");
+/* harmony import */ var _store_monster__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store/monster */ "./resources/js/store/monster.js");
+
 
 
 
@@ -62915,9 +63003,10 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     userStore: _store_user__WEBPACK_IMPORTED_MODULE_2__["default"],
     habitStore: _store_habit__WEBPACK_IMPORTED_MODULE_4__["default"],
-    assetStore: _store_asset_js__WEBPACK_IMPORTED_MODULE_5__["default"],
+    assetStore: _store_asset__WEBPACK_IMPORTED_MODULE_5__["default"],
     eventStore: _store_event__WEBPACK_IMPORTED_MODULE_3__["default"],
-    monsterStore: _store_monster__WEBPACK_IMPORTED_MODULE_6__["default"]
+    battleStore: _store_battle__WEBPACK_IMPORTED_MODULE_6__["default"],
+    monsterStore: _store_monster__WEBPACK_IMPORTED_MODULE_7__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
@@ -62956,6 +63045,136 @@ var mutations = {
     state.assets.wood = assets.wood;
     state.assets.stone = assets.stone;
     state.assets.leather = assets.leather;
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: state,
+  getters: getters,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/battle.js":
+/*!**************************************!*\
+  !*** ./resources/js/store/battle.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var state = {
+  battleEffectPath: "",
+  swordEffect: [{
+    img: "sword01_54.png"
+  }, {
+    img: "sword02_54.png"
+  }, {
+    img: "sword03_54.png"
+  }, {
+    img: "sword04_54.png"
+  }, {
+    img: "sword05_54.png"
+  }, {
+    img: "sword06_54.png"
+  }],
+  fireEffect: [{
+    img: "fire01_54.png"
+  }, {
+    img: "fire02_54.png"
+  }, {
+    img: "fire03_54.png"
+  }, {
+    img: "fire04_54.png"
+  }, {
+    img: "fire05_54.png"
+  }],
+  thunderEffect: [{
+    img: "thunder01_54.png"
+  }, {
+    img: "thunder02_54.png"
+  }, {
+    img: "thunder03_54.png"
+  }],
+  waterEffect: [{
+    img: "water01_54.png"
+  }, {
+    img: "water02_54.png"
+  }, {
+    img: "water03_54.png"
+  }, {
+    img: "water04_54.png"
+  }],
+  windEffect: [{
+    img: "wind01_54.png"
+  }, {
+    img: "wind02_54.png"
+  }, {
+    img: "wind03_54.png"
+  }, {
+    img: "wind04_54.png"
+  }],
+  earthEffect: [{
+    img: "earth01_54.png"
+  }, {
+    img: "earth02_54.png"
+  }, {
+    img: "earth03_54.png"
+  }, {
+    img: "earth04_54.png"
+  }],
+  darkEffect: [{
+    img: "dark01_54.png"
+  }, {
+    img: "dark02_54.png"
+  }, {
+    img: "dark03_54.png"
+  }, {
+    img: "dark04_54.png"
+  }, {
+    img: "dark05_54.png"
+  }, {
+    img: "dark06_54.png"
+  }, {
+    img: "dark07_54.png"
+  }],
+  healEffect: [{
+    img: "heal01_54.png"
+  }]
+};
+var getters = {
+  getBattleEffectPath: function getBattleEffectPath(state) {
+    return state.battleEffectPath;
+  },
+  getSwordEffect: function getSwordEffect(state) {
+    return state.swordEffect;
+  },
+  getFireEffect: function getFireEffect(state) {
+    return state.fireEffect;
+  },
+  getThunderEffect: function getThunderEffect(state) {
+    return state.thunderEffect;
+  },
+  getWaterEffect: function getWaterEffect(state) {
+    return state.waterEffect;
+  },
+  getWindEffect: function getWindEffect(state) {
+    return state.windEffect;
+  },
+  getEarthEffect: function getEarthEffect(state) {
+    return state.earthEffect;
+  },
+  getDarkEffect: function getDarkEffect(state) {
+    return state.darkEffect;
+  },
+  getHealEffect: function getHealEffect(state) {
+    return state.healEffect;
+  }
+};
+var mutations = {
+  setBattleEffectPath: function setBattleEffectPath(state, imgPath) {
+    state.battleEffectPath = imgPath;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

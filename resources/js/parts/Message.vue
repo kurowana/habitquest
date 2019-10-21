@@ -19,7 +19,7 @@ export default {
     return {
       isShowMsg: true,
       msgCount: 0,
-      delayTime: 10,
+      delayTime: 30,
       isCompleted: false
     };
   },
