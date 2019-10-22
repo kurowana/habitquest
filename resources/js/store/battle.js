@@ -1,5 +1,6 @@
 const state = {
     battleEffectPath: "",
+    isShwoEffect: false,
     swordEffect: [
         {
             img: "sword01_54.png"
@@ -123,6 +124,9 @@ const getters = {
     getBattleEffectPath: state => {
         return state.battleEffectPath;
     },
+    getIsShowEffect: state => {
+        return state.isShwoEffect;
+    },
     getSwordEffect: state => {
         return state.swordEffect;
     },
@@ -151,6 +155,9 @@ const getters = {
 const mutations = {
     setBattleEffectPath(state, imgPath) {
         state.battleEffectPath = imgPath;
+    },
+    setIsShowEffect(state, boolean) {
+        state.isShwoEffect = boolean;
     }
 };
 

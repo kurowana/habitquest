@@ -18,19 +18,60 @@ export default {
         })
     },
     methods: {
+        // showBattleEffect: type => {
+        //     const effectArray = this.selectBattleEffect(type, vm);
+        //     this.$store.commit("setBattleEffectPath", effectArray.img);
+        // },
+        // selectBattleEffect: type => {
+        //     console.log(this.swordEffect);
+        //     let effectArray = [];
+        //     let effectLength = 0;
+        //     let index = 0;
+        //     switch (type) {
+        //         case "剣":
+        //             effectArray = this.swordEffect;
+        //             console.log(effectArray);
+        //             break;
+        //         case "火":
+        //             effectArray = this.fireEffect;
+        //             break;
+        //         case "雷":
+        //             effectArray = this.thunderEffect;
+        //             break;
+        //         case "水":
+        //             effectArray = this.waterEffect;
+        //             break;
+        //         case "風":
+        //             effectArray = this.windEffect;
+        //             break;
+        //         case "地":
+        //             effectArray = this.earthEffect;
+        //             break;
+        //         case "闇":
+        //             effectArray = this.darkEffect;
+        //             break;
+        //         case "回復":
+        //             effectArray = this.healEffect;
+        //             break;
+        //         default:
+        //             return "";
+        //     }
+        //     effectLength = effectArray.length;
+        //     index = Math.floor(Math.random() * effectLength);
+        //     return effectArray[index];
+        // }
         showBattleEffect: function(type, vm) {
+            vm.$store.commit("setIsShowEffect", true);
             const effectArray = this.selectBattleEffect(type, vm);
-            this.$store.commit("setBattleEffectPath", effectArray.img);
+            vm.$store.commit("setBattleEffectPath", effectArray.img);
         },
         selectBattleEffect: function(type, vm) {
-            console.log(vm.swordEffect);
             let effectArray = [];
             let effectLength = 0;
             let index = 0;
             switch (type) {
                 case "剣":
                     effectArray = vm.swordEffect;
-                    console.log(effectArray);
                     break;
                 case "火":
                     effectArray = vm.fireEffect;
@@ -53,10 +94,11 @@ export default {
                 case "回復":
                     effectArray = vm.healEffect;
                     break;
+                default:
+                    return "";
             }
             effectLength = effectArray.length;
             index = Math.floor(Math.random() * effectLength);
-
             return effectArray[index];
         }
     }
