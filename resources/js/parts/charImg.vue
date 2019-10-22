@@ -149,7 +149,7 @@ export default {
 <style scoped>
 .img-view {
   width: 100%;
-  height: 100%;
+  height: 0%;
 }
 
 .img-l1 {

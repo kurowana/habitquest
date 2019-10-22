@@ -11,11 +11,9 @@
     >探索開始</button>
     {{monster}}
     <message @get-scene="getScene"></message>
-    <div class="img-c">
-      <img :src="'./'+monster.img" />
-    </div>
     <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
-    <battle-effect :battle-effect="battleEffect"></battle-effect>
+    <monster-img :battle-effect="battleEffect"></monster-img>
+    <!-- <battle-effect v-if="true" :battle-effect="battleEffect"></battle-effect> -->
   </div>
 </template>
 
@@ -29,13 +27,15 @@ import battleMixin from "../mixins/battleMixin";
 
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
-import battleEffect from "../parts/battleEffect";
+import monsterImg from "../parts/monsterImg";
+// import battleEffect from "../parts/battleEffect";
 
 export default {
   components: {
     message: message,
     "char-img": charImg,
-    "battle-effect": battleEffect
+    "monster-img": monsterImg
+    // "battle-effect": battleEffect
   },
   mixins: [baseMixin, eventMixin, battleMixin],
   data: function() {
@@ -52,12 +52,14 @@ export default {
       point: "getPoint",
       myStatus: "getStatus",
       monster: "getMonster",
+      isEffect: "getIsShowEffect",
       battleEffect: "getBattleEffectPath"
     })
   },
   created: function() {
     this.changeBg("ダンジョン");
     this.initPage();
+    console.log(this.isEffect);
   },
   methods: {
     initPage: function() {
@@ -102,29 +104,37 @@ export default {
       this.$store.commit("setMessage", "戦闘開始");
       while (!endFlag) {
         if (player.spd >= this.monster.spd) {
-          await this.sleep(500);
           this.playerAttack(player, this.monster);
+          await this.sleep(500);
+          this.$store.commit("setIsShowEffect", false);
+          await this.sleep(100);
           if (this.monster.hp <= 0) {
             this.$store.commit("setMessage", "倒した");
             this.winBattle();
             this.currentStage++;
             this.$store.commit("setMonster", this.currentStage);
           }
-          await this.sleep(500);
           this.monsterAttack(player, this.monster);
+          await this.sleep(500);
+          this.$store.commit("setIsShowEffect", false);
+          await this.sleep(100);
           if (player.hp <= 0) {
             this.loseBattle();
             endFlag = true;
           }
         } else {
-          await this.sleep(500);
           this.monsterAttack(player, this.monster);
+          await this.sleep(500);
+          this.$store.commit("setIsShowEffect", false);
+          await this.sleep(100);
           if (player.hp <= 0) {
             this.loseBattle();
             endFlag = true;
           }
-          await this.sleep(500);
           this.playerAttack(player, this.monster);
+          await this.sleep(500);
+          this.$store.commit("setIsShowEffect", false);
+          await this.sleep(100);
           if (this.monster.hp <= 0) {
             this.$store.commit("setMessage", "倒した");
             this.winBattle();
@@ -167,15 +177,4 @@ export default {
 </script>
 
 <style scoped>
-.img-c {
-  position: absolute;
-  bottom: 0;
-  left: 30%;
-}
-.img-c img {
-  width: 320px;
-  position: relative;
-  bottom: 0;
-  left: 0;
-}
 </style>
