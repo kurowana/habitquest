@@ -50,7 +50,7 @@ export default {
       user: "getUserInfo",
       point: "getPoint",
       myStatus: "getStatus",
-      monster: "getMonster"
+      monster: "getBattleMonster"
     })
   },
   created: function() {

@@ -28,7 +28,7 @@ export default {
   mixins: [baseMixin, eventMixin, battleMixin],
   computed: {
     ...mapGetters({
-      monster: "getMonster",
+      monster: "getBattleMonster",
       isEffect: "getIsShowEffect"
     }),
     isShowEffect: function() {
