@@ -1,5 +1,5 @@
 const state = {
-    monster: {
+    battleMonster: {
         name: "",
         hp: 0,
         mp: 0,
@@ -485,27 +485,30 @@ const state = {
     }
 };
 const getters = {
-    getMonster: state => {
-        return state.monster;
+    getBattleMonster: state => {
+        return state.battleMonster;
+    },
+    getMonsterList: state => {
+        return state.monsterList;
     }
 };
 const mutations = {
-    setMonster(state, stage) {
-        const range = state.monsterList.length;
-        const randomNum = Math.floor(Math.random() * range);
+    setBattleMonster(state, monster) {
+        state.battleMonster = monster;
+        // state.monster = Object.assign({}, state.monsterList[index]);
+        // const range = state.monsterList.length;
+        // const randomNum = Math.floor(Math.random() * range);
 
-        state.monster = Object.assign({}, state.monsterList[randomNum]);
-
-        const correction = 1 + stage * 0.1;
-        state.monster.hp = Math.floor(state.monster.hp * correction);
-        state.monster.mp = Math.floor(state.monster.mp * correction);
-        state.monster.atk = Math.floor(state.monster.atk * correction);
-        state.monster.matk = Math.floor(state.monster.matk * correction);
-        state.monster.def = Math.floor(state.monster.def * correction);
-        state.monster.mdef = Math.floor(state.monster.mdef * correction);
-        state.monster.spd = Math.floor(state.monster.spd * correction);
-        state.monster.hit = Math.floor(state.monster.hit * correction);
-        state.monster.flee = Math.floor(state.monster.flee * correction);
+        // const correction = 1 + stage * 0.1;
+        // state.monster.hp = Math.floor(state.monster.hp * correction);
+        // state.monster.mp = Math.floor(state.monster.mp * correction);
+        // state.monster.atk = Math.floor(state.monster.atk * correction);
+        // state.monster.matk = Math.floor(state.monster.matk * correction);
+        // state.monster.def = Math.floor(state.monster.def * correction);
+        // state.monster.mdef = Math.floor(state.monster.mdef * correction);
+        // state.monster.spd = Math.floor(state.monster.spd * correction);
+        // state.monster.hit = Math.floor(state.monster.hit * correction);
+        // state.monster.flee = Math.floor(state.monster.flee * correction);
     }
 };
 

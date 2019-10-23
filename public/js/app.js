@@ -2879,23 +2879,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
-/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
-/* harmony import */ var _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/battleMixin */ "./resources/js/mixins/battleMixin.js");
-/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
-/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
-/* harmony import */ var _parts_monsterImg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../parts/monsterImg */ "./resources/js/parts/monsterImg.vue");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
+/* harmony import */ var _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/battleMixin */ "./resources/js/mixins/battleMixin.js");
+/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
+/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
+/* harmony import */ var _parts_monsterImg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../parts/monsterImg */ "./resources/js/parts/monsterImg.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2930,12 +2922,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    message: _parts_Message__WEBPACK_IMPORTED_MODULE_6__["default"],
-    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_7__["default"],
-    "monster-img": _parts_monsterImg__WEBPACK_IMPORTED_MODULE_8__["default"] // "battle-effect": battleEffect
+    message: _parts_Message__WEBPACK_IMPORTED_MODULE_5__["default"],
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_6__["default"],
+    "monster-img": _parts_monsterImg__WEBPACK_IMPORTED_MODULE_7__["default"] // "battle-effect": battleEffect
 
   },
-  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_4__["default"], _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_5__["default"]],
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_4__["default"]],
   data: function data() {
     return {
       clearedStage: 0,
@@ -2943,11 +2935,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tempMoney: 0
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: "getUserInfo",
     point: "getPoint",
     myStatus: "getStatus",
-    monster: "getMonster",
+    monster: "getBattleMonster",
+    monsterList: "getMonsterList",
     isEffect: "getIsShowEffect",
     battleEffect: "getBattleEffectPath"
   })),
@@ -2964,7 +2957,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getMyStatus: function getMyStatus() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("./api/getMyStatus", {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/getMyStatus", {
         userId: this.user.id
       }).then(function (res) {
         if (res.status === 419) {
@@ -2990,149 +2983,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.apiDefaultError(error);
       });
     },
-    startBattle: function startBattle() {
-      this.$store.commit("setMonster", this.currentStage);
+    enterDungeon: function enterDungeon() {
       this.showChar("", "c");
-      this.battle();
-    },
-    battle: function () {
-      var _battle = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var player, endFlag;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                player = this.myStatus.battle;
-                endFlag = false;
-                this.$store.commit("setMessage", "戦闘開始");
-
-              case 3:
-                if (endFlag) {
-                  _context.next = 37;
-                  break;
-                }
-
-                if (!(player.spd >= this.monster.spd)) {
-                  _context.next = 21;
-                  break;
-                }
-
-                this.playerAttack(player, this.monster);
-                _context.next = 8;
-                return this.sleep(500);
-
-              case 8:
-                this.$store.commit("setIsShowEffect", false);
-                _context.next = 11;
-                return this.sleep(100);
-
-              case 11:
-                if (this.monster.hp <= 0) {
-                  this.$store.commit("setMessage", "倒した");
-                  this.winBattle();
-                  this.currentStage++;
-                  this.$store.commit("setMonster", this.currentStage);
-                }
-
-                this.monsterAttack(player, this.monster);
-                _context.next = 15;
-                return this.sleep(500);
-
-              case 15:
-                this.$store.commit("setIsShowEffect", false);
-                _context.next = 18;
-                return this.sleep(100);
-
-              case 18:
-                if (player.hp <= 0) {
-                  this.loseBattle();
-                  endFlag = true;
-                }
-
-                _context.next = 35;
-                break;
-
-              case 21:
-                this.monsterAttack(player, this.monster);
-                _context.next = 24;
-                return this.sleep(500);
-
-              case 24:
-                this.$store.commit("setIsShowEffect", false);
-                _context.next = 27;
-                return this.sleep(100);
-
-              case 27:
-                if (player.hp <= 0) {
-                  this.loseBattle();
-                  endFlag = true;
-                }
-
-                this.playerAttack(player, this.monster);
-                _context.next = 31;
-                return this.sleep(500);
-
-              case 31:
-                this.$store.commit("setIsShowEffect", false);
-                _context.next = 34;
-                return this.sleep(100);
-
-              case 34:
-                if (this.monster.hp <= 0) {
-                  this.$store.commit("setMessage", "倒した");
-                  this.winBattle();
-                  this.currentStage++;
-                  this.$store.commit("setMonster", this.currentStage);
-                }
-
-              case 35:
-                _context.next = 3;
-                break;
-
-              case 37:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function battle() {
-        return _battle.apply(this, arguments);
-      }
-
-      return battle;
-    }(),
-    playerAttack: function playerAttack(player, monster) {
-      this.showBattleEffect("剣", this);
-      console.log("プレイヤーの攻撃");
-      var damage = player.atk - monster.def;
-
-      if (damage > 0) {
-        monster.hp -= damage;
-      }
-
-      console.log(damage + ":" + monster.hp);
-      this.$store.commit("setMessage", monster.name + "に" + damage + "のダメージ");
-    },
-    monsterAttack: function monsterAttack(player, monster) {
-      this.showBattleEffect("火", this);
-      var damage = monster.atk - player.def;
-
-      if (damage > 0) {
-        player.hp -= damage;
-      }
-
-      this.$store.commit("setMessage", "主人公に" + damage + "のダメージ");
-    },
-    winBattle: function winBattle() {
-      this.tempMoney += 10 * this.currentStage;
-    },
-    loseBattle: function loseBattle() {
-      this.currentStage = 1;
-      this.myStatus.battle.hp = this.myStatus.battle.maxhp;
+      this.setDungeonMonster(this);
+      this.dungeonBattle(this);
     }
   }
 });
@@ -43021,7 +42875,7 @@ var render = function() {
           _vm._s(_vm.tempMoney) +
           "\n  "
       ),
-      _c("button", { on: { click: _vm.startBattle } }, [_vm._v("探索開始")]),
+      _c("button", { on: { click: _vm.enterDungeon } }, [_vm._v("探索開始")]),
       _vm._v("\n  " + _vm._s(_vm.monster) + "\n  "),
       _c("message", { on: { "get-scene": _vm.getScene } }),
       _vm._v(" "),
@@ -61964,7 +61818,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -61975,7 +61837,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {};
   },
   created: function created() {},
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    monster: "getBattleMonster",
+    monsterList: "getMonsterList",
     swordEffect: "getSwordEffect",
     fireEffect: "getFireEffect",
     thunderEffect: "getThunderEffect",
@@ -61986,48 +61850,164 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     healEffect: "getHealEffect"
   })),
   methods: {
-    // showBattleEffect: type => {
-    //     const effectArray = this.selectBattleEffect(type, vm);
-    //     this.$store.commit("setBattleEffectPath", effectArray.img);
-    // },
-    // selectBattleEffect: type => {
-    //     console.log(this.swordEffect);
-    //     let effectArray = [];
-    //     let effectLength = 0;
-    //     let index = 0;
-    //     switch (type) {
-    //         case "剣":
-    //             effectArray = this.swordEffect;
-    //             console.log(effectArray);
-    //             break;
-    //         case "火":
-    //             effectArray = this.fireEffect;
-    //             break;
-    //         case "雷":
-    //             effectArray = this.thunderEffect;
-    //             break;
-    //         case "水":
-    //             effectArray = this.waterEffect;
-    //             break;
-    //         case "風":
-    //             effectArray = this.windEffect;
-    //             break;
-    //         case "地":
-    //             effectArray = this.earthEffect;
-    //             break;
-    //         case "闇":
-    //             effectArray = this.darkEffect;
-    //             break;
-    //         case "回復":
-    //             effectArray = this.healEffect;
-    //             break;
-    //         default:
-    //             return "";
-    //     }
-    //     effectLength = effectArray.length;
-    //     index = Math.floor(Math.random() * effectLength);
-    //     return effectArray[index];
-    // }
+    setDungeonMonster: function setDungeonMonster(vm) {
+      var length = monsterList.length;
+      var randauNum = Math.floor(Math.random() * length);
+      var selectedMonster = Object.assign({}, monsterList[randauNum]);
+      vm.$store.commit("setBattleMonster", selectedMonster);
+    },
+    addStageCorrection: function addStageCorrection(monster, stage, vm) {
+      var correction = 1 + stage * 0.1;
+      monster.hp = Math.floor(state.monster.hp * correction);
+      monster.mp = Math.floor(state.monster.mp * correction);
+      monster.atk = Math.floor(state.monster.atk * correction);
+      monster.matk = Math.floor(state.monster.matk * correction);
+      monster.def = Math.floor(state.monster.def * correction);
+      monster.mdef = Math.floor(state.monster.mdef * correction);
+      monster.spd = Math.floor(state.monster.spd * correction);
+      monster.hit = Math.floor(state.monster.hit * correction);
+      monster.flee = Math.floor(state.monster.flee * correction);
+      vm.$store.commit("setBattleMonster", monster);
+    },
+    dungeonBattle: function () {
+      var _dungeonBattle = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(vm) {
+        var player, endFlag;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                player = this.myStatus.battle;
+                endFlag = false;
+                this.$store.commit("setMessage", "戦闘開始");
+
+              case 3:
+                if (endFlag) {
+                  _context.next = 37;
+                  break;
+                }
+
+                if (!(player.spd >= this.monster.spd)) {
+                  _context.next = 21;
+                  break;
+                }
+
+                this.playerAttack(player, this.monster);
+                _context.next = 8;
+                return this.sleep(500);
+
+              case 8:
+                this.$store.commit("setIsShowEffect", false);
+                _context.next = 11;
+                return this.sleep(100);
+
+              case 11:
+                if (this.monster.hp <= 0) {
+                  this.$store.commit("setMessage", "倒した");
+                  this.winBattle();
+                  this.currentStage++;
+                  this.$store.commit("setMonster", this.currentStage);
+                }
+
+                this.monsterAttack(player, this.monster);
+                _context.next = 15;
+                return this.sleep(500);
+
+              case 15:
+                this.$store.commit("setIsShowEffect", false);
+                _context.next = 18;
+                return this.sleep(100);
+
+              case 18:
+                if (player.hp <= 0) {
+                  this.loseBattle();
+                  endFlag = true;
+                }
+
+                _context.next = 35;
+                break;
+
+              case 21:
+                this.monsterAttack(player, this.monster);
+                _context.next = 24;
+                return this.sleep(500);
+
+              case 24:
+                this.$store.commit("setIsShowEffect", false);
+                _context.next = 27;
+                return this.sleep(100);
+
+              case 27:
+                if (player.hp <= 0) {
+                  this.loseBattle();
+                  endFlag = true;
+                }
+
+                this.playerAttack(player, this.monster);
+                _context.next = 31;
+                return this.sleep(500);
+
+              case 31:
+                this.$store.commit("setIsShowEffect", false);
+                _context.next = 34;
+                return this.sleep(100);
+
+              case 34:
+                if (this.monster.hp <= 0) {
+                  this.$store.commit("setMessage", "倒した");
+                  this.winBattle();
+                  this.currentStage++;
+                  this.$store.commit("setMonster", this.currentStage);
+                }
+
+              case 35:
+                _context.next = 3;
+                break;
+
+              case 37:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function dungeonBattle(_x) {
+        return _dungeonBattle.apply(this, arguments);
+      }
+
+      return dungeonBattle;
+    }(),
+    playerAttack: function playerAttack(player, monster) {
+      this.showBattleEffect("剣", this);
+      console.log("プレイヤーの攻撃");
+      var damage = player.atk - monster.def;
+
+      if (damage > 0) {
+        monster.hp -= damage;
+      }
+
+      console.log(damage + ":" + monster.hp);
+      this.$store.commit("setMessage", monster.name + "に" + damage + "のダメージ");
+    },
+    monsterAttack: function monsterAttack(player, monster) {
+      this.showBattleEffect("火", this);
+      var damage = monster.atk - player.def;
+
+      if (damage > 0) {
+        player.hp -= damage;
+      }
+
+      this.$store.commit("setMessage", "主人公に" + damage + "のダメージ");
+    },
+    winBattle: function winBattle() {
+      this.tempMoney += 10 * this.currentStage;
+    },
+    loseBattle: function loseBattle() {
+      this.currentStage = 1;
+      this.myStatus.battle.hp = this.myStatus.battle.maxhp;
+    },
     showBattleEffect: function showBattleEffect(type, vm) {
       vm.$store.commit("setIsShowEffect", true);
       var effectArray = this.selectBattleEffect(type, vm);
@@ -63629,7 +63609,7 @@ var mutations = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  monster: {
+  battleMonster: {
     name: "",
     hp: 0,
     mp: 0,
@@ -64093,25 +64073,28 @@ var state = {
   }
 };
 var getters = {
-  getMonster: function getMonster(state) {
-    return state.monster;
+  getBattleMonster: function getBattleMonster(state) {
+    return state.battleMonster;
+  },
+  getMonsterList: function getMonsterList(state) {
+    return state.monsterList;
   }
 };
 var mutations = {
-  setMonster: function setMonster(state, stage) {
-    var range = state.monsterList.length;
-    var randomNum = Math.floor(Math.random() * range);
-    state.monster = Object.assign({}, state.monsterList[randomNum]);
-    var correction = 1 + stage * 0.1;
-    state.monster.hp = Math.floor(state.monster.hp * correction);
-    state.monster.mp = Math.floor(state.monster.mp * correction);
-    state.monster.atk = Math.floor(state.monster.atk * correction);
-    state.monster.matk = Math.floor(state.monster.matk * correction);
-    state.monster.def = Math.floor(state.monster.def * correction);
-    state.monster.mdef = Math.floor(state.monster.mdef * correction);
-    state.monster.spd = Math.floor(state.monster.spd * correction);
-    state.monster.hit = Math.floor(state.monster.hit * correction);
-    state.monster.flee = Math.floor(state.monster.flee * correction);
+  setBattleMonster: function setBattleMonster(state, monster) {
+    state.battleMonster = monster; // state.monster = Object.assign({}, state.monsterList[index]);
+    // const range = state.monsterList.length;
+    // const randomNum = Math.floor(Math.random() * range);
+    // const correction = 1 + stage * 0.1;
+    // state.monster.hp = Math.floor(state.monster.hp * correction);
+    // state.monster.mp = Math.floor(state.monster.mp * correction);
+    // state.monster.atk = Math.floor(state.monster.atk * correction);
+    // state.monster.matk = Math.floor(state.monster.matk * correction);
+    // state.monster.def = Math.floor(state.monster.def * correction);
+    // state.monster.mdef = Math.floor(state.monster.mdef * correction);
+    // state.monster.spd = Math.floor(state.monster.spd * correction);
+    // state.monster.hit = Math.floor(state.monster.hit * correction);
+    // state.monster.flee = Math.floor(state.monster.flee * correction);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

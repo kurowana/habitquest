@@ -7,6 +7,8 @@ export default {
     created: function() {},
     computed: {
         ...mapGetters({
+            monster: "getBattleMonster",
+            monsterList: "getMonsterList",
             swordEffect: "getSwordEffect",
             fireEffect: "getFireEffect",
             thunderEffect: "getThunderEffect",
@@ -18,48 +20,103 @@ export default {
         })
     },
     methods: {
-        // showBattleEffect: type => {
-        //     const effectArray = this.selectBattleEffect(type, vm);
-        //     this.$store.commit("setBattleEffectPath", effectArray.img);
-        // },
-        // selectBattleEffect: type => {
-        //     console.log(this.swordEffect);
-        //     let effectArray = [];
-        //     let effectLength = 0;
-        //     let index = 0;
-        //     switch (type) {
-        //         case "剣":
-        //             effectArray = this.swordEffect;
-        //             console.log(effectArray);
-        //             break;
-        //         case "火":
-        //             effectArray = this.fireEffect;
-        //             break;
-        //         case "雷":
-        //             effectArray = this.thunderEffect;
-        //             break;
-        //         case "水":
-        //             effectArray = this.waterEffect;
-        //             break;
-        //         case "風":
-        //             effectArray = this.windEffect;
-        //             break;
-        //         case "地":
-        //             effectArray = this.earthEffect;
-        //             break;
-        //         case "闇":
-        //             effectArray = this.darkEffect;
-        //             break;
-        //         case "回復":
-        //             effectArray = this.healEffect;
-        //             break;
-        //         default:
-        //             return "";
-        //     }
-        //     effectLength = effectArray.length;
-        //     index = Math.floor(Math.random() * effectLength);
-        //     return effectArray[index];
-        // }
+        setDungeonMonster: function(vm) {
+            const length = monsterList.length;
+            const randauNum = Math.floor(Math.random() * length);
+            const selectedMonster = Object.assign({}, monsterList[randauNum]);
+            vm.$store.commit("setBattleMonster", selectedMonster);
+        },
+        addStageCorrection: function(monster, stage, vm) {
+            const correction = 1 + stage * 0.1;
+            monster.hp = Math.floor(state.monster.hp * correction);
+            monster.mp = Math.floor(state.monster.mp * correction);
+            monster.atk = Math.floor(state.monster.atk * correction);
+            monster.matk = Math.floor(state.monster.matk * correction);
+            monster.def = Math.floor(state.monster.def * correction);
+            monster.mdef = Math.floor(state.monster.mdef * correction);
+            monster.spd = Math.floor(state.monster.spd * correction);
+            monster.hit = Math.floor(state.monster.hit * correction);
+            monster.flee = Math.floor(state.monster.flee * correction);
+            vm.$store.commit("setBattleMonster", monster);
+        },
+        dungeonBattle: async function(vm) {
+            let player = this.myStatus.battle;
+            let endFlag = false;
+            this.$store.commit("setMessage", "戦闘開始");
+            while (!endFlag) {
+                if (player.spd >= this.monster.spd) {
+                    this.playerAttack(player, this.monster);
+                    await this.sleep(500);
+                    this.$store.commit("setIsShowEffect", false);
+                    await this.sleep(100);
+                    if (this.monster.hp <= 0) {
+                        this.$store.commit("setMessage", "倒した");
+                        this.winBattle();
+                        this.currentStage++;
+                        this.$store.commit("setMonster", this.currentStage);
+                    }
+                    this.monsterAttack(player, this.monster);
+                    await this.sleep(500);
+                    this.$store.commit("setIsShowEffect", false);
+                    await this.sleep(100);
+                    if (player.hp <= 0) {
+                        this.loseBattle();
+                        endFlag = true;
+                    }
+                } else {
+                    this.monsterAttack(player, this.monster);
+                    await this.sleep(500);
+                    this.$store.commit("setIsShowEffect", false);
+                    await this.sleep(100);
+                    if (player.hp <= 0) {
+                        this.loseBattle();
+                        endFlag = true;
+                    }
+                    this.playerAttack(player, this.monster);
+                    await this.sleep(500);
+                    this.$store.commit("setIsShowEffect", false);
+                    await this.sleep(100);
+                    if (this.monster.hp <= 0) {
+                        this.$store.commit("setMessage", "倒した");
+                        this.winBattle();
+                        this.currentStage++;
+                        this.$store.commit("setMonster", this.currentStage);
+                    }
+                }
+            }
+        },
+        playerAttack: function(player, monster) {
+            this.showBattleEffect("剣", this);
+            console.log("プレイヤーの攻撃");
+            let damage = player.atk - monster.def;
+            if (damage > 0) {
+                monster.hp -= damage;
+            }
+            console.log(damage + ":" + monster.hp);
+            this.$store.commit(
+                "setMessage",
+                monster.name + "に" + damage + "のダメージ"
+            );
+        },
+        monsterAttack: function(player, monster) {
+            this.showBattleEffect("火", this);
+            let damage = monster.atk - player.def;
+            if (damage > 0) {
+                player.hp -= damage;
+            }
+            this.$store.commit(
+                "setMessage",
+                "主人公に" + damage + "のダメージ"
+            );
+        },
+        winBattle: function() {
+            this.tempMoney += 10 * this.currentStage;
+        },
+        loseBattle: function() {
+            this.currentStage = 1;
+            this.myStatus.battle.hp = this.myStatus.battle.maxhp;
+        },
+
         showBattleEffect: function(type, vm) {
             vm.$store.commit("setIsShowEffect", true);
             const effectArray = this.selectBattleEffect(type, vm);
