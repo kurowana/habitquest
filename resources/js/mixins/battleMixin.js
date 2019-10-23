@@ -20,24 +20,27 @@ export default {
         })
     },
     methods: {
-        setDungeonMonster: function(vm) {
-            const length = monsterList.length;
+        setDungeonMonster: function() {
+            const length = this.monsterList.length;
             const randauNum = Math.floor(Math.random() * length);
-            const selectedMonster = Object.assign({}, monsterList[randauNum]);
-            vm.$store.commit("setBattleMonster", selectedMonster);
+            const selectedMonster = Object.assign(
+                {},
+                this.monsterList[randauNum]
+            );
+            this.$store.commit("setBattleMonster", selectedMonster);
         },
-        addStageCorrection: function(monster, stage, vm) {
+        addStageCorrection: function(monster, stage) {
             const correction = 1 + stage * 0.1;
-            monster.hp = Math.floor(state.monster.hp * correction);
-            monster.mp = Math.floor(state.monster.mp * correction);
-            monster.atk = Math.floor(state.monster.atk * correction);
-            monster.matk = Math.floor(state.monster.matk * correction);
-            monster.def = Math.floor(state.monster.def * correction);
-            monster.mdef = Math.floor(state.monster.mdef * correction);
-            monster.spd = Math.floor(state.monster.spd * correction);
-            monster.hit = Math.floor(state.monster.hit * correction);
-            monster.flee = Math.floor(state.monster.flee * correction);
-            vm.$store.commit("setBattleMonster", monster);
+            monster.hp = Math.floor(monster.hp * correction);
+            monster.mp = Math.floor(monster.mp * correction);
+            monster.atk = Math.floor(monster.atk * correction);
+            monster.matk = Math.floor(monster.matk * correction);
+            monster.def = Math.floor(monster.def * correction);
+            monster.mdef = Math.floor(monster.mdef * correction);
+            monster.spd = Math.floor(monster.spd * correction);
+            monster.hit = Math.floor(monster.hit * correction);
+            monster.flee = Math.floor(monster.flee * correction);
+            this.$store.commit("setBattleMonster", monster);
         },
         dungeonBattle: async function(vm) {
             let player = this.myStatus.battle;
@@ -53,7 +56,12 @@ export default {
                         this.$store.commit("setMessage", "倒した");
                         this.winBattle();
                         this.currentStage++;
-                        this.$store.commit("setMonster", this.currentStage);
+                        // this.$store.commit("setMonster", this.currentStage);
+                        this.setDungeonMonster();
+                        this.addStageCorrection(
+                            this.monster,
+                            this.currentStage
+                        );
                     }
                     this.monsterAttack(player, this.monster);
                     await this.sleep(500);
@@ -80,7 +88,12 @@ export default {
                         this.$store.commit("setMessage", "倒した");
                         this.winBattle();
                         this.currentStage++;
-                        this.$store.commit("setMonster", this.currentStage);
+                        // this.$store.commit("setMonster", this.currentStage);
+                        this.setDungeonMonster();
+                        this.addStageCorrection(
+                            this.monster,
+                            this.currentStage
+                        );
                     }
                 }
             }

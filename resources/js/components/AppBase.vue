@@ -25,20 +25,8 @@
 import axios from "axios";
 import { mapGetters } from "vuex";
 
-import charCreate from "./CharCreate";
-import charInfo from "./CharInfo";
-import habit from "./Habit";
-import monsterCreate from "./MonsterCreate";
-import Battle from "./Battle";
-
 export default {
-  components: {
-    "char-info": charInfo,
-    "char-create": charCreate,
-    habit: habit,
-    "monster-create": monsterCreate,
-    battle: Battle
-  },
+  components: {},
   data: function() {
     return {
       loginName: "",

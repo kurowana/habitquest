@@ -96,8 +96,8 @@ export default {
     },
     enterDungeon: function() {
       this.showChar("", "c");
-      this.setDungeonMonster(this);
-      this.dungeonBattle(this);
+      this.setDungeonMonster();
+      this.dungeonBattle();
     }
   }
 };
