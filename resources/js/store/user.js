@@ -26,6 +26,7 @@ const state = {
             luc: 0
         },
         battle: {
+            name: "主人公",
             maxhp: 0,
             hp: 0,
             maxmp: 0,
