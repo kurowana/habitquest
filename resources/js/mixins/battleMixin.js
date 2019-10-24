@@ -7,6 +7,7 @@ export default {
     created: function() {},
     computed: {
         ...mapGetters({
+            player: "getStatus",
             monster: "getBattleMonster",
             monsterList: "getMonsterList",
             swordEffect: "getSwordEffect",
@@ -43,91 +44,71 @@ export default {
             this.$store.commit("setBattleMonster", monster);
         },
         dungeonBattle: async function(vm) {
-            let player = this.myStatus.battle;
+            let firstAttack = null;
+            let secondAttack = null;
             let endFlag = false;
             this.$store.commit("setMessage", "戦闘開始");
+
             while (!endFlag) {
-                if (player.spd >= this.monster.spd) {
-                    this.playerAttack(player, this.monster);
-                    await this.sleep(500);
-                    this.$store.commit("setIsShowEffect", false);
-                    await this.sleep(100);
-                    if (this.monster.hp <= 0) {
-                        this.$store.commit("setMessage", "倒した");
-                        this.winBattle();
-                        this.currentStage++;
-                        // this.$store.commit("setMonster", this.currentStage);
-                        this.setDungeonMonster();
-                        this.addStageCorrection(
-                            this.monster,
-                            this.currentStage
-                        );
-                    }
-                    this.monsterAttack(player, this.monster);
-                    await this.sleep(500);
-                    this.$store.commit("setIsShowEffect", false);
-                    await this.sleep(100);
-                    if (player.hp <= 0) {
-                        this.loseBattle();
-                        endFlag = true;
-                    }
+                if (this.player.battle.spd >= this.monster.spd) {
+                    firstAttack = this.player.battle;
+                    secondAttack = this.monster;
                 } else {
-                    this.monsterAttack(player, this.monster);
-                    await this.sleep(500);
-                    this.$store.commit("setIsShowEffect", false);
-                    await this.sleep(100);
-                    if (player.hp <= 0) {
-                        this.loseBattle();
-                        endFlag = true;
-                    }
-                    this.playerAttack(player, this.monster);
-                    await this.sleep(500);
-                    this.$store.commit("setIsShowEffect", false);
-                    await this.sleep(100);
-                    if (this.monster.hp <= 0) {
-                        this.$store.commit("setMessage", "倒した");
-                        this.winBattle();
-                        this.currentStage++;
-                        // this.$store.commit("setMonster", this.currentStage);
-                        this.setDungeonMonster();
-                        this.addStageCorrection(
-                            this.monster,
-                            this.currentStage
-                        );
-                    }
+                    firstAttack = this.monster;
+                    secondAttack = this.player.battle;
+                }
+                this.attackPhase(firstAttack, secondAttack);
+                endFlag = this.lifeCheck(this.player.battle, this.monster);
+                await this.sleep(500);
+                if (endFlag) {
+                    break;
+                }
+                this.attackPhase(secondAttack, firstAttack);
+                endFlag = this.lifeCheck(this.player.battle, this.monster);
+                await this.sleep(500);
+                if (endFlag) {
+                    break;
                 }
             }
+            this.$store.commit("setMessage", "戦闘終了");
         },
-        playerAttack: function(player, monster) {
+        attackPhase: async function(char1, char2) {
             this.showBattleEffect("剣", this);
+            await this.sleep(500);
             console.log("プレイヤーの攻撃");
-            let damage = player.atk - monster.def;
+            let damage = char1.atk - char2.def;
             if (damage > 0) {
-                monster.hp -= damage;
+                char2.hp -= damage;
+            } else {
+                damage = 0;
             }
-            console.log(damage + ":" + monster.hp);
+            console.log(damage + ":" + char2.hp);
             this.$store.commit(
                 "setMessage",
-                monster.name + "に" + damage + "のダメージ"
+                char2.name + "に" + damage + "のダメージ"
             );
+            this.$store.commit("setIsShowEffect", false);
         },
-        monsterAttack: function(player, monster) {
-            this.showBattleEffect("火", this);
-            let damage = monster.atk - player.def;
-            if (damage > 0) {
-                player.hp -= damage;
+        lifeCheck: function(player, monster) {
+            if (player.hp <= 0) {
+                this.loseBattle();
+                return true;
             }
-            this.$store.commit(
-                "setMessage",
-                "主人公に" + damage + "のダメージ"
-            );
+            if (monster.hp <= 0) {
+                this.winBattle();
+                return false;
+            }
+            return false;
         },
         winBattle: function() {
             this.tempMoney += 10 * this.currentStage;
+            this.currentStage++;
+            this.setDungeonMonster();
+            this.addStageCorrection(this.monster, this.currentStage);
         },
         loseBattle: function() {
             this.currentStage = 1;
-            this.myStatus.battle.hp = this.myStatus.battle.maxhp;
+            this.player.battle.hp = this.player.battle.maxhp;
         },
 
         showBattleEffect: function(type, vm) {

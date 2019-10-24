@@ -2438,7 +2438,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: "getUserInfo",
     point: "getPoint",
-    myStatus: "getStatus",
+    player: "getStatus",
     monster: "getBattleMonster",
     monsterList: "getMonsterList",
     isEffect: "getIsShowEffect",
@@ -41708,7 +41708,7 @@ var render = function() {
     "div",
     [
       _c("h1", [_vm._v("ダンジョン")]),
-      _vm._v("\n  " + _vm._s(_vm.myStatus) + "\n  "),
+      _vm._v("\n  " + _vm._s(_vm.player) + "\n  "),
       _c("br"),
       _vm._v(
         "\n  最高到達ステージ" +
@@ -60148,6 +60148,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   created: function created() {},
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    player: "getStatus",
     monster: "getBattleMonster",
     monsterList: "getMonsterList",
     swordEffect: "getSwordEffect",
@@ -60183,103 +60184,65 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _dungeonBattle = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(vm) {
-        var player, endFlag;
+        var firstAttack, secondAttack, endFlag;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                player = this.myStatus.battle;
+                firstAttack = null;
+                secondAttack = null;
                 endFlag = false;
                 this.$store.commit("setMessage", "戦闘開始");
 
-              case 3:
+              case 4:
                 if (endFlag) {
-                  _context.next = 37;
+                  _context.next = 20;
                   break;
                 }
 
-                if (!(player.spd >= this.monster.spd)) {
-                  _context.next = 21;
+                if (this.player.battle.spd >= this.monster.spd) {
+                  firstAttack = this.player.battle;
+                  secondAttack = this.monster;
+                } else {
+                  firstAttack = this.monster;
+                  secondAttack = this.player.battle;
+                }
+
+                this.attackPhase(firstAttack, secondAttack);
+                endFlag = this.lifeCheck(this.player.battle, this.monster);
+                _context.next = 10;
+                return this.sleep(500);
+
+              case 10:
+                if (!endFlag) {
+                  _context.next = 12;
                   break;
                 }
 
-                this.playerAttack(player, this.monster);
-                _context.next = 8;
+                return _context.abrupt("break", 20);
+
+              case 12:
+                this.attackPhase(secondAttack, firstAttack);
+                endFlag = this.lifeCheck(this.player.battle, this.monster);
+                _context.next = 16;
                 return this.sleep(500);
 
-              case 8:
-                this.$store.commit("setIsShowEffect", false);
-                _context.next = 11;
-                return this.sleep(100);
-
-              case 11:
-                if (this.monster.hp <= 0) {
-                  this.$store.commit("setMessage", "倒した");
-                  this.winBattle();
-                  this.currentStage++; // this.$store.commit("setMonster", this.currentStage);
-
-                  this.setDungeonMonster();
-                  this.addStageCorrection(this.monster, this.currentStage);
+              case 16:
+                if (!endFlag) {
+                  _context.next = 18;
+                  break;
                 }
 
-                this.monsterAttack(player, this.monster);
-                _context.next = 15;
-                return this.sleep(500);
-
-              case 15:
-                this.$store.commit("setIsShowEffect", false);
-                _context.next = 18;
-                return this.sleep(100);
+                return _context.abrupt("break", 20);
 
               case 18:
-                if (player.hp <= 0) {
-                  this.loseBattle();
-                  endFlag = true;
-                }
-
-                _context.next = 35;
+                _context.next = 4;
                 break;
+
+              case 20:
+                this.$store.commit("setMessage", "戦闘終了");
 
               case 21:
-                this.monsterAttack(player, this.monster);
-                _context.next = 24;
-                return this.sleep(500);
-
-              case 24:
-                this.$store.commit("setIsShowEffect", false);
-                _context.next = 27;
-                return this.sleep(100);
-
-              case 27:
-                if (player.hp <= 0) {
-                  this.loseBattle();
-                  endFlag = true;
-                }
-
-                this.playerAttack(player, this.monster);
-                _context.next = 31;
-                return this.sleep(500);
-
-              case 31:
-                this.$store.commit("setIsShowEffect", false);
-                _context.next = 34;
-                return this.sleep(100);
-
-              case 34:
-                if (this.monster.hp <= 0) {
-                  this.$store.commit("setMessage", "倒した");
-                  this.winBattle();
-                  this.currentStage++; // this.$store.commit("setMonster", this.currentStage);
-
-                  this.setDungeonMonster();
-                  this.addStageCorrection(this.monster, this.currentStage);
-                }
-
-              case 35:
-                _context.next = 3;
-                break;
-
-              case 37:
               case "end":
                 return _context.stop();
             }
@@ -60293,34 +60256,69 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return dungeonBattle;
     }(),
-    playerAttack: function playerAttack(player, monster) {
-      this.showBattleEffect("剣", this);
-      console.log("プレイヤーの攻撃");
-      var damage = player.atk - monster.def;
+    attackPhase: function () {
+      var _attackPhase = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(char1, char2) {
+        var damage;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.showBattleEffect("剣", this);
+                _context2.next = 3;
+                return this.sleep(500);
 
-      if (damage > 0) {
-        monster.hp -= damage;
+              case 3:
+                console.log("プレイヤーの攻撃");
+                damage = char1.atk - char2.def;
+
+                if (damage > 0) {
+                  char2.hp -= damage;
+                } else {
+                  damage = 0;
+                }
+
+                console.log(damage + ":" + char2.hp);
+                this.$store.commit("setMessage", char2.name + "に" + damage + "のダメージ");
+                this.$store.commit("setIsShowEffect", false);
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function attackPhase(_x2, _x3) {
+        return _attackPhase.apply(this, arguments);
       }
 
-      console.log(damage + ":" + monster.hp);
-      this.$store.commit("setMessage", monster.name + "に" + damage + "のダメージ");
-    },
-    monsterAttack: function monsterAttack(player, monster) {
-      this.showBattleEffect("火", this);
-      var damage = monster.atk - player.def;
-
-      if (damage > 0) {
-        player.hp -= damage;
+      return attackPhase;
+    }(),
+    lifeCheck: function lifeCheck(player, monster) {
+      if (player.hp <= 0) {
+        this.loseBattle();
+        return true;
       }
 
-      this.$store.commit("setMessage", "主人公に" + damage + "のダメージ");
+      if (monster.hp <= 0) {
+        this.winBattle();
+        return false;
+      }
+
+      return false;
     },
     winBattle: function winBattle() {
       this.tempMoney += 10 * this.currentStage;
+      this.currentStage++;
+      this.setDungeonMonster();
+      this.addStageCorrection(this.monster, this.currentStage);
     },
     loseBattle: function loseBattle() {
       this.currentStage = 1;
-      this.myStatus.battle.hp = this.myStatus.battle.maxhp;
+      this.player.battle.hp = this.player.battle.maxhp;
     },
     showBattleEffect: function showBattleEffect(type, vm) {
       vm.$store.commit("setIsShowEffect", true);
@@ -62456,6 +62454,7 @@ var state = {
       luc: 0
     },
     battle: {
+      name: "主人公",
       maxhp: 0,
       hp: 0,
       maxmp: 0,

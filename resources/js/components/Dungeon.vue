@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>ダンジョン</h1>
-    {{myStatus}}
+    {{player}}
     <br />
     最高到達ステージ{{clearedStage}}
     現在ステージ{{currentStage}}
@@ -50,7 +50,7 @@ export default {
     ...mapGetters({
       user: "getUserInfo",
       point: "getPoint",
-      myStatus: "getStatus",
+      player: "getStatus",
       monster: "getBattleMonster",
       monsterList: "getMonsterList",
       isEffect: "getIsShowEffect",
