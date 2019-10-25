@@ -43,38 +43,9 @@ export default {
             monster.flee = Math.floor(monster.flee * correction);
             this.$store.commit("setBattleMonster", monster);
         },
-        dungeonBattle: async function(vm) {
-            let firstAttack = null;
-            let secondAttack = null;
-            let endFlag = false;
-            this.$store.commit("setMessage", "戦闘開始");
 
-            while (!endFlag) {
-                if (this.player.battle.spd >= this.monster.spd) {
-                    firstAttack = this.player.battle;
-                    secondAttack = this.monster;
-                } else {
-                    firstAttack = this.monster;
-                    secondAttack = this.player.battle;
-                }
-                this.attackPhase(firstAttack, secondAttack);
-                endFlag = this.lifeCheck(this.player.battle, this.monster);
-                await this.sleep(500);
-                if (endFlag) {
-                    break;
-                }
-                this.attackPhase(secondAttack, firstAttack);
-                endFlag = this.lifeCheck(this.player.battle, this.monster);
-                await this.sleep(500);
-                if (endFlag) {
-                    break;
-                }
-            }
-            this.$store.commit("setMessage", "戦闘終了");
-        },
         attackPhase: async function(char1, char2) {
             this.showBattleEffect("剣", this);
-            await this.sleep(500);
             console.log("プレイヤーの攻撃");
             let damage = char1.atk - char2.def;
             if (damage > 0) {
@@ -87,7 +58,13 @@ export default {
                 "setMessage",
                 char2.name + "に" + damage + "のダメージ"
             );
+            this.$store.commit("setDamage", damage);
+            this.$store.commit("setIsShowDamage", true);
+
+            await this.sleep(500);
             this.$store.commit("setIsShowEffect", false);
+            this.$store.commit("setDamage", "");
+            this.$store.commit("setIsShowDamage", false);
         },
         lifeCheck: function(player, monster) {
             if (player.hp <= 0) {
