@@ -6,6 +6,9 @@
         <img :src="showMonster" />
       </div>
     </transition>
+    <transition name="fade">
+      <div v-if="showDamage" class="damageClass" :style="damageStyle">{{damage}}damage!!</div>
+    </transition>
     <transition name="effect-anime">
       <div v-if="isEffect" :style="effectStyle"></div>
     </transition>
@@ -29,6 +32,8 @@ export default {
   computed: {
     ...mapGetters({
       monster: "getBattleMonster",
+      damage: "getDamage",
+      showDamage: "getIsShowDamage",
       isEffect: "getIsShowEffect"
     }),
     isShowEffect: function() {
@@ -36,6 +41,16 @@ export default {
     },
     showMonster: function() {
       return "./" + this.monster.img;
+    },
+    damageStyle: function() {
+      if (this.showDamage) {
+        this.damageTop = 150 + Math.floor(Math.random() * 100);
+        this.damageLeft = 200 + Math.floor(Math.random() * 100);
+      }
+      return {
+        left: this.damageLeft + "px",
+        top: this.damageTop + "px"
+      };
     },
     effectStyle: function() {
       this.effectTop = Math.floor(Math.random() * 100);
@@ -87,6 +102,17 @@ export default {
   bottom: 0;
   left: 0;
 }
+
+.damageClass {
+  position: absolute;
+  bottom: 50%;
+  left: 30%;
+  color: red;
+  font-size: 5em;
+  text-shadow: 1px 1px 1px #fff, -1px 1px 1px #fff, 1px -1px 1px #fff,
+    -1px -1px 1px #fff;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s;

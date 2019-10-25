@@ -98,6 +98,35 @@ export default {
       this.showChar("", "c");
       this.setDungeonMonster();
       this.dungeonBattle();
+    },
+    dungeonBattle: async function(vm) {
+      let firstAttack = null;
+      let secondAttack = null;
+      let endFlag = false;
+      this.$store.commit("setMessage", "戦闘開始");
+
+      while (!endFlag) {
+        if (this.player.battle.spd >= this.monster.spd) {
+          firstAttack = this.player.battle;
+          secondAttack = this.monster;
+        } else {
+          firstAttack = this.monster;
+          secondAttack = this.player.battle;
+        }
+        this.attackPhase(firstAttack, secondAttack);
+        endFlag = this.lifeCheck(this.player.battle, this.monster);
+        await this.sleep(500);
+        if (endFlag) {
+          break;
+        }
+        this.attackPhase(secondAttack, firstAttack);
+        endFlag = this.lifeCheck(this.player.battle, this.monster);
+        await this.sleep(500);
+        if (endFlag) {
+          break;
+        }
+      }
+      this.$store.commit("setMessage", "戦闘終了");
     }
   }
 };

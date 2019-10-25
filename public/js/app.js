@@ -2379,15 +2379,23 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
-/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
-/* harmony import */ var _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/battleMixin */ "./resources/js/mixins/battleMixin.js");
-/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
-/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
-/* harmony import */ var _parts_monsterImg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../parts/monsterImg */ "./resources/js/parts/monsterImg.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
+/* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
+/* harmony import */ var _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mixins/battleMixin */ "./resources/js/mixins/battleMixin.js");
+/* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
+/* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
+/* harmony import */ var _parts_monsterImg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../parts/monsterImg */ "./resources/js/parts/monsterImg.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2422,12 +2430,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    message: _parts_Message__WEBPACK_IMPORTED_MODULE_5__["default"],
-    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_6__["default"],
-    "monster-img": _parts_monsterImg__WEBPACK_IMPORTED_MODULE_7__["default"] // "battle-effect": battleEffect
+    message: _parts_Message__WEBPACK_IMPORTED_MODULE_6__["default"],
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_7__["default"],
+    "monster-img": _parts_monsterImg__WEBPACK_IMPORTED_MODULE_8__["default"] // "battle-effect": battleEffect
 
   },
-  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_4__["default"]],
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_4__["default"], _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_5__["default"]],
   data: function data() {
     return {
       clearedStage: 0,
@@ -2435,7 +2443,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tempMoney: 0
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
     user: "getUserInfo",
     point: "getPoint",
     player: "getStatus",
@@ -2457,7 +2465,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getMyStatus: function getMyStatus() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/getMyStatus", {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("./api/getMyStatus", {
         userId: this.user.id
       }).then(function (res) {
         if (res.status === 419) {
@@ -2487,7 +2495,83 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.showChar("", "c");
       this.setDungeonMonster();
       this.dungeonBattle();
-    }
+    },
+    dungeonBattle: function () {
+      var _dungeonBattle = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(vm) {
+        var firstAttack, secondAttack, endFlag;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                firstAttack = null;
+                secondAttack = null;
+                endFlag = false;
+                this.$store.commit("setMessage", "戦闘開始");
+
+              case 4:
+                if (endFlag) {
+                  _context.next = 20;
+                  break;
+                }
+
+                if (this.player.battle.spd >= this.monster.spd) {
+                  firstAttack = this.player.battle;
+                  secondAttack = this.monster;
+                } else {
+                  firstAttack = this.monster;
+                  secondAttack = this.player.battle;
+                }
+
+                this.attackPhase(firstAttack, secondAttack);
+                endFlag = this.lifeCheck(this.player.battle, this.monster);
+                _context.next = 10;
+                return this.sleep(500);
+
+              case 10:
+                if (!endFlag) {
+                  _context.next = 12;
+                  break;
+                }
+
+                return _context.abrupt("break", 20);
+
+              case 12:
+                this.attackPhase(secondAttack, firstAttack);
+                endFlag = this.lifeCheck(this.player.battle, this.monster);
+                _context.next = 16;
+                return this.sleep(500);
+
+              case 16:
+                if (!endFlag) {
+                  _context.next = 18;
+                  break;
+                }
+
+                return _context.abrupt("break", 20);
+
+              case 18:
+                _context.next = 4;
+                break;
+
+              case 20:
+                this.$store.commit("setMessage", "戦闘終了");
+
+              case 21:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function dungeonBattle(_x) {
+        return _dungeonBattle.apply(this, arguments);
+      }
+
+      return dungeonBattle;
+    }()
   }
 });
 
@@ -3958,6 +4042,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3972,6 +4059,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_battleMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     monster: "getBattleMonster",
+    damage: "getDamage",
+    showDamage: "getIsShowDamage",
     isEffect: "getIsShowEffect"
   }), {
     isShowEffect: function isShowEffect() {
@@ -3979,6 +4068,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     showMonster: function showMonster() {
       return "./" + this.monster.img;
+    },
+    damageStyle: function damageStyle() {
+      if (this.showDamage) {
+        this.damageTop = 150 + Math.floor(Math.random() * 100);
+        this.damageLeft = 200 + Math.floor(Math.random() * 100);
+      }
+
+      return {
+        left: this.damageLeft + "px",
+        top: this.damageTop + "px"
+      };
     },
     effectStyle: function effectStyle() {
       this.effectTop = Math.floor(Math.random() * 100);
@@ -18873,7 +18973,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-c13136d4] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-monster[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-monster img[data-v-c13136d4] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-c13136d4],\r\n.fade-leave-active[data-v-c13136d4] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-c13136d4],\r\n.fade-leave-to[data-v-c13136d4] {\r\n  opacity: 0;\n}\r\n\r\n/* .effectAnime {\r\n  position: absolute;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n  z-index: 100;\r\n  animation: sprite54 0.5s step-end 0s 1;\r\n} */\n.effect-anime-enter-active[data-v-c13136d4] {\r\n  position: relative;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n\r\n  z-index: 100;\r\n  -webkit-animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\r\n          animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\n}\n@-webkit-keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-c13136d4] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-monster[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-monster img[data-v-c13136d4] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.damageClass[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 50%;\r\n  left: 30%;\r\n  color: red;\r\n  font-size: 5em;\r\n  text-shadow: 1px 1px 1px #fff, -1px 1px 1px #fff, 1px -1px 1px #fff,\r\n    -1px -1px 1px #fff;\n}\n.fade-enter-active[data-v-c13136d4],\r\n.fade-leave-active[data-v-c13136d4] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-c13136d4],\r\n.fade-leave-to[data-v-c13136d4] {\r\n  opacity: 0;\n}\r\n\r\n/* .effectAnime {\r\n  position: absolute;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n  z-index: 100;\r\n  animation: sprite54 0.5s step-end 0s 1;\r\n} */\n.effect-anime-enter-active[data-v-c13136d4] {\r\n  position: relative;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n\r\n  z-index: 100;\r\n  -webkit-animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\r\n          animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\n}\n@-webkit-keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -43246,6 +43346,14 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
+      _c("transition", { attrs: { name: "fade" } }, [
+        _vm.showDamage
+          ? _c("div", { staticClass: "damageClass", style: _vm.damageStyle }, [
+              _vm._v(_vm._s(_vm.damage) + "damage!!")
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
       _c("transition", { attrs: { name: "effect-anime" } }, [
         _vm.isEffect ? _c("div", { style: _vm.effectStyle }) : _vm._e()
       ])
@@ -60180,96 +60288,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       monster.flee = Math.floor(monster.flee * correction);
       this.$store.commit("setBattleMonster", monster);
     },
-    dungeonBattle: function () {
-      var _dungeonBattle = _asyncToGenerator(
+    attackPhase: function () {
+      var _attackPhase = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(vm) {
-        var firstAttack, secondAttack, endFlag;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(char1, char2) {
+        var damage;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                firstAttack = null;
-                secondAttack = null;
-                endFlag = false;
-                this.$store.commit("setMessage", "戦闘開始");
-
-              case 4:
-                if (endFlag) {
-                  _context.next = 20;
-                  break;
-                }
-
-                if (this.player.battle.spd >= this.monster.spd) {
-                  firstAttack = this.player.battle;
-                  secondAttack = this.monster;
-                } else {
-                  firstAttack = this.monster;
-                  secondAttack = this.player.battle;
-                }
-
-                this.attackPhase(firstAttack, secondAttack);
-                endFlag = this.lifeCheck(this.player.battle, this.monster);
-                _context.next = 10;
-                return this.sleep(500);
-
-              case 10:
-                if (!endFlag) {
-                  _context.next = 12;
-                  break;
-                }
-
-                return _context.abrupt("break", 20);
-
-              case 12:
-                this.attackPhase(secondAttack, firstAttack);
-                endFlag = this.lifeCheck(this.player.battle, this.monster);
-                _context.next = 16;
-                return this.sleep(500);
-
-              case 16:
-                if (!endFlag) {
-                  _context.next = 18;
-                  break;
-                }
-
-                return _context.abrupt("break", 20);
-
-              case 18:
-                _context.next = 4;
-                break;
-
-              case 20:
-                this.$store.commit("setMessage", "戦闘終了");
-
-              case 21:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function dungeonBattle(_x) {
-        return _dungeonBattle.apply(this, arguments);
-      }
-
-      return dungeonBattle;
-    }(),
-    attackPhase: function () {
-      var _attackPhase = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(char1, char2) {
-        var damage;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
                 this.showBattleEffect("剣", this);
-                _context2.next = 3;
-                return this.sleep(500);
-
-              case 3:
                 console.log("プレイヤーの攻撃");
                 damage = char1.atk - char2.def;
 
@@ -60281,17 +60309,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 console.log(damage + ":" + char2.hp);
                 this.$store.commit("setMessage", char2.name + "に" + damage + "のダメージ");
-                this.$store.commit("setIsShowEffect", false);
+                this.$store.commit("setDamage", damage);
+                this.$store.commit("setIsShowDamage", true);
+                _context.next = 10;
+                return this.sleep(500);
 
-              case 9:
+              case 10:
+                this.$store.commit("setIsShowEffect", false);
+                this.$store.commit("setDamage", "");
+                this.$store.commit("setIsShowDamage", false);
+
+              case 13:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee, this);
       }));
 
-      function attackPhase(_x2, _x3) {
+      function attackPhase(_x, _x2) {
         return _attackPhase.apply(this, arguments);
       }
 
@@ -61401,6 +61437,8 @@ var mutations = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
+  damage: "",
+  isShowDamage: "",
   battleEffectPath: "",
   isShwoEffect: false,
   swordEffect: [{
@@ -61481,6 +61519,12 @@ var state = {
   }]
 };
 var getters = {
+  getDamage: function getDamage(state) {
+    return state.damage;
+  },
+  getIsShowDamage: function getIsShowDamage(state) {
+    return state.isShowDamage;
+  },
   getBattleEffectPath: function getBattleEffectPath(state) {
     return state.battleEffectPath;
   },
@@ -61513,11 +61557,17 @@ var getters = {
   }
 };
 var mutations = {
+  setDamage: function setDamage(state, value) {
+    state.damage = value;
+  },
+  setIsShowDamage: function setIsShowDamage(state, _boolean) {
+    state.isShowDamage = _boolean;
+  },
   setBattleEffectPath: function setBattleEffectPath(state, imgPath) {
     state.battleEffectPath = imgPath;
   },
-  setIsShowEffect: function setIsShowEffect(state, _boolean) {
-    state.isShwoEffect = _boolean;
+  setIsShowEffect: function setIsShowEffect(state, _boolean2) {
+    state.isShwoEffect = _boolean2;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

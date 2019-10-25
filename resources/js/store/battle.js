@@ -1,4 +1,6 @@
 const state = {
+    damage: "",
+    isShowDamage: "",
     battleEffectPath: "",
     isShwoEffect: false,
     swordEffect: [
@@ -121,6 +123,12 @@ const state = {
     ]
 };
 const getters = {
+    getDamage: state => {
+        return state.damage;
+    },
+    getIsShowDamage: state => {
+        return state.isShowDamage;
+    },
     getBattleEffectPath: state => {
         return state.battleEffectPath;
     },
@@ -153,6 +161,12 @@ const getters = {
     }
 };
 const mutations = {
+    setDamage(state, value) {
+        state.damage = value;
+    },
+    setIsShowDamage(state, boolean) {
+        state.isShowDamage = boolean;
+    },
     setBattleEffectPath(state, imgPath) {
         state.battleEffectPath = imgPath;
     },
