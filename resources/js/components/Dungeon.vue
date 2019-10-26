@@ -1,15 +1,13 @@
 <template>
   <div>
-    <h1>ダンジョン</h1>
-    {{player}}
-    <br />
-    最高到達ステージ{{clearedStage}}
-    現在ステージ{{currentStage}}
-    収入{{tempMoney}}
-    <button
-      @click="enterDungeon"
-    >探索開始</button>
-    {{monster}}
+    <div class="rightSide">
+      <button @click="enterDungeon">探索開始</button>
+      <div>現在階層：{{currentStage}}</div>
+      <div>最高到達階層：{{clearedStage}}</div>
+      <div>収入{{tempMoney}}</div>
+      <div>プレイヤーHP：{{player.battle.hp}}</div>
+      <div>モンスターHP:{{monster.hp}}</div>
+    </div>
     <message @get-scene="getScene"></message>
     <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
     <monster-img :battle-effect="battleEffect"></monster-img>
@@ -133,4 +131,11 @@ export default {
 </script>
 
 <style scoped>
+.rightSide {
+  width: 250px;
+  height: 425px;
+  background: black;
+  opacity: 0.5;
+  border: 2px double gold;
+}
 </style>
