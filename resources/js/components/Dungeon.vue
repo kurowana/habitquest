@@ -1,11 +1,15 @@
 <template>
   <div>
-    <div class="rightSide">
+    <div class="leftHeader">
+      <div>プレイヤーHP：{{player.battle.hp}}</div>
+    </div>
+    <div class="centerHeader">
       <button @click="enterDungeon">探索開始</button>
       <div>現在階層：{{currentStage}}</div>
       <div>最高到達階層：{{clearedStage}}</div>
       <div>収入{{tempMoney}}</div>
-      <div>プレイヤーHP：{{player.battle.hp}}</div>
+    </div>
+    <div class="rightHeader">
       <div>モンスターHP:{{monster.hp}}</div>
     </div>
     <message @get-scene="getScene"></message>
@@ -131,11 +135,37 @@ export default {
 </script>
 
 <style scoped>
-.rightSide {
-  width: 250px;
-  height: 425px;
+.leftHeader {
+  width: 260px;
+  height: 120px;
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
   background: black;
-  opacity: 0.5;
   border: 2px double gold;
+  border-radius: 10px;
+}
+.centerHeader {
+  width: 260px;
+  height: 120px;
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  left: 270px;
+  background: black;
+  border: 2px double gold;
+  border-radius: 10px;
+}
+.rightHeader {
+  width: 260px;
+  height: 120px;
+  padding: 15px;
+  position: relative;
+  top: 0;
+  left: 540px;
+  background: black;
+  border: 2px double gold;
+  border-radius: 10px;
 }
 </style>

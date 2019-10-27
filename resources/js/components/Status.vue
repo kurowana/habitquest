@@ -1,31 +1,35 @@
 <template>
   <div>
-    {{user}}
-    {{myStatus}}
-    <p>残りポイント：{{point.temp}}</p>
-    <table>
-      <thead>
-        <tr>
-          <th>能力</th>
-          <th>値</th>
-          <th>振り分け</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(value,key) in myStatus.temp" :key="key">
-          <td>{{key}}</td>
-          <td>{{value}}</td>
-          <td>
-            <button @click="incTempSt(key)">+</button>
-            <button @click="decTempSt(key)">-</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button @click="updateStatus">決定</button>
-    <div style="background:#fff; width:400px; position:relative">
-      <base-st-chart :baseSt="myStatus.temp"></base-st-chart>
+    <div class="leftArea">
+      <p>残りポイント：{{point.temp}}</p>
+      <table>
+        <thead>
+          <tr>
+            <th>能力</th>
+            <th>値</th>
+            <th>振り分け</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(value,key) in myStatus.temp" :key="key">
+            <td>{{key}}</td>
+            <td>{{value}}</td>
+            <td>
+              <button @click="incTempSt(key)">+</button>
+              <button @click="decTempSt(key)">-</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button @click="updateStatus">決定</button>
     </div>
+    <div class="centerArea">
+      <div style="background:#fff; width:300px; height:400px; position:relative">
+        <base-st-chart :baseSt="myStatus.temp"></base-st-chart>
+      </div>
+    </div>
+    <message @get-scene="getScene"></message>
+    <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
   </div>
 </template>
 
@@ -35,15 +39,25 @@ import { mapGetters } from "vuex";
 import baseMixin from "../mixins/baseMixin";
 import eventMixin from "../mixins/eventMixin";
 
+import message from "../parts/Message";
+import charImg from "../parts/charImg";
 import BaseStChart from "../chart/BaseStChart.vue";
 
 export default {
   components: {
+    message,
+    charImg,
     BaseStChart
   },
   mixins: [baseMixin, eventMixin],
   data: function() {
-    return {};
+    return {
+      eventObj: [
+        function(vm) {
+          vm.setEvent({ type: "msg", content: "どの能力を成長させるの？" });
+        }
+      ]
+    };
   },
   computed: {
     ...mapGetters({
@@ -55,6 +69,9 @@ export default {
   },
   created: function() {
     this.changeBg("ホーム");
+    this.setEvent({ type: "msg", content: "調子はどう？成長してる？" });
+    this.clearChar();
+    this.showChar("スフィア2", "r1");
     this.initPage();
   },
   methods: {
@@ -111,3 +128,28 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.leftArea {
+  width: 180px;
+  height: 420px;
+  padding: 15px;
+  background: #000;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  border: 2px double gold;
+  border-radius: 10px;
+}
+.centerArea {
+  width: 330px;
+  height: 420px;
+  padding: 15px;
+  background: #000;
+  position: absolute;
+  top: 10px;
+  left: 200px;
+  border: 2px double gold;
+  border-radius: 10px;
+}
+</style>
