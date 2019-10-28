@@ -140,9 +140,9 @@ export default {
   height: 120px;
   padding: 15px;
   position: absolute;
-  top: 0;
-  left: 0;
-  background: black;
+  top: 5px;
+  left: 5px;
+  background: rgba(0, 0, 255, 0.3);
   border: 2px double gold;
   border-radius: 10px;
 }
@@ -151,9 +151,9 @@ export default {
   height: 120px;
   padding: 15px;
   position: absolute;
-  top: 0;
+  top: 5px;
   left: 270px;
-  background: black;
+  background: rgba(0, 0, 0, 0.3);
   border: 2px double gold;
   border-radius: 10px;
 }
@@ -162,9 +162,9 @@ export default {
   height: 120px;
   padding: 15px;
   position: relative;
-  top: 0;
-  left: 540px;
-  background: black;
+  top: 5px;
+  left: 535px;
+  background: rgba(255, 0, 0, 0.3);
   border: 2px double gold;
   border-radius: 10px;
 }

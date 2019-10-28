@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="header">
+      <p class="headerContent">
+        <img src="../../../public/img/p_face/f001.png" />
+      </p>
+    </div>
     <message @get-scene="getScene"></message>
     <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
     <!-- <char-img></char-img> -->
@@ -64,3 +69,23 @@ export default {
   methods: {}
 };
 </script>
+
+<style scoped>
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 150px;
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 2px double gold;
+}
+.headerContent img {
+  display: block;
+  width: 140px;
+  height: 140px;
+  margin: 5px;
+  border: 2px double gold;
+  border-radius: 10px;
+}
+</style>
