@@ -2790,6 +2790,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -42183,7 +42231,106 @@ var staticRenderFns = [
       _c("p", { staticClass: "headerContent" }, [
         _c("img", {
           attrs: { src: __webpack_require__(/*! ../../../public/img/p_face/f001.png */ "./public/img/p_face/f001.png") }
-        })
+        }),
+        _vm._v(" "),
+        _c("i", {
+          staticClass: "fas fa-feather",
+          staticStyle: { "font-size": "50px" }
+        }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fab fa-sticker-mule" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-star-of-david" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-tree" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-wine-bottle" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-angry" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-comments" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-compress" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-cubes" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fab fa-ethereum" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-dragon" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-dice-d20" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-compress" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-landmark" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-hammer" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-grin-beam-sweat" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-grin-beam" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-graduation-cap" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-glass-cheers" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-gifts" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-gem" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fab fa-fort-awesome" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-flag" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-flask" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-yin-yang" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-star" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-money-bill" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-female" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-balance-scale" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-atlas" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-cat" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-cat" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-dove" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-fan" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-fist-raised" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-fire-alt" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-tint" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-vial" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-university" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-spider" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-shield-alt" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fab fa-pied-piper-hat" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-palette" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-paint-brush" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-hammer" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-home" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-hat-cowboy" }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-heart" })
       ])
     ])
   }
