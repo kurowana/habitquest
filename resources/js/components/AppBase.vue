@@ -88,22 +88,17 @@ export default {
           userId: this.user.id
         })
         .then(res => {
-          if (res.status === 419) {
-            alert("セッションエラー");
-            location.reload();
-          } else {
-            this.status = res.data;
-            this.$store.commit("setPoint", res.data.point);
-            this.$store.commit("setStatus", {
-              str: res.data.str,
-              agi: res.data.agi,
-              vit: res.data.vit,
-              int: res.data.int,
-              dex: res.data.dex,
-              luc: res.data.luc
-            });
-            this.stage = res.data.clearedStage;
-          }
+          this.status = res.data;
+          this.$store.commit("setPoint", res.data.point);
+          this.$store.commit("setStatus", {
+            str: res.data.str,
+            agi: res.data.agi,
+            vit: res.data.vit,
+            int: res.data.int,
+            dex: res.data.dex,
+            luc: res.data.luc
+          });
+          this.stage = res.data.clearedStage;
         })
         .catch(error => {
           this.apiDefaultError(error);

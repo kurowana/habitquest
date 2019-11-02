@@ -2058,25 +2058,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/getMyStatus", {
         userId: this.user.id
       }).then(function (res) {
-        if (res.status === 419) {
-          alert("セッションエラー");
-          location.reload();
-        } else {
-          _this.status = res.data;
+        _this.status = res.data;
 
-          _this.$store.commit("setPoint", res.data.point);
+        _this.$store.commit("setPoint", res.data.point);
 
-          _this.$store.commit("setStatus", {
-            str: res.data.str,
-            agi: res.data.agi,
-            vit: res.data.vit,
-            "int": res.data["int"],
-            dex: res.data.dex,
-            luc: res.data.luc
-          });
+        _this.$store.commit("setStatus", {
+          str: res.data.str,
+          agi: res.data.agi,
+          vit: res.data.vit,
+          "int": res.data["int"],
+          dex: res.data.dex,
+          luc: res.data.luc
+        });
 
-          _this.stage = res.data.clearedStage;
-        }
+        _this.stage = res.data.clearedStage;
       })["catch"](function (error) {
         _this.apiDefaultError(error);
       });
@@ -60699,11 +60694,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      maxhp: 0,
+      hp: 0,
+      maxmp: 0,
+      mp: 0,
+      atk: 0,
+      matk: 0,
+      def: 0,
+      mdef: 0,
+      spd: 0,
+      hit: 0,
+      flee: 0
+    };
   },
-  created: function created() {},
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    player: "getStatus",
+    user: "getUser",
     monster: "getBattleMonster",
     monsterList: "getMonsterList",
     swordEffect: "getSwordEffect",
@@ -60715,6 +60721,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     darkEffect: "getDarkEffect",
     healEffect: "getHealEffect"
   })),
+  created: function created() {},
+  mounted: function mounted() {
+    this.maxhp = user.status.vit * 10;
+    this.hp = user.status.vit * 10;
+    this.maxmp = user.status["int"] * 5;
+    this.mp = user.status["int"] * 5;
+    this.atk = user.status.str * 3;
+    this.matk = user.status["int"] * 3;
+    this.def = user.status.vit * 3;
+    this.mdef = user.status.vit + user.status["int"] * 2;
+    this.spd = user.status.agi * 3;
+    this.hit = user.status.dex * 2 + user.status.luc;
+    this.flee = user.status.agi * 2 + user.status.luc;
+  },
   methods: {
     setDungeonMonster: function setDungeonMonster() {
       var length = this.monsterList.length;
@@ -63014,42 +63034,15 @@ var state = {
   isLogin: false,
   user: {
     id: "",
-    name: ""
-  },
-  point: {
-    db: 0,
-    temp: 0
-  },
-  status: {
-    db: {
+    name: "",
+    point: 0,
+    status: {
       str: 0,
       agi: 0,
       vit: 0,
       "int": 0,
       dex: 0,
       luc: 0
-    },
-    temp: {
-      str: 0,
-      agi: 0,
-      vit: 0,
-      "int": 0,
-      dex: 0,
-      luc: 0
-    },
-    battle: {
-      name: "主人公",
-      maxhp: 0,
-      hp: 0,
-      maxmp: 0,
-      mp: 0,
-      atk: 0,
-      matk: 0,
-      def: 0,
-      mdef: 0,
-      spd: 0,
-      hit: 0,
-      flee: 0
     }
   },
   userImg: {
@@ -63176,14 +63169,8 @@ var state = {
   }
 };
 var getters = {
-  getUserInfo: function getUserInfo(state) {
+  getUser: function getUser(state) {
     return state.user;
-  },
-  getPoint: function getPoint(state) {
-    return state.point;
-  },
-  getStatus: function getStatus(state) {
-    return state.status;
   },
   getUserImg: function getUserImg(state) {
     return state.userImg;
@@ -63193,16 +63180,22 @@ var mutations = {
   setLoginFlag: function setLoginFlag(state, _boolean) {
     state.isLogin = _boolean;
   },
-  setUserInfo: function setUserInfo(state, user) {
-    state.user = user;
+  setUser: function setUser(state, user) {
+    state.user.id = user.id;
+    state.user.name = user.name;
+    state.user.point = user.point;
+    state.user.status.str = user.status.str;
+    state.user.status.agi = user.status.agi;
+    state.user.status.vit = user.status.vit;
+    state.user.status["int"] = user.status["int"];
+    state.user.status.dex = user.status.dex;
+    state.user.status.luc = user.status.luc;
   },
   setPoint: function setPoint(state, point) {
-    state.point.db = point;
-    state.point.temp = point;
+    state.point = point;
   },
   setStatus: function setStatus(state, status) {
-    state.status.db = Object.assign({}, status);
-    state.status.temp = Object.assign({}, status);
+    state.baseStatus = Object.assign({}, status);
     var dST = state.status.db;
     var bST = state.status.battle;
     bST.maxhp = dST.vit * 10;
@@ -63216,21 +63209,21 @@ var mutations = {
     bST.spd = dST.agi;
     bST.hit = dST.dex + dST.luc;
     bST.flee = dST.agi + dST.luc;
-  },
-  incBaseSt: function incBaseSt(state, type) {
-    if (state.point.temp > 0) {
-      state.status.temp[type]++;
-      state.point.temp--;
-    }
-  },
-  decBaseSt: function decBaseSt(state, type) {
-    if (state.point.temp < state.point.db) {
-      if (state.status.temp[type] > state.status.db[type]) {
-        state.status.temp[type]--;
-        state.point.temp++;
-      }
-    }
-  }
+  } // incBaseSt(state, type) {
+  //     if (state.point.temp > 0) {
+  //         state.status.temp[type]++;
+  //         state.point.temp--;
+  //     }
+  // },
+  // decBaseSt(state, type) {
+  //     if (state.point.temp < state.point.db) {
+  //         if (state.status.temp[type] > state.status.db[type]) {
+  //             state.status.temp[type]--;
+  //             state.point.temp++;
+  //         }
+  //     }
+  // }
+
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
