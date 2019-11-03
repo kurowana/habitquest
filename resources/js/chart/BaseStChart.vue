@@ -8,7 +8,7 @@ export default {
   extends: Radar,
   mixins: [mixins.reactiveData],
   props: {
-    baseSt: null
+    userStatus: null
   },
   data: function() {
     return {
@@ -46,8 +46,8 @@ export default {
         labels: ["str", "agi", "vit", "int", "dex", "luc"],
         datasets: [{ label: "status", data: [] }]
       };
-      Object.keys(this.baseSt).map(key => {
-        newChart.datasets[0].data.push(this.baseSt[key]);
+      Object.keys(this.userStatus).map(key => {
+        newChart.datasets[0].data.push(this.userStatus[key]);
       });
       this.chartData = newChart;
     }

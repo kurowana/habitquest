@@ -153,75 +153,75 @@ export default {
       luc: 10,
 
       eventObj: [
-        function(vm) {
-          vm.showChar("スフィア1", "l1");
-          vm.showChar("ヴァルカン", "l2");
-          vm.showChar("フリート", "c");
-          vm.showChar("アイザック", "r1");
-          vm.showChar("アーサー", "r2");
-          vm.setEvent({ type: "msg", content: "メッセージのテスト" });
+        () => {
+          this.showChar("スフィア1", "l1");
+          this.showChar("ヴァルカン", "l2");
+          this.showChar("フリート", "c");
+          this.showChar("アイザック", "r1");
+          this.showChar("アーサー", "r2");
+          this.setEvent({ type: "msg", content: "メッセージのテスト" });
         },
-        function(vm) {
-          vm.showChar("エイル", "r2");
-          vm.setEvent({ type: "msg", content: "メッセージのテスト2" });
-          vm.setSpeaker("エイル", "r2");
+        () => {
+          this.showChar("エイル", "r2");
+          this.setEvent({ type: "msg", content: "メッセージのテスト2" });
+          this.setSpeaker("エイル", "r2");
         },
-        function(vm) {
-          vm.setMotion("l1", "anime1");
-          vm.setMotion("r1", "anime2");
-          vm.setEvent({ type: "msg", content: "メッセージのテスト3" });
-          vm.setSpeaker("スフィア", "l1");
+        () => {
+          this.setMotion("l1", "anime1");
+          this.setMotion("r1", "anime2");
+          this.setEvent({ type: "msg", content: "メッセージのテスト3" });
+          this.setSpeaker("スフィア", "l1");
         },
-        function(vm) {
-          vm.setEvent({ type: "msg", content: "アニメ2" });
+        () => {
+          this.setEvent({ type: "msg", content: "アニメ2" });
         },
-        function(vm) {
-          vm.showChar("エイル", "r2");
-          vm.setEvent({ type: "msg", content: "メッセージのテスト2" });
+        () => {
+          this.showChar("エイル", "r2");
+          this.setEvent({ type: "msg", content: "メッセージのテスト2" });
         },
-        function(vm) {
-          vm.setEvent({
+        () => {
+          this.setEvent({
             type: "window",
             content: { window: "isSoundCheckModal", msg: "メッセージ" }
           });
         },
-        function(vm) {
-          vm.setEvent({
+        () => {
+          this.setEvent({
             type: "window",
             content: { window: "isRegistModal", msg: "モーダル2" }
           });
         },
-        function(vm) {
-          vm.setEvent({
+        () => {
+          this.setEvent({
             type: "window",
             content: { window: "isSelectImgModal", msg: "モーダル2" }
           });
         },
-        function(vm) {
-          vm.setEvent({
+        () => {
+          this.setEvent({
             type: "window",
             content: { window: "isConfirmImgModal", msg: "モーダル2" }
           });
         },
-        function(vm) {
-          vm.showChar("", "r2");
-          vm.setEvent({
+        () => {
+          this.showChar("", "r2");
+          this.setEvent({
             type: "select",
             content: {
               msg: "どちらを選ぶ？",
               choice: [
                 {
                   text: "選択肢1",
-                  event: function() {
-                    vm.$store.commit("setEventObj", "eventObj1");
-                    vm.$store.commit("setSceneCount", 0);
+                  event: () => {
+                    this.$store.commit("setEventObj", "eventObj1");
+                    this.$store.commit("setSceneCount", 0);
                   }
                 },
                 {
                   text: "選択肢2",
-                  event: function() {
-                    vm.$store.commit("setEventObj", "eventObj2");
-                    vm.$store.commit("setSceneCount", 0);
+                  event: () => {
+                    this.$store.commit("setEventObj", "eventObj2");
+                    this.$store.commit("setSceneCount", 0);
                   }
                 }
               ]
@@ -229,29 +229,42 @@ export default {
           });
         }
       ],
+
       eventObj1: [
-        function(vm) {
-          vm.showChar("スフィア2", "l2");
-          vm.setEvent({ type: "msg", content: "選択肢1を選んだよ" });
+        () => {
+          this.showChar("スフィア2", "l2");
+          this.setEvent({ type: "msg", content: "選択肢1を選んだよ" });
         },
-        function(vm) {
-          vm.setEvent({ type: "msg", content: "選択肢1を選んだよ。続き" });
+        () => {
+          this.setEvent({ type: "msg", content: "選択肢1を選んだよ。続き" });
+        },
+        () => {
+          this.setEvent({
+            type: "window",
+            content: { window: "isStatusModal", msg: "モーダル2" }
+          });
+        },
+        () => {
+          this.setEvent({
+            type: "window",
+            content: { window: "isConfirmModal", msg: "モーダル2" }
+          });
         }
       ],
       eventObj2: [
-        function(vm) {
-          vm.showChar("スフィア", "l2");
-          vm.setEvent({ type: "msg", content: "選択し２" });
+        () => {
+          this.showChar("スフィア", "l2");
+          this.setEvent({ type: "msg", content: "選択し２" });
         },
-        function(vm) {
-          vm.setEvent({ type: "msg", content: "選択肢２を選んだよ。続き" });
+        () => {
+          this.setEvent({ type: "msg", content: "選択肢２を選んだよ。続き" });
         }
       ]
     };
   },
   computed: {
     ...mapGetters({
-      userInfo: "getUserInfo",
+      user: "getUser",
       userImg: "getUserImg",
       sceneCount: "getSceneCount",
       NextFlag: "getNextFlag"
@@ -375,15 +388,19 @@ export default {
           luc: this.luc
         })
         .then(res => {
-          axios
-            .post("./login", {
-              name: this.name,
-              password: this.password
-            })
-            .then(res => {
-              location.reload();
-            });
-          // this.$router.push({ name: "home" });
+          if (res.data !== "error") {
+            axios
+              .post("./login", {
+                name: this.name,
+                password: this.password
+              })
+              .then(res => {
+                location.reload();
+              });
+            this.$router.push({ name: "home" });
+          } else {
+            console.log("ユーザー名重複");
+          }
         })
         .catch(error => {
           console.log(error);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{myStatus}}
+    {{user}}
     <h1>採集</h1>
     <p>鉄：{{tempAssets.iron}}</p>
     <p>羽毛：{{tempAssets.feather}}</p>
@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      myStatus: "getStatus"
+      user: "getUser"
     })
   },
   created: function() {
@@ -74,23 +74,23 @@ export default {
     setInterval(() => {
       if (this.getIron) {
         this.tempAssets.iron =
-          Math.ceil(1 + this.myStatus.db.str / 10) + this.tempAssets.iron;
+          Math.ceil(1 + this.user.str / 10) + this.tempAssets.iron;
       }
       if (this.getFeather) {
         this.tempAssets.feather =
-          Math.ceil(1 + this.myStatus.db.agi / 10) + this.tempAssets.feather;
+          Math.ceil(1 + this.user.agi / 10) + this.tempAssets.feather;
       }
       if (this.getWood) {
         this.tempAssets.wood =
-          Math.ceil(1 + this.myStatus.db.vit / 10) + this.tempAssets.wood;
+          Math.ceil(1 + this.user.vit / 10) + this.tempAssets.wood;
       }
       if (this.getStone) {
         this.tempAssets.stone =
-          Math.ceil(1 + this.myStatus.db.int / 10) + this.tempAssets.stone;
+          Math.ceil(1 + this.user.int / 10) + this.tempAssets.stone;
       }
       if (this.getLeather) {
         this.tempAssets.leather =
-          Math.ceil(1 + this.myStatus.db.dex / 10) + this.tempAssets.leather;
+          Math.ceil(1 + this.user.dex / 10) + this.tempAssets.leather;
       }
     }, 1000);
   },

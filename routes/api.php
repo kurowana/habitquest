@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/registUser', 'Controller@registUser');
+Route::post('/registUser', 'UserController@registUser');
 
 // Route::post('/create_char', 'StatusesController@create_char');
 // Route::post('/set_status', 'StatusesController@set_status');

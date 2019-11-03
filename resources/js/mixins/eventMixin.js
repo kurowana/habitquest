@@ -80,10 +80,10 @@ export default {
                 console.log("データが不正です。");
                 return false;
             }
-            const vm = this;
+            // const vm = this;
             const eventLength = currentEvent.length;
             if (count <= eventLength) {
-                currentEvent[count - 1](vm);
+                currentEvent[count - 1]();
             } else {
                 console.log("イベント終了");
                 this.$store.commit("setSceneCount", 0);

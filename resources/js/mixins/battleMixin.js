@@ -2,12 +2,23 @@ import { mapGetters } from "vuex";
 
 export default {
     data: function() {
-        return {};
+        return {
+            maxhp: 0,
+            hp: 0,
+            maxmp: 0,
+            mp: 0,
+            atk: 0,
+            matk: 0,
+            def: 0,
+            mdef: 0,
+            spd: 0,
+            hit: 0,
+            flee: 0
+        };
     },
-    created: function() {},
     computed: {
         ...mapGetters({
-            player: "getStatus",
+            user: "getUser",
             monster: "getBattleMonster",
             monsterList: "getMonsterList",
             swordEffect: "getSwordEffect",
@@ -19,6 +30,20 @@ export default {
             darkEffect: "getDarkEffect",
             healEffect: "getHealEffect"
         })
+    },
+    created: function() {},
+    mounted: function() {
+        this.maxhp = this.user.status.vit * 10;
+        this.hp = this.user.status.vit * 10;
+        this.maxmp = this.user.status.int * 5;
+        this.mp = this.user.status.int * 5;
+        this.atk = this.user.status.str * 3;
+        this.matk = this.user.status.int * 3;
+        this.def = this.user.status.vit * 3;
+        this.mdef = this.user.status.vit + this.user.status.int * 2;
+        this.spd = this.user.status.agi * 3;
+        this.hit = this.user.status.dex * 2 + this.user.status.luc;
+        this.flee = this.user.status.agi * 2 + this.user.status.luc;
     },
     methods: {
         setDungeonMonster: function() {

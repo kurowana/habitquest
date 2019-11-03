@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="leftHeader">
-      <div>プレイヤーHP：{{player.battle.hp}}</div>
+      <div>プレイヤーHP：{{user.hp}}</div>
     </div>
     <div class="centerHeader">
       <button @click="enterDungeon">探索開始</button>
@@ -50,9 +50,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "getUserInfo",
-      point: "getPoint",
-      player: "getStatus",
+      user: "getUser",
       monster: "getBattleMonster",
       monsterList: "getMonsterList",
       isEffect: "getIsShowEffect",
@@ -101,28 +99,28 @@ export default {
       this.setDungeonMonster();
       this.dungeonBattle();
     },
-    dungeonBattle: async function(vm) {
+    dungeonBattle: async () => {
       let firstAttack = null;
       let secondAttack = null;
       let endFlag = false;
       this.$store.commit("setMessage", "戦闘開始");
 
       while (!endFlag) {
-        if (this.player.battle.spd >= this.monster.spd) {
-          firstAttack = this.player.battle;
+        if (this.user.status.agi >= this.monster.spd) {
+          firstAttack = this.user;
           secondAttack = this.monster;
         } else {
           firstAttack = this.monster;
-          secondAttack = this.player.battle;
+          secondAttack = this.user;
         }
         this.attackPhase(firstAttack, secondAttack);
-        endFlag = this.lifeCheck(this.player.battle, this.monster);
+        endFlag = this.lifeCheck(this.user, this.monster);
         await this.sleep(500);
         if (endFlag) {
           break;
         }
         this.attackPhase(secondAttack, firstAttack);
-        endFlag = this.lifeCheck(this.player.battle, this.monster);
+        endFlag = this.lifeCheck(this.user, this.monster);
         await this.sleep(500);
         if (endFlag) {
           break;

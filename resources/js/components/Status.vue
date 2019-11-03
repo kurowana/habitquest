@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="leftArea">
-      <p>残りポイント：{{point.temp}}</p>
+      <p>残りポイント：{{user.point}}</p>
       <table>
         <thead>
           <tr>
@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(value,key) in myStatus.temp" :key="key">
+          <tr v-for="(value,key) in user.status" :key="key">
             <td>{{key}}</td>
             <td>{{value}}</td>
             <td>
@@ -25,7 +25,7 @@
     </div>
     <div class="centerArea">
       <div style="background:#fff; width:300px; height:400px; position:relative">
-        <base-st-chart :baseSt="myStatus.temp"></base-st-chart>
+        <base-st-chart :user-status="user.status"></base-st-chart>
       </div>
     </div>
     <message @get-scene="getScene"></message>
@@ -61,9 +61,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "getUserInfo",
-      point: "getPoint",
-      myStatus: "getStatus",
+      user: "getUser",
       monster: "getBattleMonster"
     })
   },
@@ -101,17 +99,17 @@ export default {
           }
         });
     },
-    incTempSt: function(type) {
-      this.$store.commit("incBaseSt", type);
-    },
-    decTempSt: function(type) {
-      this.$store.commit("decBaseSt", type);
-    },
+    // incTempSt: function(type) {
+    //   this.$store.commit("incBaseSt", type);
+    // },
+    // decTempSt: function(type) {
+    //   this.$store.commit("decBaseSt", type);
+    // },
     updateStatus: function() {
       axios
         .post("./api/updateStatus", {
-          point: this.point.temp,
-          status: this.myStatus.temp
+          point: this.user.point,
+          status: this.user.status
         })
         .then(res => {
           if (res.data === 419) {

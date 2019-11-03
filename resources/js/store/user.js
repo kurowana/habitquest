@@ -2,43 +2,28 @@ const state = {
     isLogin: false,
     user: {
         id: "",
-        name: ""
-    },
-    point: {
-        db: 0,
-        temp: 0
-    },
-    status: {
-        db: {
+        name: "",
+        lv: 0,
+        point: 0,
+        status: {
             str: 0,
             agi: 0,
             vit: 0,
             int: 0,
             dex: 0,
             luc: 0
-        },
-        temp: {
-            str: 0,
-            agi: 0,
-            vit: 0,
-            int: 0,
-            dex: 0,
-            luc: 0
-        },
-        battle: {
-            name: "主人公",
-            maxhp: 0,
-            hp: 0,
-            maxmp: 0,
-            mp: 0,
-            atk: 0,
-            matk: 0,
-            def: 0,
-            mdef: 0,
-            spd: 0,
-            hit: 0,
-            flee: 0
         }
+    },
+    battleStatus: {
+        hp: 0,
+        mp: 0,
+        atk: 0,
+        matk: 0,
+        def: 0,
+        mdef: 0,
+        spd: 0,
+        hit: 0,
+        flee: 0
     },
     userImg: {
         p001: {
@@ -164,14 +149,14 @@ const state = {
     }
 };
 const getters = {
-    getUserInfo: state => {
+    getLoginFlag: state => {
+        return state.isLogin;
+    },
+    getUser: state => {
         return state.user;
     },
-    getPoint: state => {
-        return state.point;
-    },
-    getStatus: state => {
-        return state.status;
+    getBattleStatus: state => {
+        return state.battleStatus;
     },
     getUserImg: state => {
         return state.userImg;
@@ -181,45 +166,47 @@ const mutations = {
     setLoginFlag(state, boolean) {
         state.isLogin = boolean;
     },
+    setUser(state, user) {
+        state.user.id = user.id;
+        state.user.name = user.name;
+        state.user.lv = user.lv;
+        state.user.point = user.point;
+        state.user.status.str = user.status.str;
+        state.user.status.agi = user.status.agi;
+        state.user.status.vit = user.status.vit;
+        state.user.status.int = user.status.int;
+        state.user.status.dex = user.status.dex;
+        state.user.status.luc = user.status.luc;
+    },
     setUserInfo(state, user) {
-        state.user = user;
+        state.user.id = user.id;
+        state.user.name = user.name;
+    },
+    setLv(state, lv) {
+        state.lv = lv;
     },
     setPoint(state, point) {
-        state.point.db = point;
-        state.point.temp = point;
+        state.point = point;
     },
     setStatus(state, status) {
-        state.status.db = Object.assign({}, status);
-        state.status.temp = Object.assign({}, status);
-
-        const dST = state.status.db;
-        const bST = state.status.battle;
-
-        bST.maxhp = dST.vit * 10;
-        bST.hp = bST.maxhp;
-        bST.maxmp = dST.int * 5;
-        bST.mp = bST.maxmp;
-        bST.atk = dST.str * 2;
-        bST.matk = dST.int * 2;
-        bST.def = dST.vit * 2;
-        bST.mdef = dST.int * 2;
-        bST.spd = dST.agi;
-        bST.hit = dST.dex + dST.luc;
-        bST.flee = dST.agi + dST.luc;
+        state.user.status.str = status.str;
+        state.user.status.agi = status.agi;
+        state.user.status.vit = status.vit;
+        state.user.status.int = status.int;
+        state.user.status.dex = status.dex;
+        state.user.status.luc = status.luc;
     },
-    incBaseSt(state, type) {
-        if (state.point.temp > 0) {
-            state.status.temp[type]++;
-            state.point.temp--;
-        }
-    },
-    decBaseSt(state, type) {
-        if (state.point.temp < state.point.db) {
-            if (state.status.temp[type] > state.status.db[type]) {
-                state.status.temp[type]--;
-                state.point.temp++;
-            }
-        }
+    setBattleStatus(state) {
+        state.battleStatus.hp = state.user.status.vit * 10;
+        state.battleStatus.mp = state.user.status.int * 5;
+        state.battleStatus.atk = state.user.status.str * 3;
+        state.battleStatus.matk = state.user.status.int * 3;
+        state.battleStatus.def = state.user.status.vit * 3;
+        state.battleStatus.mdef = state.user.status.vit + state.status.int * 2;
+        state.battleStatus.spd = state.user.status.agi * 3;
+        state.battleStatus.hit = state.user.status.dex * 2 + state.status.luc;
+        state.battleStatus.flee =
+            state.user.status.agi * 2 + state.user.status.luc;
     }
 };
 
