@@ -57,7 +57,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      myStatus: "getStatus",
+      user: "getUser",
       myAssets: "getAssets"
     })
   },

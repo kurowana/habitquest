@@ -25,8 +25,11 @@
 import axios from "axios";
 import { mapGetters } from "vuex";
 
+import baseMixin from "../mixins/baseMixin";
+
 export default {
   components: {},
+  mixins: [baseMixin],
   data: function() {
     return {
       loginName: "",
@@ -45,8 +48,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "getUserInfo",
-      myStatus: "getStatus",
+      user: "getUser",
       message: "getMessage",
       getSound: "getSound"
     }),

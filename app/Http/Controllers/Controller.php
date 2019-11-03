@@ -19,7 +19,7 @@ class Controller extends BaseController
     public function registUser(Request $request)
     {
         $userIns = new User;
-        $user = $userIns->registUserBase($request->name, $request->password);
+        $user = $userIns->registUser($request->name, $request->password);
 
         $statusIns = new Status;
         $status = $statusIns->registStatus(

@@ -76,33 +76,34 @@ export default {
   data: function() {
     return {
       eventObjList: ["eventObj", "eventObj2"],
+
       eventObj: [
-        function(vm) {
-          vm.setEvent({ type: "msg", content: "ホームメッセージの1" });
+        () => {
+          this.setEvent({ type: "msg", content: "ホームメッセージの1" });
         },
-        function(vm) {
-          vm.setEvent({ type: "msg", content: "ホームメッセージの2" });
+        () => {
+          this.setEvent({ type: "msg", content: "ホームメッセージの2" });
         },
-        function(vm) {
-          vm.randomEvent(vm.eventObjList);
+        () => {
+          this.randomEvent(this.eventObjList);
         }
       ],
       eventObj2: [
-        function(vm) {
-          vm.setEvent({ type: "msg", content: "ホームメッセージの1-1" });
+        () => {
+          this.setEvent({ type: "msg", content: "ホームメッセージの1-1" });
         },
-        function(vm) {
-          vm.setEvent({ type: "msg", content: "ホームメッセージの2-1" });
+        () => {
+          this.setEvent({ type: "msg", content: "ホームメッセージの2-1" });
         },
-        function(vm) {
-          vm.randomEvent(vm.eventObjList);
+        () => {
+          this.randomEvent(this.eventObjList);
         }
       ]
     };
   },
   computed: {
     ...mapGetters({
-      userInfo: "getUserInfo",
+      user: "getUser",
       userImg: "getUserImg",
       sceneCount: "getSceneCount",
       clickableFlag: "getClickableFlag"

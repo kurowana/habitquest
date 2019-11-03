@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="headerContent">{{userInfo.name}}</div>
+    <div class="headerContent">{{user.name}}</div>
     <i class="fas fa-cubes ironIcon"></i>
     <i class="fas fa-feather featherIcon"></i>
     <i class="fas fa-tree woodIcon"></i>
@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userInfo: "getUserInfo"
+      user: "getUser"
     })
   }
 };

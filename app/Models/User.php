@@ -62,14 +62,26 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Asset', 'user_id');
     }
 
-    //
-    public function registUserBase($name, $password)
+    //ユーザー登録処理
+    public function registUser($name, $password)
     {
-        $userIns = new $this;
-        $userIns->name = $name;
-        $userIns->password = Hash::make($password);
-        $userIns->save();
+        $result = $this->checkDuplicateUser($name);
 
-        return $userIns;
+        if (!$result) {
+            $userIns = new $this;
+            $userIns->name = $name;
+            $userIns->password = Hash::make($password);
+            $userIns->save();
+            return $userIns;
+        } else {
+            return false;
+        }
+    }
+
+    //ユーザー名が既に使われていないかのチェック
+    private function checkDuplicateUser($name)
+    {
+        $result = $this::where('name', $name)->exists();
+        return $result;
     }
 }

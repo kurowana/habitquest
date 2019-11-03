@@ -33,17 +33,17 @@ export default {
     },
     created: function() {},
     mounted: function() {
-        this.maxhp = user.status.vit * 10;
-        this.hp = user.status.vit * 10;
-        this.maxmp = user.status.int * 5;
-        this.mp = user.status.int * 5;
-        this.atk = user.status.str * 3;
-        this.matk = user.status.int * 3;
-        this.def = user.status.vit * 3;
-        this.mdef = user.status.vit + user.status.int * 2;
-        this.spd = user.status.agi * 3;
-        this.hit = user.status.dex * 2 + user.status.luc;
-        this.flee = user.status.agi * 2 + user.status.luc;
+        this.maxhp = this.user.status.vit * 10;
+        this.hp = this.user.status.vit * 10;
+        this.maxmp = this.user.status.int * 5;
+        this.mp = this.user.status.int * 5;
+        this.atk = this.user.status.str * 3;
+        this.matk = this.user.status.int * 3;
+        this.def = this.user.status.vit * 3;
+        this.mdef = this.user.status.vit + this.user.status.int * 2;
+        this.spd = this.user.status.agi * 3;
+        this.hit = this.user.status.dex * 2 + this.user.status.luc;
+        this.flee = this.user.status.agi * 2 + this.user.status.luc;
     },
     methods: {
         setDungeonMonster: function() {

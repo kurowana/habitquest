@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: "getUserInfo",
+      user: "getUser",
       habits: "getMyHabits"
     })
   },

@@ -1897,7 +1897,7 @@ __webpack_require__.r(__webpack_exports__);
   "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_1__["Radar"],
   mixins: [vue_chartjs__WEBPACK_IMPORTED_MODULE_1__["mixins"].reactiveData],
   props: {
-    baseSt: null
+    userStatus: null
   },
   data: function data() {
     return {
@@ -1940,8 +1940,8 @@ __webpack_require__.r(__webpack_exports__);
           data: []
         }]
       };
-      Object.keys(this.baseSt).map(function (key) {
-        newChart.datasets[0].data.push(_this.baseSt[key]);
+      Object.keys(this.userStatus).map(function (key) {
+        newChart.datasets[0].data.push(_this.userStatus[key]);
       });
       this.chartData = newChart;
     }
@@ -1962,6 +1962,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1991,8 +1992,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
+  mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {
       loginName: "",
@@ -2010,8 +2013,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    user: "getUserInfo",
-    myStatus: "getStatus",
+    user: "getUser",
     message: "getMessage",
     getSound: "getSound"
   }), {
@@ -2185,7 +2187,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    myStatus: "getStatus"
+    user: "getUser"
   })),
   created: function created() {
     this.changeBg("採集");
@@ -2195,23 +2197,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     setInterval(function () {
       if (_this.getIron) {
-        _this.tempAssets.iron = Math.ceil(1 + _this.myStatus.db.str / 10) + _this.tempAssets.iron;
+        _this.tempAssets.iron = Math.ceil(1 + _this.user.str / 10) + _this.tempAssets.iron;
       }
 
       if (_this.getFeather) {
-        _this.tempAssets.feather = Math.ceil(1 + _this.myStatus.db.agi / 10) + _this.tempAssets.feather;
+        _this.tempAssets.feather = Math.ceil(1 + _this.user.agi / 10) + _this.tempAssets.feather;
       }
 
       if (_this.getWood) {
-        _this.tempAssets.wood = Math.ceil(1 + _this.myStatus.db.vit / 10) + _this.tempAssets.wood;
+        _this.tempAssets.wood = Math.ceil(1 + _this.user.vit / 10) + _this.tempAssets.wood;
       }
 
       if (_this.getStone) {
-        _this.tempAssets.stone = Math.ceil(1 + _this.myStatus.db["int"] / 10) + _this.tempAssets.stone;
+        _this.tempAssets.stone = Math.ceil(1 + _this.user["int"] / 10) + _this.tempAssets.stone;
       }
 
       if (_this.getLeather) {
-        _this.tempAssets.leather = Math.ceil(1 + _this.myStatus.db.dex / 10) + _this.tempAssets.leather;
+        _this.tempAssets.leather = Math.ceil(1 + _this.user.dex / 10) + _this.tempAssets.leather;
       }
     }, 1000);
   },
@@ -2387,6 +2389,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_monsterImg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../parts/monsterImg */ "./resources/js/parts/monsterImg.vue");
 
 
+var _this2 = undefined;
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -2441,9 +2445,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
-    user: "getUserInfo",
-    point: "getPoint",
-    player: "getStatus",
+    user: "getUser",
     monster: "getBattleMonster",
     monsterList: "getMonsterList",
     isEffect: "getIsShowEffect",
@@ -2496,7 +2498,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     dungeonBattle: function () {
       var _dungeonBattle = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(vm) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var firstAttack, secondAttack, endFlag;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -2505,7 +2507,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 firstAttack = null;
                 secondAttack = null;
                 endFlag = false;
-                this.$store.commit("setMessage", "戦闘開始");
+
+                _this2.$store.commit("setMessage", "戦闘開始");
 
               case 4:
                 if (endFlag) {
@@ -2513,18 +2516,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   break;
                 }
 
-                if (this.player.battle.spd >= this.monster.spd) {
-                  firstAttack = this.player.battle;
-                  secondAttack = this.monster;
+                if (_this2.user.status.agi >= _this2.monster.spd) {
+                  firstAttack = _this2.user;
+                  secondAttack = _this2.monster;
                 } else {
-                  firstAttack = this.monster;
-                  secondAttack = this.player.battle;
+                  firstAttack = _this2.monster;
+                  secondAttack = _this2.user;
                 }
 
-                this.attackPhase(firstAttack, secondAttack);
-                endFlag = this.lifeCheck(this.player.battle, this.monster);
+                _this2.attackPhase(firstAttack, secondAttack);
+
+                endFlag = _this2.lifeCheck(_this2.user, _this2.monster);
                 _context.next = 10;
-                return this.sleep(500);
+                return _this2.sleep(500);
 
               case 10:
                 if (!endFlag) {
@@ -2535,10 +2539,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _context.abrupt("break", 20);
 
               case 12:
-                this.attackPhase(secondAttack, firstAttack);
-                endFlag = this.lifeCheck(this.player.battle, this.monster);
+                _this2.attackPhase(secondAttack, firstAttack);
+
+                endFlag = _this2.lifeCheck(_this2.user, _this2.monster);
                 _context.next = 16;
-                return this.sleep(500);
+                return _this2.sleep(500);
 
               case 16:
                 if (!endFlag) {
@@ -2553,17 +2558,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 break;
 
               case 20:
-                this.$store.commit("setMessage", "戦闘終了");
+                _this2.$store.commit("setMessage", "戦闘終了");
 
               case 21:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee);
       }));
 
-      function dungeonBattle(_x) {
+      function dungeonBattle() {
         return _dungeonBattle.apply(this, arguments);
       }
 
@@ -2640,7 +2645,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    user: "getUserInfo",
+    user: "getUser",
     habits: "getMyHabits"
   })),
   created: function created() {
@@ -2846,38 +2851,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
+    var _this = this;
+
     return {
       eventObjList: ["eventObj", "eventObj2"],
-      eventObj: [function (vm) {
-        vm.setEvent({
+      eventObj: [function () {
+        _this.setEvent({
           type: "msg",
           content: "ホームメッセージの1"
         });
-      }, function (vm) {
-        vm.setEvent({
+      }, function () {
+        _this.setEvent({
           type: "msg",
           content: "ホームメッセージの2"
         });
-      }, function (vm) {
-        vm.randomEvent(vm.eventObjList);
+      }, function () {
+        _this.randomEvent(_this.eventObjList);
       }],
-      eventObj2: [function (vm) {
-        vm.setEvent({
+      eventObj2: [function () {
+        _this.setEvent({
           type: "msg",
           content: "ホームメッセージの1-1"
         });
-      }, function (vm) {
-        vm.setEvent({
+      }, function () {
+        _this.setEvent({
           type: "msg",
           content: "ホームメッセージの2-1"
         });
-      }, function (vm) {
-        vm.randomEvent(vm.eventObjList);
+      }, function () {
+        _this.randomEvent(_this.eventObjList);
       }]
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    userInfo: "getUserInfo",
+    user: "getUser",
     userImg: "getUserImg",
     sceneCount: "getSceneCount",
     clickableFlag: "getClickableFlag"
@@ -2965,7 +2972,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    myStatus: "getStatus",
+    user: "getUser",
     myAssets: "getAssets"
   })),
   created: function created() {
@@ -3079,9 +3086,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    user: "getUserInfo",
-    point: "getPoint",
-    myStatus: "getStatus",
+    user: "getUser",
     monster: "getBattleMonster"
   })),
   created: function created() {
@@ -3123,18 +3128,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
     },
-    incTempSt: function incTempSt(type) {
-      this.$store.commit("incBaseSt", type);
-    },
-    decTempSt: function decTempSt(type) {
-      this.$store.commit("decBaseSt", type);
-    },
+    // incTempSt: function(type) {
+    //   this.$store.commit("incBaseSt", type);
+    // },
+    // decTempSt: function(type) {
+    //   this.$store.commit("decBaseSt", type);
+    // },
     updateStatus: function updateStatus() {
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/updateStatus", {
-        point: this.point.temp,
-        status: this.myStatus.temp
+        point: this.user.point,
+        status: this.user.status
       }).then(function (res) {
         if (res.data === 419) {
           alert("セッションエラー");
@@ -3302,6 +3307,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
+    var _this = this;
+
     return {
       isSoundCheckModal: false,
       isRegistModal: false,
@@ -3319,116 +3326,148 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       "int": 10,
       dex: 10,
       luc: 10,
-      eventObj: [function (vm) {
-        vm.showChar("スフィア1", "l1");
-        vm.showChar("ヴァルカン", "l2");
-        vm.showChar("フリート", "c");
-        vm.showChar("アイザック", "r1");
-        vm.showChar("アーサー", "r2");
-        vm.setEvent({
+      eventObj: [function () {
+        _this.showChar("スフィア1", "l1");
+
+        _this.showChar("ヴァルカン", "l2");
+
+        _this.showChar("フリート", "c");
+
+        _this.showChar("アイザック", "r1");
+
+        _this.showChar("アーサー", "r2");
+
+        _this.setEvent({
           type: "msg",
           content: "メッセージのテスト"
         });
-      }, function (vm) {
-        vm.showChar("エイル", "r2");
-        vm.setEvent({
+      }, function () {
+        _this.showChar("エイル", "r2");
+
+        _this.setEvent({
           type: "msg",
           content: "メッセージのテスト2"
         });
-        vm.setSpeaker("エイル", "r2");
-      }, function (vm) {
-        vm.setMotion("l1", "anime1");
-        vm.setMotion("r1", "anime2");
-        vm.setEvent({
+
+        _this.setSpeaker("エイル", "r2");
+      }, function () {
+        _this.setMotion("l1", "anime1");
+
+        _this.setMotion("r1", "anime2");
+
+        _this.setEvent({
           type: "msg",
           content: "メッセージのテスト3"
         });
-        vm.setSpeaker("スフィア", "l1");
-      }, function (vm) {
-        vm.setEvent({
+
+        _this.setSpeaker("スフィア", "l1");
+      }, function () {
+        _this.setEvent({
           type: "msg",
           content: "アニメ2"
         });
-      }, function (vm) {
-        vm.showChar("エイル", "r2");
-        vm.setEvent({
+      }, function () {
+        _this.showChar("エイル", "r2");
+
+        _this.setEvent({
           type: "msg",
           content: "メッセージのテスト2"
         });
-      }, function (vm) {
-        vm.setEvent({
+      }, function () {
+        _this.setEvent({
           type: "window",
           content: {
             window: "isSoundCheckModal",
             msg: "メッセージ"
           }
         });
-      }, function (vm) {
-        vm.setEvent({
+      }, function () {
+        _this.setEvent({
           type: "window",
           content: {
             window: "isRegistModal",
             msg: "モーダル2"
           }
         });
-      }, function (vm) {
-        vm.setEvent({
+      }, function () {
+        _this.setEvent({
           type: "window",
           content: {
             window: "isSelectImgModal",
             msg: "モーダル2"
           }
         });
-      }, function (vm) {
-        vm.setEvent({
+      }, function () {
+        _this.setEvent({
           type: "window",
           content: {
             window: "isConfirmImgModal",
             msg: "モーダル2"
           }
         });
-      }, function (vm) {
-        vm.showChar("", "r2");
-        vm.setEvent({
+      }, function () {
+        _this.showChar("", "r2");
+
+        _this.setEvent({
           type: "select",
           content: {
             msg: "どちらを選ぶ？",
             choice: [{
               text: "選択肢1",
               event: function event() {
-                vm.$store.commit("setEventObj", "eventObj1");
-                vm.$store.commit("setSceneCount", 0);
+                _this.$store.commit("setEventObj", "eventObj1");
+
+                _this.$store.commit("setSceneCount", 0);
               }
             }, {
               text: "選択肢2",
               event: function event() {
-                vm.$store.commit("setEventObj", "eventObj2");
-                vm.$store.commit("setSceneCount", 0);
+                _this.$store.commit("setEventObj", "eventObj2");
+
+                _this.$store.commit("setSceneCount", 0);
               }
             }]
           }
         });
       }],
-      eventObj1: [function (vm) {
-        vm.showChar("スフィア2", "l2");
-        vm.setEvent({
+      eventObj1: [function () {
+        _this.showChar("スフィア2", "l2");
+
+        _this.setEvent({
           type: "msg",
           content: "選択肢1を選んだよ"
         });
-      }, function (vm) {
-        vm.setEvent({
+      }, function () {
+        _this.setEvent({
           type: "msg",
           content: "選択肢1を選んだよ。続き"
         });
+      }, function () {
+        _this.setEvent({
+          type: "window",
+          content: {
+            window: "isStatusModal",
+            msg: "モーダル2"
+          }
+        });
+      }, function () {
+        _this.setEvent({
+          type: "window",
+          content: {
+            window: "isConfirmModal",
+            msg: "モーダル2"
+          }
+        });
       }],
-      eventObj2: [function (vm) {
-        vm.showChar("スフィア", "l2");
-        vm.setEvent({
+      eventObj2: [function () {
+        _this.showChar("スフィア", "l2");
+
+        _this.setEvent({
           type: "msg",
           content: "選択し２"
         });
-      }, function (vm) {
-        vm.setEvent({
+      }, function () {
+        _this.setEvent({
           type: "msg",
           content: "選択肢２を選んだよ。続き"
         });
@@ -3436,7 +3475,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    userInfo: "getUserInfo",
+    user: "getUser",
     userImg: "getUserImg",
     sceneCount: "getSceneCount",
     NextFlag: "getNextFlag"
@@ -3563,7 +3602,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     registUser: function registUser() {
-      var _this = this;
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/registUser", {
         name: this.name,
@@ -3576,12 +3615,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         dex: this.dex,
         luc: this.luc
       }).then(function (res) {
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./login", {
-          name: _this.name,
-          password: _this.password
-        }).then(function (res) {
-          location.reload();
-        }); // this.$router.push({ name: "home" });
+        if (res.data !== "error") {
+          axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./login", {
+            name: _this2.name,
+            password: _this2.password
+          }).then(function (res) {
+            location.reload();
+          });
+
+          _this2.$router.push({
+            name: "home"
+          });
+        } else {
+          console.log("ユーザー名重複");
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -3760,7 +3807,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {};
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    userInfo: "getUserInfo"
+    user: "getUser"
   }))
 });
 
@@ -3801,7 +3848,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    user: "getUserInfo"
+    user: "getUser"
   })),
   methods: {
     logout: function logout() {
@@ -41855,7 +41902,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\n  " + _vm._s(_vm.myStatus) + "\n  "),
+    _vm._v("\n  " + _vm._s(_vm.user) + "\n  "),
     _c("h1", [_vm._v("採集")]),
     _vm._v(" "),
     _c("p", [_vm._v("鉄：" + _vm._s(_vm.tempAssets.iron))]),
@@ -42069,7 +42116,7 @@ var render = function() {
     "div",
     [
       _c("div", { staticClass: "leftHeader" }, [
-        _c("div", [_vm._v("プレイヤーHP：" + _vm._s(_vm.player.battle.hp))])
+        _c("div", [_vm._v("プレイヤーHP：" + _vm._s(_vm.user.hp))])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "centerHeader" }, [
@@ -42575,14 +42622,14 @@ var render = function() {
     "div",
     [
       _c("div", { staticClass: "leftArea" }, [
-        _c("p", [_vm._v("残りポイント：" + _vm._s(_vm.point.temp))]),
+        _c("p", [_vm._v("残りポイント：" + _vm._s(_vm.user.point))]),
         _vm._v(" "),
         _c("table", [
           _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.myStatus.temp, function(value, key) {
+            _vm._l(_vm.user.status, function(value, key) {
               return _c("tr", { key: key }, [
                 _c("td", [_vm._v(_vm._s(key))]),
                 _vm._v(" "),
@@ -42633,7 +42680,7 @@ var render = function() {
               position: "relative"
             }
           },
-          [_c("base-st-chart", { attrs: { baseSt: _vm.myStatus.temp } })],
+          [_c("base-st-chart", { attrs: { "user-status": _vm.user.status } })],
           1
         )
       ]),
@@ -43388,7 +43435,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "header" }, [
     _c("div", { staticClass: "headerContent" }, [
-      _vm._v(_vm._s(_vm.userInfo.name))
+      _vm._v(_vm._s(_vm.user.name))
     ]),
     _vm._v(" "),
     _c("i", { staticClass: "fas fa-cubes ironIcon" }),
@@ -60723,17 +60770,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   created: function created() {},
   mounted: function mounted() {
-    this.maxhp = user.status.vit * 10;
-    this.hp = user.status.vit * 10;
-    this.maxmp = user.status["int"] * 5;
-    this.mp = user.status["int"] * 5;
-    this.atk = user.status.str * 3;
-    this.matk = user.status["int"] * 3;
-    this.def = user.status.vit * 3;
-    this.mdef = user.status.vit + user.status["int"] * 2;
-    this.spd = user.status.agi * 3;
-    this.hit = user.status.dex * 2 + user.status.luc;
-    this.flee = user.status.agi * 2 + user.status.luc;
+    this.maxhp = this.user.status.vit * 10;
+    this.hp = this.user.status.vit * 10;
+    this.maxmp = this.user.status["int"] * 5;
+    this.mp = this.user.status["int"] * 5;
+    this.atk = this.user.status.str * 3;
+    this.matk = this.user.status["int"] * 3;
+    this.def = this.user.status.vit * 3;
+    this.mdef = this.user.status.vit + this.user.status["int"] * 2;
+    this.spd = this.user.status.agi * 3;
+    this.hit = this.user.status.dex * 2 + this.user.status.luc;
+    this.flee = this.user.status.agi * 2 + this.user.status.luc;
   },
   methods: {
     setDungeonMonster: function setDungeonMonster() {
@@ -61000,13 +61047,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (!Array.isArray(currentEvent)) {
         console.log("データが不正です。");
         return false;
-      }
+      } // const vm = this;
 
-      var vm = this;
+
       var eventLength = currentEvent.length;
 
       if (count <= eventLength) {
-        currentEvent[count - 1](vm);
+        currentEvent[count - 1]();
       } else {
         console.log("イベント終了");
         this.$store.commit("setSceneCount", 0);
@@ -63035,6 +63082,7 @@ var state = {
   user: {
     id: "",
     name: "",
+    lv: 0,
     point: 0,
     status: {
       str: 0,
@@ -63044,6 +63092,17 @@ var state = {
       dex: 0,
       luc: 0
     }
+  },
+  battleStatus: {
+    hp: 0,
+    mp: 0,
+    atk: 0,
+    matk: 0,
+    def: 0,
+    mdef: 0,
+    spd: 0,
+    hit: 0,
+    flee: 0
   },
   userImg: {
     p001: {
@@ -63169,8 +63228,14 @@ var state = {
   }
 };
 var getters = {
+  getLoginFlag: function getLoginFlag(state) {
+    return state.isLogin;
+  },
   getUser: function getUser(state) {
     return state.user;
+  },
+  getBattleStatus: function getBattleStatus(state) {
+    return state.battleStatus;
   },
   getUserImg: function getUserImg(state) {
     return state.userImg;
@@ -63183,6 +63248,7 @@ var mutations = {
   setUser: function setUser(state, user) {
     state.user.id = user.id;
     state.user.name = user.name;
+    state.user.lv = user.lv;
     state.user.point = user.point;
     state.user.status.str = user.status.str;
     state.user.status.agi = user.status.agi;
@@ -63191,39 +63257,35 @@ var mutations = {
     state.user.status.dex = user.status.dex;
     state.user.status.luc = user.status.luc;
   },
+  setUserInfo: function setUserInfo(state, user) {
+    state.user.id = user.id;
+    state.user.name = user.name;
+  },
+  setLv: function setLv(state, lv) {
+    state.lv = lv;
+  },
   setPoint: function setPoint(state, point) {
     state.point = point;
   },
   setStatus: function setStatus(state, status) {
-    state.baseStatus = Object.assign({}, status);
-    var dST = state.status.db;
-    var bST = state.status.battle;
-    bST.maxhp = dST.vit * 10;
-    bST.hp = bST.maxhp;
-    bST.maxmp = dST["int"] * 5;
-    bST.mp = bST.maxmp;
-    bST.atk = dST.str * 2;
-    bST.matk = dST["int"] * 2;
-    bST.def = dST.vit * 2;
-    bST.mdef = dST["int"] * 2;
-    bST.spd = dST.agi;
-    bST.hit = dST.dex + dST.luc;
-    bST.flee = dST.agi + dST.luc;
-  } // incBaseSt(state, type) {
-  //     if (state.point.temp > 0) {
-  //         state.status.temp[type]++;
-  //         state.point.temp--;
-  //     }
-  // },
-  // decBaseSt(state, type) {
-  //     if (state.point.temp < state.point.db) {
-  //         if (state.status.temp[type] > state.status.db[type]) {
-  //             state.status.temp[type]--;
-  //             state.point.temp++;
-  //         }
-  //     }
-  // }
-
+    state.user.status.str = status.str;
+    state.user.status.agi = status.agi;
+    state.user.status.vit = status.vit;
+    state.user.status["int"] = status["int"];
+    state.user.status.dex = status.dex;
+    state.user.status.luc = status.luc;
+  },
+  setBattleStatus: function setBattleStatus(state) {
+    state.battleStatus.hp = state.user.status.vit * 10;
+    state.battleStatus.mp = state.user.status["int"] * 5;
+    state.battleStatus.atk = state.user.status.str * 3;
+    state.battleStatus.matk = state.user.status["int"] * 3;
+    state.battleStatus.def = state.user.status.vit * 3;
+    state.battleStatus.mdef = state.user.status.vit + state.status["int"] * 2;
+    state.battleStatus.spd = state.user.status.agi * 3;
+    state.battleStatus.hit = state.user.status.dex * 2 + state.status.luc;
+    state.battleStatus.flee = state.user.status.agi * 2 + state.user.status.luc;
+  }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: state,
