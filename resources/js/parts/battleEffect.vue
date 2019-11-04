@@ -25,7 +25,6 @@ export default {
   computed: {
     ...mapGetters({}),
     effectStyle: function() {
-      console.log(this.isShowEffect);
       this.effectTop = 100 + Math.floor(Math.random() * 200);
       this.effectLeft = 150 + Math.floor(Math.random() * 300);
       return {

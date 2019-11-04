@@ -101,6 +101,7 @@ export default {
             luc: res.data.luc
           });
           this.stage = res.data.clearedStage;
+          this.$store.commit("setBattleStatus");
         })
         .catch(error => {
           this.apiDefaultError(error);

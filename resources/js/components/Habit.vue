@@ -1,5 +1,6 @@
 <template>
   <div>
+    <main-header></main-header>
     <h2>活動の登録</h2>
     <input type="text" v-model="inputHabit" />
     <button @click="insertHabit">登録</button>
@@ -39,8 +40,12 @@ import axios from "axios";
 import { mapGetters } from "vuex";
 import baseMixin from "../mixins/baseMixin";
 import eventMixin from "../mixins/eventMixin";
+import mainHeader from "../parts/MainHeader";
 
 export default {
+  components: {
+    "main-header": mainHeader
+  },
   mixins: [baseMixin, eventMixin],
   data: function() {
     return {

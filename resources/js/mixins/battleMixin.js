@@ -2,23 +2,12 @@ import { mapGetters } from "vuex";
 
 export default {
     data: function() {
-        return {
-            maxhp: 0,
-            hp: 0,
-            maxmp: 0,
-            mp: 0,
-            atk: 0,
-            matk: 0,
-            def: 0,
-            mdef: 0,
-            spd: 0,
-            hit: 0,
-            flee: 0
-        };
+        return {};
     },
     computed: {
         ...mapGetters({
             user: "getUser",
+            battleStatus: "getBattleStatus",
             monster: "getBattleMonster",
             monsterList: "getMonsterList",
             swordEffect: "getSwordEffect",
@@ -32,19 +21,7 @@ export default {
         })
     },
     created: function() {},
-    mounted: function() {
-        this.maxhp = this.user.status.vit * 10;
-        this.hp = this.user.status.vit * 10;
-        this.maxmp = this.user.status.int * 5;
-        this.mp = this.user.status.int * 5;
-        this.atk = this.user.status.str * 3;
-        this.matk = this.user.status.int * 3;
-        this.def = this.user.status.vit * 3;
-        this.mdef = this.user.status.vit + this.user.status.int * 2;
-        this.spd = this.user.status.agi * 3;
-        this.hit = this.user.status.dex * 2 + this.user.status.luc;
-        this.flee = this.user.status.agi * 2 + this.user.status.luc;
-    },
+    mounted: function() {},
     methods: {
         setDungeonMonster: function() {
             const length = this.monsterList.length;
@@ -69,39 +46,51 @@ export default {
             this.$store.commit("setBattleMonster", monster);
         },
 
+        userAttack: async function(user, monster) {
+            this.showMonsterEffect("剣");
+            this.attackPhase(user, monster).then(damage => {
+                console.log(damage);
+                this.showMonsterDamage(damage);
+            });
+        },
+        monsterAttack: async function(monster, user) {
+            this.showUserEffect("闇");
+            this.attackPhase(monster, user).then(damage => {
+                console.log(damage);
+                this.showUserDamage(damage);
+            });
+        },
+
         attackPhase: async function(char1, char2) {
-            this.showBattleEffect("剣", this);
-            console.log("プレイヤーの攻撃");
             let damage = char1.atk - char2.def;
             if (damage > 0) {
                 char2.hp -= damage;
             } else {
                 damage = 0;
             }
-            console.log(damage + ":" + char2.hp);
             this.$store.commit(
                 "setMessage",
                 char2.name + "に" + damage + "のダメージ"
             );
-            this.$store.commit("setDamage", damage);
-            this.$store.commit("setIsShowDamage", true);
-
-            await this.sleep(500);
-            this.$store.commit("setIsShowEffect", false);
-            this.$store.commit("setDamage", "");
-            this.$store.commit("setIsShowDamage", false);
+            return damage;
         },
-        lifeCheck: function(player, monster) {
-            if (player.hp <= 0) {
+
+        userLifeCheck(user) {
+            if (user.hp <= 0) {
                 this.loseBattle();
                 return true;
+            } else {
+                return false;
             }
+        },
+
+        monsterLifeCheck(monster) {
             if (monster.hp <= 0) {
                 this.winBattle();
-                return false;
             }
             return false;
         },
+
         winBattle: function() {
             this.tempMoney += 10 * this.currentStage;
             this.currentStage++;
@@ -110,42 +99,69 @@ export default {
         },
         loseBattle: function() {
             this.currentStage = 1;
-            this.player.battle.hp = this.player.battle.maxhp;
+            this.battleUser.hp = this.battleStatus.hp;
         },
 
-        showBattleEffect: function(type, vm) {
-            vm.$store.commit("setIsShowEffect", true);
-            const effectArray = this.selectBattleEffect(type, vm);
-            vm.$store.commit("setBattleEffectPath", effectArray.img);
+        showUserDamage: async function(damage) {
+            this.$store.commit("setUserDamageValue", damage);
+            this.$store.commit("setUserDamageFlag", true);
+            await this.sleep(500);
+            this.$store.commit("setUserDamageValue", 0);
+            this.$store.commit("setUserDamageFlag", false);
         },
-        selectBattleEffect: function(type, vm) {
+        showMonsterDamage: async function(damage) {
+            this.$store.commit("setMonsterDamageValue", damage);
+            this.$store.commit("setMonsterDamageFlag", true);
+            await this.sleep(500);
+            this.$store.commit("setMonsterDamageValue", 0);
+            this.$store.commit("setMonsterDamageFlag", false);
+        },
+
+        showUserEffect: async function(type) {
+            this.$store.commit("setUserEffectFlag", true);
+            const effectArray = this.selectBattleEffect(type);
+            this.$store.commit("setUserEffectPath", effectArray.img);
+            await this.sleep(500);
+            this.$store.commit("setUserEffectFlag", false);
+            this.$store.commit("setUserEffectPath", "");
+        },
+        showMonsterEffect: async function(type) {
+            this.$store.commit("setMonsterEffectFlag", true);
+            const effectArray = this.selectBattleEffect(type);
+            this.$store.commit("setMonsterEffectPath", effectArray.img);
+            await this.sleep(500);
+            this.$store.commit("setMonsterEffectFlag", false);
+            this.$store.commit("setMonsterEffectPath", "");
+        },
+
+        selectBattleEffect: function(type) {
             let effectArray = [];
             let effectLength = 0;
             let index = 0;
             switch (type) {
                 case "剣":
-                    effectArray = vm.swordEffect;
+                    effectArray = this.swordEffect;
                     break;
                 case "火":
-                    effectArray = vm.fireEffect;
+                    effectArray = this.fireEffect;
                     break;
                 case "雷":
-                    effectArray = vm.thunderEffect;
+                    effectArray = this.thunderEffect;
                     break;
                 case "水":
-                    effectArray = vm.waterEffect;
+                    effectArray = this.waterEffect;
                     break;
                 case "風":
-                    effectArray = vm.windEffect;
+                    effectArray = this.windEffect;
                     break;
                 case "地":
-                    effectArray = vm.earthEffect;
+                    effectArray = this.earthEffect;
                     break;
                 case "闇":
-                    effectArray = vm.darkEffect;
+                    effectArray = this.darkEffect;
                     break;
                 case "回復":
-                    effectArray = vm.healEffect;
+                    effectArray = this.healEffect;
                     break;
                 default:
                     return "";
