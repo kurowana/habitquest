@@ -5,6 +5,7 @@ const state = {
         name: "",
         lv: 0,
         point: 0,
+        stage: 0,
         status: {
             str: 0,
             agi: 0,
@@ -171,6 +172,7 @@ const mutations = {
         state.user.name = user.name;
         state.user.lv = user.lv;
         state.user.point = user.point;
+        state.user.stage = user.stage;
         state.user.status.str = user.status.str;
         state.user.status.agi = user.status.agi;
         state.user.status.vit = user.status.vit;
@@ -183,10 +185,13 @@ const mutations = {
         state.user.name = user.name;
     },
     setLv(state, lv) {
-        state.lv = lv;
+        state.user.lv = lv;
     },
     setPoint(state, point) {
-        state.point = point;
+        state.user.point = point;
+    },
+    setStage(state, stage) {
+        state.user.stage = stage;
     },
     setStatus(state, status) {
         state.user.status.str = status.str;
@@ -202,9 +207,11 @@ const mutations = {
         state.battleStatus.atk = state.user.status.str * 3;
         state.battleStatus.matk = state.user.status.int * 3;
         state.battleStatus.def = state.user.status.vit * 3;
-        state.battleStatus.mdef = state.user.status.vit + state.status.int * 2;
+        state.battleStatus.mdef =
+            state.user.status.vit + state.user.status.int * 2;
         state.battleStatus.spd = state.user.status.agi * 3;
-        state.battleStatus.hit = state.user.status.dex * 2 + state.status.luc;
+        state.battleStatus.hit =
+            state.user.status.dex * 2 + state.user.status.luc;
         state.battleStatus.flee =
             state.user.status.agi * 2 + state.user.status.luc;
     }

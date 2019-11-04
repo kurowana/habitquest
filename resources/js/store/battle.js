@@ -1,8 +1,17 @@
 const state = {
-    damage: "",
-    isShowDamage: "",
-    battleEffectPath: "",
-    isShwoEffect: false,
+    damage: {
+        isUser: false,
+        userDamage: 0,
+        isMonster: false,
+        monsterDamage: 0
+    },
+    effect: {
+        isUser: false,
+        userPath: "",
+        isMonster: false,
+        monsterPath: ""
+    },
+
     swordEffect: [
         {
             img: "sword01_54.png"
@@ -126,14 +135,8 @@ const getters = {
     getDamage: state => {
         return state.damage;
     },
-    getIsShowDamage: state => {
-        return state.isShowDamage;
-    },
-    getBattleEffectPath: state => {
-        return state.battleEffectPath;
-    },
-    getIsShowEffect: state => {
-        return state.isShwoEffect;
+    getEffect: state => {
+        return state.effect;
     },
     getSwordEffect: state => {
         return state.swordEffect;
@@ -161,17 +164,29 @@ const getters = {
     }
 };
 const mutations = {
-    setDamage(state, value) {
-        state.damage = value;
+    setUserDamageFlag(state, boolean) {
+        state.damage.isUser = boolean;
     },
-    setIsShowDamage(state, boolean) {
-        state.isShowDamage = boolean;
+    setUserDamageValue(state, value) {
+        state.damage.userDamage = value;
     },
-    setBattleEffectPath(state, imgPath) {
-        state.battleEffectPath = imgPath;
+    setMonsterDamageFlag(state, boolean) {
+        state.damage.isMonster = boolean;
     },
-    setIsShowEffect(state, boolean) {
-        state.isShwoEffect = boolean;
+    setMonsterDamageValue(state, value) {
+        state.damage.monsterDamage = value;
+    },
+    setUserEffectFlag(state, boolean) {
+        state.effect.isUser = boolean;
+    },
+    setUserEffectPath(state, path) {
+        state.effect.userPath = path;
+    },
+    setMonsterEffectFlag(state, boolean) {
+        state.effect.isMonster = boolean;
+    },
+    setMonsterEffectPath(state, path) {
+        state.effect.monsterPath = path;
     }
 };
 

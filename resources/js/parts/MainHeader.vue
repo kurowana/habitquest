@@ -1,5 +1,6 @@
 <template>
   <div class="header">
+    <div>{{user}}</div>
     <div class="headerContent">{{user.name}}</div>
     <i class="fas fa-cubes ironIcon"></i>
     <i class="fas fa-feather featherIcon"></i>

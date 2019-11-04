@@ -1,16 +1,29 @@
 <template>
   <div class="img-view">
-    <p style="font-size:3em">{{isShowEffect}}</p>
     <transition name="fade">
       <div v-if="showMonster" class="img-monster">
         <img :src="showMonster" />
       </div>
     </transition>
     <transition name="fade">
-      <div v-if="showDamage" class="damageClass" :style="damageStyle">{{damage}}damage!!</div>
+      <div
+        v-if="damage.isUser"
+        class="damageClass"
+        :style="userDamageStyle"
+      >{{damage.userDamage}}damage!!</div>
+    </transition>
+    <transition name="fade">
+      <div
+        v-if="damage.isMonster"
+        class="damageClass"
+        :style="monsterDamageStyle"
+      >{{damage.monsterDamage}}damage!!</div>
     </transition>
     <transition name="effect-anime">
-      <div v-if="isEffect" :style="effectStyle"></div>
+      <div v-if="effect.isUser" :style="userEffectStyle"></div>
+    </transition>
+    <transition name="effect-anime">
+      <div v-if="effect.isMonster" :style="monsterEffectStyle"></div>
     </transition>
   </div>
 </template>
@@ -26,24 +39,23 @@ export default {
     return {};
   },
   props: {
-    battleEffect: String
+    // battleEffect: String
   },
   mixins: [baseMixin, eventMixin, battleMixin],
   computed: {
     ...mapGetters({
       monster: "getBattleMonster",
       damage: "getDamage",
-      showDamage: "getIsShowDamage",
-      isEffect: "getIsShowEffect"
+      effect: "getEffect"
     }),
-    isShowEffect: function() {
-      return this.isEffect;
-    },
+    // isShowEffect: function() {
+    //   return this.isEffect;
+    // },
     showMonster: function() {
       return "./" + this.monster.img;
     },
-    damageStyle: function() {
-      if (this.showDamage) {
+    userDamageStyle: function() {
+      if (this.damage.isUser) {
         this.damageTop = 150 + Math.floor(Math.random() * 100);
         this.damageLeft = 200 + Math.floor(Math.random() * 100);
       }
@@ -52,20 +64,44 @@ export default {
         top: this.damageTop + "px"
       };
     },
-    effectStyle: function() {
+    monsterDamageStyle: function() {
+      if (this.damage.isMonster) {
+        this.damageTop = 150 + Math.floor(Math.random() * 100);
+        this.damageLeft = 200 + Math.floor(Math.random() * 100);
+      }
+      return {
+        left: this.damageLeft + "px",
+        top: this.damageTop + "px"
+      };
+    },
+    userEffectStyle: function() {
       this.effectTop = Math.floor(Math.random() * 100);
       this.effectLeft = 250 + Math.floor(Math.random() * 100);
       return {
-        background: 'url("/img/effect/' + this.battleEffect + '")',
+        background: 'url("/img/effect/' + this.effect.userPath + '")',
         left: this.effectLeft + "px",
         top: this.effectTop + "px"
       };
     },
-    effectClass: function() {
+    monsterEffectStyle: function() {
+      this.effectTop = Math.floor(Math.random() * 100);
+      this.effectLeft = 250 + Math.floor(Math.random() * 100);
       return {
-        effectClass: this.isEffect
+        background: 'url("/img/effect/' + this.effect.monsterPath + '")',
+        left: this.effectLeft + "px",
+        top: this.effectTop + "px"
       };
     }
+    // userEffectClass: function() {
+    //   return {
+    //     effectClass: this.effect.isUser
+    //   };
+    // },
+    // monsterEffectClass: function() {
+    //   return {
+    //     effectClass: this.effect.isMonster
+    //   };
+    // }
   },
   mounted: function() {},
   methods: {

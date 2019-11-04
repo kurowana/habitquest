@@ -25,19 +25,24 @@ export default {
     };
   },
   mounted: function() {
-    this.chartData = {
-      labels: ["str", "agi", "vit", "int", "dex", "luc"],
-      datasets: [
-        {
-          label: "status",
-          data: [0, 0, 0, 0, 0, 0]
-        }
-      ]
-    };
+    // console.log(this.userStatus);
+    // this.chartData = {
+    //   labels: ["str", "agi", "vit", "int", "dex", "luc"],
+    //   datasets: [
+    //     {
+    //       label: "status",
+    //       data: [0, 0, 0, 0, 0, 0]
+    //     }
+    //   ]
+    // };
+    this.updateChart();
   },
   watch: {
-    baseSt: function() {
-      this.updateChart();
+    userStatus: {
+      handler: function() {
+        this.updateChart();
+      },
+      deep: true
     }
   },
   methods: {

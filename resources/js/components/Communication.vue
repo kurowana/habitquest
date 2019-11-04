@@ -1,5 +1,6 @@
 <template>
   <div>
+    <main-header></main-header>
     <h1>交流イベント</h1>
     <message @get-scene="getScene"></message>
     <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
@@ -14,11 +15,13 @@ import eventMixin from "../mixins/eventMixin";
 
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
+import mainHeader from "../parts/MainHeader";
 
 export default {
   components: {
     message: message,
-    "char-img": charImg
+    "char-img": charImg,
+    "main-header": mainHeader
   },
   mixins: [baseMixin, eventMixin],
   data: function() {
