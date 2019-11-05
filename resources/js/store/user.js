@@ -202,18 +202,18 @@ const mutations = {
         state.user.status.luc = status.luc;
     },
     setBattleStatus(state) {
-        state.battleStatus.hp = state.user.status.vit * 10;
-        state.battleStatus.mp = state.user.status.int * 5;
-        state.battleStatus.atk = state.user.status.str * 3;
-        state.battleStatus.matk = state.user.status.int * 3;
-        state.battleStatus.def = state.user.status.vit * 3;
+        state.battleStatus.hp = state.user.status.vit * 20;
+        state.battleStatus.mp = state.user.status.int * 15;
+        state.battleStatus.atk = state.user.status.str * 7;
+        state.battleStatus.matk = state.user.status.int * 7;
+        state.battleStatus.def = state.user.status.vit * 7;
         state.battleStatus.mdef =
-            state.user.status.vit + state.user.status.int * 2;
-        state.battleStatus.spd = state.user.status.agi * 3;
+            state.user.status.vit * 2 + state.user.status.int * 5;
+        state.battleStatus.spd = state.user.status.agi * 7;
         state.battleStatus.hit =
-            state.user.status.dex * 2 + state.user.status.luc;
+            state.user.status.dex * 6 + state.user.status.luc;
         state.battleStatus.flee =
-            state.user.status.agi * 2 + state.user.status.luc;
+            state.user.status.agi * 6 + state.user.status.luc;
     }
 };
 

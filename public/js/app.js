@@ -2442,6 +2442,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2555,76 +2556,88 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.$store.commit("setMessage", "戦闘開始");
 
                 if (!(this.battleUser.agi >= this.monster.spd)) {
-                  _context.next = 18;
+                  _context.next = 20;
                   break;
                 }
 
               case 3:
                 if (endFlag) {
+                  _context.next = 18;
+                  break;
+                }
+
+                _context.next = 6;
+                return this.userAttack(this.battleUser, this.monster);
+
+              case 6:
+                endFlag = this.monsterLifeCheck(this.monster);
+                _context.next = 9;
+                return this.sleep(500);
+
+              case 9:
+                _context.next = 11;
+                return this.monsterAttack(this.monster, this.battleUser);
+
+              case 11:
+                endFlag = this.userLifeCheck(this.battleUser);
+                _context.next = 14;
+                return this.sleep(500);
+
+              case 14:
+                if (!endFlag) {
                   _context.next = 16;
                   break;
                 }
 
-                this.userAttack(this.battleUser, this.monster);
-                endFlag = this.monsterLifeCheck(this.monster);
-                _context.next = 8;
-                return this.sleep(500);
+                return _context.abrupt("break", 18);
 
-              case 8:
-                this.monsterAttack(this.monster, this.battleUser);
-                endFlag = this.userLifeCheck(this.battleUser);
-                _context.next = 12;
-                return this.sleep(500);
-
-              case 12:
-                if (!endFlag) {
-                  _context.next = 14;
-                  break;
-                }
-
-                return _context.abrupt("break", 16);
-
-              case 14:
+              case 16:
                 _context.next = 3;
                 break;
 
-              case 16:
-                _context.next = 31;
+              case 18:
+                _context.next = 35;
                 break;
 
-              case 18:
+              case 20:
                 if (endFlag) {
-                  _context.next = 31;
+                  _context.next = 35;
                   break;
                 }
 
-                this.monsterAttack(this.monster, this.battleUser);
-                endFlag = this.userLifeCheck(this.battleUser);
                 _context.next = 23;
-                return this.sleep(500);
+                return this.monsterAttack(this.monster, this.battleUser);
 
               case 23:
+                endFlag = this.userLifeCheck(this.battleUser);
+                _context.next = 26;
+                return this.sleep(500);
+
+              case 26:
                 if (!endFlag) {
-                  _context.next = 25;
+                  _context.next = 28;
                   break;
                 }
 
-                return _context.abrupt("break", 31);
+                return _context.abrupt("break", 35);
 
-              case 25:
-                this.userAttack(this.battleUser, this.monster);
+              case 28:
+                _context.next = 30;
+                return this.userAttack(this.battleUser, this.monster);
+
+              case 30:
                 endFlag = this.monsterLifeCheck(this.monster);
-                _context.next = 29;
+                _context.next = 33;
                 return this.sleep(500);
 
-              case 29:
-                _context.next = 18;
+              case 33:
+                _context.next = 20;
                 break;
 
-              case 31:
+              case 35:
                 this.$store.commit("setMessage", "戦闘終了");
 
-              case 32:
+              case 36:
               case "end":
                 return _context.stop();
             }
@@ -4213,6 +4226,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: {
     changeMotion: function changeMotion(motion) {
+      console.log(motion);
+
       switch (motion.type) {
         case "anime1":
           return "effect";
@@ -4320,25 +4335,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      motionType: "none"
+    };
   },
   props: {// battleEffect: String
   },
@@ -4346,16 +4351,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     monster: "getBattleMonster",
     damage: "getDamage",
-    effect: "getEffect"
+    effect: "getEffect",
+    battleMotion: "getBattleMotion"
   }), {
-    // isShowEffect: function() {
-    //   return this.isEffect;
-    // },
     showMonster: function showMonster() {
       return "./" + this.monster.img;
     },
-    userDamageStyle: function userDamageStyle() {
-      if (this.damage.isUser) {
+    damageStyle: function damageStyle() {
+      if (this.damage.isShow) {
         this.damageTop = 150 + Math.floor(Math.random() * 100);
         this.damageLeft = 200 + Math.floor(Math.random() * 100);
       }
@@ -4365,59 +4368,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         top: this.damageTop + "px"
       };
     },
-    monsterDamageStyle: function monsterDamageStyle() {
-      if (this.damage.isMonster) {
-        this.damageTop = 150 + Math.floor(Math.random() * 100);
-        this.damageLeft = 200 + Math.floor(Math.random() * 100);
-      }
-
-      return {
-        left: this.damageLeft + "px",
-        top: this.damageTop + "px"
-      };
-    },
-    userEffectStyle: function userEffectStyle() {
+    effectStyle: function effectStyle() {
       this.effectTop = Math.floor(Math.random() * 100);
       this.effectLeft = 250 + Math.floor(Math.random() * 100);
       return {
-        background: 'url("/img/effect/' + this.effect.userPath + '")',
+        background: 'url("/img/effect/' + this.effect.path + '")',
         left: this.effectLeft + "px",
         top: this.effectTop + "px"
       };
     },
-    monsterEffectStyle: function monsterEffectStyle() {
-      this.effectTop = Math.floor(Math.random() * 100);
-      this.effectLeft = 250 + Math.floor(Math.random() * 100);
-      return {
-        background: 'url("/img/effect/' + this.effect.monsterPath + '")',
-        left: this.effectLeft + "px",
-        top: this.effectTop + "px"
-      };
-    } // userEffectClass: function() {
-    //   return {
-    //     effectClass: this.effect.isUser
-    //   };
-    // },
-    // monsterEffectClass: function() {
-    //   return {
-    //     effectClass: this.effect.isMonster
-    //   };
-    // }
-
+    activeBattleMotion: function activeBattleMotion() {
+      console.log(this.motionType);
+      return this.motionType;
+    }
   }),
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    var _this = this;
+
+    var unwatch = this.$store.subscribe(function (mutation, state) {
+      if (mutation.type === "setBattleMotionType") {
+        _this.changeMotion(_this.battleMotion.type);
+      }
+    });
+  },
+  watch: {},
   methods: {
     changeMotion: function changeMotion(motion) {
-      switch (motion.type) {
+      switch (motion) {
         case "anime1":
-          return "effect";
+          this.motionType = "effect";
           break;
 
         case "anime2":
-          return "effect2";
+          this.motionType = "effect2";
           break;
 
         default:
+          this.motionType = "none";
           return;
       }
     }
@@ -19340,7 +19327,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-c13136d4] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-monster[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-monster img[data-v-c13136d4] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.damageClass[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 50%;\r\n  left: 30%;\r\n  color: red;\r\n  font-size: 5em;\r\n  text-shadow: 1px 1px 1px #fff, -1px 1px 1px #fff, 1px -1px 1px #fff,\r\n    -1px -1px 1px #fff;\n}\n.fade-enter-active[data-v-c13136d4],\r\n.fade-leave-active[data-v-c13136d4] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-c13136d4],\r\n.fade-leave-to[data-v-c13136d4] {\r\n  opacity: 0;\n}\r\n\r\n/* .effectAnime {\r\n  position: absolute;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n  z-index: 100;\r\n  animation: sprite54 0.5s step-end 0s 1;\r\n} */\n.effect-anime-enter-active[data-v-c13136d4] {\r\n  position: relative;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n\r\n  z-index: 100;\r\n  -webkit-animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\r\n          animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\n}\n@-webkit-keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-c13136d4] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-monster[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-monster img[data-v-c13136d4] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.damageClass[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 50%;\r\n  left: 30%;\r\n  color: red;\r\n  font-size: 5em;\r\n  text-shadow: 1px 1px 1px #fff, -1px 1px 1px #fff, 1px -1px 1px #fff,\r\n    -1px -1px 1px #fff;\n}\n.fade-enter-active[data-v-c13136d4],\r\n.fade-leave-active[data-v-c13136d4] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-c13136d4],\r\n.fade-leave-to[data-v-c13136d4] {\r\n  opacity: 0;\n}\r\n\r\n/* .effectAnime {\r\n  position: absolute;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n  z-index: 100;\r\n  animation: sprite54 0.5s step-end 0s 1;\r\n} */\n.effect[data-v-c13136d4] {\r\n  -webkit-animation: anime1-data-v-c13136d4 0.2s ease-in-out 0s infinite;\r\n          animation: anime1-data-v-c13136d4 0.2s ease-in-out 0s infinite;\n}\n.effect2[data-v-c13136d4] {\r\n  -webkit-animation: anime2-data-v-c13136d4 0.2s ease-in-out 0s infinite;\r\n          animation: anime2-data-v-c13136d4 0.2s ease-in-out 0s infinite;\n}\n@-webkit-keyframes anime1-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n.effect-anime-enter-active[data-v-c13136d4] {\r\n  position: relative;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n\r\n  z-index: 100;\r\n  -webkit-animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\r\n          animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\n}\n@-webkit-keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -42292,7 +42279,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "rightHeader" }, [
-        _c("div", [_vm._v("モンスターHP:" + _vm._s(_vm.monster.hp))])
+        _c("div", [_vm._v("モンスターHP:" + _vm._s(_vm.monster.hp))]),
+        _vm._v(" "),
+        _c("div", [_vm._v("モンスターMP:" + _vm._s(_vm.monster.mp))])
       ]),
       _vm._v(" "),
       _c("message", { on: { "get-scene": _vm.getScene } }),
@@ -44015,42 +44004,31 @@ var render = function() {
     "div",
     { staticClass: "img-view" },
     [
+      _c("div", { staticStyle: { "font-size": "5em" } }, [
+        _vm._v(_vm._s(this.battleMotion.type))
+      ]),
+      _vm._v(" "),
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showMonster
           ? _c("div", { staticClass: "img-monster" }, [
-              _c("img", { attrs: { src: _vm.showMonster } })
+              _c("img", {
+                class: _vm.activeBattleMotion,
+                attrs: { src: _vm.showMonster }
+              })
             ])
           : _vm._e()
       ]),
       _vm._v(" "),
       _c("transition", { attrs: { name: "fade" } }, [
-        _vm.damage.isUser
-          ? _c(
-              "div",
-              { staticClass: "damageClass", style: _vm.userDamageStyle },
-              [_vm._v(_vm._s(_vm.damage.userDamage) + "damage!!")]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("transition", { attrs: { name: "fade" } }, [
-        _vm.damage.isMonster
-          ? _c(
-              "div",
-              { staticClass: "damageClass", style: _vm.monsterDamageStyle },
-              [_vm._v(_vm._s(_vm.damage.monsterDamage) + "damage!!")]
-            )
+        _vm.damage.isShow
+          ? _c("div", { staticClass: "damageClass", style: _vm.damageStyle }, [
+              _vm._v(_vm._s(_vm.damage.message))
+            ])
           : _vm._e()
       ]),
       _vm._v(" "),
       _c("transition", { attrs: { name: "effect-anime" } }, [
-        _vm.effect.isUser ? _c("div", { style: _vm.userEffectStyle }) : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("transition", { attrs: { name: "effect-anime" } }, [
-        _vm.effect.isMonster
-          ? _c("div", { style: _vm.monsterEffectStyle })
-          : _vm._e()
+        _vm.effect.isShow ? _c("div", { style: _vm.effectStyle }) : _vm._e()
       ])
     ],
     1
@@ -61020,14 +60998,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.showMonsterEffect("剣");
-                this.attackPhase(user, monster).then(function (damage) {
-                  console.log(damage);
+                this.showEffect("monster", "剣");
+                this.$store.commit("setBattleMotionType", "anime1");
+                _context.next = 4;
+                return this.attackPhase(user, monster).then(function (damage) {
+                  var message = damage + "damage!!";
 
-                  _this.showMonsterDamage(damage);
+                  _this.showDamage("monster", message);
                 });
 
-              case 2:
+              case 4:
+                _context.next = 6;
+                return this.sleep(500);
+
+              case 6:
+                this.$store.commit("setBattleMotionType", "none");
+
+                if (!(user.mp > 10)) {
+                  _context.next = 14;
+                  break;
+                }
+
+                this.$store.commit("setBattleMotionType", "anime1");
+                this.showEffect("monster", "火");
+                this.magicPhase(user, monster).then(function (damage) {
+                  var message = damage + "damage!!";
+
+                  _this.showDamage("monster", message);
+                });
+                _context.next = 13;
+                return this.sleep(500);
+
+              case 13:
+                this.$store.commit("setBattleMotionType", "none");
+
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -61051,14 +61056,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                this.showUserEffect("闇");
-                this.attackPhase(monster, user).then(function (damage) {
-                  console.log(damage);
+                this.showEffect("user", "剣");
+                _context2.next = 3;
+                return this.attackPhase(monster, user).then(function (damage) {
+                  var message = damage + "damage!!";
 
-                  _this2.showUserDamage(damage);
+                  _this2.showDamage("user", message);
                 });
 
-              case 2:
+              case 3:
+                _context2.next = 5;
+                return this.sleep(500);
+
+              case 5:
+                if (!(monster.mp > 10)) {
+                  _context2.next = 10;
+                  break;
+                }
+
+                this.showEffect("user", "闇");
+                this.magicPhase(monster, user).then(function (damage) {
+                  var message = damage + "damage!!";
+
+                  _this2.showDamage("user", message);
+                });
+                _context2.next = 10;
+                return this.sleep(500);
+
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -61076,23 +61101,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _attackPhase = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(char1, char2) {
-        var damage;
+        var damage, addDamage;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 damage = char1.atk - char2.def;
+                addDamage = Math.floor(Math.random() * 20);
 
                 if (damage > 0) {
-                  char2.hp -= damage;
+                  damage = damage + addDamage;
                 } else {
-                  damage = 0;
+                  damage = addDamage;
                 }
 
-                this.$store.commit("setMessage", char2.name + "に" + damage + "のダメージ");
+                char2.hp -= damage;
+                this.$store.commit("setMessage", "剣で" + char2.name + "に" + damage + "のダメージ");
                 return _context3.abrupt("return", damage);
 
-              case 4:
+              case 6:
               case "end":
                 return _context3.stop();
             }
@@ -61106,6 +61133,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return attackPhase;
     }(),
+    magicPhase: function () {
+      var _magicPhase = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(char1, char2) {
+        var damage, addDamage;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                char1.mp -= 10;
+                damage = char1.matk - char2.mdef;
+                addDamage = Math.floor(Math.random() * 30);
+
+                if (damage > 0) {
+                  damage = damage + addDamage;
+                } else {
+                  damage = addDamage;
+                }
+
+                char2.hp -= damage;
+                this.$store.commit("setMessage", "魔法で" + char2.name + "に" + damage + "のダメージ");
+                return _context4.abrupt("return", damage);
+
+              case 7:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function magicPhase(_x7, _x8) {
+        return _magicPhase.apply(this, arguments);
+      }
+
+      return magicPhase;
+    }(),
+    healPhase: function healPhase(char1) {
+      this.showUserEffect("回復");
+      char1.mp -= 10;
+      var recover = char1.matk * 3;
+      var addRecover = Math.floor(Math.random() * 50);
+      recover = recover + addRecover;
+      char1.hp += recover;
+      this.$store.commit("setMessage", char1.name + "のHPが" + recover + "回復した");
+      return recover;
+    },
     userLifeCheck: function userLifeCheck(user) {
       if (user.hp <= 0) {
         this.loseBattle();
@@ -61130,54 +61204,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loseBattle: function loseBattle() {
       this.currentStage = 1;
       this.battleUser.hp = this.battleStatus.hp;
+      this.battleUser.mp = this.battleStatus.mp;
     },
-    showUserDamage: function () {
-      var _showUserDamage = _asyncToGenerator(
+    showDamage: function () {
+      var _showDamage = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(damage) {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                this.$store.commit("setUserDamageValue", damage);
-                this.$store.commit("setUserDamageFlag", true);
-                _context4.next = 4;
-                return this.sleep(500);
-
-              case 4:
-                this.$store.commit("setUserDamageValue", 0);
-                this.$store.commit("setUserDamageFlag", false);
-
-              case 6:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this);
-      }));
-
-      function showUserDamage(_x7) {
-        return _showUserDamage.apply(this, arguments);
-      }
-
-      return showUserDamage;
-    }(),
-    showMonsterDamage: function () {
-      var _showMonsterDamage = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(damage) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(target, message) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                this.$store.commit("setMonsterDamageValue", damage);
-                this.$store.commit("setMonsterDamageFlag", true);
-                _context5.next = 4;
+                this.$store.commit("setDamageTarget", target);
+                this.$store.commit("setDamageMessage", message);
+                this.$store.commit("setDamageFlag", true);
+                _context5.next = 5;
                 return this.sleep(500);
 
-              case 4:
-                this.$store.commit("setMonsterDamageValue", 0);
-                this.$store.commit("setMonsterDamageFlag", false);
+              case 5:
+                this.$store.commit("setDamageFlag", false);
 
               case 6:
               case "end":
@@ -61187,30 +61231,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee5, this);
       }));
 
-      function showMonsterDamage(_x8) {
-        return _showMonsterDamage.apply(this, arguments);
+      function showDamage(_x9, _x10) {
+        return _showDamage.apply(this, arguments);
       }
 
-      return showMonsterDamage;
+      return showDamage;
     }(),
-    showUserEffect: function () {
-      var _showUserEffect = _asyncToGenerator(
+    showEffect: function () {
+      var _showEffect = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(type) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(target, type) {
         var effectArray;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                this.$store.commit("setUserEffectFlag", true);
+                this.$store.commit("setEffectTarget", target);
                 effectArray = this.selectBattleEffect(type);
-                this.$store.commit("setUserEffectPath", effectArray.img);
-                _context6.next = 5;
+                this.$store.commit("setEffectPath", effectArray.img);
+                this.$store.commit("setEffectFlag", true);
+                _context6.next = 6;
                 return this.sleep(500);
 
-              case 5:
-                this.$store.commit("setUserEffectFlag", false);
-                this.$store.commit("setUserEffectPath", "");
+              case 6:
+                this.$store.commit("setEffectFlag", false);
 
               case 7:
               case "end":
@@ -61220,44 +61264,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee6, this);
       }));
 
-      function showUserEffect(_x9) {
-        return _showUserEffect.apply(this, arguments);
+      function showEffect(_x11, _x12) {
+        return _showEffect.apply(this, arguments);
       }
 
-      return showUserEffect;
-    }(),
-    showMonsterEffect: function () {
-      var _showMonsterEffect = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(type) {
-        var effectArray;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                this.$store.commit("setMonsterEffectFlag", true);
-                effectArray = this.selectBattleEffect(type);
-                this.$store.commit("setMonsterEffectPath", effectArray.img);
-                _context7.next = 5;
-                return this.sleep(500);
-
-              case 5:
-                this.$store.commit("setMonsterEffectFlag", false);
-                this.$store.commit("setMonsterEffectPath", "");
-
-              case 7:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7, this);
-      }));
-
-      function showMonsterEffect(_x10) {
-        return _showMonsterEffect.apply(this, arguments);
-      }
-
-      return showMonsterEffect;
+      return showEffect;
     }(),
     selectBattleEffect: function selectBattleEffect(type) {
       var effectArray = [];
@@ -62423,16 +62434,17 @@ var mutations = {
 __webpack_require__.r(__webpack_exports__);
 var state = {
   damage: {
-    isUser: false,
-    userDamage: 0,
-    isMonster: false,
-    monsterDamage: 0
+    isShow: false,
+    target: "",
+    message: ""
   },
   effect: {
-    isUser: false,
-    userPath: "",
-    isMonster: false,
-    monsterPath: ""
+    isShow: false,
+    target: "",
+    path: ""
+  },
+  battleMotion: {
+    type: ""
   },
   swordEffect: [{
     img: "sword01_54.png"
@@ -62518,6 +62530,9 @@ var getters = {
   getEffect: function getEffect(state) {
     return state.effect;
   },
+  getBattleMotion: function getBattleMotion(state) {
+    return state.battleMotion;
+  },
   getSwordEffect: function getSwordEffect(state) {
     return state.swordEffect;
   },
@@ -62544,29 +62559,26 @@ var getters = {
   }
 };
 var mutations = {
-  setUserDamageFlag: function setUserDamageFlag(state, _boolean) {
-    state.damage.isUser = _boolean;
+  setDamageFlag: function setDamageFlag(state, _boolean) {
+    state.damage.isShow = _boolean;
   },
-  setUserDamageValue: function setUserDamageValue(state, value) {
-    state.damage.userDamage = value;
+  setDamageTarget: function setDamageTarget(state, target) {
+    state.damage.target = target;
   },
-  setMonsterDamageFlag: function setMonsterDamageFlag(state, _boolean2) {
-    state.damage.isMonster = _boolean2;
+  setDamageMessage: function setDamageMessage(state, message) {
+    state.damage.message = message;
   },
-  setMonsterDamageValue: function setMonsterDamageValue(state, value) {
-    state.damage.monsterDamage = value;
+  setEffectFlag: function setEffectFlag(state, _boolean2) {
+    state.effect.isShow = _boolean2;
   },
-  setUserEffectFlag: function setUserEffectFlag(state, _boolean3) {
-    state.effect.isUser = _boolean3;
+  setEffectTarget: function setEffectTarget(state, target) {
+    state.effect.target = target;
   },
-  setUserEffectPath: function setUserEffectPath(state, path) {
-    state.effect.userPath = path;
+  setEffectPath: function setEffectPath(state, path) {
+    state.effect.path = path;
   },
-  setMonsterEffectFlag: function setMonsterEffectFlag(state, _boolean4) {
-    state.effect.isMonster = _boolean4;
-  },
-  setMonsterEffectPath: function setMonsterEffectPath(state, path) {
-    state.effect.monsterPath = path;
+  setBattleMotionType: function setBattleMotionType(state, type) {
+    state.battleMotion.type = type;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63679,15 +63691,15 @@ var mutations = {
     state.user.status.luc = status.luc;
   },
   setBattleStatus: function setBattleStatus(state) {
-    state.battleStatus.hp = state.user.status.vit * 10;
-    state.battleStatus.mp = state.user.status["int"] * 5;
-    state.battleStatus.atk = state.user.status.str * 3;
-    state.battleStatus.matk = state.user.status["int"] * 3;
-    state.battleStatus.def = state.user.status.vit * 3;
-    state.battleStatus.mdef = state.user.status.vit + state.user.status["int"] * 2;
-    state.battleStatus.spd = state.user.status.agi * 3;
-    state.battleStatus.hit = state.user.status.dex * 2 + state.user.status.luc;
-    state.battleStatus.flee = state.user.status.agi * 2 + state.user.status.luc;
+    state.battleStatus.hp = state.user.status.vit * 20;
+    state.battleStatus.mp = state.user.status["int"] * 15;
+    state.battleStatus.atk = state.user.status.str * 7;
+    state.battleStatus.matk = state.user.status["int"] * 7;
+    state.battleStatus.def = state.user.status.vit * 7;
+    state.battleStatus.mdef = state.user.status.vit * 2 + state.user.status["int"] * 5;
+    state.battleStatus.spd = state.user.status.agi * 7;
+    state.battleStatus.hit = state.user.status.dex * 6 + state.user.status.luc;
+    state.battleStatus.flee = state.user.status.agi * 6 + state.user.status.luc;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({

@@ -15,6 +15,7 @@
     </div>
     <div class="rightHeader">
       <div>モンスターHP:{{monster.hp}}</div>
+      <div>モンスターMP:{{monster.mp}}</div>
     </div>
     <message @get-scene="getScene"></message>
     <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
@@ -138,11 +139,11 @@ export default {
 
       if (this.battleUser.agi >= this.monster.spd) {
         while (!endFlag) {
-          this.userAttack(this.battleUser, this.monster);
+          await this.userAttack(this.battleUser, this.monster);
           endFlag = this.monsterLifeCheck(this.monster);
           await this.sleep(500);
 
-          this.monsterAttack(this.monster, this.battleUser);
+          await this.monsterAttack(this.monster, this.battleUser);
           endFlag = this.userLifeCheck(this.battleUser);
           await this.sleep(500);
           if (endFlag) {
@@ -151,13 +152,13 @@ export default {
         }
       } else {
         while (!endFlag) {
-          this.monsterAttack(this.monster, this.battleUser);
+          await this.monsterAttack(this.monster, this.battleUser);
           endFlag = this.userLifeCheck(this.battleUser);
           await this.sleep(500);
           if (endFlag) {
             break;
           }
-          this.userAttack(this.battleUser, this.monster);
+          await this.userAttack(this.battleUser, this.monster);
           endFlag = this.monsterLifeCheck(this.monster);
           await this.sleep(500);
         }

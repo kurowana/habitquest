@@ -47,32 +47,87 @@ export default {
         },
 
         userAttack: async function(user, monster) {
-            this.showMonsterEffect("剣");
-            this.attackPhase(user, monster).then(damage => {
-                console.log(damage);
-                this.showMonsterDamage(damage);
+            this.showEffect("monster", "剣");
+            this.$store.commit("setBattleMotionType", "anime1");
+            await this.attackPhase(user, monster).then(damage => {
+                const message = damage + "damage!!";
+                this.showDamage("monster", message);
             });
+            await this.sleep(500);
+            this.$store.commit("setBattleMotionType", "none");
+            if (user.mp > 10) {
+                this.$store.commit("setBattleMotionType", "anime1");
+                this.showEffect("monster", "火");
+                this.magicPhase(user, monster).then(damage => {
+                    const message = damage + "damage!!";
+                    this.showDamage("monster", message);
+                });
+                await this.sleep(500);
+                this.$store.commit("setBattleMotionType", "none");
+            }
         },
         monsterAttack: async function(monster, user) {
-            this.showUserEffect("闇");
-            this.attackPhase(monster, user).then(damage => {
-                console.log(damage);
-                this.showUserDamage(damage);
+            this.showEffect("user", "剣");
+            await this.attackPhase(monster, user).then(damage => {
+                const message = damage + "damage!!";
+                this.showDamage("user", message);
             });
+            await this.sleep(500);
+            if (monster.mp > 10) {
+                this.showEffect("user", "闇");
+                this.magicPhase(monster, user).then(damage => {
+                    const message = damage + "damage!!";
+                    this.showDamage("user", message);
+                });
+                await this.sleep(500);
+            }
         },
 
         attackPhase: async function(char1, char2) {
             let damage = char1.atk - char2.def;
+            let addDamage = Math.floor(Math.random() * 20);
             if (damage > 0) {
-                char2.hp -= damage;
+                damage = damage + addDamage;
             } else {
-                damage = 0;
+                damage = addDamage;
             }
+            char2.hp -= damage;
             this.$store.commit(
                 "setMessage",
-                char2.name + "に" + damage + "のダメージ"
+                "剣で" + char2.name + "に" + damage + "のダメージ"
             );
             return damage;
+        },
+
+        magicPhase: async function(char1, char2) {
+            char1.mp -= 10;
+            let damage = char1.matk - char2.mdef;
+            let addDamage = Math.floor(Math.random() * 30);
+            if (damage > 0) {
+                damage = damage + addDamage;
+            } else {
+                damage = addDamage;
+            }
+            char2.hp -= damage;
+
+            this.$store.commit(
+                "setMessage",
+                "魔法で" + char2.name + "に" + damage + "のダメージ"
+            );
+            return damage;
+        },
+        healPhase: function(char1) {
+            this.showUserEffect("回復");
+            char1.mp -= 10;
+            let recover = char1.matk * 3;
+            let addRecover = Math.floor(Math.random() * 50);
+            recover = recover + addRecover;
+            char1.hp += recover;
+            this.$store.commit(
+                "setMessage",
+                char1.name + "のHPが" + recover + "回復した"
+            );
+            return recover;
         },
 
         userLifeCheck(user) {
@@ -100,38 +155,24 @@ export default {
         loseBattle: function() {
             this.currentStage = 1;
             this.battleUser.hp = this.battleStatus.hp;
+            this.battleUser.mp = this.battleStatus.mp;
         },
 
-        showUserDamage: async function(damage) {
-            this.$store.commit("setUserDamageValue", damage);
-            this.$store.commit("setUserDamageFlag", true);
+        showDamage: async function(target, message) {
+            this.$store.commit("setDamageTarget", target);
+            this.$store.commit("setDamageMessage", message);
+            this.$store.commit("setDamageFlag", true);
             await this.sleep(500);
-            this.$store.commit("setUserDamageValue", 0);
-            this.$store.commit("setUserDamageFlag", false);
-        },
-        showMonsterDamage: async function(damage) {
-            this.$store.commit("setMonsterDamageValue", damage);
-            this.$store.commit("setMonsterDamageFlag", true);
-            await this.sleep(500);
-            this.$store.commit("setMonsterDamageValue", 0);
-            this.$store.commit("setMonsterDamageFlag", false);
+            this.$store.commit("setDamageFlag", false);
         },
 
-        showUserEffect: async function(type) {
-            this.$store.commit("setUserEffectFlag", true);
+        showEffect: async function(target, type) {
+            this.$store.commit("setEffectTarget", target);
             const effectArray = this.selectBattleEffect(type);
-            this.$store.commit("setUserEffectPath", effectArray.img);
+            this.$store.commit("setEffectPath", effectArray.img);
+            this.$store.commit("setEffectFlag", true);
             await this.sleep(500);
-            this.$store.commit("setUserEffectFlag", false);
-            this.$store.commit("setUserEffectPath", "");
-        },
-        showMonsterEffect: async function(type) {
-            this.$store.commit("setMonsterEffectFlag", true);
-            const effectArray = this.selectBattleEffect(type);
-            this.$store.commit("setMonsterEffectPath", effectArray.img);
-            await this.sleep(500);
-            this.$store.commit("setMonsterEffectFlag", false);
-            this.$store.commit("setMonsterEffectPath", "");
+            this.$store.commit("setEffectFlag", false);
         },
 
         selectBattleEffect: function(type) {

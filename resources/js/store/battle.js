@@ -1,15 +1,16 @@
 const state = {
     damage: {
-        isUser: false,
-        userDamage: 0,
-        isMonster: false,
-        monsterDamage: 0
+        isShow: false,
+        target: "",
+        message: ""
     },
     effect: {
-        isUser: false,
-        userPath: "",
-        isMonster: false,
-        monsterPath: ""
+        isShow: false,
+        target: "",
+        path: ""
+    },
+    battleMotion: {
+        type: ""
     },
 
     swordEffect: [
@@ -138,6 +139,9 @@ const getters = {
     getEffect: state => {
         return state.effect;
     },
+    getBattleMotion: state => {
+        return state.battleMotion;
+    },
     getSwordEffect: state => {
         return state.swordEffect;
     },
@@ -164,29 +168,26 @@ const getters = {
     }
 };
 const mutations = {
-    setUserDamageFlag(state, boolean) {
-        state.damage.isUser = boolean;
+    setDamageFlag(state, boolean) {
+        state.damage.isShow = boolean;
     },
-    setUserDamageValue(state, value) {
-        state.damage.userDamage = value;
+    setDamageTarget(state, target) {
+        state.damage.target = target;
     },
-    setMonsterDamageFlag(state, boolean) {
-        state.damage.isMonster = boolean;
+    setDamageMessage(state, message) {
+        state.damage.message = message;
     },
-    setMonsterDamageValue(state, value) {
-        state.damage.monsterDamage = value;
+    setEffectFlag(state, boolean) {
+        state.effect.isShow = boolean;
     },
-    setUserEffectFlag(state, boolean) {
-        state.effect.isUser = boolean;
+    setEffectTarget(state, target) {
+        state.effect.target = target;
     },
-    setUserEffectPath(state, path) {
-        state.effect.userPath = path;
+    setEffectPath(state, path) {
+        state.effect.path = path;
     },
-    setMonsterEffectFlag(state, boolean) {
-        state.effect.isMonster = boolean;
-    },
-    setMonsterEffectPath(state, path) {
-        state.effect.monsterPath = path;
+    setBattleMotionType(state, type) {
+        state.battleMotion.type = type;
     }
 };
 

@@ -1,29 +1,17 @@
 <template>
   <div class="img-view">
+    <div style="font-size:5em;">{{this.battleMotion.type}}</div>
     <transition name="fade">
       <div v-if="showMonster" class="img-monster">
-        <img :src="showMonster" />
+        <img :src="showMonster" :class="activeBattleMotion" />
+        <!-- <img :src="showMonster" /> -->
       </div>
     </transition>
     <transition name="fade">
-      <div
-        v-if="damage.isUser"
-        class="damageClass"
-        :style="userDamageStyle"
-      >{{damage.userDamage}}damage!!</div>
-    </transition>
-    <transition name="fade">
-      <div
-        v-if="damage.isMonster"
-        class="damageClass"
-        :style="monsterDamageStyle"
-      >{{damage.monsterDamage}}damage!!</div>
+      <div v-if="damage.isShow" class="damageClass" :style="damageStyle">{{damage.message}}</div>
     </transition>
     <transition name="effect-anime">
-      <div v-if="effect.isUser" :style="userEffectStyle"></div>
-    </transition>
-    <transition name="effect-anime">
-      <div v-if="effect.isMonster" :style="monsterEffectStyle"></div>
+      <div v-if="effect.isShow" :style="effectStyle"></div>
     </transition>
   </div>
 </template>
@@ -36,7 +24,9 @@ import battleMixin from "../mixins/battleMixin";
 
 export default {
   data: function() {
-    return {};
+    return {
+      motionType: "none"
+    };
   },
   props: {
     // battleEffect: String
@@ -46,16 +36,14 @@ export default {
     ...mapGetters({
       monster: "getBattleMonster",
       damage: "getDamage",
-      effect: "getEffect"
+      effect: "getEffect",
+      battleMotion: "getBattleMotion"
     }),
-    // isShowEffect: function() {
-    //   return this.isEffect;
-    // },
     showMonster: function() {
       return "./" + this.monster.img;
     },
-    userDamageStyle: function() {
-      if (this.damage.isUser) {
+    damageStyle: function() {
+      if (this.damage.isShow) {
         this.damageTop = 150 + Math.floor(Math.random() * 100);
         this.damageLeft = 200 + Math.floor(Math.random() * 100);
       }
@@ -64,56 +52,39 @@ export default {
         top: this.damageTop + "px"
       };
     },
-    monsterDamageStyle: function() {
-      if (this.damage.isMonster) {
-        this.damageTop = 150 + Math.floor(Math.random() * 100);
-        this.damageLeft = 200 + Math.floor(Math.random() * 100);
-      }
-      return {
-        left: this.damageLeft + "px",
-        top: this.damageTop + "px"
-      };
-    },
-    userEffectStyle: function() {
+    effectStyle: function() {
       this.effectTop = Math.floor(Math.random() * 100);
       this.effectLeft = 250 + Math.floor(Math.random() * 100);
       return {
-        background: 'url("/img/effect/' + this.effect.userPath + '")',
+        background: 'url("/img/effect/' + this.effect.path + '")',
         left: this.effectLeft + "px",
         top: this.effectTop + "px"
       };
     },
-    monsterEffectStyle: function() {
-      this.effectTop = Math.floor(Math.random() * 100);
-      this.effectLeft = 250 + Math.floor(Math.random() * 100);
-      return {
-        background: 'url("/img/effect/' + this.effect.monsterPath + '")',
-        left: this.effectLeft + "px",
-        top: this.effectTop + "px"
-      };
+    activeBattleMotion: function() {
+      console.log(this.motionType);
+      return this.motionType;
     }
-    // userEffectClass: function() {
-    //   return {
-    //     effectClass: this.effect.isUser
-    //   };
-    // },
-    // monsterEffectClass: function() {
-    //   return {
-    //     effectClass: this.effect.isMonster
-    //   };
-    // }
   },
-  mounted: function() {},
+  mounted: function() {
+    const unwatch = this.$store.subscribe((mutation, state) => {
+      if (mutation.type === "setBattleMotionType") {
+        this.changeMotion(this.battleMotion.type);
+      }
+    });
+  },
+  watch: {},
   methods: {
     changeMotion: function(motion) {
-      switch (motion.type) {
+      switch (motion) {
         case "anime1":
-          return "effect";
+          this.motionType = "effect";
           break;
         case "anime2":
-          return "effect2";
+          this.motionType = "effect2";
           break;
         default:
+          this.motionType = "none";
           return;
       }
     }
@@ -166,6 +137,43 @@ export default {
   z-index: 100;
   animation: sprite54 0.5s step-end 0s 1;
 } */
+
+.effect {
+  animation: anime1 0.2s ease-in-out 0s infinite;
+}
+.effect2 {
+  animation: anime2 0.2s ease-in-out 0s infinite;
+}
+
+@keyframes anime1 {
+  0% {
+    left: 0;
+  }
+  25% {
+    left: 10px;
+  }
+  75% {
+    left: -10px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes anime2 {
+  0% {
+    left: 0;
+  }
+  25% {
+    left: 1px;
+  }
+  75% {
+    left: -1px;
+  }
+  100% {
+    left: 0;
+  }
+}
 
 .effect-anime-enter-active {
   position: relative;

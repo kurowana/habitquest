@@ -130,6 +130,7 @@ export default {
   },
   methods: {
     changeMotion: function(motion) {
+      console.log(motion);
       switch (motion.type) {
         case "anime1":
           return "effect";
