@@ -83,6 +83,9 @@ export default {
         case "anime2":
           this.motionType = "effect2";
           break;
+        case "motion3":
+          this.motionType = "motion3";
+          break;
         default:
           this.motionType = "none";
           return;
@@ -141,16 +144,13 @@ export default {
 .effect {
   animation: anime1 0.2s ease-in-out 0s infinite;
 }
-.effect2 {
-  animation: anime2 0.2s ease-in-out 0s infinite;
-}
-
 @keyframes anime1 {
   0% {
     left: 0;
   }
   25% {
     left: 10px;
+    opacity: 0.7;
   }
   75% {
     left: -10px;
@@ -159,7 +159,9 @@ export default {
     left: 0;
   }
 }
-
+.effect2 {
+  animation: anime2 0.2s ease-in-out 0s infinite;
+}
 @keyframes anime2 {
   0% {
     left: 0;
@@ -172,6 +174,23 @@ export default {
   }
   100% {
     left: 0;
+  }
+}
+.motion3 {
+  animation: attack 0.3s ease-in-out 0s 1;
+}
+@keyframes attack {
+  0% {
+    bottom: 0;
+    width: 320px;
+  }
+  75% {
+    bottom: 20px;
+    width: 350px;
+  }
+  100% {
+    bottom: 0px;
+    width: 320px;
   }
 }
 

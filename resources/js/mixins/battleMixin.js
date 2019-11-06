@@ -68,18 +68,21 @@ export default {
         },
         monsterAttack: async function(monster, user) {
             this.showEffect("user", "剣");
+            this.$store.commit("setBattleMotionType", "motion3");
             await this.attackPhase(monster, user).then(damage => {
                 const message = damage + "damage!!";
                 this.showDamage("user", message);
             });
             await this.sleep(500);
             if (monster.mp > 10) {
+                // this.$store.commit("setBattleMotionType", "motion3");
                 this.showEffect("user", "闇");
                 this.magicPhase(monster, user).then(damage => {
                     const message = damage + "damage!!";
                     this.showDamage("user", message);
                 });
                 await this.sleep(500);
+                this.$store.commit("setBattleMotionType", "none");
             }
         },
 
