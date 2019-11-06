@@ -4403,6 +4403,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.motionType = "effect2";
           break;
 
+        case "motion3":
+          this.motionType = "motion3";
+          break;
+
         default:
           this.motionType = "none";
           return;
@@ -19327,7 +19331,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-c13136d4] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-monster[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-monster img[data-v-c13136d4] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.damageClass[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 50%;\r\n  left: 30%;\r\n  color: red;\r\n  font-size: 5em;\r\n  text-shadow: 1px 1px 1px #fff, -1px 1px 1px #fff, 1px -1px 1px #fff,\r\n    -1px -1px 1px #fff;\n}\n.fade-enter-active[data-v-c13136d4],\r\n.fade-leave-active[data-v-c13136d4] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-c13136d4],\r\n.fade-leave-to[data-v-c13136d4] {\r\n  opacity: 0;\n}\r\n\r\n/* .effectAnime {\r\n  position: absolute;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n  z-index: 100;\r\n  animation: sprite54 0.5s step-end 0s 1;\r\n} */\n.effect[data-v-c13136d4] {\r\n  -webkit-animation: anime1-data-v-c13136d4 0.2s ease-in-out 0s infinite;\r\n          animation: anime1-data-v-c13136d4 0.2s ease-in-out 0s infinite;\n}\n.effect2[data-v-c13136d4] {\r\n  -webkit-animation: anime2-data-v-c13136d4 0.2s ease-in-out 0s infinite;\r\n          animation: anime2-data-v-c13136d4 0.2s ease-in-out 0s infinite;\n}\n@-webkit-keyframes anime1-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n.effect-anime-enter-active[data-v-c13136d4] {\r\n  position: relative;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n\r\n  z-index: 100;\r\n  -webkit-animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\r\n          animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\n}\n@-webkit-keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-c13136d4] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-monster[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-monster img[data-v-c13136d4] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.damageClass[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 50%;\r\n  left: 30%;\r\n  color: red;\r\n  font-size: 5em;\r\n  text-shadow: 1px 1px 1px #fff, -1px 1px 1px #fff, 1px -1px 1px #fff,\r\n    -1px -1px 1px #fff;\n}\n.fade-enter-active[data-v-c13136d4],\r\n.fade-leave-active[data-v-c13136d4] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-c13136d4],\r\n.fade-leave-to[data-v-c13136d4] {\r\n  opacity: 0;\n}\r\n\r\n/* .effectAnime {\r\n  position: absolute;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n  z-index: 100;\r\n  animation: sprite54 0.5s step-end 0s 1;\r\n} */\n.effect[data-v-c13136d4] {\r\n  -webkit-animation: anime1-data-v-c13136d4 0.2s ease-in-out 0s infinite;\r\n          animation: anime1-data-v-c13136d4 0.2s ease-in-out 0s infinite;\n}\n@-webkit-keyframes anime1-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\r\n    opacity: 0.7;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\r\n    opacity: 0.7;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n.effect2[data-v-c13136d4] {\r\n  -webkit-animation: anime2-data-v-c13136d4 0.2s ease-in-out 0s infinite;\r\n          animation: anime2-data-v-c13136d4 0.2s ease-in-out 0s infinite;\n}\n@-webkit-keyframes anime2-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n.motion3[data-v-c13136d4] {\r\n  -webkit-animation: attack-data-v-c13136d4 0.3s ease-in-out 0s 1;\r\n          animation: attack-data-v-c13136d4 0.3s ease-in-out 0s 1;\n}\n@-webkit-keyframes attack-data-v-c13136d4 {\n0% {\r\n    bottom: 0;\r\n    width: 320px;\n}\n75% {\r\n    bottom: 20px;\r\n    width: 350px;\n}\n100% {\r\n    bottom: 0px;\r\n    width: 320px;\n}\n}\n@keyframes attack-data-v-c13136d4 {\n0% {\r\n    bottom: 0;\r\n    width: 320px;\n}\n75% {\r\n    bottom: 20px;\r\n    width: 350px;\n}\n100% {\r\n    bottom: 0px;\r\n    width: 320px;\n}\n}\n.effect-anime-enter-active[data-v-c13136d4] {\r\n  position: relative;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n\r\n  z-index: 100;\r\n  -webkit-animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\r\n          animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\n}\n@-webkit-keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -61057,33 +61061,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 this.showEffect("user", "剣");
-                _context2.next = 3;
+                this.$store.commit("setBattleMotionType", "motion3");
+                _context2.next = 4;
                 return this.attackPhase(monster, user).then(function (damage) {
                   var message = damage + "damage!!";
 
                   _this2.showDamage("user", message);
                 });
 
-              case 3:
-                _context2.next = 5;
+              case 4:
+                _context2.next = 6;
                 return this.sleep(500);
 
-              case 5:
+              case 6:
                 if (!(monster.mp > 10)) {
-                  _context2.next = 10;
+                  _context2.next = 12;
                   break;
                 }
 
+                // this.$store.commit("setBattleMotionType", "motion3");
                 this.showEffect("user", "闇");
                 this.magicPhase(monster, user).then(function (damage) {
                   var message = damage + "damage!!";
 
                   _this2.showDamage("user", message);
                 });
-                _context2.next = 10;
+                _context2.next = 11;
                 return this.sleep(500);
 
-              case 10:
+              case 11:
+                this.$store.commit("setBattleMotionType", "none");
+
+              case 12:
               case "end":
                 return _context2.stop();
             }
