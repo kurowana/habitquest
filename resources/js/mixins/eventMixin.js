@@ -3,27 +3,27 @@ import { mapGetters } from "vuex";
 export default {
     data: function() {
         return {
-            isShowChoice: false,
-            activeMotion: {
-                l1: { type: "none" },
-                l2: { type: "none" },
-                c: { type: "none" },
-                r1: { type: "none" },
-                r2: { type: "none" }
-            },
-            activeEffect: {
-                l1: { type: "none" },
-                l2: { type: "none" },
-                c: { type: "none" },
-                r1: { type: "none" },
-                r2: { type: "none" }
-            }
+            // isShowChoice: false,
+            // activeMotion: {
+            //     l1: { type: "none" },
+            //     l2: { type: "none" },
+            //     c: { type: "none" },
+            //     r1: { type: "none" },
+            //     r2: { type: "none" }
+            // },
+            // activeEffect: {
+            //     l1: { type: "none" },
+            //     l2: { type: "none" },
+            //     c: { type: "none" },
+            //     r1: { type: "none" },
+            //     r2: { type: "none" }
+            // }
         };
     },
     computed: {
         ...mapGetters({
             currentEventObj: "getEventObj",
-            charList: "getCharList"
+            npcList: "getNpcList"
         }),
         modalBase: function() {
             return {
@@ -68,11 +68,11 @@ export default {
             }
         },
         getScene: function(count) {
-            this.activeMotion.l1.type = "none";
-            this.activeMotion.l2.type = "none";
-            this.activeMotion.c.type = "none";
-            this.activeMotion.r1.type = "none";
-            this.activeMotion.r2.type = "none";
+            // this.activeMotion.l1.type = "none";
+            // this.activeMotion.l2.type = "none";
+            // this.activeMotion.c.type = "none";
+            // this.activeMotion.r1.type = "none";
+            // this.activeMotion.r2.type = "none";
 
             const currentEvent = this[this.currentEventObj];
 
@@ -98,7 +98,7 @@ export default {
             const random = Math.floor(Math.random() * count);
             this.$store.commit("setEventObj", list[random]);
             this.$store.commit("setSceneCount", 0);
-            this.$store.commit("setCharName", "");
+            this.$store.commit("setTalkerName", "");
             this.setEvent({ type: "msg", content: "――――――" });
         },
         setEvent: function(event) {
@@ -122,9 +122,14 @@ export default {
         },
         selectEvent: function(event) {
             this.$store.commit("setMessage", event.msg);
-            this.$store.commit("setChoice1", event.choice[0]);
-            this.$store.commit("setChoice2", event.choice[1]);
-            this.isShowChoice = true;
+            this.$store.commit("setChoice", {
+                flag: true,
+                type1: event.choice[0],
+                type2: event.choice[1]
+            });
+            // this.$store.commit("setChoice1", event.choice[0]);
+            // this.$store.commit("setChoice2", event.choice[1]);
+            // this.isShowChoice = true;
         },
         windowEvent(event) {
             this[event.window] = true;
@@ -136,49 +141,49 @@ export default {
         showChar(name, pos) {
             let char = null;
             if (name) {
-                char = this.charList[name];
+                char = this.npcList[name];
             } else {
                 char = { name: "", imgL: "", imgR: "" };
             }
             switch (pos) {
-                case "l1":
+                case "L1":
                     this.$store.commit("setCharImgL1", char.imgL);
                     break;
-                case "l2":
+                case "L2":
                     this.$store.commit("setCharImgL2", char.imgL);
                     break;
-                case "c":
+                case "C":
                     this.$store.commit("setCharImgC", char.imgL);
                     break;
-                case "r1":
+                case "R1":
                     this.$store.commit("setCharImgR1", char.imgR);
                     break;
-                case "r2":
+                case "R2":
                     this.$store.commit("setCharImgR2", char.imgR);
                     break;
             }
         },
-        setSpeaker: function(name, pos) {
+        setTalker: function(name, pos) {
             this.downOpacity();
-            this.$store.commit("setCharName", name);
+            this.$store.commit("setTalkerName", name);
             switch (pos) {
-                case "l1":
+                case "L1":
                     this.$store.commit("setOpacityL1", 1);
                     this.$store.commit("setZIndexL1", 20);
                     break;
-                case "l2":
+                case "L2":
                     this.$store.commit("setOpacityL2", 1);
                     this.$store.commit("setZIndexL2", 20);
                     break;
-                case "c":
+                case "C":
                     this.$store.commit("setOpacityC", 1);
                     this.$store.commit("setZIndexC", 20);
                     break;
-                case "r1":
+                case "R1":
                     this.$store.commit("setOpacityR1", 1);
                     this.$store.commit("setZIndexR1", 20);
                     break;
-                case "r2":
+                case "R2":
                     this.$store.commit("setOpacityR2", 1);
                     this.$store.commit("setZIndexR2", 20);
                     break;
@@ -224,6 +229,40 @@ export default {
         },
         setEffect(target, effect) {
             this.activeEffect[target]["type"] = effect;
+        },
+        setMotion: function(target, flag, type) {
+            switch (target) {
+                case "C":
+                    this.$store.commit("setMotionC", {
+                        flag: flag,
+                        type: type
+                    });
+                    break;
+                case "L1":
+                    this.$store.commit("setMotionL1", {
+                        flag: flag,
+                        type: type
+                    });
+                    break;
+                case "L2":
+                    this.$store.commit("setMotionL2", {
+                        flag: flag,
+                        type: type
+                    });
+                    break;
+                case "R1":
+                    this.$store.commit("setMotionR1", {
+                        flag: flag,
+                        type: type
+                    });
+                    break;
+                case "R2":
+                    this.$store.commit("setMotionR2", {
+                        flag: flag,
+                        type: type
+                    });
+                    break;
+            }
         }
     }
 };

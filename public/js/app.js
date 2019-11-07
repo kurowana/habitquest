@@ -2919,6 +2919,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2976,6 +2977,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.changeBg("ホーム");
     this.clearChar();
     this.showChar("スフィア2", "c");
+    this.showChar("スフィア2", "r1");
+    this.showChar("スフィア2", "r2");
+    this.showChar("スフィア2", "l1");
+    this.showChar("スフィア2", "l2");
   },
   methods: {}
 });
@@ -4026,6 +4031,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4045,9 +4055,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     sceneCount: "getSceneCount",
     NextFlag: "getNextFlag",
     eventType: "getEventType",
-    name: "getCharName",
-    storeMessage: "getMessage",
-    charList: "getCharList"
+    // name: "getCharName",
+    messageObj: "getMessage",
+    npcList: "getNpcList"
   }), {
     message: function message() {
       if (this.storeMessage !== "") {
@@ -4142,86 +4152,87 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     activeEffect: Object
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    imgL1: "getCharImgL1",
-    imgL2: "getCharImgL2",
-    imgC: "getCharImgC",
-    imgR1: "getCharImgR1",
-    imgR2: "getCharImgR2"
+    // imgL1: "getCharImgL1",
+    // imgL2: "getCharImgL2",
+    // imgC: "getCharImgC",
+    // imgR1: "getCharImgR1",
+    // imgR2: "getCharImgR2"
+    npc: "getNpc"
   }), {
     showCharL1: function showCharL1() {
-      return this.imgL1.path;
+      return this.npc.L1.img;
     },
     showCharL2: function showCharL2() {
-      return this.imgL2.path;
+      return this.npc.L2.img;
     },
     showCharC: function showCharC() {
-      return this.imgC.path;
+      return this.npc.C.img;
     },
     showCharR1: function showCharR1() {
-      return this.imgR1.path;
+      return this.npc.R1.img;
     },
     showCharR2: function showCharR2() {
-      return this.imgR2.path;
+      return this.npc.R2.img;
     },
     styleL1: function styleL1() {
       return {
-        opacity: this.imgL1.opacity,
-        zIndex: this.imgL1.zIndex
+        opacity: this.npc.L1.opacity,
+        zIndex: this.npc.L1.zIndex
       };
     },
     styleL2: function styleL2() {
       return {
-        opacity: this.imgL2.opacity,
-        zIndex: this.imgL2.zIndex
+        opacity: this.npc.L2.opacity,
+        zIndex: this.npc.L2.zIndex
       };
     },
     styleC: function styleC() {
       return {
-        opacity: this.imgC.opacity,
-        zIndex: this.imgC.zIndex
+        opacity: this.npc.C.opacity,
+        zIndex: this.npc.C.zIndex
       };
     },
     styleR1: function styleR1() {
       return {
-        opacity: this.imgR1.opacity,
-        zIndex: this.imgR1.zIndex
+        opacity: this.npc.R1.opacity,
+        zIndex: this.npc.R1.zIndex
       };
     },
     styleR2: function styleR2() {
       return {
-        opacity: this.imgR2.opacity,
-        zIndex: this.imgR2.zIndex
+        opacity: this.npc.R2.opacity,
+        zIndex: this.npc.R2.zIndex
       };
     },
     motionL1: function motionL1() {
-      return this.changeMotion(this.activeMotion.l1);
+      return this.changeMotion(this.npc.L1.motion);
     },
     motionL2: function motionL2() {
-      return this.changeMotion(this.activeMotion.l2);
+      return this.changeMotion(this.npc.L2.motion);
     },
     motionC: function motionC() {
-      return this.changeMotion(this.activeMotion.c);
+      return this.changeMotion(this.npc.C.motion);
     },
     motionR1: function motionR1() {
-      return this.changeMotion(this.activeMotion.r1);
+      return this.changeMotion(this.npc.R1.motion);
     },
     motionR2: function motionR2() {
-      return this.changeMotion(this.activeMotion.r2);
+      return this.changeMotion(this.npc.R2.motion);
     },
     effectL1: function effectL1() {
-      return this.changeEffect(this.activeEffect.l1);
+      return this.changeEffect(this.npc.L1.motion);
     },
     effectL2: function effectL2() {
-      return this.changeEffect(this.activeEffect.l2);
+      return this.changeEffect(this.npc.L2.motion);
     },
     effectC: function effectC() {
-      return this.changeEffect(this.activeEffect.c);
+      return this.changeEffect(this.npc.C.motion);
     },
     effectR1: function effectR1() {
-      return this.changeEffect(this.activeEffect.r1);
+      return this.changeEffect(this.npc.R1.motion);
     },
     effectR2: function effectR2() {
-      return this.changeEffect(this.activeEffect.r2);
+      return this.changeEffect(this.npc.R2.motion);
     }
   }),
   methods: {
@@ -4279,8 +4290,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_0__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
     sceneCount: "getSceneCount",
-    choice1: "getChoice1",
-    choice2: "getChoice2"
+    choice: "getChoice"
   })),
   methods: {
     choiced1: function choiced1() {
@@ -42459,12 +42469,7 @@ var render = function() {
       _vm._v(" "),
       _c("message", { on: { "get-scene": _vm.getScene } }),
       _vm._v(" "),
-      _c("char-img", {
-        attrs: {
-          "active-motion": _vm.activeMotion,
-          "active-effect": _vm.activeEffect
-        }
-      })
+      _c("char-img")
     ],
     1
   )
@@ -43424,14 +43429,12 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _vm.isShowChoice
-          ? _c("choice", {
-              on: {
-                "get-scene": _vm.getScene,
-                "complete-choice": _vm.completeChoice
-              }
-            })
-          : _vm._e()
+        _c("choice", {
+          on: {
+            "get-scene": _vm.getScene,
+            "complete-choice": _vm.completeChoice
+          }
+        })
       ],
       1
     )
@@ -43766,25 +43769,25 @@ var render = function() {
           "div",
           { staticClass: "msg-window", on: { click: _vm.changeScene } },
           [
-            _c("p", { staticClass: "name" }, [_vm._v(_vm._s(_vm.name))]),
+            _c("p", { staticClass: "name" }, [
+              _vm._v(_vm._s(_vm.messageObj.name))
+            ]),
             _vm._v(" "),
-            _vm.message
-              ? _c(
-                  "p",
-                  { staticClass: "message" },
-                  [
-                    _c("vue-typer", {
-                      attrs: {
-                        text: _vm.message,
-                        repeat: 0,
-                        "type-delay": _vm.delayTime
-                      },
-                      on: { completed: _vm.onCompleted }
-                    })
-                  ],
-                  1
-                )
-              : _vm._e(),
+            _c(
+              "p",
+              { staticClass: "message" },
+              [
+                _c("vue-typer", {
+                  attrs: {
+                    text: _vm.messageObj.content,
+                    repeat: 0,
+                    "type-delay": _vm.delayTime
+                  },
+                  on: { completed: _vm.onCompleted }
+                })
+              ],
+              1
+            ),
             _vm._v(" "),
             _c("i", {
               directives: [
@@ -43922,35 +43925,37 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "choiceWrapper" }, [
-      _c(
-        "div",
-        {
-          staticClass: "choiceBox",
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.choiced1($event)
-            }
-          }
-        },
-        [_vm._v(_vm._s(_vm.choice1.text))]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "choiceBox",
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.choiced2($event)
-            }
-          }
-        },
-        [_vm._v(_vm._s(_vm.choice2.text))]
-      )
-    ])
+    _vm.choice.isShow
+      ? _c("div", { staticClass: "choiceWrapper" }, [
+          _c(
+            "div",
+            {
+              staticClass: "choiceBox",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.choiced1($event)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.choice1.text))]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "choiceBox",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.choiced2($event)
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.choice2.text))]
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -61347,47 +61352,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
-      isShowChoice: false,
-      activeMotion: {
-        l1: {
-          type: "none"
-        },
-        l2: {
-          type: "none"
-        },
-        c: {
-          type: "none"
-        },
-        r1: {
-          type: "none"
-        },
-        r2: {
-          type: "none"
-        }
-      },
-      activeEffect: {
-        l1: {
-          type: "none"
-        },
-        l2: {
-          type: "none"
-        },
-        c: {
-          type: "none"
-        },
-        r1: {
-          type: "none"
-        },
-        r2: {
-          type: "none"
-        }
-      }
+    return {// isShowChoice: false,
+      // activeMotion: {
+      //     l1: { type: "none" },
+      //     l2: { type: "none" },
+      //     c: { type: "none" },
+      //     r1: { type: "none" },
+      //     r2: { type: "none" }
+      // },
+      // activeEffect: {
+      //     l1: { type: "none" },
+      //     l2: { type: "none" },
+      //     c: { type: "none" },
+      //     r1: { type: "none" },
+      //     r2: { type: "none" }
+      // }
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
     currentEventObj: "getEventObj",
-    charList: "getCharList"
+    npcList: "getNpcList"
   }), {
     modalBase: function modalBase() {
       return {
@@ -61396,7 +61380,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     }
   }),
-  methods: {
+  methods: _defineProperty({
     changeBg: function changeBg(place) {
       switch (place) {
         case "ホーム":
@@ -61441,11 +61425,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     getScene: function getScene(count) {
-      this.activeMotion.l1.type = "none";
-      this.activeMotion.l2.type = "none";
-      this.activeMotion.c.type = "none";
-      this.activeMotion.r1.type = "none";
-      this.activeMotion.r2.type = "none";
+      // this.activeMotion.l1.type = "none";
+      // this.activeMotion.l2.type = "none";
+      // this.activeMotion.c.type = "none";
+      // this.activeMotion.r1.type = "none";
+      // this.activeMotion.r2.type = "none";
       var currentEvent = this[this.currentEventObj];
 
       if (!Array.isArray(currentEvent)) {
@@ -61473,7 +61457,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var random = Math.floor(Math.random() * count);
       this.$store.commit("setEventObj", list[random]);
       this.$store.commit("setSceneCount", 0);
-      this.$store.commit("setCharName", "");
+      this.$store.commit("setTalkerName", "");
       this.setEvent({
         type: "msg",
         content: "――――――"
@@ -61502,9 +61486,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     selectEvent: function selectEvent(event) {
       this.$store.commit("setMessage", event.msg);
-      this.$store.commit("setChoice1", event.choice[0]);
-      this.$store.commit("setChoice2", event.choice[1]);
-      this.isShowChoice = true;
+      this.$store.commit("setChoice", {
+        flag: true,
+        type1: event.choice[0],
+        type2: event.choice[1]
+      }); // this.$store.commit("setChoice1", event.choice[0]);
+      // this.$store.commit("setChoice2", event.choice[1]);
+      // this.isShowChoice = true;
     },
     windowEvent: function windowEvent(event) {
       this[event.window] = true;
@@ -61517,7 +61505,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _char = null;
 
       if (name) {
-        _char = this.charList[name];
+        _char = this.npcList[name];
       } else {
         _char = {
           name: "",
@@ -61527,53 +61515,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       switch (pos) {
-        case "l1":
+        case "L1":
           this.$store.commit("setCharImgL1", _char.imgL);
           break;
 
-        case "l2":
+        case "L2":
           this.$store.commit("setCharImgL2", _char.imgL);
           break;
 
-        case "c":
+        case "C":
           this.$store.commit("setCharImgC", _char.imgL);
           break;
 
-        case "r1":
+        case "R1":
           this.$store.commit("setCharImgR1", _char.imgR);
           break;
 
-        case "r2":
+        case "R2":
           this.$store.commit("setCharImgR2", _char.imgR);
           break;
       }
     },
-    setSpeaker: function setSpeaker(name, pos) {
+    setTalker: function setTalker(name, pos) {
       this.downOpacity();
-      this.$store.commit("setCharName", name);
+      this.$store.commit("setTalkerName", name);
 
       switch (pos) {
-        case "l1":
+        case "L1":
           this.$store.commit("setOpacityL1", 1);
           this.$store.commit("setZIndexL1", 20);
           break;
 
-        case "l2":
+        case "L2":
           this.$store.commit("setOpacityL2", 1);
           this.$store.commit("setZIndexL2", 20);
           break;
 
-        case "c":
+        case "C":
           this.$store.commit("setOpacityC", 1);
           this.$store.commit("setZIndexC", 20);
           break;
 
-        case "r1":
+        case "R1":
           this.$store.commit("setOpacityR1", 1);
           this.$store.commit("setZIndexR1", 20);
           break;
 
-        case "r2":
+        case "R2":
           this.$store.commit("setOpacityR2", 1);
           this.$store.commit("setZIndexR2", 20);
           break;
@@ -61619,7 +61607,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     setEffect: function setEffect(target, effect) {
       this.activeEffect[target]["type"] = effect;
     }
-  }
+  }, "setMotion", function setMotion(target, flag, type) {
+    switch (target) {
+      case "C":
+        this.$store.commit("setMotionC", {
+          flag: flag,
+          type: type
+        });
+        break;
+
+      case "L1":
+        this.$store.commit("setMotionL1", {
+          flag: flag,
+          type: type
+        });
+        break;
+
+      case "L2":
+        this.$store.commit("setMotionL2", {
+          flag: flag,
+          type: type
+        });
+        break;
+
+      case "R1":
+        this.$store.commit("setMotionR1", {
+          flag: flag,
+          type: type
+        });
+        break;
+
+      case "R2":
+        this.$store.commit("setMotionR2", {
+          flag: flag,
+          type: type
+        });
+        break;
+    }
+  })
 });
 
 /***/ }),
@@ -62612,39 +62637,111 @@ var state = {
   sceneCount: 0,
   isNext: false,
   eventType: "",
-  message: "storeメッセージ",
-  choice1: "",
-  choice2: "",
-  charName: "",
-  charImgL1: {
-    path: "",
-    opacity: 1,
-    zIndex: 10,
-    effect: ""
+  // message: "storeメッセージ",
+  // choice1: "",
+  // choice2: "",
+  // talkerName: "",
+  message: {
+    name: " ",
+    content: " "
   },
-  charImgL2: {
-    path: "",
-    opacity: 1,
-    zIndex: 10,
-    effect: ""
+  choice: {
+    isShow: "",
+    type1: " ",
+    type2: " "
   },
-  charImgC: {
-    path: "",
-    opacity: 1,
-    zIndex: 10,
-    effect: ""
+  npc: {
+    L1: {
+      img: "",
+      opacity: 1,
+      zIndex: 10,
+      isMotion: false,
+      motion: "",
+      isEffect: false,
+      effect: ""
+    },
+    L2: {
+      img: "",
+      opacity: 1,
+      zIndex: 10,
+      isMotion: false,
+      motion: "",
+      isEffect: false,
+      effect: ""
+    },
+    C: {
+      img: "",
+      opacity: 1,
+      zIndex: 10,
+      isMotion: false,
+      motion: "",
+      isEffect: false,
+      effect: ""
+    },
+    R1: {
+      img: "",
+      opacity: 1,
+      zIndex: 10,
+      isMotion: false,
+      motion: "",
+      isEffect: false,
+      effect: ""
+    },
+    R2: {
+      img: "",
+      opacity: 1,
+      zIndex: 10,
+      isMotion: false,
+      motion: "",
+      isEffect: false,
+      effect: ""
+    }
   },
-  charImgR1: {
-    path: "",
-    opacity: 1,
-    zIndex: 10,
-    effect: ""
-  },
-  charImgR2: {
-    path: "",
-    opacity: 1,
-    zIndex: 10
-  },
+  // charImgL1: {
+  //     path: "",
+  //     opacity: 1,
+  //     zIndex: 10,
+  //     isMotion: false,
+  //     motion: "",
+  //     isEffect: false,
+  //     effect: ""
+  // },
+  // charImgL2: {
+  //     path: "",
+  //     opacity: 1,
+  //     zIndex: 10,
+  //     isMotion: false,
+  //     motion: "",
+  //     isEffect: false,
+  //     effect: ""
+  // },
+  // charImgC: {
+  //     path: "",
+  //     opacity: 1,
+  //     zIndex: 10,
+  //     isMotion: false,
+  //     motion: "",
+  //     isEffect: false,
+  //     effect: ""
+  // },
+  // charImgR1: {
+  //     path: "",
+  //     opacity: 1,
+  //     zIndex: 10,
+  //     isMotion: false,
+  //     motion: "",
+  //     isEffect: false,
+  //     effect: ""
+  // },
+  // charImgR2: {
+  //     path: "",
+  //     opacity: 1,
+  //     zIndex: 10,
+  //     isMotion: false,
+  //     motion: "",
+  //     isEffect: false,
+  //     effect: ""
+  // },
   bgImg: "",
   sound: {
     isPlay: false,
@@ -62652,7 +62749,7 @@ var state = {
     volume: 0.1
   },
   //立ち絵変更用のキャラデータオブジェクト
-  npc: {
+  npcList: {
     // sphere
     スフィア1: {
       name: "スフィア",
@@ -62808,33 +62905,42 @@ var getters = {
   getMessage: function getMessage(state) {
     return state.message;
   },
-  getChoice1: function getChoice1(state) {
-    return state.choice1;
+  getChoice: function getChoice(state) {
+    return state.choice;
   },
-  getChoice2: function getChoice2(state) {
-    return state.choice2;
+  // getMessage: state => {
+  //     return state.message;
+  // },
+  // getChoice1: state => {
+  //     return state.choice1;
+  // },
+  // getChoice2: state => {
+  //     return state.choice2;
+  // },
+  getNpcList: function getNpcList(state) {
+    return state.npcList;
   },
-  getCharList: function getCharList(state) {
+  // getCharName: state => {
+  //     return state.charName;
+  // },
+  getNpc: function getNpc(state) {
     return state.npc;
   },
-  getCharName: function getCharName(state) {
-    return state.charName;
-  },
-  getCharImgL1: function getCharImgL1(state) {
-    return state.charImgL1;
-  },
-  getCharImgL2: function getCharImgL2(state) {
-    return state.charImgL2;
-  },
-  getCharImgC: function getCharImgC(state) {
-    return state.charImgC;
-  },
-  getCharImgR1: function getCharImgR1(state) {
-    return state.charImgR1;
-  },
-  getCharImgR2: function getCharImgR2(state) {
-    return state.charImgR2;
-  },
+  // getCharImgL1: state => {
+  //     return state.charImgL1;
+  // },
+  // getCharImgL2: state => {
+  //     return state.charImgL2;
+  // },
+  // getCharImgC: state => {
+  //     return state.charImgC;
+  // },
+  // getCharImgR1: state => {
+  //     return state.charImgR1;
+  // },
+  // getCharImgR2: state => {
+  //     return state.charImgR2;
+  // },
   getSound: function getSound(state) {
     return state.sound;
   },
@@ -62859,81 +62965,160 @@ var mutations = {
     state.eventType = type;
   },
   setMessage: function setMessage(state, message) {
-    state.message = message;
+    state.message.content = message;
   },
-  setChoice1: function setChoice1(state, event) {
-    state.choice1 = event;
+  setTalkerName: function setTalkerName(state, name) {
+    state.message.name = name;
   },
-  setChoice2: function setChoice2(state, event) {
-    state.choice2 = event;
+  setChoice: function setChoice(state, choice) {
+    state.choice.isShow = choice.flag;
+    state.choice.type1 = choice.type1;
+    state.choice.type2 = choice.type2;
   },
-  setCharName: function setCharName(state, name) {
-    state.charName = name;
-  },
-  setCharImgL1: function setCharImgL1(state, imgPath) {
-    if (imgPath === "") {
-      state.charImgL1.path = "";
+  // setMessage(state, message) {
+  //     state.message = message;
+  // },
+  // setChoice1(state, event) {
+  //     state.choice1 = event;
+  // },
+  // setChoice2(state, event) {
+  //     state.choice2 = event;
+  // },
+  // setCharName(state, name) {
+  //     state.charName = name;
+  // },
+  setCharImgL1: function setCharImgL1(state, img) {
+    if (img === "") {
+      state.npc.L1.img = "";
     } else {
-      state.charImgL1.path = imgPath + ".png";
+      state.npc.L1.img = img + ".png";
     }
   },
-  setCharImgL2: function setCharImgL2(state, imgPath) {
-    if (imgPath === "") {
-      state.charImgL2.path = "";
+  setCharImgL2: function setCharImgL2(state, img) {
+    if (img === "") {
+      state.npc.L2.img = "";
     } else {
-      state.charImgL2.path = imgPath + ".png";
+      state.npc.L2.img = img + ".png";
     }
   },
-  setCharImgC: function setCharImgC(state, imgPath) {
-    if (imgPath === "") {
-      state.charImgC.path = "";
+  setCharImgC: function setCharImgC(state, img) {
+    if (img === "") {
+      state.npc.C.img = "";
     } else {
-      state.charImgC.path = imgPath + ".png";
+      state.npc.C.img = img + ".png";
     }
   },
-  setCharImgR1: function setCharImgR1(state, imgPath) {
-    if (imgPath === "") {
-      state.charImgR1.path = "";
+  setCharImgR1: function setCharImgR1(state, img) {
+    if (img === "") {
+      state.npc.R1.img = "";
     } else {
-      state.charImgR1.path = imgPath + ".png";
+      state.npc.R1.img = img + ".png";
     }
   },
-  setCharImgR2: function setCharImgR2(state, imgPath) {
-    if (imgPath === "") {
-      state.charImgR2.path = "";
+  setCharImgR2: function setCharImgR2(state, img) {
+    if (img === "") {
+      state.npc.R2.img = "";
     } else {
-      state.charImgR2.path = imgPath + ".png";
+      state.npc.R2.img = img + ".png";
     }
   },
+  // setCharImgL2(state, img) {
+  //     if (imgPath === "") {
+  //         state.charImgL2.path = "";
+  //     } else {
+  //         state.charImgL2.path = imgPath + ".png";
+  //     }
+  // },
+  // setCharImgC(state, imgPath) {
+  //     if (imgPath === "") {
+  //         state.charImgC.path = "";
+  //     } else {
+  //         state.charImgC.path = imgPath + ".png";
+  //     }
+  // },
+  // setCharImgR1(state, imgPath) {
+  //     if (imgPath === "") {
+  //         state.charImgR1.path = "";
+  //     } else {
+  //         state.charImgR1.path = imgPath + ".png";
+  //     }
+  // },
+  // setCharImgR2(state, imgPath) {
+  //     if (imgPath === "") {
+  //         state.charImgR2.path = "";
+  //     } else {
+  //         state.charImgR2.path = imgPath + ".png";
+  //     }
+  // },
   setOpacityL1: function setOpacityL1(state, opacity) {
-    state.charImgL1.opacity = opacity;
+    state.npc.L1.opacity = opacity;
   },
   setOpacityL2: function setOpacityL2(state, opacity) {
-    state.charImgL2.opacity = opacity;
+    state.npc.L2.opacity = opacity;
   },
   setOpacityC: function setOpacityC(state, opacity) {
-    state.charImgC.opacity = opacity;
+    state.npc.C.opacity = opacity;
   },
   setOpacityR1: function setOpacityR1(state, opacity) {
-    state.charImgR1.opacity = opacity;
+    state.npc.R1.opacity = opacity;
   },
   setOpacityR2: function setOpacityR2(state, opacity) {
-    state.charImgR2.opacity = opacity;
+    state.npc.R2.opacity = opacity;
   },
   setZIndexL1: function setZIndexL1(state, index) {
-    state.charImgL1.zIndex = index;
+    state.npc.L1.zIndex = index;
   },
   setZIndexL2: function setZIndexL2(state, index) {
-    state.charImgL2.zIndex = index;
+    state.npc.L2.zIndex = index;
   },
   setZIndexC: function setZIndexC(state, index) {
-    state.charImgC.zIndex = index;
+    state.npc.C.zIndex = index;
   },
   setZIndexR1: function setZIndexR1(state, index) {
-    state.charImgR1.zIndex = index;
+    state.npc.R1.zIndex = index;
   },
   setZIndexR2: function setZIndexR2(state, index) {
-    state.charImgR2.zIndex = index;
+    state.npc.R2.zIndex = index;
+  },
+  setMotionL1: function setMotionL1(state, motion) {
+    state.npc.L1.isMotion = motion.flag;
+    state.npc.L1.motion = motion.type;
+  },
+  setMotionL2: function setMotionL2(state, motion) {
+    state.npc.L2.isMotion = motion.flag;
+    state.npc.L2.motion = motion.type;
+  },
+  setMotionC: function setMotionC(state, motion) {
+    state.npc.C.isMotion = motion.flag;
+    state.npc.C.motion = motion.type;
+  },
+  setMotionR1: function setMotionR1(state, motion) {
+    state.npc.R1.isMotion = motion.flag;
+    state.npc.R1.motion = motion.type;
+  },
+  setMotionR2: function setMotionR2(state, motion) {
+    state.npc.R2.isMotion = motion.flag;
+    state.npc.R2.motion = motion.type;
+  },
+  setEffectL1: function setEffectL1(state, effect) {
+    state.npc.L1.isEffect = effect.flag;
+    state.npc.L1.effect = effect.type;
+  },
+  setEffectL2: function setEffectL2(state, effect) {
+    state.npc.L2.isEffect = effect.flag;
+    state.npc.L2.effect = effect.type;
+  },
+  setEffectC: function setEffectC(state, effect) {
+    state.npc.C.isEffect = effect.flag;
+    state.npc.C.effect = effect.type;
+  },
+  setEffectR1: function setEffectR1(state, effect) {
+    state.npc.R1.isEffect = effect.flag;
+    state.npc.R1.effect = effect.type;
+  },
+  setEffectR2: function setEffectR2(state, effect) {
+    state.npc.R2.isEffect = effect.flag;
+    state.npc.R2.effect = effect.type;
   },
   setSoundFlag: function setSoundFlag(state, flag) {
     state.sound.isPlay = flag;

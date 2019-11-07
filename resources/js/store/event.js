@@ -3,39 +3,111 @@ const state = {
     sceneCount: 0,
     isNext: false,
     eventType: "",
-    message: "storeメッセージ",
-    choice1: "",
-    choice2: "",
-    charName: "",
-    charImgL1: {
-        path: "",
-        opacity: 1,
-        zIndex: 10,
-        effect: ""
+    // message: "storeメッセージ",
+    // choice1: "",
+    // choice2: "",
+    // talkerName: "",
+    message: {
+        name: " ",
+        content: " "
     },
-    charImgL2: {
-        path: "",
-        opacity: 1,
-        zIndex: 10,
-        effect: ""
+    choice: {
+        isShow: "",
+        type1: " ",
+        type2: " "
     },
-    charImgC: {
-        path: "",
-        opacity: 1,
-        zIndex: 10,
-        effect: ""
+    npc: {
+        L1: {
+            img: "",
+            opacity: 1,
+            zIndex: 10,
+            isMotion: false,
+            motion: "",
+            isEffect: false,
+            effect: ""
+        },
+        L2: {
+            img: "",
+            opacity: 1,
+            zIndex: 10,
+            isMotion: false,
+            motion: "",
+            isEffect: false,
+            effect: ""
+        },
+        C: {
+            img: "",
+            opacity: 1,
+            zIndex: 10,
+            isMotion: false,
+            motion: "",
+            isEffect: false,
+            effect: ""
+        },
+        R1: {
+            img: "",
+            opacity: 1,
+            zIndex: 10,
+            isMotion: false,
+            motion: "",
+            isEffect: false,
+            effect: ""
+        },
+        R2: {
+            img: "",
+            opacity: 1,
+            zIndex: 10,
+            isMotion: false,
+            motion: "",
+            isEffect: false,
+            effect: ""
+        }
     },
-    charImgR1: {
-        path: "",
-        opacity: 1,
-        zIndex: 10,
-        effect: ""
-    },
-    charImgR2: {
-        path: "",
-        opacity: 1,
-        zIndex: 10
-    },
+    // charImgL1: {
+    //     path: "",
+    //     opacity: 1,
+    //     zIndex: 10,
+    //     isMotion: false,
+    //     motion: "",
+    //     isEffect: false,
+    //     effect: ""
+    // },
+    // charImgL2: {
+    //     path: "",
+    //     opacity: 1,
+    //     zIndex: 10,
+    //     isMotion: false,
+    //     motion: "",
+    //     isEffect: false,
+    //     effect: ""
+    // },
+    // charImgC: {
+    //     path: "",
+    //     opacity: 1,
+    //     zIndex: 10,
+    //     isMotion: false,
+    //     motion: "",
+    //     isEffect: false,
+    //     effect: ""
+    // },
+    // charImgR1: {
+    //     path: "",
+    //     opacity: 1,
+    //     zIndex: 10,
+    //     isMotion: false,
+    //     motion: "",
+    //     isEffect: false,
+    //     effect: ""
+    // },
+    // charImgR2: {
+    //     path: "",
+    //     opacity: 1,
+    //     zIndex: 10,
+    //     isMotion: false,
+    //     motion: "",
+    //     isEffect: false,
+    //     effect: ""
+    // },
     bgImg: "",
 
     sound: {
@@ -45,7 +117,7 @@ const state = {
     },
 
     //立ち絵変更用のキャラデータオブジェクト
-    npc: {
+    npcList: {
         // sphere
         スフィア1: {
             name: "スフィア",
@@ -201,33 +273,42 @@ const getters = {
     getMessage: state => {
         return state.message;
     },
-    getChoice1: state => {
-        return state.choice1;
+    getChoice: state => {
+        return state.choice;
     },
-    getChoice2: state => {
-        return state.choice2;
+    // getMessage: state => {
+    //     return state.message;
+    // },
+    // getChoice1: state => {
+    //     return state.choice1;
+    // },
+    // getChoice2: state => {
+    //     return state.choice2;
+    // },
+    getNpcList: state => {
+        return state.npcList;
     },
-    getCharList: state => {
+    // getCharName: state => {
+    //     return state.charName;
+    // },
+    getNpc: state => {
         return state.npc;
     },
-    getCharName: state => {
-        return state.charName;
-    },
-    getCharImgL1: state => {
-        return state.charImgL1;
-    },
-    getCharImgL2: state => {
-        return state.charImgL2;
-    },
-    getCharImgC: state => {
-        return state.charImgC;
-    },
-    getCharImgR1: state => {
-        return state.charImgR1;
-    },
-    getCharImgR2: state => {
-        return state.charImgR2;
-    },
+    // getCharImgL1: state => {
+    //     return state.charImgL1;
+    // },
+    // getCharImgL2: state => {
+    //     return state.charImgL2;
+    // },
+    // getCharImgC: state => {
+    //     return state.charImgC;
+    // },
+    // getCharImgR1: state => {
+    //     return state.charImgR1;
+    // },
+    // getCharImgR2: state => {
+    //     return state.charImgR2;
+    // },
     getSound: state => {
         return state.sound;
     },
@@ -252,82 +333,164 @@ const mutations = {
         state.eventType = type;
     },
     setMessage(state, message) {
-        state.message = message;
+        state.message.content = message;
     },
-    setChoice1(state, event) {
-        state.choice1 = event;
+    setTalkerName(state, name) {
+        state.message.name = name;
     },
-    setChoice2(state, event) {
-        state.choice2 = event;
+    setChoice(state, choice) {
+        state.choice.isShow = choice.flag;
+        state.choice.type1 = choice.type1;
+        state.choice.type2 = choice.type2;
     },
-    setCharName(state, name) {
-        state.charName = name;
-    },
-    setCharImgL1(state, imgPath) {
-        if (imgPath === "") {
-            state.charImgL1.path = "";
+    // setMessage(state, message) {
+    //     state.message = message;
+    // },
+    // setChoice1(state, event) {
+    //     state.choice1 = event;
+    // },
+    // setChoice2(state, event) {
+    //     state.choice2 = event;
+    // },
+    // setCharName(state, name) {
+    //     state.charName = name;
+    // },
+    setCharImgL1(state, img) {
+        if (img === "") {
+            state.npc.L1.img = "";
         } else {
-            state.charImgL1.path = imgPath + ".png";
+            state.npc.L1.img = img + ".png";
         }
     },
-    setCharImgL2(state, imgPath) {
-        if (imgPath === "") {
-            state.charImgL2.path = "";
+    setCharImgL2(state, img) {
+        if (img === "") {
+            state.npc.L2.img = "";
         } else {
-            state.charImgL2.path = imgPath + ".png";
+            state.npc.L2.img = img + ".png";
         }
     },
-    setCharImgC(state, imgPath) {
-        if (imgPath === "") {
-            state.charImgC.path = "";
+    setCharImgC(state, img) {
+        if (img === "") {
+            state.npc.C.img = "";
         } else {
-            state.charImgC.path = imgPath + ".png";
+            state.npc.C.img = img + ".png";
         }
     },
-    setCharImgR1(state, imgPath) {
-        if (imgPath === "") {
-            state.charImgR1.path = "";
+    setCharImgR1(state, img) {
+        if (img === "") {
+            state.npc.R1.img = "";
         } else {
-            state.charImgR1.path = imgPath + ".png";
+            state.npc.R1.img = img + ".png";
         }
     },
-    setCharImgR2(state, imgPath) {
-        if (imgPath === "") {
-            state.charImgR2.path = "";
+    setCharImgR2(state, img) {
+        if (img === "") {
+            state.npc.R2.img = "";
         } else {
-            state.charImgR2.path = imgPath + ".png";
+            state.npc.R2.img = img + ".png";
         }
     },
+    // setCharImgL2(state, img) {
+    //     if (imgPath === "") {
+    //         state.charImgL2.path = "";
+    //     } else {
+    //         state.charImgL2.path = imgPath + ".png";
+    //     }
+    // },
+    // setCharImgC(state, imgPath) {
+    //     if (imgPath === "") {
+    //         state.charImgC.path = "";
+    //     } else {
+    //         state.charImgC.path = imgPath + ".png";
+    //     }
+    // },
+    // setCharImgR1(state, imgPath) {
+    //     if (imgPath === "") {
+    //         state.charImgR1.path = "";
+    //     } else {
+    //         state.charImgR1.path = imgPath + ".png";
+    //     }
+    // },
+    // setCharImgR2(state, imgPath) {
+    //     if (imgPath === "") {
+    //         state.charImgR2.path = "";
+    //     } else {
+    //         state.charImgR2.path = imgPath + ".png";
+    //     }
+    // },
     setOpacityL1(state, opacity) {
-        state.charImgL1.opacity = opacity;
+        state.npc.L1.opacity = opacity;
     },
     setOpacityL2(state, opacity) {
-        state.charImgL2.opacity = opacity;
+        state.npc.L2.opacity = opacity;
     },
     setOpacityC(state, opacity) {
-        state.charImgC.opacity = opacity;
+        state.npc.C.opacity = opacity;
     },
     setOpacityR1(state, opacity) {
-        state.charImgR1.opacity = opacity;
+        state.npc.R1.opacity = opacity;
     },
     setOpacityR2(state, opacity) {
-        state.charImgR2.opacity = opacity;
+        state.npc.R2.opacity = opacity;
     },
     setZIndexL1(state, index) {
-        state.charImgL1.zIndex = index;
+        state.npc.L1.zIndex = index;
     },
     setZIndexL2(state, index) {
-        state.charImgL2.zIndex = index;
+        state.npc.L2.zIndex = index;
     },
     setZIndexC(state, index) {
-        state.charImgC.zIndex = index;
+        state.npc.C.zIndex = index;
     },
     setZIndexR1(state, index) {
-        state.charImgR1.zIndex = index;
+        state.npc.R1.zIndex = index;
     },
     setZIndexR2(state, index) {
-        state.charImgR2.zIndex = index;
+        state.npc.R2.zIndex = index;
     },
+
+    setMotionL1(state, motion) {
+        state.npc.L1.isMotion = motion.flag;
+        state.npc.L1.motion = motion.type;
+    },
+    setMotionL2(state, motion) {
+        state.npc.L2.isMotion = motion.flag;
+        state.npc.L2.motion = motion.type;
+    },
+    setMotionC(state, motion) {
+        state.npc.C.isMotion = motion.flag;
+        state.npc.C.motion = motion.type;
+    },
+    setMotionR1(state, motion) {
+        state.npc.R1.isMotion = motion.flag;
+        state.npc.R1.motion = motion.type;
+    },
+    setMotionR2(state, motion) {
+        state.npc.R2.isMotion = motion.flag;
+        state.npc.R2.motion = motion.type;
+    },
+
+    setEffectL1(state, effect) {
+        state.npc.L1.isEffect = effect.flag;
+        state.npc.L1.effect = effect.type;
+    },
+    setEffectL2(state, effect) {
+        state.npc.L2.isEffect = effect.flag;
+        state.npc.L2.effect = effect.type;
+    },
+    setEffectC(state, effect) {
+        state.npc.C.isEffect = effect.flag;
+        state.npc.C.effect = effect.type;
+    },
+    setEffectR1(state, effect) {
+        state.npc.R1.isEffect = effect.flag;
+        state.npc.R1.effect = effect.type;
+    },
+    setEffectR2(state, effect) {
+        state.npc.R2.isEffect = effect.flag;
+        state.npc.R2.effect = effect.type;
+    },
+
     setSoundFlag(state, flag) {
         state.sound.isPlay = flag;
     },

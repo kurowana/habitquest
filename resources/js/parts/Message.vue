@@ -1,9 +1,14 @@
 <template>
   <div v-if="isShowMsg">
     <div class="msg-window" @click="changeScene">
-      <p class="name">{{name}}</p>
-      <p class="message" v-if="message">
-        <vue-typer :text="message" :repeat="0" :type-delay="delayTime" @completed="onCompleted"></vue-typer>
+      <p class="name">{{messageObj.name}}</p>
+      <p class="message">
+        <vue-typer
+          :text="messageObj.content"
+          :repeat="0"
+          :type-delay="delayTime"
+          @completed="onCompleted"
+        ></vue-typer>
       </p>
       <i v-show="NextFlag" class="fas fa-angle-double-down msgIcon"></i>
     </div>
@@ -32,9 +37,9 @@ export default {
       sceneCount: "getSceneCount",
       NextFlag: "getNextFlag",
       eventType: "getEventType",
-      name: "getCharName",
-      storeMessage: "getMessage",
-      charList: "getCharList"
+      // name: "getCharName",
+      messageObj: "getMessage",
+      npcList: "getNpcList"
     }),
     message: function() {
       if (this.storeMessage !== "") {
