@@ -46,86 +46,87 @@ export default {
   },
   computed: {
     ...mapGetters({
-      imgL1: "getCharImgL1",
-      imgL2: "getCharImgL2",
-      imgC: "getCharImgC",
-      imgR1: "getCharImgR1",
-      imgR2: "getCharImgR2"
+      // imgL1: "getCharImgL1",
+      // imgL2: "getCharImgL2",
+      // imgC: "getCharImgC",
+      // imgR1: "getCharImgR1",
+      // imgR2: "getCharImgR2"
+      npc: "getNpc"
     }),
     showCharL1: function() {
-      return this.imgL1.path;
+      return this.npc.L1.img;
     },
     showCharL2: function() {
-      return this.imgL2.path;
+      return this.npc.L2.img;
     },
     showCharC: function() {
-      return this.imgC.path;
+      return this.npc.C.img;
     },
     showCharR1: function() {
-      return this.imgR1.path;
+      return this.npc.R1.img;
     },
     showCharR2: function() {
-      return this.imgR2.path;
+      return this.npc.R2.img;
     },
     styleL1: function() {
       return {
-        opacity: this.imgL1.opacity,
-        zIndex: this.imgL1.zIndex
+        opacity: this.npc.L1.opacity,
+        zIndex: this.npc.L1.zIndex
       };
     },
     styleL2: function() {
       return {
-        opacity: this.imgL2.opacity,
-        zIndex: this.imgL2.zIndex
+        opacity: this.npc.L2.opacity,
+        zIndex: this.npc.L2.zIndex
       };
     },
     styleC: function() {
       return {
-        opacity: this.imgC.opacity,
-        zIndex: this.imgC.zIndex
+        opacity: this.npc.C.opacity,
+        zIndex: this.npc.C.zIndex
       };
     },
     styleR1: function() {
       return {
-        opacity: this.imgR1.opacity,
-        zIndex: this.imgR1.zIndex
+        opacity: this.npc.R1.opacity,
+        zIndex: this.npc.R1.zIndex
       };
     },
     styleR2: function() {
       return {
-        opacity: this.imgR2.opacity,
-        zIndex: this.imgR2.zIndex
+        opacity: this.npc.R2.opacity,
+        zIndex: this.npc.R2.zIndex
       };
     },
     motionL1: function() {
-      return this.changeMotion(this.activeMotion.l1);
+      return this.changeMotion(this.npc.L1.motion);
     },
     motionL2: function() {
-      return this.changeMotion(this.activeMotion.l2);
+      return this.changeMotion(this.npc.L2.motion);
     },
     motionC: function() {
-      return this.changeMotion(this.activeMotion.c);
+      return this.changeMotion(this.npc.C.motion);
     },
     motionR1: function() {
-      return this.changeMotion(this.activeMotion.r1);
+      return this.changeMotion(this.npc.R1.motion);
     },
     motionR2: function() {
-      return this.changeMotion(this.activeMotion.r2);
+      return this.changeMotion(this.npc.R2.motion);
     },
     effectL1: function() {
-      return this.changeEffect(this.activeEffect.l1);
+      return this.changeEffect(this.npc.L1.motion);
     },
     effectL2: function() {
-      return this.changeEffect(this.activeEffect.l2);
+      return this.changeEffect(this.npc.L2.motion);
     },
     effectC: function() {
-      return this.changeEffect(this.activeEffect.c);
+      return this.changeEffect(this.npc.C.motion);
     },
     effectR1: function() {
-      return this.changeEffect(this.activeEffect.r1);
+      return this.changeEffect(this.npc.R1.motion);
     },
     effectR2: function() {
-      return this.changeEffect(this.activeEffect.r2);
+      return this.changeEffect(this.npc.R2.motion);
     }
   },
   methods: {

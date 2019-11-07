@@ -51,7 +51,8 @@
       <i class="fas fa-heart"></i>
     </div>
     <message @get-scene="getScene"></message>
-    <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
+    <!-- <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img> -->
+    <char-img></char-img>
     <!-- <char-img></char-img> -->
   </div>
 </template>
@@ -113,6 +114,10 @@ export default {
     this.changeBg("ホーム");
     this.clearChar();
     this.showChar("スフィア2", "c");
+    this.showChar("スフィア2", "r1");
+    this.showChar("スフィア2", "r2");
+    this.showChar("スフィア2", "l1");
+    this.showChar("スフィア2", "l2");
   },
   methods: {}
 };

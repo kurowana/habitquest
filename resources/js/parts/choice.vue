@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="choiceWrapper">
+    <div v-if="choice.isShow" class="choiceWrapper">
       <div class="choiceBox" @click.prevent="choiced1">{{choice1.text}}</div>
       <div class="choiceBox" @click.prevent="choiced2">{{choice2.text}}</div>
     </div>
@@ -18,8 +18,7 @@ export default {
   computed: {
     ...mapGetters({
       sceneCount: "getSceneCount",
-      choice1: "getChoice1",
-      choice2: "getChoice2"
+      choice: "getChoice"
     })
   },
   methods: {

@@ -105,7 +105,7 @@
         <button @click.prevent="registUser">登録</button>
       </modal>
 
-      <choice v-if="isShowChoice" @get-scene="getScene" @complete-choice="completeChoice"></choice>
+      <choice @get-scene="getScene" @complete-choice="completeChoice"></choice>
     </div>
   </div>
 </template>
