@@ -4,8 +4,9 @@
       {{this.eventObj.length}}
       {{this.sceneCount}}
       {{this.NextFlag}}
+      {{npc}}
       <message @get-scene="getScene"></message>
-      <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
+      <char-img></char-img>
       <!--音楽再生確認モーダル-->
       <modal v-if="isSoundCheckModal">
         <div>
@@ -154,23 +155,23 @@ export default {
 
       eventObj: [
         () => {
-          this.showChar("スフィア1", "l1");
-          this.showChar("ヴァルカン", "l2");
-          this.showChar("フリート", "c");
-          this.showChar("アイザック", "r1");
-          this.showChar("アーサー", "r2");
+          this.showChar("スフィア1", "L1");
+          this.showChar("ヴァルカン", "L2");
+          this.showChar("フリート", "C");
+          this.showChar("アイザック", "R1");
+          this.showChar("アーサー", "R2");
           this.setEvent({ type: "msg", content: "メッセージのテスト" });
         },
         () => {
           this.showChar("エイル", "r2");
           this.setEvent({ type: "msg", content: "メッセージのテスト2" });
-          this.setSpeaker("エイル", "r2");
+          this.setTalker("エイル", "r2");
         },
         () => {
           this.setMotion("l1", "anime1");
           this.setMotion("r1", "anime2");
           this.setEvent({ type: "msg", content: "メッセージのテスト3" });
-          this.setSpeaker("スフィア", "l1");
+          this.setTalker("スフィア", "l1");
         },
         () => {
           this.setEvent({ type: "msg", content: "アニメ2" });
@@ -267,7 +268,8 @@ export default {
       user: "getUser",
       userImg: "getUserImg",
       sceneCount: "getSceneCount",
-      NextFlag: "getNextFlag"
+      NextFlag: "getNextFlag",
+      npc: "getNpc"
     })
   },
   created: function() {

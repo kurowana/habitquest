@@ -18,10 +18,8 @@
       <div>モンスターMP:{{monster.mp}}</div>
     </div>
     <message @get-scene="getScene"></message>
-    <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
-    <!-- <monster-img :battle-effect="battleEffect"></monster-img> -->
+    <char-img></char-img>
     <monster-img></monster-img>
-    <!-- <battle-effect v-if="true" :battle-effect="battleEffect"></battle-effect> -->
   </div>
 </template>
 

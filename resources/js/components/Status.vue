@@ -31,7 +31,7 @@
       </div>
     </div>
     <message @get-scene="getScene"></message>
-    <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
+    <char-img></char-img>
   </div>
 </template>
 

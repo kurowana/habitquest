@@ -11,6 +11,7 @@ import maker from "./components/Maker.vue";
 import dungeon from "./components/Dungeon.vue";
 
 import MainSidebar from "./parts/MainSidebar.vue";
+import subSidebar from "./parts/SubSidebar.vue";
 
 import title from "./events/title.vue";
 import opening from "./events/opening.vue";
@@ -23,7 +24,8 @@ const routes = [
         name: "title",
         components: {
             default: title,
-            sidebar: MainSidebar
+            sidebar: MainSidebar,
+            subSidebar: subSidebar
         }
     },
     {
@@ -31,7 +33,8 @@ const routes = [
         name: "home",
         components: {
             default: home,
-            sidebar: MainSidebar
+            sidebar: MainSidebar,
+            subSidebar: subSidebar
         }
     },
     {
@@ -39,7 +42,8 @@ const routes = [
         name: "habit",
         components: {
             default: habit,
-            sidebar: MainSidebar
+            sidebar: MainSidebar,
+            subSidebar: subSidebar
         }
     },
     {
@@ -47,7 +51,8 @@ const routes = [
         name: "status",
         components: {
             default: status,
-            sidebar: MainSidebar
+            sidebar: MainSidebar,
+            subSidebar: subSidebar
         }
     },
     {
@@ -55,7 +60,8 @@ const routes = [
         name: "communication",
         components: {
             default: communication,
-            sidebar: MainSidebar
+            sidebar: MainSidebar,
+            subSidebar: subSidebar
         }
     },
     {
@@ -63,7 +69,8 @@ const routes = [
         name: "collection",
         components: {
             default: collection,
-            sidebar: MainSidebar
+            sidebar: MainSidebar,
+            subSidebar: subSidebar
         }
     },
     {
@@ -71,7 +78,8 @@ const routes = [
         name: "maker",
         components: {
             default: maker,
-            sidebar: MainSidebar
+            sidebar: MainSidebar,
+            subSidebar: subSidebar
         }
     },
     {
@@ -79,7 +87,8 @@ const routes = [
         name: "dungeon",
         components: {
             default: dungeon,
-            sidebar: MainSidebar
+            sidebar: MainSidebar,
+            subSidebar: subSidebar
         }
     },
 
@@ -89,7 +98,8 @@ const routes = [
         name: "opening",
         components: {
             default: opening,
-            sidebar: MainSidebar
+            sidebar: MainSidebar,
+            subSidebar: subSidebar
         },
         beforeEnter: (to, from, next) => {
             if (from.name === "title") {

@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="content">
+      <router-view name="subSidebar"></router-view>
       <router-view class="game-view" :class="bgImg"></router-view>
       <router-view name="sidebar"></router-view>
     </div>
@@ -140,7 +141,7 @@ export default {
 <style scoped>
 .content {
   display: flex;
-  width: 1000px;
+  width: 1200px;
 }
 
 .game-view {

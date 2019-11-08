@@ -48,6 +48,7 @@ export default {
 .sidebar {
   width: 200px;
   background: url("../../../public/img/ui/sidebar.png") repeat;
+  z-index: 100;
 }
 
 .btn {

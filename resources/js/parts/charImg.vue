@@ -38,7 +38,13 @@ import { mapGetters } from "vuex";
 
 export default {
   data: function() {
-    return {};
+    return {
+      motionTypeL1: "none",
+      motionTypeL2: "none",
+      motionTypeC: "none",
+      motionTypeR1: "none",
+      motionTypeR2: "none"
+    };
   },
   props: {
     activeMotion: Object,
@@ -46,11 +52,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      // imgL1: "getCharImgL1",
-      // imgL2: "getCharImgL2",
-      // imgC: "getCharImgC",
-      // imgR1: "getCharImgR1",
-      // imgR2: "getCharImgR2"
       npc: "getNpc"
     }),
     showCharL1: function() {
@@ -99,19 +100,19 @@ export default {
       };
     },
     motionL1: function() {
-      return this.changeMotion(this.npc.L1.motion);
+      return this.npc.L1.motion;
     },
     motionL2: function() {
-      return this.changeMotion(this.npc.L2.motion);
+      return this.npc.L2.motion;
     },
     motionC: function() {
-      return this.changeMotion(this.npc.C.motion);
+      return this.npc.C.motion;
     },
     motionR1: function() {
-      return this.changeMotion(this.npc.R1.motion);
+      return this.npc.R1.motion;
     },
     motionR2: function() {
-      return this.changeMotion(this.npc.R2.motion);
+      return this.npc.R2.motion;
     },
     effectL1: function() {
       return this.changeEffect(this.npc.L1.motion);
@@ -129,21 +130,24 @@ export default {
       return this.changeEffect(this.npc.R2.motion);
     }
   },
+  mounted: function() {
+    // const unwatchL1 = this.$store.subscribe((mutation, state) => {
+    //   if (mutation.type === "setMotionL1") {
+    //     console.log(this.npc.L1);
+    //     this.changeMotionL1(this.npc.L1);
+    //   }
+    // });
+  },
   methods: {
-    changeMotion: function(motion) {
-      console.log(motion);
-      switch (motion.type) {
-        case "anime1":
-          return "effect";
-          break;
-        case "anime2":
-          return "effect2";
-          break;
-        default:
-          return;
+    changeMotionL1(npcObj) {
+      console.log(npcObj.motion);
+      if (npcObj.isMotion) {
+        this.motionTypeL1 = npcObj.motion;
+      } else {
+        npcObj.motionTypeL1 = "none";
       }
     },
-    changeEffect: function() {}
+    changeEffect() {}
   }
 };
 </script>
@@ -157,7 +161,7 @@ export default {
 .img-l1 {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: -5%;
 }
 .img-l1 img {
   width: 320px;
@@ -190,7 +194,7 @@ export default {
 .img-r1 {
   position: absolute;
   bottom: 0;
-  left: 60%;
+  left: 65%;
 }
 .img-r1 img {
   width: 320px;
