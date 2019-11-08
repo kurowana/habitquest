@@ -3,7 +3,7 @@
     <main-header></main-header>
     <h1>交流イベント</h1>
     <message @get-scene="getScene"></message>
-    <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img>
+    <char-img></char-img>
   </div>
 </template>
 

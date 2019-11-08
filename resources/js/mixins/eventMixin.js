@@ -145,7 +145,7 @@ export default {
             } else {
                 char = { name: "", imgL: "", imgR: "" };
             }
-            switch (pos) {
+            switch (pos.toUpperCase()) {
                 case "L1":
                     this.$store.commit("setCharImgL1", char.imgL);
                     break;
@@ -166,7 +166,7 @@ export default {
         setTalker: function(name, pos) {
             this.downOpacity();
             this.$store.commit("setTalkerName", name);
-            switch (pos) {
+            switch (pos.toUpperCase()) {
                 case "L1":
                     this.$store.commit("setOpacityL1", 1);
                     this.$store.commit("setZIndexL1", 20);
@@ -224,8 +224,48 @@ export default {
             this.$store.commit("setZIndexR1", 10);
             this.$store.commit("setZIndexR2", 10);
         },
-        setMotion(target, effect) {
-            this.activeMotion[target]["type"] = effect;
+        // setMotion(target, effect) {
+        //     switch (target.upperCase()) {
+        //         case "L1":
+        //             this.$store.commit("setMotionL1", {
+        //                 flag: true,
+        //                 type: effect
+        //             });
+        //             break;
+        //         case "L2":
+        //             this.$store.commit("setMotionL2", {
+        //                 flag: true,
+        //                 type: effect
+        //             });
+        //             break;
+        //         case "C":
+        //             this.$store.commit("setMotionC", {
+        //                 flag: true,
+        //                 type: effect
+        //             });
+        //             break;
+        //         case "R1":
+        //             this.$store.commit("setMotionR1", {
+        //                 flag: true,
+        //                 type: effect
+        //             });
+        //             break;
+        //         case "R2":
+        //             this.$store.commit("setMotionR2", {
+        //                 flag: true,
+        //                 type: effect
+        //             });
+        //             break;
+        //         default:
+        //             console.log("default");
+        //     }
+        // },
+        resetMotion() {
+            this.$store.commit("setMotionL1", { flag: false, type: "" });
+            this.$store.commit("setMotionL2", { flag: false, type: "" });
+            this.$store.commit("setMotionC", { flag: false, type: "" });
+            this.$store.commit("setMotionR1", { flag: false, type: "" });
+            this.$store.commit("setMotionR2", { flag: false, type: "" });
         },
         setEffect(target, effect) {
             this.activeEffect[target]["type"] = effect;

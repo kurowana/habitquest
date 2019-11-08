@@ -51,9 +51,7 @@
       <i class="fas fa-heart"></i>
     </div>
     <message @get-scene="getScene"></message>
-    <!-- <char-img :active-motion="activeMotion" :active-effect="activeEffect"></char-img> -->
     <char-img></char-img>
-    <!-- <char-img></char-img> -->
   </div>
 </template>
 
@@ -81,9 +79,11 @@ export default {
       eventObj: [
         () => {
           this.setEvent({ type: "msg", content: "ホームメッセージの1" });
+          this.setMotion("L1", true, "effect");
         },
         () => {
           this.setEvent({ type: "msg", content: "ホームメッセージの2" });
+          this.setMotion("L1", true, "none");
         },
         () => {
           this.randomEvent(this.eventObjList);
@@ -107,18 +107,20 @@ export default {
       user: "getUser",
       userImg: "getUserImg",
       sceneCount: "getSceneCount",
-      clickableFlag: "getClickableFlag"
+      clickableFlag: "getClickableFlag",
+      npc: "getNpc"
     })
   },
   created: function() {
     this.changeBg("ホーム");
     this.clearChar();
-    this.showChar("スフィア2", "c");
+    this.showChar("スフィア2", "C");
     this.showChar("スフィア2", "r1");
-    this.showChar("スフィア2", "r2");
-    this.showChar("スフィア2", "l1");
-    this.showChar("スフィア2", "l2");
+    this.showChar("スフィア2", "R2");
+    this.showChar("スフィア2", "L1");
+    this.showChar("スフィア2", "L2");
   },
+  mounted: function() {},
   methods: {}
 };
 </script>
