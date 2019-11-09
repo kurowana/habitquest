@@ -48,7 +48,7 @@ export default {
 
         userAttack: async function(user, monster) {
             this.showEffect("monster", "剣");
-            this.$store.commit("setBattleMotionType", "anime1");
+            this.$store.commit("setBattleMotionType", "effect");
             await this.attackPhase(user, monster).then(damage => {
                 const message = damage + "damage!!";
                 this.showDamage("monster", message);
@@ -56,7 +56,7 @@ export default {
             await this.sleep(500);
             this.$store.commit("setBattleMotionType", "none");
             if (user.mp > 10) {
-                this.$store.commit("setBattleMotionType", "anime1");
+                this.$store.commit("setBattleMotionType", "effect");
                 this.showEffect("monster", "火");
                 this.magicPhase(user, monster).then(damage => {
                     const message = damage + "damage!!";
@@ -75,14 +75,14 @@ export default {
             });
             await this.sleep(500);
             if (monster.mp > 10) {
-                // this.$store.commit("setBattleMotionType", "motion3");
+                this.$store.commit("setBattleMotionType", "motion3");
                 this.showEffect("user", "闇");
                 this.magicPhase(monster, user).then(damage => {
                     const message = damage + "damage!!";
                     this.showDamage("user", message);
                 });
                 await this.sleep(500);
-                this.$store.commit("setBattleMotionType", "none");
+                this.$store.commit("setBattleMotionType", "motion3");
             }
         },
 

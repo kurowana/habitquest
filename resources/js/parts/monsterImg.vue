@@ -3,7 +3,7 @@
     <div style="font-size:5em;">{{this.battleMotion.type}}</div>
     <transition name="fade">
       <div v-if="showMonster" class="img-monster">
-        <img :src="showMonster" :class="activeBattleMotion" />
+        <img :src="showMonster" :class="battleMotion.type" />
         <!-- <img :src="showMonster" /> -->
       </div>
     </transition>
@@ -60,18 +60,18 @@ export default {
         left: this.effectLeft + "px",
         top: this.effectTop + "px"
       };
-    },
-    activeBattleMotion: function() {
-      console.log(this.motionType);
-      return this.motionType;
     }
+    // activeBattleMotion: function() {
+    //   console.log(this.motionType);
+    //   return this.motionType;
+    // }
   },
   mounted: function() {
-    const unwatch = this.$store.subscribe((mutation, state) => {
-      if (mutation.type === "setBattleMotionType") {
-        this.changeMotion(this.battleMotion.type);
-      }
-    });
+    // const unwatch = this.$store.subscribe((mutation, state) => {
+    //   if (mutation.type === "setBattleMotionType") {
+    //     this.changeMotion(this.battleMotion.type);
+    //   }
+    // });
   },
   watch: {},
   methods: {

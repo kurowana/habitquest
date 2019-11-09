@@ -21,46 +21,46 @@ const state = {
             img: "",
             opacity: 1,
             zIndex: 10,
-            isMotion: false,
-            motion: "",
-            isEffect: false,
-            effect: ""
+            // isMotion: false,
+            motion: "none",
+            // isEffect: false,
+            effect: "none"
         },
         L2: {
             img: "",
             opacity: 1,
             zIndex: 10,
-            isMotion: false,
-            motion: "",
-            isEffect: false,
-            effect: ""
+            // isMotion: false,
+            motion: "none",
+            // isEffect: false,
+            effect: "none"
         },
         C: {
             img: "",
             opacity: 1,
             zIndex: 10,
-            isMotion: false,
-            motion: "",
-            isEffect: false,
-            effect: ""
+            // isMotion: false,
+            motion: "none",
+            // isEffect: false,
+            effect: "none"
         },
         R1: {
             img: "",
             opacity: 1,
             zIndex: 10,
-            isMotion: false,
-            motion: "",
-            isEffect: false,
-            effect: ""
+            // isMotion: false,
+            motion: "none",
+            // isEffect: false,
+            effect: "none"
         },
         R2: {
             img: "",
             opacity: 1,
             zIndex: 10,
-            isMotion: false,
-            motion: "",
-            isEffect: false,
-            effect: ""
+            // isMotion: false,
+            motion: "none",
+            // isEffect: false,
+            effect: "none"
         }
     },
     // charImgL1: {
@@ -450,24 +450,24 @@ const mutations = {
     },
 
     setMotionL1(state, motion) {
-        state.npc.L1.isMotion = motion.flag;
-        state.npc.L1.motion = motion.type;
+        // state.npc.L1.isMotion = motion.flag;
+        state.npc.L1.motion = motion;
     },
     setMotionL2(state, motion) {
-        state.npc.L2.isMotion = motion.flag;
-        state.npc.L2.motion = motion.type;
+        // state.npc.L2.isMotion = motion.flag;
+        state.npc.L2.motion = motion;
     },
     setMotionC(state, motion) {
-        state.npc.C.isMotion = motion.flag;
-        state.npc.C.motion = motion.type;
+        // state.npc.C.isMotion = motion.flag;
+        state.npc.C.motion = motion;
     },
     setMotionR1(state, motion) {
-        state.npc.R1.isMotion = motion.flag;
-        state.npc.R1.motion = motion.type;
+        // state.npc.R1.isMotion = motion.flag;
+        state.npc.R1.motion = motion;
     },
     setMotionR2(state, motion) {
-        state.npc.R2.isMotion = motion.flag;
-        state.npc.R2.motion = motion.type;
+        // state.npc.R2.isMotion = motion.flag;
+        state.npc.R2.motion = motion;
     },
 
     setEffectL1(state, effect) {

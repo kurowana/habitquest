@@ -270,37 +270,22 @@ export default {
         setEffect(target, effect) {
             this.activeEffect[target]["type"] = effect;
         },
-        setMotion: function(target, flag, type) {
+        setMotion: function(target, motion) {
             switch (target) {
                 case "C":
-                    this.$store.commit("setMotionC", {
-                        flag: flag,
-                        type: type
-                    });
+                    this.$store.commit("setMotionC", motion);
                     break;
                 case "L1":
-                    this.$store.commit("setMotionL1", {
-                        flag: flag,
-                        type: type
-                    });
+                    this.$store.commit("setMotionL1", motion);
                     break;
                 case "L2":
-                    this.$store.commit("setMotionL2", {
-                        flag: flag,
-                        type: type
-                    });
+                    this.$store.commit("setMotionL2", motion);
                     break;
                 case "R1":
-                    this.$store.commit("setMotionR1", {
-                        flag: flag,
-                        type: type
-                    });
+                    this.$store.commit("setMotionR1", motion);
                     break;
                 case "R2":
-                    this.$store.commit("setMotionR2", {
-                        flag: flag,
-                        type: type
-                    });
+                    this.$store.commit("setMotionR2", motion);
                     break;
             }
         }
