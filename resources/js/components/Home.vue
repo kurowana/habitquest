@@ -79,11 +79,11 @@ export default {
       eventObj: [
         () => {
           this.setEvent({ type: "msg", content: "ホームメッセージの1" });
-          this.setMotion("L1", true, "effect");
+          this.setMotion("L1", "effect");
         },
         () => {
           this.setEvent({ type: "msg", content: "ホームメッセージの2" });
-          this.setMotion("L1", true, "none");
+          this.setMotion("L1", "none");
         },
         () => {
           this.randomEvent(this.eventObjList);

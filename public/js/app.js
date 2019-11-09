@@ -2942,14 +2942,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           content: "ホームメッセージの1"
         });
 
-        _this.setMotion("L1", true, "effect");
+        _this.setMotion("L1", "effect");
       }, function () {
         _this.setEvent({
           type: "msg",
           content: "ホームメッセージの2"
         });
 
-        _this.setMotion("L1", true, "none");
+        _this.setMotion("L1", "none");
       }, function () {
         _this.randomEvent(_this.eventObjList);
       }],
@@ -4409,20 +4409,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         left: this.effectLeft + "px",
         top: this.effectTop + "px"
       };
-    },
-    activeBattleMotion: function activeBattleMotion() {
-      console.log(this.motionType);
-      return this.motionType;
-    }
-  }),
-  mounted: function mounted() {
-    var _this = this;
+    } // activeBattleMotion: function() {
+    //   console.log(this.motionType);
+    //   return this.motionType;
+    // }
 
-    var unwatch = this.$store.subscribe(function (mutation, state) {
-      if (mutation.type === "setBattleMotionType") {
-        _this.changeMotion(_this.battleMotion.type);
-      }
-    });
+  }),
+  mounted: function mounted() {// const unwatch = this.$store.subscribe((mutation, state) => {
+    //   if (mutation.type === "setBattleMotionType") {
+    //     this.changeMotion(this.battleMotion.type);
+    //   }
+    // });
   },
   watch: {},
   methods: {
@@ -44101,7 +44098,7 @@ var render = function() {
         _vm.showMonster
           ? _c("div", { staticClass: "img-monster" }, [
               _c("img", {
-                class: _vm.activeBattleMotion,
+                class: _vm.battleMotion.type,
                 attrs: { src: _vm.showMonster }
               })
             ])
@@ -61088,7 +61085,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 this.showEffect("monster", "剣");
-                this.$store.commit("setBattleMotionType", "anime1");
+                this.$store.commit("setBattleMotionType", "effect");
                 _context.next = 4;
                 return this.attackPhase(user, monster).then(function (damage) {
                   var message = damage + "damage!!";
@@ -61108,7 +61105,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   break;
                 }
 
-                this.$store.commit("setBattleMotionType", "anime1");
+                this.$store.commit("setBattleMotionType", "effect");
                 this.showEffect("monster", "火");
                 this.magicPhase(user, monster).then(function (damage) {
                   var message = damage + "damage!!";
@@ -61160,24 +61157,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 6:
                 if (!(monster.mp > 10)) {
-                  _context2.next = 12;
+                  _context2.next = 13;
                   break;
                 }
 
-                // this.$store.commit("setBattleMotionType", "motion3");
+                this.$store.commit("setBattleMotionType", "motion3");
                 this.showEffect("user", "闇");
                 this.magicPhase(monster, user).then(function (damage) {
                   var message = damage + "damage!!";
 
                   _this2.showDamage("user", message);
                 });
-                _context2.next = 11;
+                _context2.next = 12;
                 return this.sleep(500);
 
-              case 11:
-                this.$store.commit("setBattleMotionType", "none");
-
               case 12:
+                this.$store.commit("setBattleMotionType", "motion3");
+
+              case 13:
               case "end":
                 return _context2.stop();
             }
@@ -61742,41 +61739,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     setEffect: function setEffect(target, effect) {
       this.activeEffect[target]["type"] = effect;
     },
-    setMotion: function setMotion(target, flag, type) {
+    setMotion: function setMotion(target, motion) {
       switch (target) {
         case "C":
-          this.$store.commit("setMotionC", {
-            flag: flag,
-            type: type
-          });
+          this.$store.commit("setMotionC", motion);
           break;
 
         case "L1":
-          this.$store.commit("setMotionL1", {
-            flag: flag,
-            type: type
-          });
+          this.$store.commit("setMotionL1", motion);
           break;
 
         case "L2":
-          this.$store.commit("setMotionL2", {
-            flag: flag,
-            type: type
-          });
+          this.$store.commit("setMotionL2", motion);
           break;
 
         case "R1":
-          this.$store.commit("setMotionR1", {
-            flag: flag,
-            type: type
-          });
+          this.$store.commit("setMotionR1", motion);
           break;
 
         case "R2":
-          this.$store.commit("setMotionR2", {
-            flag: flag,
-            type: type
-          });
+          this.$store.commit("setMotionR2", motion);
           break;
       }
     }
@@ -62889,46 +62871,46 @@ var state = {
       img: "",
       opacity: 1,
       zIndex: 10,
-      isMotion: false,
-      motion: "",
-      isEffect: false,
-      effect: ""
+      // isMotion: false,
+      motion: "none",
+      // isEffect: false,
+      effect: "none"
     },
     L2: {
       img: "",
       opacity: 1,
       zIndex: 10,
-      isMotion: false,
-      motion: "",
-      isEffect: false,
-      effect: ""
+      // isMotion: false,
+      motion: "none",
+      // isEffect: false,
+      effect: "none"
     },
     C: {
       img: "",
       opacity: 1,
       zIndex: 10,
-      isMotion: false,
-      motion: "",
-      isEffect: false,
-      effect: ""
+      // isMotion: false,
+      motion: "none",
+      // isEffect: false,
+      effect: "none"
     },
     R1: {
       img: "",
       opacity: 1,
       zIndex: 10,
-      isMotion: false,
-      motion: "",
-      isEffect: false,
-      effect: ""
+      // isMotion: false,
+      motion: "none",
+      // isEffect: false,
+      effect: "none"
     },
     R2: {
       img: "",
       opacity: 1,
       zIndex: 10,
-      isMotion: false,
-      motion: "",
-      isEffect: false,
-      effect: ""
+      // isMotion: false,
+      motion: "none",
+      // isEffect: false,
+      effect: "none"
     }
   },
   // charImgL1: {
@@ -63315,24 +63297,24 @@ var mutations = {
     state.npc.R2.zIndex = index;
   },
   setMotionL1: function setMotionL1(state, motion) {
-    state.npc.L1.isMotion = motion.flag;
-    state.npc.L1.motion = motion.type;
+    // state.npc.L1.isMotion = motion.flag;
+    state.npc.L1.motion = motion;
   },
   setMotionL2: function setMotionL2(state, motion) {
-    state.npc.L2.isMotion = motion.flag;
-    state.npc.L2.motion = motion.type;
+    // state.npc.L2.isMotion = motion.flag;
+    state.npc.L2.motion = motion;
   },
   setMotionC: function setMotionC(state, motion) {
-    state.npc.C.isMotion = motion.flag;
-    state.npc.C.motion = motion.type;
+    // state.npc.C.isMotion = motion.flag;
+    state.npc.C.motion = motion;
   },
   setMotionR1: function setMotionR1(state, motion) {
-    state.npc.R1.isMotion = motion.flag;
-    state.npc.R1.motion = motion.type;
+    // state.npc.R1.isMotion = motion.flag;
+    state.npc.R1.motion = motion;
   },
   setMotionR2: function setMotionR2(state, motion) {
-    state.npc.R2.isMotion = motion.flag;
-    state.npc.R2.motion = motion.type;
+    // state.npc.R2.isMotion = motion.flag;
+    state.npc.R2.motion = motion;
   },
   setEffectL1: function setEffectL1(state, effect) {
     state.npc.L1.isEffect = effect.flag;
