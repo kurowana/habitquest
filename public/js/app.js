@@ -4164,15 +4164,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
-      motionTypeL1: "none",
-      motionTypeL2: "none",
-      motionTypeC: "none",
-      motionTypeR1: "none",
-      motionTypeR2: "none"
+    return {// motionTypeL1: "none",
+      // motionTypeL2: "none",
+      // motionTypeC: "none",
+      // motionTypeR1: "none",
+      // motionTypeR2: "none"
     };
   },
   props: {
@@ -4243,20 +4243,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.npc.R2.motion;
     },
     effectL1: function effectL1() {
-      return this.changeEffect(this.npc.L1.motion);
-    },
-    effectL2: function effectL2() {
-      return this.changeEffect(this.npc.L2.motion);
-    },
-    effectC: function effectC() {
-      return this.changeEffect(this.npc.C.motion);
-    },
-    effectR1: function effectR1() {
-      return this.changeEffect(this.npc.R1.motion);
-    },
-    effectR2: function effectR2() {
-      return this.changeEffect(this.npc.R2.motion);
-    }
+      return "fab fa-fort-awesome"; // "fas fa-flag"
+      // "fas fa-flask"
+    } // effectL1: function() {
+    //   return this.changeEffect(this.npc.L1.motion);
+    // },
+    // effectL2: function() {
+    //   return this.changeEffect(this.npc.L2.motion);
+    // },
+    // effectC: function() {
+    //   return this.changeEffect(this.npc.C.motion);
+    // },
+    // effectR1: function() {
+    //   return this.changeEffect(this.npc.R1.motion);
+    // },
+    // effectR2: function() {
+    //   return this.changeEffect(this.npc.R2.motion);
+    // }
+
   }),
   mounted: function mounted() {// const unwatchL1 = this.$store.subscribe((mutation, state) => {
     //   if (mutation.type === "setMotionL1") {
@@ -4265,17 +4269,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //   }
     // });
   },
-  methods: {
-    changeMotionL1: function changeMotionL1(npcObj) {
-      console.log(npcObj.motion);
-
-      if (npcObj.isMotion) {
-        this.motionTypeL1 = npcObj.motion;
-      } else {
-        npcObj.motionTypeL1 = "none";
-      }
-    },
-    changeEffect: function changeEffect() {}
+  methods: {// changeMotionL1(npcObj) {
+    //   console.log(npcObj.motion);
+    //   if (npcObj.isMotion) {
+    //     this.motionTypeL1 = npcObj.motion;
+    //   } else {
+    //     npcObj.motionTypeL1 = "none";
+    //   }
+    // },
+    // changeEffect() {}
   }
 });
 
@@ -4350,7 +4352,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -19323,7 +19324,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 65%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\n.effect[data-v-6ca2f060] {\r\n  -webkit-animation: anime1-data-v-6ca2f060 0.2s ease-in-out 0s infinite;\r\n          animation: anime1-data-v-6ca2f060 0.2s ease-in-out 0s infinite;\n}\n.effect2[data-v-6ca2f060] {\r\n  -webkit-animation: anime2-data-v-6ca2f060 0.2s ease-in-out 0s infinite;\r\n          animation: anime2-data-v-6ca2f060 0.2s ease-in-out 0s infinite;\n}\n.fa-bolt[data-v-6ca2f060] {\r\n  position: absolute;\r\n  top: 10px;\r\n  left: 220px;\r\n  color: orange;\r\n  font-size: 50px;\r\n  z-index: 50;\r\n  -webkit-animation: furiko-data-v-6ca2f060 0.5s ease 0s infinite;\r\n          animation: furiko-data-v-6ca2f060 0.5s ease 0s infinite;\n}\n@-webkit-keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@-webkit-keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 65%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\n.effectBaseL1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  top: 150px;\r\n  left: 150px;\r\n  font-size: 40px;\r\n  z-index: 50;\n}\r\n\r\n/* .effect {\r\n  animation: anime1 0.2s ease-in-out 0s infinite;\r\n}\r\n\r\n.effect2 {\r\n  animation: anime2 0.2s ease-in-out 0s infinite;\r\n}\r\n.fa-bolt {\r\n  position: absolute;\r\n  top: 10px;\r\n  left: 220px;\r\n  color: orange;\r\n  font-size: 50px;\r\n  z-index: 50;\r\n  animation: furiko 0.5s ease 0s infinite;\r\n} */\n@-webkit-keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@-webkit-keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -43911,12 +43912,7 @@ var render = function() {
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharL1
           ? _c("div", { staticClass: "img-l1", style: _vm.styleL1 }, [
-              _c("img", {
-                class: _vm.motionL1,
-                attrs: { src: _vm.showCharL1 }
-              }),
-              _vm._v(" "),
-              _c("i", { class: _vm.effectL1 })
+              _c("img", { class: _vm.motionL1, attrs: { src: _vm.showCharL1 } })
             ])
           : _vm._e()
       ]),
@@ -43924,12 +43920,7 @@ var render = function() {
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharL2
           ? _c("div", { staticClass: "img-l2", style: _vm.styleL2 }, [
-              _c("img", {
-                class: _vm.motionL2,
-                attrs: { src: _vm.showCharL2 }
-              }),
-              _vm._v(" "),
-              _c("i", { class: _vm.effectL2 })
+              _c("img", { class: _vm.motionL2, attrs: { src: _vm.showCharL2 } })
             ])
           : _vm._e()
       ]),
@@ -43941,9 +43932,7 @@ var render = function() {
                 class: _vm.motionC,
                 style: _vm.styleC,
                 attrs: { src: _vm.showCharC }
-              }),
-              _vm._v(" "),
-              _c("i", { class: _vm.effectC })
+              })
             ])
           : _vm._e()
       ]),
@@ -43955,9 +43944,7 @@ var render = function() {
                 class: _vm.motionR1,
                 style: _vm.styleR1,
                 attrs: { src: _vm.showCharR1 }
-              }),
-              _vm._v(" "),
-              _c("i", { class: _vm.effectR1 })
+              })
             ])
           : _vm._e()
       ]),
@@ -43969,12 +43956,12 @@ var render = function() {
                 class: _vm.motionR2,
                 style: _vm.styleR2,
                 attrs: { src: _vm.showCharR2 }
-              }),
-              _vm._v(" "),
-              _c("i", { class: _vm.effectR2 })
+              })
             ])
           : _vm._e()
-      ])
+      ]),
+      _vm._v(" "),
+      _c("i", { staticClass: "effectBaseL1", class: _vm.effectL1 })
     ],
     1
   )
