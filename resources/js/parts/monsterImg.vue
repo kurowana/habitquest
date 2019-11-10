@@ -4,7 +4,6 @@
     <transition name="fade">
       <div v-if="showMonster" class="img-monster">
         <img :src="showMonster" :class="battleMotion.type" />
-        <!-- <img :src="showMonster" /> -->
       </div>
     </transition>
     <transition name="fade">

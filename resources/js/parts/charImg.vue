@@ -3,33 +3,34 @@
     <transition name="fade">
       <div v-if="showCharL1" class="img-l1" :style="styleL1">
         <img :class="motionL1" :src="showCharL1" />
-        <i :class="effectL1"></i>
+        <!-- <i :class="effectL1"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharL2" class="img-l2" :style="styleL2">
         <img :class="motionL2" :src="showCharL2" />
-        <i :class="effectL2"></i>
+        <!-- <i :class="effectL2"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharC" class="img-c">
         <img :class="motionC" :src="showCharC" :style="styleC" />
-        <i :class="effectC"></i>
+        <!-- <i :class="effectC"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharR1" class="img-r1">
         <img :class="motionR1" :src="showCharR1" :style="styleR1" />
-        <i :class="effectR1"></i>
+        <!-- <i :class="effectR1"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharR2" class="img-r2">
         <img :class="motionR2" :src="showCharR2" :style="styleR2" />
-        <i :class="effectR2"></i>
+        <!-- <i :class="effectR2"></i> -->
       </div>
     </transition>
+    <i :class="effectL1" class="effectBaseL1"></i>
   </div>
 </template>
 
@@ -39,11 +40,11 @@ import { mapGetters } from "vuex";
 export default {
   data: function() {
     return {
-      motionTypeL1: "none",
-      motionTypeL2: "none",
-      motionTypeC: "none",
-      motionTypeR1: "none",
-      motionTypeR2: "none"
+      // motionTypeL1: "none",
+      // motionTypeL2: "none",
+      // motionTypeC: "none",
+      // motionTypeR1: "none",
+      // motionTypeR2: "none"
     };
   },
   props: {
@@ -115,20 +116,25 @@ export default {
       return this.npc.R2.motion;
     },
     effectL1: function() {
-      return this.changeEffect(this.npc.L1.motion);
-    },
-    effectL2: function() {
-      return this.changeEffect(this.npc.L2.motion);
-    },
-    effectC: function() {
-      return this.changeEffect(this.npc.C.motion);
-    },
-    effectR1: function() {
-      return this.changeEffect(this.npc.R1.motion);
-    },
-    effectR2: function() {
-      return this.changeEffect(this.npc.R2.motion);
+      return "fab fa-fort-awesome";
+      // "fas fa-flag"
+      // "fas fa-flask"
     }
+    // effectL1: function() {
+    //   return this.changeEffect(this.npc.L1.motion);
+    // },
+    // effectL2: function() {
+    //   return this.changeEffect(this.npc.L2.motion);
+    // },
+    // effectC: function() {
+    //   return this.changeEffect(this.npc.C.motion);
+    // },
+    // effectR1: function() {
+    //   return this.changeEffect(this.npc.R1.motion);
+    // },
+    // effectR2: function() {
+    //   return this.changeEffect(this.npc.R2.motion);
+    // }
   },
   mounted: function() {
     // const unwatchL1 = this.$store.subscribe((mutation, state) => {
@@ -139,15 +145,15 @@ export default {
     // });
   },
   methods: {
-    changeMotionL1(npcObj) {
-      console.log(npcObj.motion);
-      if (npcObj.isMotion) {
-        this.motionTypeL1 = npcObj.motion;
-      } else {
-        npcObj.motionTypeL1 = "none";
-      }
-    },
-    changeEffect() {}
+    // changeMotionL1(npcObj) {
+    //   console.log(npcObj.motion);
+    //   if (npcObj.isMotion) {
+    //     this.motionTypeL1 = npcObj.motion;
+    //   } else {
+    //     npcObj.motionTypeL1 = "none";
+    //   }
+    // },
+    // changeEffect() {}
   }
 };
 </script>
@@ -221,7 +227,16 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-.effect {
+
+.effectBaseL1 {
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  font-size: 40px;
+  z-index: 50;
+}
+
+/* .effect {
   animation: anime1 0.2s ease-in-out 0s infinite;
 }
 
@@ -236,7 +251,7 @@ export default {
   font-size: 50px;
   z-index: 50;
   animation: furiko 0.5s ease 0s infinite;
-}
+} */
 
 @keyframes furiko {
   0% {
