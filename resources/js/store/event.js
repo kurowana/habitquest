@@ -63,6 +63,7 @@ const state = {
             effect: "none"
         }
     },
+
     // charImgL1: {
     //     path: "",
     //     opacity: 1,
@@ -471,24 +472,24 @@ const mutations = {
     },
 
     setEffectL1(state, effect) {
-        state.npc.L1.isEffect = effect.flag;
-        state.npc.L1.effect = effect.type;
+        // state.npc.L1.isEffect = effect.flag;
+        state.npc.L1.effect = effect;
     },
     setEffectL2(state, effect) {
-        state.npc.L2.isEffect = effect.flag;
-        state.npc.L2.effect = effect.type;
+        // state.npc.L2.isEffect = effect.flag;
+        state.npc.L2.effect = effect;
     },
     setEffectC(state, effect) {
-        state.npc.C.isEffect = effect.flag;
-        state.npc.C.effect = effect.type;
+        // state.npc.C.isEffect = effect.flag;
+        state.npc.C.effect = effect;
     },
     setEffectR1(state, effect) {
-        state.npc.R1.isEffect = effect.flag;
-        state.npc.R1.effect = effect.type;
+        // state.npc.R1.isEffect = effect.flag;
+        state.npc.R1.effect = effect;
     },
     setEffectR2(state, effect) {
-        state.npc.R2.isEffect = effect.flag;
-        state.npc.R2.effect = effect.type;
+        // state.npc.R2.isEffect = effect.flag;
+        state.npc.R2.effect = effect;
     },
 
     setSoundFlag(state, flag) {
