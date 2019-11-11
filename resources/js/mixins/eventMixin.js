@@ -268,10 +268,36 @@ export default {
             this.$store.commit("setMotionR2", { flag: false, type: "" });
         },
         setEffect(target, effect) {
-            this.activeEffect[target]["type"] = effect;
+            // this.activeEffect[target]["type"] = effect;
+            const effectClass = this.selectEffectClass(effect);
+            switch (target.toUpperCase()) {
+                case "C":
+                    this.$store.commit("setEffectC", effectClass);
+                    break;
+                case "L1":
+                    this.$store.commit("setEffectL1", effectClass);
+                    break;
+                case "L2":
+                    this.$store.commit("setEffectL2", effectClass);
+                    break;
+                case "R1":
+                    this.$store.commit("setEffectR1", effectClass);
+                    break;
+                case "R2":
+                    this.$store.commit("setEffectR2", effectClass);
+                    break;
+            }
+        },
+        selectEffectClass: function(motion) {
+            switch (motion) {
+                case "angry":
+                    return "fas fa-angry furiko";
+                default:
+                    return "none";
+            }
         },
         setMotion: function(target, motion) {
-            switch (target) {
+            switch (target.toUpperCase()) {
                 case "C":
                     this.$store.commit("setMotionC", motion);
                     break;

@@ -80,10 +80,12 @@ export default {
         () => {
           this.setEvent({ type: "msg", content: "ホームメッセージの1" });
           this.setMotion("L1", "effect");
+          this.setEffect("R1", "angry");
         },
         () => {
           this.setEvent({ type: "msg", content: "ホームメッセージの2" });
           this.setMotion("L1", "none");
+          this.setEffect("R1", "none");
         },
         () => {
           this.randomEvent(this.eventObjList);
@@ -114,11 +116,11 @@ export default {
   created: function() {
     this.changeBg("ホーム");
     this.clearChar();
-    this.showChar("スフィア2", "C");
-    this.showChar("スフィア2", "r1");
-    this.showChar("スフィア2", "R2");
-    this.showChar("スフィア2", "L1");
+    this.showChar("ナタ", "L1");
     this.showChar("スフィア2", "L2");
+    this.showChar("スフィア1", "C");
+    this.showChar("スフィア2", "R1");
+    this.showChar("スフィア2", "R2");
   },
   mounted: function() {},
   methods: {}

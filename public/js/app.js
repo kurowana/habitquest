@@ -2943,6 +2943,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
 
         _this.setMotion("L1", "effect");
+
+        _this.setEffect("R1", "angry");
       }, function () {
         _this.setEvent({
           type: "msg",
@@ -2950,6 +2952,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
 
         _this.setMotion("L1", "none");
+
+        _this.setEffect("R1", "none");
       }, function () {
         _this.randomEvent(_this.eventObjList);
       }],
@@ -2978,11 +2982,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.changeBg("ホーム");
     this.clearChar();
-    this.showChar("スフィア2", "C");
-    this.showChar("スフィア2", "r1");
-    this.showChar("スフィア2", "R2");
-    this.showChar("スフィア2", "L1");
+    this.showChar("ナタ", "L1");
     this.showChar("スフィア2", "L2");
+    this.showChar("スフィア1", "C");
+    this.showChar("スフィア2", "R1");
+    this.showChar("スフィア2", "R2");
   },
   mounted: function mounted() {},
   methods: {}
@@ -4165,6 +4169,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4243,24 +4251,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.npc.R2.motion;
     },
     effectL1: function effectL1() {
-      return "fab fa-fort-awesome"; // "fas fa-flag"
-      // "fas fa-flask"
-    } // effectL1: function() {
-    //   return this.changeEffect(this.npc.L1.motion);
-    // },
-    // effectL2: function() {
-    //   return this.changeEffect(this.npc.L2.motion);
-    // },
-    // effectC: function() {
-    //   return this.changeEffect(this.npc.C.motion);
-    // },
-    // effectR1: function() {
-    //   return this.changeEffect(this.npc.R1.motion);
-    // },
-    // effectR2: function() {
-    //   return this.changeEffect(this.npc.R2.motion);
-    // }
-
+      return this.npc.L1.effect;
+    },
+    effectL2: function effectL2() {
+      return this.npc.L2.effect;
+    },
+    effectC: function effectC() {
+      return this.npc.C.effect;
+    },
+    effectR1: function effectR1() {
+      return this.npc.R1.effect;
+    },
+    effectR2: function effectR2() {
+      return this.npc.R2.effect;
+    }
   }),
   mounted: function mounted() {// const unwatchL1 = this.$store.subscribe((mutation, state) => {
     //   if (mutation.type === "setMotionL1") {
@@ -19324,7 +19328,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 65%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\n.effectBaseL1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  top: 150px;\r\n  left: 150px;\r\n  font-size: 40px;\r\n  z-index: 50;\n}\r\n\r\n/* .effect {\r\n  animation: anime1 0.2s ease-in-out 0s infinite;\r\n}\r\n\r\n.effect2 {\r\n  animation: anime2 0.2s ease-in-out 0s infinite;\r\n}\r\n.fa-bolt {\r\n  position: absolute;\r\n  top: 10px;\r\n  left: 220px;\r\n  color: orange;\r\n  font-size: 50px;\r\n  z-index: 50;\r\n  animation: furiko 0.5s ease 0s infinite;\r\n} */\n@-webkit-keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n50% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\n}\n100% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\n}\n}\n@-webkit-keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 65%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\n.effect[data-v-6ca2f060] {\r\n  -webkit-animation: anime1-data-v-6ca2f060 0.5s linear 0s infinite;\r\n          animation: anime1-data-v-6ca2f060 0.5s linear 0s infinite;\n}\n.effectBase[data-v-6ca2f060] {\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 100px;\r\n  font-size: 40px;\r\n  z-index: 50;\n}\n.furiko[data-v-6ca2f060] {\r\n  -webkit-animation: furiko-data-v-6ca2f060 0.5s ease-in-out 0s infinite alternate;\r\n          animation: furiko-data-v-6ca2f060 0.5s ease-in-out 0s infinite alternate;\n}\n@-webkit-keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n100% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n}\n@keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n100% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n}\n@-webkit-keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -43912,6 +43916,8 @@ var render = function() {
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharL1
           ? _c("div", { staticClass: "img-l1", style: _vm.styleL1 }, [
+              _c("i", { staticClass: "effectBase", class: _vm.effectL1 }),
+              _vm._v(" "),
               _c("img", { class: _vm.motionL1, attrs: { src: _vm.showCharL1 } })
             ])
           : _vm._e()
@@ -43920,6 +43926,8 @@ var render = function() {
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharL2
           ? _c("div", { staticClass: "img-l2", style: _vm.styleL2 }, [
+              _c("i", { staticClass: "effectBase", class: _vm.effectL2 }),
+              _vm._v(" "),
               _c("img", { class: _vm.motionL2, attrs: { src: _vm.showCharL2 } })
             ])
           : _vm._e()
@@ -43928,6 +43936,8 @@ var render = function() {
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharC
           ? _c("div", { staticClass: "img-c" }, [
+              _c("i", { staticClass: "effectBase", class: _vm.effectC }),
+              _vm._v(" "),
               _c("img", {
                 class: _vm.motionC,
                 style: _vm.styleC,
@@ -43940,6 +43950,8 @@ var render = function() {
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharR1
           ? _c("div", { staticClass: "img-r1" }, [
+              _c("i", { staticClass: "effectBase", class: _vm.effectR1 }),
+              _vm._v(" "),
               _c("img", {
                 class: _vm.motionR1,
                 style: _vm.styleR1,
@@ -43952,6 +43964,8 @@ var render = function() {
       _c("transition", { attrs: { name: "fade" } }, [
         _vm.showCharR2
           ? _c("div", { staticClass: "img-r2" }, [
+              _c("i", { staticClass: "effectBase", class: _vm.effectR2 }),
+              _vm._v(" "),
               _c("img", {
                 class: _vm.motionR2,
                 style: _vm.styleR2,
@@ -43959,9 +43973,7 @@ var render = function() {
               })
             ])
           : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("i", { staticClass: "effectBaseL1", class: _vm.effectL1 })
+      ])
     ],
     1
   )
@@ -61724,10 +61736,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     setEffect: function setEffect(target, effect) {
-      this.activeEffect[target]["type"] = effect;
+      // this.activeEffect[target]["type"] = effect;
+      var effectClass = this.selectEffectClass(effect);
+
+      switch (target.toUpperCase()) {
+        case "C":
+          this.$store.commit("setEffectC", effectClass);
+          break;
+
+        case "L1":
+          this.$store.commit("setEffectL1", effectClass);
+          break;
+
+        case "L2":
+          this.$store.commit("setEffectL2", effectClass);
+          break;
+
+        case "R1":
+          this.$store.commit("setEffectR1", effectClass);
+          break;
+
+        case "R2":
+          this.$store.commit("setEffectR2", effectClass);
+          break;
+      }
+    },
+    selectEffectClass: function selectEffectClass(motion) {
+      switch (motion) {
+        case "angry":
+          return "fas fa-angry furiko";
+
+        default:
+          return "none";
+      }
     },
     setMotion: function setMotion(target, motion) {
-      switch (target) {
+      switch (target.toUpperCase()) {
         case "C":
           this.$store.commit("setMotionC", motion);
           break;
@@ -63304,24 +63348,24 @@ var mutations = {
     state.npc.R2.motion = motion;
   },
   setEffectL1: function setEffectL1(state, effect) {
-    state.npc.L1.isEffect = effect.flag;
-    state.npc.L1.effect = effect.type;
+    // state.npc.L1.isEffect = effect.flag;
+    state.npc.L1.effect = effect;
   },
   setEffectL2: function setEffectL2(state, effect) {
-    state.npc.L2.isEffect = effect.flag;
-    state.npc.L2.effect = effect.type;
+    // state.npc.L2.isEffect = effect.flag;
+    state.npc.L2.effect = effect;
   },
   setEffectC: function setEffectC(state, effect) {
-    state.npc.C.isEffect = effect.flag;
-    state.npc.C.effect = effect.type;
+    // state.npc.C.isEffect = effect.flag;
+    state.npc.C.effect = effect;
   },
   setEffectR1: function setEffectR1(state, effect) {
-    state.npc.R1.isEffect = effect.flag;
-    state.npc.R1.effect = effect.type;
+    // state.npc.R1.isEffect = effect.flag;
+    state.npc.R1.effect = effect;
   },
   setEffectR2: function setEffectR2(state, effect) {
-    state.npc.R2.isEffect = effect.flag;
-    state.npc.R2.effect = effect.type;
+    // state.npc.R2.isEffect = effect.flag;
+    state.npc.R2.effect = effect;
   },
   setSoundFlag: function setSoundFlag(state, flag) {
     state.sound.isPlay = flag;

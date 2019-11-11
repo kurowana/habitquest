@@ -2,35 +2,39 @@
   <div class="img-view">
     <transition name="fade">
       <div v-if="showCharL1" class="img-l1" :style="styleL1">
+        <i :class="effectL1" class="effectBase"></i>
         <img :class="motionL1" :src="showCharL1" />
         <!-- <i :class="effectL1"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharL2" class="img-l2" :style="styleL2">
+        <i :class="effectL2" class="effectBase"></i>
         <img :class="motionL2" :src="showCharL2" />
         <!-- <i :class="effectL2"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharC" class="img-c">
+        <i :class="effectC" class="effectBase"></i>
         <img :class="motionC" :src="showCharC" :style="styleC" />
         <!-- <i :class="effectC"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharR1" class="img-r1">
+        <i :class="effectR1" class="effectBase"></i>
         <img :class="motionR1" :src="showCharR1" :style="styleR1" />
         <!-- <i :class="effectR1"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharR2" class="img-r2">
+        <i :class="effectR2" class="effectBase"></i>
         <img :class="motionR2" :src="showCharR2" :style="styleR2" />
         <!-- <i :class="effectR2"></i> -->
       </div>
     </transition>
-    <i :class="effectL1" class="effectBaseL1"></i>
   </div>
 </template>
 
@@ -116,25 +120,20 @@ export default {
       return this.npc.R2.motion;
     },
     effectL1: function() {
-      return "fab fa-fort-awesome";
-      // "fas fa-flag"
-      // "fas fa-flask"
+      return this.npc.L1.effect;
+    },
+    effectL2: function() {
+      return this.npc.L2.effect;
+    },
+    effectC: function() {
+      return this.npc.C.effect;
+    },
+    effectR1: function() {
+      return this.npc.R1.effect;
+    },
+    effectR2: function() {
+      return this.npc.R2.effect;
     }
-    // effectL1: function() {
-    //   return this.changeEffect(this.npc.L1.motion);
-    // },
-    // effectL2: function() {
-    //   return this.changeEffect(this.npc.L2.motion);
-    // },
-    // effectC: function() {
-    //   return this.changeEffect(this.npc.C.motion);
-    // },
-    // effectR1: function() {
-    //   return this.changeEffect(this.npc.R1.motion);
-    // },
-    // effectR2: function() {
-    //   return this.changeEffect(this.npc.R2.motion);
-    // }
   },
   mounted: function() {
     // const unwatchL1 = this.$store.subscribe((mutation, state) => {
@@ -228,40 +227,30 @@ export default {
   opacity: 0;
 }
 
-.effectBaseL1 {
+.effect {
+  animation: anime1 0.5s linear 0s infinite;
+}
+
+.effectBase {
   position: absolute;
-  top: 150px;
-  left: 150px;
+  top: 0px;
+  left: 100px;
   font-size: 40px;
   z-index: 50;
 }
 
-/* .effect {
-  animation: anime1 0.2s ease-in-out 0s infinite;
+.furiko {
+  animation: furiko 0.5s ease-in-out 0s infinite alternate;
 }
-
-.effect2 {
-  animation: anime2 0.2s ease-in-out 0s infinite;
-}
-.fa-bolt {
-  position: absolute;
-  top: 10px;
-  left: 220px;
-  color: orange;
-  font-size: 50px;
-  z-index: 50;
-  animation: furiko 0.5s ease 0s infinite;
-} */
 
 @keyframes furiko {
   0% {
     transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(30deg);
+    transform-origin: 50px 50px;
   }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(30deg);
+    transform-origin: 50px 50px;
   }
 }
 
