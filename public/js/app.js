@@ -2940,11 +2940,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.setEvent({
           type: "msg",
           content: "ホームメッセージの1"
-        });
+        }); // this.setMotion("L1", "effect");
 
-        _this.setMotion("L1", "effect");
 
-        _this.setEffect("R1", "angry");
+        _this.setEffect("L1", "angry");
       }, function () {
         _this.setEvent({
           type: "msg",
@@ -2982,7 +2981,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.changeBg("ホーム");
     this.clearChar();
-    this.showChar("ナタ", "L1");
+    this.showChar("スフィア2", "L1");
     this.showChar("スフィア2", "L2");
     this.showChar("スフィア1", "C");
     this.showChar("スフィア2", "R1");
@@ -19328,7 +19327,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 65%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\n.effect[data-v-6ca2f060] {\r\n  -webkit-animation: anime1-data-v-6ca2f060 0.5s linear 0s infinite;\r\n          animation: anime1-data-v-6ca2f060 0.5s linear 0s infinite;\n}\n.effectBase[data-v-6ca2f060] {\r\n  position: absolute;\r\n  top: 0px;\r\n  left: 100px;\r\n  font-size: 40px;\r\n  z-index: 50;\n}\n.furiko[data-v-6ca2f060] {\r\n  -webkit-animation: furiko-data-v-6ca2f060 0.5s ease-in-out 0s infinite alternate;\r\n          animation: furiko-data-v-6ca2f060 0.5s ease-in-out 0s infinite alternate;\n}\n@-webkit-keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n100% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n}\n@keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n100% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n}\n@-webkit-keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 65%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\n.effect[data-v-6ca2f060] {\r\n  -webkit-animation: anime1-data-v-6ca2f060 0.5s linear 0s infinite;\r\n          animation: anime1-data-v-6ca2f060 0.5s linear 0s infinite;\n}\n.effectBase[data-v-6ca2f060] {\r\n  position: absolute;\r\n  font-size: 40px;\r\n  z-index: 50;\n}\n.furiko[data-v-6ca2f060] {\r\n  -webkit-animation: furiko-data-v-6ca2f060 0.5s ease-in-out 0s infinite alternate;\r\n          animation: furiko-data-v-6ca2f060 0.5s ease-in-out 0s infinite alternate;\n}\n@-webkit-keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n100% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n}\n@keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n100% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n}\n.angry[data-v-6ca2f060] {\r\n  top: 30px;\r\n  left: 100px;\r\n  color: red;\r\n  -webkit-animation: pop-data-v-6ca2f060 0.2s ease-in-out 0s infinite alternate;\r\n          animation: pop-data-v-6ca2f060 0.2s ease-in-out 0s infinite alternate;\n}\n@-webkit-keyframes pop-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\n}\n100% {\r\n    top: 0px;\r\n    left: 100px;\n}\n}\n@keyframes pop-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\n}\n100% {\r\n    top: 0px;\r\n    left: 100px;\n}\n}\n@-webkit-keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -61763,8 +61762,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     selectEffectClass: function selectEffectClass(motion) {
       switch (motion) {
+        case "happy":
+          return "far fa-laugh-beam angry";
+
+        case "heart":
+          return "fas fa-heart angry";
+
+        case "akire":
+          return "far fa-grin-beam-sweat angry";
+
         case "angry":
-          return "fas fa-angry furiko";
+          return "fas fa-compress angry";
+
+        case "bikkuri":
+          return "fas fa-exclamation";
+
+        case "bikkuri":
+          return "fas fa-skull-crossbones";
 
         default:
           return "none";

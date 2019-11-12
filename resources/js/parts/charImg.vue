@@ -233,8 +233,6 @@ export default {
 
 .effectBase {
   position: absolute;
-  top: 0px;
-  left: 100px;
   font-size: 40px;
   z-index: 50;
 }
@@ -251,6 +249,24 @@ export default {
   100% {
     transform: rotate(30deg);
     transform-origin: 50px 50px;
+  }
+}
+
+.angry {
+  top: 30px;
+  left: 100px;
+  color: red;
+  animation: pop 0.2s ease-in-out 0s infinite alternate;
+}
+
+@keyframes pop {
+  0% {
+    top: 30px;
+    left: 100px;
+  }
+  100% {
+    top: 0px;
+    left: 100px;
   }
 }
 

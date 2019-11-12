@@ -290,8 +290,18 @@ export default {
         },
         selectEffectClass: function(motion) {
             switch (motion) {
+                case "happy":
+                    return "far fa-laugh-beam angry";
+                case "heart":
+                    return "fas fa-heart angry";
+                case "akire":
+                    return "far fa-grin-beam-sweat angry";
                 case "angry":
-                    return "fas fa-angry furiko";
+                    return "fas fa-compress angry";
+                case "bikkuri":
+                    return "fas fa-exclamation";
+                case "bikkuri":
+                    return "fas fa-skull-crossbones";
                 default:
                     return "none";
             }
