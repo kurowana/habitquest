@@ -79,8 +79,8 @@ export default {
       eventObj: [
         () => {
           this.setEvent({ type: "msg", content: "ホームメッセージの1" });
-          this.setMotion("L1", "effect");
-          this.setEffect("R1", "angry");
+          // this.setMotion("L1", "effect");
+          this.setEffect("L1", "angry");
         },
         () => {
           this.setEvent({ type: "msg", content: "ホームメッセージの2" });
@@ -116,7 +116,7 @@ export default {
   created: function() {
     this.changeBg("ホーム");
     this.clearChar();
-    this.showChar("ナタ", "L1");
+    this.showChar("スフィア2", "L1");
     this.showChar("スフィア2", "L2");
     this.showChar("スフィア1", "C");
     this.showChar("スフィア2", "R1");
