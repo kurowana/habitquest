@@ -252,14 +252,64 @@ export default {
   }
 }
 
+.happy {
+  top: 0px;
+  left: 100px;
+  color: yellow;
+  animation: flash 0.5s ease-in 0s infinite alternate;
+}
+
+.heart {
+  top: 0px;
+  left: 100px;
+  color: pink;
+  animation: expansion 0.7s ease-in 0s infinite;
+}
+
 .angry {
   top: 30px;
   left: 100px;
   color: red;
-  animation: pop 0.2s ease-in-out 0s infinite alternate;
+  animation: updown 0.2s ease-in-out 0s infinite alternate;
+}
+.sweat {
+  top: 30px;
+  left: 100px;
+  color: aqua;
+  animation: down 0.8s ease 0s infinite;
 }
 
-@keyframes pop {
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes expansion {
+  0% {
+    top: 30px;
+    left: 120px;
+    opacity: 0;
+    font-size: 20px;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    top: 0px;
+    left: 100px;
+    font-size: 40px;
+    opacity: 1;
+  }
+}
+
+@keyframes updown {
   0% {
     top: 30px;
     left: 100px;
@@ -267,6 +317,22 @@ export default {
   100% {
     top: 0px;
     left: 100px;
+  }
+}
+
+@keyframes down {
+  0% {
+    top: 0px;
+    left: 100px;
+    opacity: 0;
+  }
+  50% {
+    top: 30px;
+    left: 100px;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
