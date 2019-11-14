@@ -298,11 +298,10 @@ export default {
                     return "fas fa-compress angry";
                 case "sweat":
                     return "fas fa-tint sweat";
-                case "bikkuri":
-                    return "fas fa-exclamation";
+                case "surprise":
+                    return "fas fa-exclamation surprise";
                 case "death":
-                    return "fas fa-skull-crossbones";
-
+                    return "fas fa-skull-crossbones death";
                 default:
                     return "none";
             }

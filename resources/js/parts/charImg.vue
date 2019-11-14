@@ -3,35 +3,35 @@
     <transition name="fade">
       <div v-if="showCharL1" class="img-l1" :style="styleL1">
         <i :class="effectL1" class="effectBase"></i>
-        <img :class="motionL1" :src="showCharL1" />
+        <img :class="motionL1" class="motionBase" :src="showCharL1" />
         <!-- <i :class="effectL1"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharL2" class="img-l2" :style="styleL2">
         <i :class="effectL2" class="effectBase"></i>
-        <img :class="motionL2" :src="showCharL2" />
+        <img :class="motionL2" class="motionBase" :src="showCharL2" />
         <!-- <i :class="effectL2"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharC" class="img-c">
         <i :class="effectC" class="effectBase"></i>
-        <img :class="motionC" :src="showCharC" :style="styleC" />
+        <img :class="motionC" class="motionBase" :src="showCharC" :style="styleC" />
         <!-- <i :class="effectC"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharR1" class="img-r1">
         <i :class="effectR1" class="effectBase"></i>
-        <img :class="motionR1" :src="showCharR1" :style="styleR1" />
+        <img :class="motionR1" class="motionBase" :src="showCharR1" :style="styleR1" />
         <!-- <i :class="effectR1"></i> -->
       </div>
     </transition>
     <transition name="fade">
       <div v-if="showCharR2" class="img-r2">
         <i :class="effectR2" class="effectBase"></i>
-        <img :class="motionR2" :src="showCharR2" :style="styleR2" />
+        <img :class="motionR2" class="motionBase" :src="showCharR2" :style="styleR2" />
         <!-- <i :class="effectR2"></i> -->
       </div>
     </transition>
@@ -227,29 +227,93 @@ export default {
   opacity: 0;
 }
 
-.effect {
-  animation: anime1 0.5s linear 0s infinite;
+/* 立ち絵モーション系 */
+.motionBase {
+  transition: all 300ms 0s ease;
 }
+
+.tremble {
+  animation: tremble 0.2s linear 0s infinite;
+}
+
+.jump {
+  animation: jump 0.5s ease-in-out 0s infinite;
+}
+
+.close {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.leave {
+  transform: scale(0.8);
+  opacity: 1;
+}
+
+.attack {
+  animation: attack 1s ease-in-out 0s 1;
+}
+
+@keyframes tremble {
+  0% {
+    left: 0;
+  }
+  25% {
+    left: 5px;
+  }
+  75% {
+    left: -5px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes jump {
+  0% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 50px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+
+@keyframes attack {
+  20% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  90% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 感情エフェクト系 */
 
 .effectBase {
   position: absolute;
   font-size: 40px;
   z-index: 50;
-}
-
-.furiko {
-  animation: furiko 0.5s ease-in-out 0s infinite alternate;
-}
-
-@keyframes furiko {
-  0% {
-    transform: rotate(0deg);
-    transform-origin: 50px 50px;
-  }
-  100% {
-    transform: rotate(30deg);
-    transform-origin: 50px 50px;
-  }
 }
 
 .happy {
@@ -277,6 +341,20 @@ export default {
   left: 100px;
   color: aqua;
   animation: down 0.8s ease 0s infinite;
+}
+
+.surprise {
+  top: 0px;
+  left: 100px;
+  color: yellow;
+  animation: flash 0.5s ease-in 0s infinite;
+}
+
+.death {
+  top: 0px;
+  left: 100px;
+  color: white;
+  animation: up 0.8s ease-in 0s infinite;
 }
 
 @keyframes flash {
@@ -320,6 +398,22 @@ export default {
   }
 }
 
+@keyframes up {
+  0% {
+    top: 30px;
+    left: 100px;
+    opacity: 0;
+  }
+  50% {
+    top: 0px;
+    left: 100px;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes down {
   0% {
     top: 0px;
@@ -333,36 +427,6 @@ export default {
   }
   100% {
     opacity: 0;
-  }
-}
-
-@keyframes anime1 {
-  0% {
-    left: 0;
-  }
-  25% {
-    left: 10px;
-  }
-  75% {
-    left: -10px;
-  }
-  100% {
-    left: 0;
-  }
-}
-
-@keyframes anime2 {
-  0% {
-    left: 0;
-  }
-  25% {
-    left: 1px;
-  }
-  75% {
-    left: -1px;
-  }
-  100% {
-    left: 0;
   }
 }
 </style>
