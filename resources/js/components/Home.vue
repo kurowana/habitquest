@@ -79,8 +79,8 @@ export default {
       eventObj: [
         () => {
           this.setEvent({ type: "msg", content: "ホームメッセージの1" });
-          this.setMotion("L1", "effect");
-          this.setEffect("L1", "sweat");
+          this.setMotion("L1", "attack");
+          this.setEffect("L1", "death");
         },
         () => {
           this.setEvent({ type: "msg", content: "ホームメッセージの2" });

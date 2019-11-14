@@ -2942,9 +2942,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           content: "ホームメッセージの1"
         });
 
-        _this.setMotion("L1", "effect");
+        _this.setMotion("L1", "attack");
 
-        _this.setEffect("L1", "sweat");
+        _this.setEffect("L1", "death");
       }, function () {
         _this.setEvent({
           type: "msg",
@@ -19328,7 +19328,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 65%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\n.effect[data-v-6ca2f060] {\r\n  -webkit-animation: anime1-data-v-6ca2f060 0.5s linear 0s infinite;\r\n          animation: anime1-data-v-6ca2f060 0.5s linear 0s infinite;\n}\n.effectBase[data-v-6ca2f060] {\r\n  position: absolute;\r\n  font-size: 40px;\r\n  z-index: 50;\n}\n.furiko[data-v-6ca2f060] {\r\n  -webkit-animation: furiko-data-v-6ca2f060 0.5s ease-in-out 0s infinite alternate;\r\n          animation: furiko-data-v-6ca2f060 0.5s ease-in-out 0s infinite alternate;\n}\n@-webkit-keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n100% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n}\n@keyframes furiko-data-v-6ca2f060 {\n0% {\r\n    -webkit-transform: rotate(0deg);\r\n            transform: rotate(0deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n100% {\r\n    -webkit-transform: rotate(30deg);\r\n            transform: rotate(30deg);\r\n    -webkit-transform-origin: 50px 50px;\r\n            transform-origin: 50px 50px;\n}\n}\n.happy[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: yellow;\r\n  -webkit-animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite alternate;\r\n          animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite alternate;\n}\n.heart[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: pink;\r\n  -webkit-animation: expansion-data-v-6ca2f060 0.7s ease-in 0s infinite;\r\n          animation: expansion-data-v-6ca2f060 0.7s ease-in 0s infinite;\n}\n.angry[data-v-6ca2f060] {\r\n  top: 30px;\r\n  left: 100px;\r\n  color: red;\r\n  -webkit-animation: updown-data-v-6ca2f060 0.2s ease-in-out 0s infinite alternate;\r\n          animation: updown-data-v-6ca2f060 0.2s ease-in-out 0s infinite alternate;\n}\n.sweat[data-v-6ca2f060] {\r\n  top: 30px;\r\n  left: 100px;\r\n  color: aqua;\r\n  -webkit-animation: down-data-v-6ca2f060 0.8s ease 0s infinite;\r\n          animation: down-data-v-6ca2f060 0.8s ease 0s infinite;\n}\n@-webkit-keyframes flash-data-v-6ca2f060 {\n0% {\r\n    opacity: 0;\n}\n50% {\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes flash-data-v-6ca2f060 {\n0% {\r\n    opacity: 0;\n}\n50% {\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@-webkit-keyframes expansion-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 120px;\r\n    opacity: 0;\r\n    font-size: 20px;\n}\n50% {\r\n    opacity: 1;\n}\n75% {\r\n    top: 0px;\r\n    left: 100px;\r\n    font-size: 40px;\r\n    opacity: 1;\n}\n}\n@keyframes expansion-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 120px;\r\n    opacity: 0;\r\n    font-size: 20px;\n}\n50% {\r\n    opacity: 1;\n}\n75% {\r\n    top: 0px;\r\n    left: 100px;\r\n    font-size: 40px;\r\n    opacity: 1;\n}\n}\n@-webkit-keyframes updown-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\n}\n100% {\r\n    top: 0px;\r\n    left: 100px;\n}\n}\n@keyframes updown-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\n}\n100% {\r\n    top: 0px;\r\n    left: 100px;\n}\n}\n@-webkit-keyframes down-data-v-6ca2f060 {\n0% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@keyframes down-data-v-6ca2f060 {\n0% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@-webkit-keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 65%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\r\n\r\n/* 立ち絵モーション系 */\n.motionBase[data-v-6ca2f060] {\r\n  transition: all 300ms 0s ease;\n}\n.tremble[data-v-6ca2f060] {\r\n  -webkit-animation: tremble-data-v-6ca2f060 0.2s linear 0s infinite;\r\n          animation: tremble-data-v-6ca2f060 0.2s linear 0s infinite;\n}\n.jump[data-v-6ca2f060] {\r\n  -webkit-animation: jump-data-v-6ca2f060 0.5s ease-in-out 0s infinite;\r\n          animation: jump-data-v-6ca2f060 0.5s ease-in-out 0s infinite;\n}\n.close[data-v-6ca2f060] {\r\n  -webkit-transform: scale(1.2);\r\n          transform: scale(1.2);\r\n  opacity: 1;\n}\n.leave[data-v-6ca2f060] {\r\n  -webkit-transform: scale(0.8);\r\n          transform: scale(0.8);\r\n  opacity: 1;\n}\n.attack[data-v-6ca2f060] {\r\n  -webkit-animation: attack-data-v-6ca2f060 1s ease-in-out 0s 1;\r\n          animation: attack-data-v-6ca2f060 1s ease-in-out 0s 1;\n}\n@-webkit-keyframes tremble-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 5px;\n}\n75% {\r\n    left: -5px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes tremble-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 5px;\n}\n75% {\r\n    left: -5px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes jump-data-v-6ca2f060 {\n0% {\r\n    bottom: 0;\n}\n50% {\r\n    bottom: 50px;\n}\n100% {\r\n    bottom: 0px;\n}\n}\n@keyframes jump-data-v-6ca2f060 {\n0% {\r\n    bottom: 0;\n}\n50% {\r\n    bottom: 50px;\n}\n100% {\r\n    bottom: 0px;\n}\n}\n@-webkit-keyframes attack-data-v-6ca2f060 {\n20% {\r\n    -webkit-transform: scale(0.8);\r\n            transform: scale(0.8);\n}\n50% {\r\n    -webkit-transform: scale(1.2);\r\n            transform: scale(1.2);\r\n    opacity: 1;\n}\n60% {\r\n    opacity: 0.5;\n}\n70% {\r\n    opacity: 1;\n}\n80% {\r\n    opacity: 0.5;\n}\n90% {\r\n    -webkit-transform: scale(1.2);\r\n            transform: scale(1.2);\r\n    opacity: 1;\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\r\n    opacity: 1;\n}\n}\n@keyframes attack-data-v-6ca2f060 {\n20% {\r\n    -webkit-transform: scale(0.8);\r\n            transform: scale(0.8);\n}\n50% {\r\n    -webkit-transform: scale(1.2);\r\n            transform: scale(1.2);\r\n    opacity: 1;\n}\n60% {\r\n    opacity: 0.5;\n}\n70% {\r\n    opacity: 1;\n}\n80% {\r\n    opacity: 0.5;\n}\n90% {\r\n    -webkit-transform: scale(1.2);\r\n            transform: scale(1.2);\r\n    opacity: 1;\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\r\n    opacity: 1;\n}\n}\r\n\r\n/* 感情エフェクト系 */\n.effectBase[data-v-6ca2f060] {\r\n  position: absolute;\r\n  font-size: 40px;\r\n  z-index: 50;\n}\n.happy[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: yellow;\r\n  -webkit-animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite alternate;\r\n          animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite alternate;\n}\n.heart[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: pink;\r\n  -webkit-animation: expansion-data-v-6ca2f060 0.7s ease-in 0s infinite;\r\n          animation: expansion-data-v-6ca2f060 0.7s ease-in 0s infinite;\n}\n.angry[data-v-6ca2f060] {\r\n  top: 30px;\r\n  left: 100px;\r\n  color: red;\r\n  -webkit-animation: updown-data-v-6ca2f060 0.2s ease-in-out 0s infinite alternate;\r\n          animation: updown-data-v-6ca2f060 0.2s ease-in-out 0s infinite alternate;\n}\n.sweat[data-v-6ca2f060] {\r\n  top: 30px;\r\n  left: 100px;\r\n  color: aqua;\r\n  -webkit-animation: down-data-v-6ca2f060 0.8s ease 0s infinite;\r\n          animation: down-data-v-6ca2f060 0.8s ease 0s infinite;\n}\n.surprise[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: yellow;\r\n  -webkit-animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite;\r\n          animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite;\n}\n.death[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: white;\r\n  -webkit-animation: up-data-v-6ca2f060 0.8s ease-in 0s infinite;\r\n          animation: up-data-v-6ca2f060 0.8s ease-in 0s infinite;\n}\n@-webkit-keyframes flash-data-v-6ca2f060 {\n0% {\r\n    opacity: 0;\n}\n50% {\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes flash-data-v-6ca2f060 {\n0% {\r\n    opacity: 0;\n}\n50% {\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@-webkit-keyframes expansion-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 120px;\r\n    opacity: 0;\r\n    font-size: 20px;\n}\n50% {\r\n    opacity: 1;\n}\n75% {\r\n    top: 0px;\r\n    left: 100px;\r\n    font-size: 40px;\r\n    opacity: 1;\n}\n}\n@keyframes expansion-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 120px;\r\n    opacity: 0;\r\n    font-size: 20px;\n}\n50% {\r\n    opacity: 1;\n}\n75% {\r\n    top: 0px;\r\n    left: 100px;\r\n    font-size: 40px;\r\n    opacity: 1;\n}\n}\n@-webkit-keyframes updown-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\n}\n100% {\r\n    top: 0px;\r\n    left: 100px;\n}\n}\n@keyframes updown-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\n}\n100% {\r\n    top: 0px;\r\n    left: 100px;\n}\n}\n@-webkit-keyframes up-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@keyframes up-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@-webkit-keyframes down-data-v-6ca2f060 {\n0% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@keyframes down-data-v-6ca2f060 {\n0% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -43918,7 +43918,11 @@ var render = function() {
           ? _c("div", { staticClass: "img-l1", style: _vm.styleL1 }, [
               _c("i", { staticClass: "effectBase", class: _vm.effectL1 }),
               _vm._v(" "),
-              _c("img", { class: _vm.motionL1, attrs: { src: _vm.showCharL1 } })
+              _c("img", {
+                staticClass: "motionBase",
+                class: _vm.motionL1,
+                attrs: { src: _vm.showCharL1 }
+              })
             ])
           : _vm._e()
       ]),
@@ -43928,7 +43932,11 @@ var render = function() {
           ? _c("div", { staticClass: "img-l2", style: _vm.styleL2 }, [
               _c("i", { staticClass: "effectBase", class: _vm.effectL2 }),
               _vm._v(" "),
-              _c("img", { class: _vm.motionL2, attrs: { src: _vm.showCharL2 } })
+              _c("img", {
+                staticClass: "motionBase",
+                class: _vm.motionL2,
+                attrs: { src: _vm.showCharL2 }
+              })
             ])
           : _vm._e()
       ]),
@@ -43939,6 +43947,7 @@ var render = function() {
               _c("i", { staticClass: "effectBase", class: _vm.effectC }),
               _vm._v(" "),
               _c("img", {
+                staticClass: "motionBase",
                 class: _vm.motionC,
                 style: _vm.styleC,
                 attrs: { src: _vm.showCharC }
@@ -43953,6 +43962,7 @@ var render = function() {
               _c("i", { staticClass: "effectBase", class: _vm.effectR1 }),
               _vm._v(" "),
               _c("img", {
+                staticClass: "motionBase",
                 class: _vm.motionR1,
                 style: _vm.styleR1,
                 attrs: { src: _vm.showCharR1 }
@@ -43967,6 +43977,7 @@ var render = function() {
               _c("i", { staticClass: "effectBase", class: _vm.effectR2 }),
               _vm._v(" "),
               _c("img", {
+                staticClass: "motionBase",
                 class: _vm.motionR2,
                 style: _vm.styleR2,
                 attrs: { src: _vm.showCharR2 }
@@ -61775,11 +61786,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         case "sweat":
           return "fas fa-tint sweat";
 
-        case "bikkuri":
-          return "fas fa-exclamation";
+        case "surprise":
+          return "fas fa-exclamation surprise";
 
         case "death":
-          return "fas fa-skull-crossbones";
+          return "fas fa-skull-crossbones death";
 
         default:
           return "none";
