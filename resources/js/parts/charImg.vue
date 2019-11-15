@@ -229,7 +229,7 @@ export default {
 
 /* 立ち絵モーション系 */
 .motionBase {
-  transition: all 300ms 0s ease;
+  transition: all 0.5s 0s ease;
 }
 
 .tremble {
@@ -245,6 +245,11 @@ export default {
   opacity: 1;
 }
 
+.sit {
+  transform: translateY(50px);
+  opacity: 1;
+}
+
 .leave {
   transform: scale(0.8);
   opacity: 1;
@@ -252,6 +257,10 @@ export default {
 
 .attack {
   animation: attack 1s ease-in-out 0s 1;
+}
+
+.dance {
+  animation: dance 2s ease 0s infinite;
 }
 
 @keyframes tremble {
@@ -282,29 +291,49 @@ export default {
 }
 
 @keyframes attack {
-  20% {
-    transform: scale(0.8);
+  30% {
+    transform: scale(0.8) rotate(-5deg);
   }
   50% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-  60% {
-    opacity: 0.5;
-  }
-  70% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0.5;
-  }
-  90% {
-    transform: scale(1.2);
+    transform: scale(1.2) rotate(5deg);
     opacity: 1;
   }
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes dance {
+  10% {
+    transform: translateX(20px) skewY(-10deg);
+  }
+  20% {
+    transform: translateX(40px) skewY(-10deg);
+  }
+  30% {
+    transform: translateX(60px) skewY(-10deg);
+  }
+  40% {
+    transform: translateX(40px) skewY(10deg);
+  }
+  50% {
+    transform: translateX(20px) skewY(10deg);
+  }
+  60% {
+    transform: translateX(0px) skewY(-10deg);
+  }
+  70% {
+    transform: translateX(-20px) skewY(10deg);
+  }
+  80% {
+    transform: translateX(-40px) skewY(10deg);
+  }
+  90% {
+    transform: translateX(-60px) skewY(10deg);
+  }
+  100% {
+    transform: translateX(-40px) skewY(10deg);
   }
 }
 
