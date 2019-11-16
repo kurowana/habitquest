@@ -259,8 +259,27 @@ export default {
   animation: attack 1s ease-in-out 0s 1;
 }
 
-.dance {
-  animation: dance 2s ease 0s infinite;
+.leftAttack {
+  animation: leftAttack 1s ease-in-out 0.5s 1;
+}
+
+.rightAttack {
+  animation: rightAttack 1s ease-in-out 0s 1;
+}
+
+.leftAttack2 {
+  animation: leftAttack 1s ease-in-out 0.5s infinite;
+}
+
+.rightAttack2 {
+  animation: rightAttack 1s ease-in-out 0s infinite;
+}
+
+.leftSlide {
+  animation: leftSlide 1s ease-in-out 0s infinite alternate;
+}
+.rightSlide {
+  animation: rightSlide 1s ease-in-out 0s infinite alternate;
 }
 
 @keyframes tremble {
@@ -304,36 +323,71 @@ export default {
   }
 }
 
-@keyframes dance {
-  10% {
-    transform: translateX(20px) skewY(-10deg);
-  }
-  20% {
-    transform: translateX(40px) skewY(-10deg);
-  }
+@keyframes leftAttack {
   30% {
-    transform: translateX(60px) skewY(-10deg);
-  }
-  40% {
-    transform: translateX(40px) skewY(10deg);
+    transform: translateX(50px) rotate(5deg);
   }
   50% {
-    transform: translateX(20px) skewY(10deg);
-  }
-  60% {
-    transform: translateX(0px) skewY(-10deg);
-  }
-  70% {
-    transform: translateX(-20px) skewY(10deg);
-  }
-  80% {
-    transform: translateX(-40px) skewY(10deg);
-  }
-  90% {
-    transform: translateX(-60px) skewY(10deg);
+    transform: translateX(-150px) rotate(-5deg);
   }
   100% {
-    transform: translateX(-40px) skewY(10deg);
+  }
+}
+
+@keyframes rightAttack {
+  30% {
+    transform: translateX(-50px) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(150px) rotate(5deg);
+  }
+  100% {
+  }
+}
+
+@keyframes rightSlide {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: 30px;
+    top: 20px;
+  }
+  50% {
+    left: 60px;
+    top: 0px;
+  }
+  75% {
+    left: 90px;
+    top: 20px;
+  }
+  100% {
+    left: 120px;
+    top: 0px;
+  }
+}
+
+@keyframes leftSlide {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: -30px;
+    top: 20px;
+  }
+  50% {
+    left: -60px;
+    top: 0px;
+  }
+  75% {
+    left: -90px;
+    top: 20px;
+  }
+  100% {
+    left: -120px;
+    top: 0px;
   }
 }
 
