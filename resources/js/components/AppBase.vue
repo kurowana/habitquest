@@ -5,19 +5,21 @@
       <router-view class="game-view" :class="bgImg"></router-view>
       <router-view name="sidebar"></router-view>
     </div>
-    <div>
-      <label>name</label>
-      <input type="hidden" name="_token" :value="csrf" />
-      <input type="text" v-model="loginName" />
-      <label>password</label>
-      <input type="text" v-model="loginPassword" />
-      <button @click="registTest">登録</button>
+    <div style="background:#000; z-index:200; position:absolute; width:1200px;">
+      <div>
+        <label>name</label>
+        <input type="hidden" name="_token" :value="csrf" />
+        <input type="text" v-model="loginName" />
+        <label>password</label>
+        <input type="text" v-model="loginPassword" />
+        <button @click="registTest">登録</button>
+      </div>
+      {{getSound.isPlay}}
+      <audio id="bgm" v-play="getSound.isPlay" :src="getSound.bgm"></audio>
+      <button @click="playBgm">再生</button>
+      <button @click="pauseBgm">停止</button>
+      <button @click="changeBgm">変更</button>
     </div>
-    {{getSound.isPlay}}
-    <audio id="bgm" v-play="getSound.isPlay" :src="getSound.bgm"></audio>
-    <button @click="playBgm">再生</button>
-    <button @click="pauseBgm">停止</button>
-    <button @click="changeBgm">変更</button>
   </div>
 </template>
 
