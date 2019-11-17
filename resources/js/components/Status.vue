@@ -1,33 +1,40 @@
 <template>
   <div>
     <main-header></main-header>
-    <div class="leftArea">
-      <p>残りポイント：{{tempPoint}}</p>
-      <table>
-        <thead>
-          <tr>
-            <th>能力</th>
-            <th>値</th>
-            <th>振り分け</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(value,key) in tempStatus" :key="key">
-            <td>{{key}}</td>
-            <td>{{value}}</td>
-            <td>
-              <button @click.self.prevent="incTempSt(key)">+</button>
-              <button @click.self.prevent="decTempSt(key)">-</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <button @click.self.prevent="updateStatus">決定</button>
-      <button @click.self.prevent="resetStatus">リセット</button>
-    </div>
-    <div class="centerArea">
-      <div style="background:#fff; width:300px; height:400px; position:relative">
-        <base-st-chart :user-status="tempStatus"></base-st-chart>
+
+    <div class="statusModal">
+      <div>
+        <button @click="changeArea">切り替え</button>
+      </div>
+      <div v-show="isViewArea">
+        <img src="../../../public/img/p_stand/p001.png" style="height:200px;" />
+      </div>
+      <div v-show="isSetArea" class="setArea">
+        <p>残りポイント：{{tempPoint}}</p>
+        <table>
+          <thead>
+            <tr>
+              <th>能力</th>
+              <th>値</th>
+              <th>振り分け</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(value,key) in tempStatus" :key="key">
+              <td>{{key}}</td>
+              <td>{{value}}</td>
+              <td>
+                <button @click.self.prevent="incTempSt(key)">+</button>
+                <button @click.self.prevent="decTempSt(key)">-</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button @click.self.prevent="updateStatus">決定</button>
+        <button @click.self.prevent="resetStatus">リセット</button>
+      </div>
+      <div class="chartArea">
+        <base-st-chart class="chartConponent" :user-status="tempStatus"></base-st-chart>
       </div>
     </div>
     <message @get-scene="getScene"></message>
@@ -56,6 +63,9 @@ export default {
   mixins: [baseMixin, eventMixin],
   data: function() {
     return {
+      isSetArea: true,
+      isViewArea: false,
+
       tempPoint: 0,
       tempStatus: {
         str: 0,
@@ -161,32 +171,39 @@ export default {
     },
     resetStatus: function() {
       this.initPage();
+    },
+    changeArea: function() {
+      this.isSetArea = !this.isSetArea;
+      this.isViewArea = !this.isViewArea;
     }
   }
 };
 </script>
 
 <style scoped>
-.leftArea {
-  width: 180px;
-  height: 420px;
+.statusModal {
+  width: 650px;
+  height: 320px;
   padding: 15px;
-  background: #000;
+  color: #000;
+  background: #fff;
   position: absolute;
-  top: 10px;
-  left: 0;
+  top: 100px;
+  left: 10px;
   border: 2px double gold;
   border-radius: 10px;
 }
-.centerArea {
-  width: 330px;
-  height: 420px;
-  padding: 15px;
-  background: #000;
-  position: absolute;
-  top: 10px;
-  left: 200px;
-  border: 2px double gold;
-  border-radius: 10px;
+.setArea {
+  width: 150px;
+  float: left;
+}
+.chartArea {
+  width: 400px;
+  float: right;
+}
+.chartConponent {
+  position: relative;
+  width: 300px;
+  height: 300px;
 }
 </style>

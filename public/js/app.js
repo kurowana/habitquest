@@ -1905,11 +1905,28 @@ __webpack_require__.r(__webpack_exports__);
         responsive: true,
         maintainAspectRatio: false,
         title: {
-          text: "Basic Radar Chart"
+          text: "Status",
+          fontColor: "blue"
         },
         scale: {
           ticks: {
             min: 0
+          },
+          gridLines: {
+            color: "ragb(255,255,0,0.2)"
+          },
+          angleLines: {
+            display: true,
+            color: "rgba(255,0,0,0.2)"
+          },
+          pointLabels: {
+            fontColor: "FF0000",
+            fontSize: "20"
+          }
+        },
+        legend: {
+          labels: {
+            fontColor: "RED"
           }
         }
       }
@@ -1941,10 +1958,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var newChart = {
-        labels: ["str", "agi", "vit", "int", "dex", "luc"],
+        labels: ["STR", "AGI", "VIT", "INT", "DEX", "LUC"],
         datasets: [{
           label: "status",
-          data: []
+          data: [],
+          backgroundColor: "rgba(0,0,255,0.2)"
         }]
       };
       Object.keys(this.userStatus).map(function (key) {
@@ -3169,6 +3187,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3189,6 +3214,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this = this;
 
     return {
+      isSetArea: true,
+      isViewArea: false,
       tempPoint: 0,
       tempStatus: {
         str: 0,
@@ -3291,6 +3318,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     resetStatus: function resetStatus() {
       this.initPage();
+    },
+    changeArea: function changeArea() {
+      this.isSetArea = !this.isSetArea;
+      this.isViewArea = !this.isViewArea;
     }
   }
 });
@@ -19197,7 +19228,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.leftArea[data-v-ed6f95c6] {\r\n  width: 180px;\r\n  height: 420px;\r\n  padding: 15px;\r\n  background: #000;\r\n  position: absolute;\r\n  top: 10px;\r\n  left: 0;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\n}\n.centerArea[data-v-ed6f95c6] {\r\n  width: 330px;\r\n  height: 420px;\r\n  padding: 15px;\r\n  background: #000;\r\n  position: absolute;\r\n  top: 10px;\r\n  left: 200px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\n}\r\n", ""]);
+exports.push([module.i, "\n.statusModal[data-v-ed6f95c6] {\r\n  width: 650px;\r\n  height: 320px;\r\n  padding: 15px;\r\n  color: #000;\r\n  background: #fff;\r\n  position: absolute;\r\n  top: 100px;\r\n  left: 10px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\n}\n.setArea[data-v-ed6f95c6] {\r\n  width: 150px;\r\n  float: left;\n}\n.chartArea[data-v-ed6f95c6] {\r\n  width: 400px;\r\n  float: right;\n}\n.chartConponent[data-v-ed6f95c6] {\r\n  position: relative;\r\n  width: 300px;\r\n  height: 300px;\n}\r\n", ""]);
 
 // exports
 
@@ -19332,7 +19363,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 65%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\r\n\r\n/* 立ち絵モーション系 */\n.motionBase[data-v-6ca2f060] {\r\n  transition: all 0.5s 0s ease;\n}\n.tremble[data-v-6ca2f060] {\r\n  -webkit-animation: tremble-data-v-6ca2f060 0.2s linear 0s infinite;\r\n          animation: tremble-data-v-6ca2f060 0.2s linear 0s infinite;\n}\n.jump[data-v-6ca2f060] {\r\n  -webkit-animation: jump-data-v-6ca2f060 0.5s ease-in-out 0s infinite;\r\n          animation: jump-data-v-6ca2f060 0.5s ease-in-out 0s infinite;\n}\n.close[data-v-6ca2f060] {\r\n  -webkit-transform: scale(1.2);\r\n          transform: scale(1.2);\r\n  opacity: 1;\n}\n.sit[data-v-6ca2f060] {\r\n  -webkit-transform: translateY(50px);\r\n          transform: translateY(50px);\r\n  opacity: 1;\n}\n.leave[data-v-6ca2f060] {\r\n  -webkit-transform: scale(0.8);\r\n          transform: scale(0.8);\r\n  opacity: 1;\n}\n.attack[data-v-6ca2f060] {\r\n  -webkit-animation: attack-data-v-6ca2f060 1s ease-in-out 0s 1;\r\n          animation: attack-data-v-6ca2f060 1s ease-in-out 0s 1;\n}\n.leftAttack[data-v-6ca2f060] {\r\n  -webkit-animation: leftAttack-data-v-6ca2f060 1s ease-in-out 0.5s 1;\r\n          animation: leftAttack-data-v-6ca2f060 1s ease-in-out 0.5s 1;\n}\n.rightAttack[data-v-6ca2f060] {\r\n  -webkit-animation: rightAttack-data-v-6ca2f060 1s ease-in-out 0s 1;\r\n          animation: rightAttack-data-v-6ca2f060 1s ease-in-out 0s 1;\n}\n.leftAttack2[data-v-6ca2f060] {\r\n  -webkit-animation: leftAttack-data-v-6ca2f060 1s ease-in-out 0.5s infinite;\r\n          animation: leftAttack-data-v-6ca2f060 1s ease-in-out 0.5s infinite;\n}\n.rightAttack2[data-v-6ca2f060] {\r\n  -webkit-animation: rightAttack-data-v-6ca2f060 1s ease-in-out 0s infinite;\r\n          animation: rightAttack-data-v-6ca2f060 1s ease-in-out 0s infinite;\n}\n.leftSlide[data-v-6ca2f060] {\r\n  -webkit-animation: leftSlide-data-v-6ca2f060 1s ease-in-out 0s infinite alternate;\r\n          animation: leftSlide-data-v-6ca2f060 1s ease-in-out 0s infinite alternate;\n}\n.rightSlide[data-v-6ca2f060] {\r\n  -webkit-animation: rightSlide-data-v-6ca2f060 1s ease-in-out 0s infinite alternate;\r\n          animation: rightSlide-data-v-6ca2f060 1s ease-in-out 0s infinite alternate;\n}\n@-webkit-keyframes tremble-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 5px;\n}\n75% {\r\n    left: -5px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes tremble-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 5px;\n}\n75% {\r\n    left: -5px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes jump-data-v-6ca2f060 {\n0% {\r\n    bottom: 0;\n}\n50% {\r\n    bottom: 50px;\n}\n100% {\r\n    bottom: 0px;\n}\n}\n@keyframes jump-data-v-6ca2f060 {\n0% {\r\n    bottom: 0;\n}\n50% {\r\n    bottom: 50px;\n}\n100% {\r\n    bottom: 0px;\n}\n}\n@-webkit-keyframes attack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: scale(0.8) rotate(-5deg);\r\n            transform: scale(0.8) rotate(-5deg);\n}\n50% {\r\n    -webkit-transform: scale(1.2) rotate(5deg);\r\n            transform: scale(1.2) rotate(5deg);\r\n    opacity: 1;\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\r\n    opacity: 1;\n}\n}\n@keyframes attack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: scale(0.8) rotate(-5deg);\r\n            transform: scale(0.8) rotate(-5deg);\n}\n50% {\r\n    -webkit-transform: scale(1.2) rotate(5deg);\r\n            transform: scale(1.2) rotate(5deg);\r\n    opacity: 1;\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\r\n    opacity: 1;\n}\n}\n@-webkit-keyframes leftAttack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: translateX(50px) rotate(5deg);\r\n            transform: translateX(50px) rotate(5deg);\n}\n50% {\r\n    -webkit-transform: translateX(-150px) rotate(-5deg);\r\n            transform: translateX(-150px) rotate(-5deg);\n}\n100% {\n}\n}\n@keyframes leftAttack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: translateX(50px) rotate(5deg);\r\n            transform: translateX(50px) rotate(5deg);\n}\n50% {\r\n    -webkit-transform: translateX(-150px) rotate(-5deg);\r\n            transform: translateX(-150px) rotate(-5deg);\n}\n100% {\n}\n}\n@-webkit-keyframes rightAttack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: translateX(-50px) rotate(-5deg);\r\n            transform: translateX(-50px) rotate(-5deg);\n}\n50% {\r\n    -webkit-transform: translateX(150px) rotate(5deg);\r\n            transform: translateX(150px) rotate(5deg);\n}\n100% {\n}\n}\n@keyframes rightAttack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: translateX(-50px) rotate(-5deg);\r\n            transform: translateX(-50px) rotate(-5deg);\n}\n50% {\r\n    -webkit-transform: translateX(150px) rotate(5deg);\r\n            transform: translateX(150px) rotate(5deg);\n}\n100% {\n}\n}\n@-webkit-keyframes rightSlide-data-v-6ca2f060 {\n0% {\r\n    left: 0px;\r\n    top: 0px;\n}\n25% {\r\n    left: 30px;\r\n    top: 20px;\n}\n50% {\r\n    left: 60px;\r\n    top: 0px;\n}\n75% {\r\n    left: 90px;\r\n    top: 20px;\n}\n100% {\r\n    left: 120px;\r\n    top: 0px;\n}\n}\n@keyframes rightSlide-data-v-6ca2f060 {\n0% {\r\n    left: 0px;\r\n    top: 0px;\n}\n25% {\r\n    left: 30px;\r\n    top: 20px;\n}\n50% {\r\n    left: 60px;\r\n    top: 0px;\n}\n75% {\r\n    left: 90px;\r\n    top: 20px;\n}\n100% {\r\n    left: 120px;\r\n    top: 0px;\n}\n}\n@-webkit-keyframes leftSlide-data-v-6ca2f060 {\n0% {\r\n    left: 0px;\r\n    top: 0px;\n}\n25% {\r\n    left: -30px;\r\n    top: 20px;\n}\n50% {\r\n    left: -60px;\r\n    top: 0px;\n}\n75% {\r\n    left: -90px;\r\n    top: 20px;\n}\n100% {\r\n    left: -120px;\r\n    top: 0px;\n}\n}\n@keyframes leftSlide-data-v-6ca2f060 {\n0% {\r\n    left: 0px;\r\n    top: 0px;\n}\n25% {\r\n    left: -30px;\r\n    top: 20px;\n}\n50% {\r\n    left: -60px;\r\n    top: 0px;\n}\n75% {\r\n    left: -90px;\r\n    top: 20px;\n}\n100% {\r\n    left: -120px;\r\n    top: 0px;\n}\n}\r\n\r\n/* 感情エフェクト系 */\n.effectBase[data-v-6ca2f060] {\r\n  position: absolute;\r\n  font-size: 40px;\r\n  z-index: 50;\n}\n.happy[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: yellow;\r\n  -webkit-animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite alternate;\r\n          animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite alternate;\n}\n.heart[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: pink;\r\n  -webkit-animation: expansion-data-v-6ca2f060 0.7s ease-in 0s infinite;\r\n          animation: expansion-data-v-6ca2f060 0.7s ease-in 0s infinite;\n}\n.angry[data-v-6ca2f060] {\r\n  top: 30px;\r\n  left: 100px;\r\n  color: red;\r\n  -webkit-animation: updown-data-v-6ca2f060 0.2s ease-in-out 0s infinite alternate;\r\n          animation: updown-data-v-6ca2f060 0.2s ease-in-out 0s infinite alternate;\n}\n.sweat[data-v-6ca2f060] {\r\n  top: 30px;\r\n  left: 100px;\r\n  color: aqua;\r\n  -webkit-animation: down-data-v-6ca2f060 0.8s ease 0s infinite;\r\n          animation: down-data-v-6ca2f060 0.8s ease 0s infinite;\n}\n.surprise[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: yellow;\r\n  -webkit-animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite;\r\n          animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite;\n}\n.death[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: white;\r\n  -webkit-animation: up-data-v-6ca2f060 0.8s ease-in 0s infinite;\r\n          animation: up-data-v-6ca2f060 0.8s ease-in 0s infinite;\n}\n@-webkit-keyframes flash-data-v-6ca2f060 {\n0% {\r\n    opacity: 0;\n}\n50% {\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes flash-data-v-6ca2f060 {\n0% {\r\n    opacity: 0;\n}\n50% {\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@-webkit-keyframes expansion-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 120px;\r\n    opacity: 0;\r\n    font-size: 20px;\n}\n50% {\r\n    opacity: 1;\n}\n75% {\r\n    top: 0px;\r\n    left: 100px;\r\n    font-size: 40px;\r\n    opacity: 1;\n}\n}\n@keyframes expansion-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 120px;\r\n    opacity: 0;\r\n    font-size: 20px;\n}\n50% {\r\n    opacity: 1;\n}\n75% {\r\n    top: 0px;\r\n    left: 100px;\r\n    font-size: 40px;\r\n    opacity: 1;\n}\n}\n@-webkit-keyframes updown-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\n}\n100% {\r\n    top: 0px;\r\n    left: 100px;\n}\n}\n@keyframes updown-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\n}\n100% {\r\n    top: 0px;\r\n    left: 100px;\n}\n}\n@-webkit-keyframes up-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@keyframes up-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@-webkit-keyframes down-data-v-6ca2f060 {\n0% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@keyframes down-data-v-6ca2f060 {\n0% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-6ca2f060] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-l1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: -5%;\n}\n.img-l1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-l2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 12%;\n}\n.img-l2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-c[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-c img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r1[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 65%;\n}\n.img-r1 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.img-r2[data-v-6ca2f060] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 48%;\n}\n.img-r2 img[data-v-6ca2f060] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.fade-enter-active[data-v-6ca2f060],\r\n.fade-leave-active[data-v-6ca2f060] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-6ca2f060],\r\n.fade-leave-to[data-v-6ca2f060] {\r\n  opacity: 0;\n}\r\n\r\n/* 立ち絵モーション系 */\n.motionBase[data-v-6ca2f060] {\r\n  transition: all 0.5s 0s ease;\n}\n.tremble[data-v-6ca2f060] {\r\n  -webkit-animation: tremble-data-v-6ca2f060 0.2s linear 0s infinite;\r\n          animation: tremble-data-v-6ca2f060 0.2s linear 0s infinite;\n}\n.jump[data-v-6ca2f060] {\r\n  -webkit-animation: jump-data-v-6ca2f060 0.5s ease-in-out 0s infinite;\r\n          animation: jump-data-v-6ca2f060 0.5s ease-in-out 0s infinite;\n}\n.close[data-v-6ca2f060] {\r\n  -webkit-transform: scale(1.2);\r\n          transform: scale(1.2);\r\n  opacity: 1;\n}\n.sit[data-v-6ca2f060] {\r\n  -webkit-transform: translateY(50px);\r\n          transform: translateY(50px);\r\n  opacity: 1;\n}\n.leave[data-v-6ca2f060] {\r\n  -webkit-transform: scale(0.8);\r\n          transform: scale(0.8);\r\n  opacity: 1;\n}\n.attack[data-v-6ca2f060] {\r\n  -webkit-animation: attack-data-v-6ca2f060 1s ease-in-out 0s 1;\r\n          animation: attack-data-v-6ca2f060 1s ease-in-out 0s 1;\n}\n.leftAttack[data-v-6ca2f060] {\r\n  -webkit-animation: leftAttack-data-v-6ca2f060 1s ease-in-out 0.5s 1;\r\n          animation: leftAttack-data-v-6ca2f060 1s ease-in-out 0.5s 1;\n}\n.rightAttack[data-v-6ca2f060] {\r\n  -webkit-animation: rightAttack-data-v-6ca2f060 1s ease-in-out 0s 1;\r\n          animation: rightAttack-data-v-6ca2f060 1s ease-in-out 0s 1;\n}\n.leftAttack2[data-v-6ca2f060] {\r\n  -webkit-animation: leftAttack-data-v-6ca2f060 1s ease-in-out 0.5s infinite;\r\n          animation: leftAttack-data-v-6ca2f060 1s ease-in-out 0.5s infinite;\n}\n.rightAttack2[data-v-6ca2f060] {\r\n  -webkit-animation: rightAttack-data-v-6ca2f060 1s ease-in-out 0s infinite;\r\n          animation: rightAttack-data-v-6ca2f060 1s ease-in-out 0s infinite;\n}\n.leftSlide[data-v-6ca2f060] {\r\n  -webkit-animation: leftSlide-data-v-6ca2f060 1s ease-in-out 0s infinite alternate;\r\n          animation: leftSlide-data-v-6ca2f060 1s ease-in-out 0s infinite alternate;\n}\n.rightSlide[data-v-6ca2f060] {\r\n  -webkit-animation: rightSlide-data-v-6ca2f060 1s ease-in-out 0s infinite alternate;\r\n          animation: rightSlide-data-v-6ca2f060 1s ease-in-out 0s infinite alternate;\n}\n@-webkit-keyframes tremble-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 5px;\n}\n75% {\r\n    left: -5px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes tremble-data-v-6ca2f060 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 5px;\n}\n75% {\r\n    left: -5px;\n}\n100% {\r\n    left: 0;\n}\n}\n@-webkit-keyframes jump-data-v-6ca2f060 {\n0% {\r\n    bottom: 0;\n}\n50% {\r\n    bottom: 50px;\n}\n100% {\r\n    bottom: 0px;\n}\n}\n@keyframes jump-data-v-6ca2f060 {\n0% {\r\n    bottom: 0;\n}\n50% {\r\n    bottom: 50px;\n}\n100% {\r\n    bottom: 0px;\n}\n}\n@-webkit-keyframes attack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: scale(0.8) rotate(-5deg);\r\n            transform: scale(0.8) rotate(-5deg);\n}\n50% {\r\n    -webkit-transform: scale(1.2) rotate(5deg);\r\n            transform: scale(1.2) rotate(5deg);\r\n    opacity: 1;\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\r\n    opacity: 1;\n}\n}\n@keyframes attack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: scale(0.8) rotate(-5deg);\r\n            transform: scale(0.8) rotate(-5deg);\n}\n50% {\r\n    -webkit-transform: scale(1.2) rotate(5deg);\r\n            transform: scale(1.2) rotate(5deg);\r\n    opacity: 1;\n}\n100% {\r\n    -webkit-transform: scale(1);\r\n            transform: scale(1);\r\n    opacity: 1;\n}\n}\n@-webkit-keyframes leftAttack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: translateX(50px) rotate(5deg);\r\n            transform: translateX(50px) rotate(5deg);\n}\n50% {\r\n    -webkit-transform: translateX(-150px) rotate(-5deg);\r\n            transform: translateX(-150px) rotate(-5deg);\n}\n100% {\n}\n}\n@keyframes leftAttack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: translateX(50px) rotate(5deg);\r\n            transform: translateX(50px) rotate(5deg);\n}\n50% {\r\n    -webkit-transform: translateX(-150px) rotate(-5deg);\r\n            transform: translateX(-150px) rotate(-5deg);\n}\n100% {\n}\n}\n@-webkit-keyframes rightAttack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: translateX(-50px) rotate(-5deg);\r\n            transform: translateX(-50px) rotate(-5deg);\n}\n50% {\r\n    -webkit-transform: translateX(150px) rotate(5deg);\r\n            transform: translateX(150px) rotate(5deg);\n}\n100% {\n}\n}\n@keyframes rightAttack-data-v-6ca2f060 {\n30% {\r\n    -webkit-transform: translateX(-50px) rotate(-5deg);\r\n            transform: translateX(-50px) rotate(-5deg);\n}\n50% {\r\n    -webkit-transform: translateX(150px) rotate(5deg);\r\n            transform: translateX(150px) rotate(5deg);\n}\n100% {\n}\n}\n@-webkit-keyframes rightSlide-data-v-6ca2f060 {\n0% {\r\n    left: 0px;\r\n    top: 0px;\n}\n25% {\r\n    left: 30px;\r\n    top: -20px;\n}\n50% {\r\n    left: 60px;\r\n    top: 0px;\n}\n75% {\r\n    left: 90px;\r\n    top: -20px;\n}\n100% {\r\n    left: 120px;\r\n    top: 0px;\n}\n}\n@keyframes rightSlide-data-v-6ca2f060 {\n0% {\r\n    left: 0px;\r\n    top: 0px;\n}\n25% {\r\n    left: 30px;\r\n    top: -20px;\n}\n50% {\r\n    left: 60px;\r\n    top: 0px;\n}\n75% {\r\n    left: 90px;\r\n    top: -20px;\n}\n100% {\r\n    left: 120px;\r\n    top: 0px;\n}\n}\n@-webkit-keyframes leftSlide-data-v-6ca2f060 {\n0% {\r\n    left: 0px;\r\n    top: 0px;\n}\n25% {\r\n    left: -30px;\r\n    top: -20px;\n}\n50% {\r\n    left: -60px;\r\n    top: 0px;\n}\n75% {\r\n    left: -90px;\r\n    top: -20px;\n}\n100% {\r\n    left: -120px;\r\n    top: 0px;\n}\n}\n@keyframes leftSlide-data-v-6ca2f060 {\n0% {\r\n    left: 0px;\r\n    top: 0px;\n}\n25% {\r\n    left: -30px;\r\n    top: -20px;\n}\n50% {\r\n    left: -60px;\r\n    top: 0px;\n}\n75% {\r\n    left: -90px;\r\n    top: -20px;\n}\n100% {\r\n    left: -120px;\r\n    top: 0px;\n}\n}\r\n\r\n/* 感情エフェクト系 */\n.effectBase[data-v-6ca2f060] {\r\n  position: absolute;\r\n  font-size: 40px;\r\n  z-index: 50;\n}\n.happy[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: yellow;\r\n  -webkit-animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite alternate;\r\n          animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite alternate;\n}\n.heart[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: pink;\r\n  -webkit-animation: expansion-data-v-6ca2f060 0.7s ease-in 0s infinite;\r\n          animation: expansion-data-v-6ca2f060 0.7s ease-in 0s infinite;\n}\n.angry[data-v-6ca2f060] {\r\n  top: 30px;\r\n  left: 100px;\r\n  color: red;\r\n  -webkit-animation: updown-data-v-6ca2f060 0.2s ease-in-out 0s infinite alternate;\r\n          animation: updown-data-v-6ca2f060 0.2s ease-in-out 0s infinite alternate;\n}\n.sweat[data-v-6ca2f060] {\r\n  top: 30px;\r\n  left: 100px;\r\n  color: aqua;\r\n  -webkit-animation: down-data-v-6ca2f060 0.8s ease 0s infinite;\r\n          animation: down-data-v-6ca2f060 0.8s ease 0s infinite;\n}\n.surprise[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: yellow;\r\n  -webkit-animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite;\r\n          animation: flash-data-v-6ca2f060 0.5s ease-in 0s infinite;\n}\n.death[data-v-6ca2f060] {\r\n  top: 0px;\r\n  left: 100px;\r\n  color: white;\r\n  -webkit-animation: up-data-v-6ca2f060 0.8s ease-in 0s infinite;\r\n          animation: up-data-v-6ca2f060 0.8s ease-in 0s infinite;\n}\n@-webkit-keyframes flash-data-v-6ca2f060 {\n0% {\r\n    opacity: 0;\n}\n50% {\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes flash-data-v-6ca2f060 {\n0% {\r\n    opacity: 0;\n}\n50% {\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@-webkit-keyframes expansion-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 120px;\r\n    opacity: 0;\r\n    font-size: 20px;\n}\n50% {\r\n    opacity: 1;\n}\n75% {\r\n    top: 0px;\r\n    left: 100px;\r\n    font-size: 40px;\r\n    opacity: 1;\n}\n}\n@keyframes expansion-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 120px;\r\n    opacity: 0;\r\n    font-size: 20px;\n}\n50% {\r\n    opacity: 1;\n}\n75% {\r\n    top: 0px;\r\n    left: 100px;\r\n    font-size: 40px;\r\n    opacity: 1;\n}\n}\n@-webkit-keyframes updown-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\n}\n100% {\r\n    top: 0px;\r\n    left: 100px;\n}\n}\n@keyframes updown-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\n}\n100% {\r\n    top: 0px;\r\n    left: 100px;\n}\n}\n@-webkit-keyframes up-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@keyframes up-data-v-6ca2f060 {\n0% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@-webkit-keyframes down-data-v-6ca2f060 {\n0% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\n@keyframes down-data-v-6ca2f060 {\n0% {\r\n    top: 0px;\r\n    left: 100px;\r\n    opacity: 0;\n}\n50% {\r\n    top: 30px;\r\n    left: 100px;\r\n    opacity: 1;\n}\n100% {\r\n    opacity: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -42879,104 +42910,140 @@ var render = function() {
     [
       _c("main-header"),
       _vm._v(" "),
-      _c("div", { staticClass: "leftArea" }, [
-        _c("p", [_vm._v("残りポイント：" + _vm._s(_vm.tempPoint))]),
-        _vm._v(" "),
-        _c("table", [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.tempStatus, function(value, key) {
-              return _c("tr", { key: key }, [
-                _c("td", [_vm._v(_vm._s(key))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(value))]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "button",
-                    {
-                      on: {
-                        click: function($event) {
-                          if ($event.target !== $event.currentTarget) {
-                            return null
-                          }
-                          $event.preventDefault()
-                          return _vm.incTempSt(key)
-                        }
-                      }
-                    },
-                    [_vm._v("+")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      on: {
-                        click: function($event) {
-                          if ($event.target !== $event.currentTarget) {
-                            return null
-                          }
-                          $event.preventDefault()
-                          return _vm.decTempSt(key)
-                        }
-                      }
-                    },
-                    [_vm._v("-")]
-                  )
-                ])
-              ])
-            }),
-            0
-          )
+      _c("div", { staticClass: "statusModal" }, [
+        _c("div", [
+          _c("button", { on: { click: _vm.changeArea } }, [_vm._v("切り替え")])
         ]),
         _vm._v(" "),
         _c(
-          "button",
+          "div",
           {
-            on: {
-              click: function($event) {
-                if ($event.target !== $event.currentTarget) {
-                  return null
-                }
-                $event.preventDefault()
-                return _vm.updateStatus($event)
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.isViewArea,
+                expression: "isViewArea"
               }
-            }
+            ]
           },
-          [_vm._v("決定")]
+          [
+            _c("img", {
+              staticStyle: { height: "200px" },
+              attrs: { src: __webpack_require__(/*! ../../../public/img/p_stand/p001.png */ "./public/img/p_stand/p001.png") }
+            })
+          ]
         ),
         _vm._v(" "),
         _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                if ($event.target !== $event.currentTarget) {
-                  return null
-                }
-                $event.preventDefault()
-                return _vm.resetStatus($event)
-              }
-            }
-          },
-          [_vm._v("リセット")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "centerArea" }, [
-        _c(
           "div",
           {
-            staticStyle: {
-              background: "#fff",
-              width: "300px",
-              height: "400px",
-              position: "relative"
-            }
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.isSetArea,
+                expression: "isSetArea"
+              }
+            ],
+            staticClass: "setArea"
           },
-          [_c("base-st-chart", { attrs: { "user-status": _vm.tempStatus } })],
+          [
+            _c("p", [_vm._v("残りポイント：" + _vm._s(_vm.tempPoint))]),
+            _vm._v(" "),
+            _c("table", [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.tempStatus, function(value, key) {
+                  return _c("tr", { key: key }, [
+                    _c("td", [_vm._v(_vm._s(key))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(value))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              if ($event.target !== $event.currentTarget) {
+                                return null
+                              }
+                              $event.preventDefault()
+                              return _vm.incTempSt(key)
+                            }
+                          }
+                        },
+                        [_vm._v("+")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              if ($event.target !== $event.currentTarget) {
+                                return null
+                              }
+                              $event.preventDefault()
+                              return _vm.decTempSt(key)
+                            }
+                          }
+                        },
+                        [_vm._v("-")]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    if ($event.target !== $event.currentTarget) {
+                      return null
+                    }
+                    $event.preventDefault()
+                    return _vm.updateStatus($event)
+                  }
+                }
+              },
+              [_vm._v("決定")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    if ($event.target !== $event.currentTarget) {
+                      return null
+                    }
+                    $event.preventDefault()
+                    return _vm.resetStatus($event)
+                  }
+                }
+              },
+              [_vm._v("リセット")]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "chartArea" },
+          [
+            _c("base-st-chart", {
+              staticClass: "chartConponent",
+              attrs: { "user-status": _vm.tempStatus }
+            })
+          ],
           1
         )
       ]),
@@ -60089,6 +60156,17 @@ module.exports = "/images/tika_ko.jpg?dff20b775b2224ba4a8ec6a999e71ce4";
 /***/ (function(module, exports) {
 
 module.exports = "/images/yadoya_room.jpg?8c703fad1843d03a3011c6eb7273db3a";
+
+/***/ }),
+
+/***/ "./public/img/p_stand/p001.png":
+/*!*************************************!*\
+  !*** ./public/img/p_stand/p001.png ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/p001.png?8c8fdb1da76539427531db13d6501ac7";
 
 /***/ }),
 

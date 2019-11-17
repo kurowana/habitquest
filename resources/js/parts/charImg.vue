@@ -352,7 +352,7 @@ export default {
   }
   25% {
     left: 30px;
-    top: 20px;
+    top: -20px;
   }
   50% {
     left: 60px;
@@ -360,7 +360,7 @@ export default {
   }
   75% {
     left: 90px;
-    top: 20px;
+    top: -20px;
   }
   100% {
     left: 120px;
@@ -375,7 +375,7 @@ export default {
   }
   25% {
     left: -30px;
-    top: 20px;
+    top: -20px;
   }
   50% {
     left: -60px;
@@ -383,7 +383,7 @@ export default {
   }
   75% {
     left: -90px;
-    top: 20px;
+    top: -20px;
   }
   100% {
     left: -120px;
