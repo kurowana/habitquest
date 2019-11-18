@@ -42,7 +42,7 @@
       <modal v-if="isConfirmImgModal">
         <div class="confirm-content">
           <div class="img-container">
-            <img class="img-stand" :src="selectedImg" />
+            <img class="img-stand" :src="selectedImg.stand" />
           </div>
           <div class="button-container">
             <button @click.prevent="saveImg">決定</button>
@@ -290,7 +290,7 @@ export default {
       this.getScene(this.sceneCount);
     },
     selectImg: function(img) {
-      this.selectedImg = img.stand;
+      this.selectedImg = img;
       this.isSelectImgModal = false;
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);

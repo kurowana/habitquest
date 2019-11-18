@@ -3672,7 +3672,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getScene(this.sceneCount);
     },
     selectImg: function selectImg(img) {
-      this.selectedImg = img.stand;
+      this.selectedImg = img;
       this.isSelectImgModal = false;
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.getScene(this.sceneCount);
@@ -43291,7 +43291,7 @@ var render = function() {
                 _c("div", { staticClass: "img-container" }, [
                   _c("img", {
                     staticClass: "img-stand",
-                    attrs: { src: _vm.selectedImg }
+                    attrs: { src: _vm.selectedImg.stand }
                   })
                 ]),
                 _vm._v(" "),
