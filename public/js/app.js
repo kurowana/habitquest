@@ -3633,7 +3633,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }],
       eventObj2: [function () {
-        _this.showChar("スフィア", "l2");
+        _this.showChar("スフィア1", "l2");
 
         _this.setEvent({
           type: "msg",
@@ -3656,6 +3656,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   created: function created() {
     // this.$store.commit("setBgImg", "");
+    this.resetEvent();
     this.changeBg("神殿");
     this.$store.commit("setMessage", "これはオープニングです");
   },
@@ -4358,16 +4359,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   methods: {
     choiced1: function choiced1() {
-      this.choice1.event();
+      this.choice.type1.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
+      this.$store.commit("setChoice", {
+        flag: false,
+        type1: "",
+        type2: ""
+      });
     },
     choiced2: function choiced2() {
-      this.choice2.event();
+      this.choice.type2.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
+      this.$store.commit("setChoice", {
+        flag: false,
+        type1: "",
+        type2: ""
+      });
     }
   }
 });
@@ -19382,7 +19393,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.choiceWrapper[data-v-17ebb1a4] {\r\n  position: absolute;\r\n  margin-top: 140px;\n}\n.choiceBox[data-v-17ebb1a4] {\r\n  width: 600px;\r\n  height: 50px;\r\n  background: black;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 0px 0px 50px 100px;\r\n  padding-top: 9px;\r\n  z-index: 200;\r\n  font-size: 1.3em;\r\n  text-align: center;\n}\n.choiceBox[data-v-17ebb1a4]:hover {\r\n  background: #ffe4b5;\r\n  border: 2px double red;\r\n  color: black;\r\n  font-weight: bold;\n}\r\n", ""]);
+exports.push([module.i, "\n.choiceWrapper[data-v-17ebb1a4] {\r\n  position: absolute;\r\n  margin-top: 140px;\r\n  z-index: 200;\n}\n.choiceBox[data-v-17ebb1a4] {\r\n  width: 600px;\r\n  height: 50px;\r\n  background: black;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 0px 0px 50px 100px;\r\n  padding-top: 9px;\r\n  z-index: 200;\r\n  font-size: 1.3em;\r\n  text-align: center;\n}\n.choiceBox[data-v-17ebb1a4]:hover {\r\n  background: #ffe4b5;\r\n  border: 2px double red;\r\n  color: black;\r\n  font-weight: bold;\n}\r\n", ""]);
 
 // exports
 
@@ -44109,7 +44120,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.choice1.text))]
+            [_vm._v(_vm._s(_vm.choice.type1.text))]
           ),
           _vm._v(" "),
           _c(
@@ -44123,7 +44134,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.choice2.text))]
+            [_vm._v(_vm._s(_vm.choice.type2.text))]
           )
         ])
       : _vm._e()
@@ -61668,6 +61679,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     selectEvent: function selectEvent(event) {
       this.$store.commit("setMessage", event.msg);
+      console.log(event.choice[0]);
       this.$store.commit("setChoice", {
         flag: true,
         type1: event.choice[0],
@@ -61913,6 +61925,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.$store.commit("setMotionR2", motion);
           break;
       }
+    },
+    resetEvent: function resetEvent() {
+      this.$store.commit("setEventObj", "eventObj");
+      this.$store.commit("setSceneCount", 0);
     }
   }
 });

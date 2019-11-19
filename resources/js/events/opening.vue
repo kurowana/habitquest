@@ -254,7 +254,7 @@ export default {
       ],
       eventObj2: [
         () => {
-          this.showChar("スフィア", "l2");
+          this.showChar("スフィア1", "l2");
           this.setEvent({ type: "msg", content: "選択し２" });
         },
         () => {
@@ -274,6 +274,7 @@ export default {
   },
   created: function() {
     // this.$store.commit("setBgImg", "");
+    this.resetEvent();
     this.changeBg("神殿");
     this.$store.commit("setMessage", "これはオープニングです");
   },

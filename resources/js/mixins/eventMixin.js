@@ -122,6 +122,7 @@ export default {
         },
         selectEvent: function(event) {
             this.$store.commit("setMessage", event.msg);
+            console.log(event.choice[0]);
             this.$store.commit("setChoice", {
                 flag: true,
                 type1: event.choice[0],
@@ -324,6 +325,10 @@ export default {
                     this.$store.commit("setMotionR2", motion);
                     break;
             }
+        },
+        resetEvent: function() {
+            this.$store.commit("setEventObj", "eventObj");
+            this.$store.commit("setSceneCount", 0);
         }
     }
 };
