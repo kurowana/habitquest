@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-if="choice.isShow" class="choiceWrapper">
-      <div class="choiceBox" @click.prevent="choiced1">{{choice1.text}}</div>
-      <div class="choiceBox" @click.prevent="choiced2">{{choice2.text}}</div>
+      <div class="choiceBox" @click.prevent="choiced1">{{choice.type1.text}}</div>
+      <div class="choiceBox" @click.prevent="choiced2">{{choice.type2.text}}</div>
     </div>
   </div>
 </template>
@@ -23,16 +23,18 @@ export default {
   },
   methods: {
     choiced1: function() {
-      this.choice1.event();
+      this.choice.type1.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
+      this.$store.commit("setChoice", { flag: false, type1: "", type2: "" });
     },
     choiced2: function() {
-      this.choice2.event();
+      this.choice.type2.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
+      this.$store.commit("setChoice", { flag: false, type1: "", type2: "" });
     }
   }
 };
@@ -42,6 +44,7 @@ export default {
 .choiceWrapper {
   position: absolute;
   margin-top: 140px;
+  z-index: 200;
 }
 .choiceBox {
   width: 600px;
