@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="choice.isShow" class="choiceWrapper">
-      <div class="choiceBox" @click.prevent="choiced1">{{choice.type1.text}}</div>
-      <div class="choiceBox" @click.prevent="choiced2">{{choice.type2.text}}</div>
+    <div v-if="selectMsg.isShow" class="selectWrapper">
+      <div class="selectBox" @click.prevent="selected1">{{selectMsg.option1.text}}</div>
+      <div class="selectBox" @click.prevent="selected2">{{selectMsg.option2.text}}</div>
     </div>
   </div>
 </template>
@@ -18,35 +18,35 @@ export default {
   computed: {
     ...mapGetters({
       sceneCount: "getSceneCount",
-      choice: "getChoice"
+      selectMsg: "getSelectMsg"
     })
   },
   methods: {
-    choiced1: function() {
-      this.choice.type1.event();
+    selected1: function() {
+      this.selectMsg.option1.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
-      this.$store.commit("setChoice", { flag: false, type1: "", type2: "" });
+      this.$store.commit("setSelectMsg", { flag: false, type1: "", type2: "" });
     },
-    choiced2: function() {
-      this.choice.type2.event();
+    selected2: function() {
+      this.selectMsg.option2.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
-      this.$store.commit("setChoice", { flag: false, type1: "", type2: "" });
+      this.$store.commit("setSelectMsg", { flag: false, type1: "", type2: "" });
     }
   }
 };
 </script>
 
 <style scoped>
-.choiceWrapper {
+.selectWrapper {
   position: absolute;
   margin-top: 140px;
   z-index: 200;
 }
-.choiceBox {
+.selectBox {
   width: 600px;
   height: 50px;
   background: black;
@@ -59,7 +59,7 @@ export default {
   text-align: center;
 }
 
-.choiceBox:hover {
+.selectBox:hover {
   background: #ffe4b5;
   border: 2px double red;
   color: black;

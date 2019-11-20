@@ -6,6 +6,7 @@
       <div>
         <button @click="changeArea">切り替え</button>
       </div>
+      {{userImgList[user.imgType].face}}
       <div v-show="isViewArea">
         <img src="../../../public/img/p_stand/p001.png" style="height:200px;" />
       </div>
@@ -37,7 +38,7 @@
         <base-st-chart class="chartConponent" :user-status="tempStatus"></base-st-chart>
       </div>
     </div>
-    <message @get-scene="getScene"></message>
+    <!-- <message @get-scene="getScene"></message> -->
     <char-img></char-img>
   </div>
 </template>
@@ -86,7 +87,8 @@ export default {
   computed: {
     ...mapGetters({
       user: "getUser",
-      monster: "getBattleMonster"
+      userImgList: "getUserImgList"
+      // monster: "getBattleMonster"
     })
   },
   watch: {

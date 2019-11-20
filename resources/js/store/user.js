@@ -3,6 +3,7 @@ const state = {
     user: {
         id: "",
         name: "",
+        imgType: "",
         lv: 0,
         point: 0,
         stage: 0,
@@ -26,7 +27,7 @@ const state = {
         hit: 0,
         flee: 0
     },
-    userImg: {
+    userImgList: {
         p001: {
             face: "img/p_face/f001.png",
             stand: "img/p_stand/p001.png"
@@ -159,8 +160,8 @@ const getters = {
     getBattleStatus: state => {
         return state.battleStatus;
     },
-    getUserImg: state => {
-        return state.userImg;
+    getUserImgList: state => {
+        return state.userImgList;
     }
 };
 const mutations = {
@@ -171,6 +172,7 @@ const mutations = {
         state.user.id = user.id;
         state.user.name = user.name;
         state.user.lv = user.lv;
+        state.imgType = user.imgType;
         state.user.point = user.point;
         state.user.stage = user.stage;
         state.user.status.str = user.status.str;
@@ -183,6 +185,9 @@ const mutations = {
     setUserInfo(state, user) {
         state.user.id = user.id;
         state.user.name = user.name;
+    },
+    setImgType(state, type) {
+        state.user.imgType = type;
     },
     setLv(state, lv) {
         state.user.lv = lv;

@@ -122,11 +122,10 @@ export default {
         },
         selectEvent: function(event) {
             this.$store.commit("setMessage", event.msg);
-            console.log(event.choice[0]);
-            this.$store.commit("setChoice", {
+            this.$store.commit("setSelectMsg", {
                 flag: true,
-                type1: event.choice[0],
-                type2: event.choice[1]
+                option1: event.options[0],
+                option2: event.options[1]
             });
             // this.$store.commit("setChoice1", event.choice[0]);
             // this.$store.commit("setChoice2", event.choice[1]);

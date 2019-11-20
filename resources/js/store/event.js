@@ -11,10 +11,10 @@ const state = {
         name: " ",
         content: " "
     },
-    choice: {
+    selectMsg: {
         isShow: "",
-        type1: " ",
-        type2: " "
+        option1: " ",
+        option2: " "
     },
     npc: {
         L1: {
@@ -274,8 +274,8 @@ const getters = {
     getMessage: state => {
         return state.message;
     },
-    getChoice: state => {
-        return state.choice;
+    getSelectMsg: state => {
+        return state.selectMsg;
     },
     // getMessage: state => {
     //     return state.message;
@@ -339,10 +339,10 @@ const mutations = {
     setTalkerName(state, name) {
         state.message.name = name;
     },
-    setChoice(state, choice) {
-        state.choice.isShow = choice.flag;
-        state.choice.type1 = choice.type1;
-        state.choice.type2 = choice.type2;
+    setSelectMsg(state, options) {
+        state.selectMsg.isShow = options.flag;
+        state.selectMsg.option1 = options.option1;
+        state.selectMsg.option2 = options.option2;
     },
     // setMessage(state, message) {
     //     state.message = message;
