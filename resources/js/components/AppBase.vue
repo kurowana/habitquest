@@ -94,6 +94,7 @@ export default {
         })
         .then(res => {
           this.status = res.data;
+          this.$store.commit("setImgType", res.data.char_img);
           this.$store.commit("setPoint", res.data.point);
           this.$store.commit("setStatus", {
             str: res.data.str,

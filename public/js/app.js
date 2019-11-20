@@ -2090,6 +2090,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (res) {
         _this.status = res.data;
 
+        _this.$store.commit("setImgType", res.data.char_img);
+
         _this.$store.commit("setPoint", res.data.point);
 
         _this.$store.commit("setStatus", {
@@ -3194,6 +3196,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -3235,7 +3238,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: "getUser",
-    monster: "getBattleMonster"
+    userImgList: "getUserImgList" // monster: "getBattleMonster"
+
   })),
   watch: {
     tempStatus: {
@@ -3578,14 +3582,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             msg: "モーダル2"
           }
         });
-      }, function () {
+      }, // () => {
+      //   this.showChar("", "r2");
+      //   this.setEvent({
+      //     type: "select",
+      //     content: {
+      //       msg: "どちらを選ぶ？",
+      //       choice: [
+      //         {
+      //           text: "選択肢1",
+      //           event: () => {
+      //             this.$store.commit("setEventObj", "eventObj1");
+      //             this.$store.commit("setSceneCount", 0);
+      //           }
+      //         },
+      //         {
+      //           text: "選択肢2",
+      //           event: () => {
+      //             this.$store.commit("setEventObj", "eventObj2");
+      //             this.$store.commit("setSceneCount", 0);
+      //           }
+      //         }
+      //       ]
+      //     }
+      //   });
+      // }
+      function () {
         _this.showChar("", "r2");
 
         _this.setEvent({
           type: "select",
           content: {
             msg: "どちらを選ぶ？",
-            choice: [{
+            options: [{
               text: "選択肢1",
               event: function event() {
                 _this.$store.commit("setEventObj", "eventObj1");
@@ -3649,7 +3678,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: "getUser",
-    userImg: "getUserImg",
+    userImgList: "getUserImgList",
     sceneCount: "getSceneCount",
     NextFlag: "getNextFlag",
     npc: "getNpc"
@@ -3917,12 +3946,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   name: this.loginName,
                   password: this.loginPassword
                 }).then(function (res) {
-                  if (res.status === 419) {
-                    alert("セッションエラーです。再ログインしてください。");
-                    location.reload();
-                  } else if (res.status === 200) {
-                    location.reload();
-                  }
+                  location.reload();
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -4355,26 +4379,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_0__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_1__["default"]],
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
     sceneCount: "getSceneCount",
-    choice: "getChoice"
+    selectMsg: "getSelectMsg"
   })),
   methods: {
-    choiced1: function choiced1() {
-      this.choice.type1.event();
+    selected1: function selected1() {
+      this.selectMsg.option1.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
-      this.$store.commit("setChoice", {
+      this.$store.commit("setSelectMsg", {
         flag: false,
         type1: "",
         type2: ""
       });
     },
-    choiced2: function choiced2() {
-      this.choice.type2.event();
+    selected2: function selected2() {
+      this.selectMsg.option2.event();
       this.$emit("complete-choice");
       this.$store.commit("setSceneCount", this.sceneCount + 1);
       this.$emit("get-scene", this.sceneCount);
-      this.$store.commit("setChoice", {
+      this.$store.commit("setSelectMsg", {
         flag: false,
         type1: "",
         type2: ""
@@ -19393,7 +19417,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.choiceWrapper[data-v-17ebb1a4] {\r\n  position: absolute;\r\n  margin-top: 140px;\r\n  z-index: 200;\n}\n.choiceBox[data-v-17ebb1a4] {\r\n  width: 600px;\r\n  height: 50px;\r\n  background: black;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 0px 0px 50px 100px;\r\n  padding-top: 9px;\r\n  z-index: 200;\r\n  font-size: 1.3em;\r\n  text-align: center;\n}\n.choiceBox[data-v-17ebb1a4]:hover {\r\n  background: #ffe4b5;\r\n  border: 2px double red;\r\n  color: black;\r\n  font-weight: bold;\n}\r\n", ""]);
+exports.push([module.i, "\n.selectWrapper[data-v-17ebb1a4] {\r\n  position: absolute;\r\n  margin-top: 140px;\r\n  z-index: 200;\n}\n.selectBox[data-v-17ebb1a4] {\r\n  width: 600px;\r\n  height: 50px;\r\n  background: black;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  margin: 0px 0px 50px 100px;\r\n  padding-top: 9px;\r\n  z-index: 200;\r\n  font-size: 1.3em;\r\n  text-align: center;\n}\n.selectBox[data-v-17ebb1a4]:hover {\r\n  background: #ffe4b5;\r\n  border: 2px double red;\r\n  color: black;\r\n  font-weight: bold;\n}\r\n", ""]);
 
 // exports
 
@@ -42925,7 +42949,9 @@ var render = function() {
         _c("div", [
           _c("button", { on: { click: _vm.changeArea } }, [_vm._v("切り替え")])
         ]),
-        _vm._v(" "),
+        _vm._v(
+          "\n    " + _vm._s(_vm.userImgList[_vm.user.imgType].face) + "\n    "
+        ),
         _c(
           "div",
           {
@@ -43058,8 +43084,6 @@ var render = function() {
           1
         )
       ]),
-      _vm._v(" "),
-      _c("message", { on: { "get-scene": _vm.getScene } }),
       _vm._v(" "),
       _c("char-img")
     ],
@@ -43277,7 +43301,7 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "img-container" },
-                _vm._l(_vm.userImg, function(img, index) {
+                _vm._l(_vm.userImgList, function(img, index) {
                   return _c("div", { key: index, staticClass: "img-card" }, [
                     _c("img", {
                       staticClass: "img-face",
@@ -44107,34 +44131,34 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.choice.isShow
-      ? _c("div", { staticClass: "choiceWrapper" }, [
+    _vm.selectMsg.isShow
+      ? _c("div", { staticClass: "selectWrapper" }, [
           _c(
             "div",
             {
-              staticClass: "choiceBox",
+              staticClass: "selectBox",
               on: {
                 click: function($event) {
                   $event.preventDefault()
-                  return _vm.choiced1($event)
+                  return _vm.selected1($event)
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.choice.type1.text))]
+            [_vm._v(_vm._s(_vm.selectMsg.option1.text))]
           ),
           _vm._v(" "),
           _c(
             "div",
             {
-              staticClass: "choiceBox",
+              staticClass: "selectBox",
               on: {
                 click: function($event) {
                   $event.preventDefault()
-                  return _vm.choiced2($event)
+                  return _vm.selected2($event)
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.choice.type2.text))]
+            [_vm._v(_vm._s(_vm.selectMsg.option2.text))]
           )
         ])
       : _vm._e()
@@ -61679,11 +61703,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     selectEvent: function selectEvent(event) {
       this.$store.commit("setMessage", event.msg);
-      console.log(event.choice[0]);
-      this.$store.commit("setChoice", {
+      this.$store.commit("setSelectMsg", {
         flag: true,
-        type1: event.choice[0],
-        type2: event.choice[1]
+        option1: event.options[0],
+        option2: event.options[1]
       }); // this.$store.commit("setChoice1", event.choice[0]);
       // this.$store.commit("setChoice2", event.choice[1]);
       // this.isShowChoice = true;
@@ -63029,10 +63052,10 @@ var state = {
     name: " ",
     content: " "
   },
-  choice: {
+  selectMsg: {
     isShow: "",
-    type1: " ",
-    type2: " "
+    option1: " ",
+    option2: " "
   },
   npc: {
     L1: {
@@ -63289,8 +63312,8 @@ var getters = {
   getMessage: function getMessage(state) {
     return state.message;
   },
-  getChoice: function getChoice(state) {
-    return state.choice;
+  getSelectMsg: function getSelectMsg(state) {
+    return state.selectMsg;
   },
   // getMessage: state => {
   //     return state.message;
@@ -63354,10 +63377,10 @@ var mutations = {
   setTalkerName: function setTalkerName(state, name) {
     state.message.name = name;
   },
-  setChoice: function setChoice(state, choice) {
-    state.choice.isShow = choice.flag;
-    state.choice.type1 = choice.type1;
-    state.choice.type2 = choice.type2;
+  setSelectMsg: function setSelectMsg(state, options) {
+    state.selectMsg.isShow = options.flag;
+    state.selectMsg.option1 = options.option1;
+    state.selectMsg.option2 = options.option2;
   },
   // setMessage(state, message) {
   //     state.message = message;
@@ -64070,6 +64093,7 @@ var state = {
   user: {
     id: "",
     name: "",
+    imgType: "",
     lv: 0,
     point: 0,
     stage: 0,
@@ -64093,7 +64117,7 @@ var state = {
     hit: 0,
     flee: 0
   },
-  userImg: {
+  userImgList: {
     p001: {
       face: "img/p_face/f001.png",
       stand: "img/p_stand/p001.png"
@@ -64226,8 +64250,8 @@ var getters = {
   getBattleStatus: function getBattleStatus(state) {
     return state.battleStatus;
   },
-  getUserImg: function getUserImg(state) {
-    return state.userImg;
+  getUserImgList: function getUserImgList(state) {
+    return state.userImgList;
   }
 };
 var mutations = {
@@ -64238,6 +64262,7 @@ var mutations = {
     state.user.id = user.id;
     state.user.name = user.name;
     state.user.lv = user.lv;
+    state.imgType = user.imgType;
     state.user.point = user.point;
     state.user.stage = user.stage;
     state.user.status.str = user.status.str;
@@ -64250,6 +64275,9 @@ var mutations = {
   setUserInfo: function setUserInfo(state, user) {
     state.user.id = user.id;
     state.user.name = user.name;
+  },
+  setImgType: function setImgType(state, type) {
+    state.user.imgType = type;
   },
   setLv: function setLv(state, lv) {
     state.user.lv = lv;

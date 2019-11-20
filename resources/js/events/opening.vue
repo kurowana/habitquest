@@ -34,7 +34,7 @@
       </modal>
       <modal v-if="isSelectImgModal">
         <div class="img-container">
-          <div class="img-card" v-for="(img,index) in userImg" :key="index">
+          <div class="img-card" v-for="(img,index) in userImgList" :key="index">
             <img class="img-face" @click.prevent="selectImg(img)" :src="img.face" />
           </div>
         </div>
@@ -204,13 +204,38 @@ export default {
             content: { window: "isConfirmImgModal", msg: "モーダル2" }
           });
         },
+        // () => {
+        //   this.showChar("", "r2");
+        //   this.setEvent({
+        //     type: "select",
+        //     content: {
+        //       msg: "どちらを選ぶ？",
+        //       choice: [
+        //         {
+        //           text: "選択肢1",
+        //           event: () => {
+        //             this.$store.commit("setEventObj", "eventObj1");
+        //             this.$store.commit("setSceneCount", 0);
+        //           }
+        //         },
+        //         {
+        //           text: "選択肢2",
+        //           event: () => {
+        //             this.$store.commit("setEventObj", "eventObj2");
+        //             this.$store.commit("setSceneCount", 0);
+        //           }
+        //         }
+        //       ]
+        //     }
+        //   });
+        // }
         () => {
           this.showChar("", "r2");
           this.setEvent({
             type: "select",
             content: {
               msg: "どちらを選ぶ？",
-              choice: [
+              options: [
                 {
                   text: "選択肢1",
                   event: () => {
@@ -266,7 +291,7 @@ export default {
   computed: {
     ...mapGetters({
       user: "getUser",
-      userImg: "getUserImg",
+      userImgList: "getUserImgList",
       sceneCount: "getSceneCount",
       NextFlag: "getNextFlag",
       npc: "getNpc"
