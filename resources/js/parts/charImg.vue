@@ -236,8 +236,12 @@ export default {
   animation: tremble 0.2s linear 0s infinite;
 }
 
-.jump {
+.jumpRepeat {
   animation: jump 0.5s ease-in-out 0s infinite;
+}
+
+.jump {
+  animation: jump 0.4s ease-in-out 0s 2;
 }
 
 .close {

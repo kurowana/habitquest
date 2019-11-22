@@ -260,13 +260,7 @@ export default {
         //             console.log("default");
         //     }
         // },
-        resetMotion() {
-            this.$store.commit("setMotionL1", { flag: false, type: "" });
-            this.$store.commit("setMotionL2", { flag: false, type: "" });
-            this.$store.commit("setMotionC", { flag: false, type: "" });
-            this.$store.commit("setMotionR1", { flag: false, type: "" });
-            this.$store.commit("setMotionR2", { flag: false, type: "" });
-        },
+
         setEffect(target, effect) {
             // this.activeEffect[target]["type"] = effect;
             const effectClass = this.selectEffectClass(effect);
@@ -306,6 +300,13 @@ export default {
                     return "none";
             }
         },
+        resetEffect: function() {
+            this.$store.commit("setEffectC", "");
+            this.$store.commit("setEffectL1", "");
+            this.$store.commit("setEffectL2", "");
+            this.$store.commit("setEffectR1", "");
+            this.$store.commit("setEffectR2", "");
+        },
         setMotion: function(target, motion) {
             switch (target.toUpperCase()) {
                 case "C":
@@ -325,9 +326,23 @@ export default {
                     break;
             }
         },
-        resetEvent: function() {
+        resetMotion() {
+            this.$store.commit("setMotionL1", "");
+            this.$store.commit("setMotionL2", "");
+            this.$store.commit("setMotionC", "");
+            this.$store.commit("setMotionR1", "");
+            this.$store.commit("setMotionR2", "");
+        },
+        resetEventObj: function() {
             this.$store.commit("setEventObj", "eventObj");
             this.$store.commit("setSceneCount", 0);
+        },
+        initEvent: function() {
+            this.resetEventObj();
+            this.resetMotion();
+            this.resetEffect();
+            this.clearChar();
+            this.resetOpacity();
         }
     }
 };
