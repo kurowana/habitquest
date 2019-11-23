@@ -62,6 +62,9 @@ export default {
                 case "採集":
                     this.$store.commit("setBgImg", "stream");
                     break;
+                case "ステータス":
+                    this.$store.commit("setBgImg", "status");
+                    break;
                 case "":
                     this.$store.commit("setBgImg", "");
                     break;

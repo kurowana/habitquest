@@ -100,7 +100,7 @@ export default {
     }
   },
   created: function() {
-    this.changeBg("ホーム");
+    this.changeBg("ステータス");
     this.setEvent({ type: "msg", content: "調子はどう？成長してる？" });
     this.clearChar();
     this.showChar("スフィア2", "r1");

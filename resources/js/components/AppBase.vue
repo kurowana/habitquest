@@ -206,6 +206,13 @@ export default {
   animation: bgFadeIn 1s ease 0s 1 normal;
 }
 
+.status {
+  background: url("../../../public/img/bg/grandpa-jims-favorite-suit.gif");
+  background-repeat: repeat;
+  background-size: 200px auto;
+  animation: bgFadeIn 1s ease 0s 1 normal;
+}
+
 @keyframes bgFadeIn {
   0% {
     opacity: 0;
