@@ -47,7 +47,8 @@ export default {
 <style scoped>
 .sidebar {
   width: 200px;
-  background: url("../../../public/img/ui/sidebar.png") repeat;
+  background: url("../../../public/img/ui/sidebar2.jpg") repeat;
+  background-size: 300px auto;
   z-index: 100;
 }
 

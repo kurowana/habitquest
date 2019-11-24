@@ -207,9 +207,9 @@ export default {
 }
 
 .status {
-  background: url("../../../public/img/bg/grandpa-jims-favorite-suit.gif");
+  background: url("../../../public/img/bg/invaders.gif");
   background-repeat: repeat;
-  background-size: 200px auto;
+  background-size: 300px auto;
   animation: bgFadeIn 1s ease 0s 1 normal;
 }
 

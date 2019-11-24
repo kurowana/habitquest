@@ -19225,7 +19225,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1200px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\n}\n.home[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/yadoya_room.jpg */ "./public/img/bg/yadoya_room.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.town[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/Europe_House.jpg */ "./public/img/bg/Europe_House.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.itemshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/item_shop.jpg */ "./public/img/bg/item_shop.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.weaponshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bukiya.jpg */ "./public/img/bg/bukiya.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.bar[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bar.jpg */ "./public/img/bg/bar.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden.jpg */ "./public/img/bg/shinden.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree.jpg */ "./public/img/bg/old_tree.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.stream[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/keiryuu.jpg */ "./public/img/bg/keiryuu.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.status[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/grandpa-jims-favorite-suit.gif */ "./public/img/bg/grandpa-jims-favorite-suit.gif")) + ");\r\n  background-repeat: repeat;\r\n  background-size: 200px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1200px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\n}\n.home[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/yadoya_room.jpg */ "./public/img/bg/yadoya_room.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.town[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/Europe_House.jpg */ "./public/img/bg/Europe_House.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.itemshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/item_shop.jpg */ "./public/img/bg/item_shop.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.weaponshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bukiya.jpg */ "./public/img/bg/bukiya.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.bar[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bar.jpg */ "./public/img/bg/bar.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden.jpg */ "./public/img/bg/shinden.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree.jpg */ "./public/img/bg/old_tree.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.stream[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/keiryuu.jpg */ "./public/img/bg/keiryuu.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.status[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/invaders.gif */ "./public/img/bg/invaders.gif")) + ");\r\n  background-repeat: repeat;\r\n  background-size: 300px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -19340,7 +19340,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.sidebar[data-v-7cf8fe06] {\r\n  width: 200px;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/ui/sidebar.png */ "./public/img/ui/sidebar.png")) + ") repeat;\r\n  z-index: 100;\n}\n.btn[data-v-7cf8fe06] {\r\n  width: 180px;\r\n  height: 40px;\r\n  margin: 10px;\r\n  padding: 5px;\r\n  background: linear-gradient(#333, #666);\r\n  border: double 2px gold;\r\n  border-radius: 5px;\r\n  color: white;\r\n  font-size: 16px;\n}\r\n", ""]);
+exports.push([module.i, "\n.sidebar[data-v-7cf8fe06] {\r\n  width: 200px;\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/ui/sidebar2.jpg */ "./public/img/ui/sidebar2.jpg")) + ") repeat;\r\n  background-size: 300px auto;\r\n  z-index: 100;\n}\n.btn[data-v-7cf8fe06] {\r\n  width: 180px;\r\n  height: 40px;\r\n  margin: 10px;\r\n  padding: 5px;\r\n  background: linear-gradient(#333, #666);\r\n  border: double 2px gold;\r\n  border-radius: 5px;\r\n  color: white;\r\n  font-size: 16px;\n}\r\n", ""]);
 
 // exports
 
@@ -60128,14 +60128,14 @@ module.exports = "/images/bukiya.jpg?0f850ae1a91bee0dbd735db1a3ad99f1";
 
 /***/ }),
 
-/***/ "./public/img/bg/grandpa-jims-favorite-suit.gif":
-/*!******************************************************!*\
-  !*** ./public/img/bg/grandpa-jims-favorite-suit.gif ***!
-  \******************************************************/
+/***/ "./public/img/bg/invaders.gif":
+/*!************************************!*\
+  !*** ./public/img/bg/invaders.gif ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/grandpa-jims-favorite-suit.gif?5c9f446084755895c10ff453b38c670c";
+module.exports = "/images/invaders.gif?01d46192ac66e07b8f9a0ee14a49fefa";
 
 /***/ }),
 
@@ -60227,14 +60227,14 @@ module.exports = "/images/msg-window.png?10128b13c85a793b68142e9605886723";
 
 /***/ }),
 
-/***/ "./public/img/ui/sidebar.png":
-/*!***********************************!*\
-  !*** ./public/img/ui/sidebar.png ***!
-  \***********************************/
+/***/ "./public/img/ui/sidebar2.jpg":
+/*!************************************!*\
+  !*** ./public/img/ui/sidebar2.jpg ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/sidebar.png?e81c8129adb180a486d94cc796352ccc";
+module.exports = "/images/sidebar2.jpg?449db4fd742809fa9cd228f6d6282114";
 
 /***/ }),
 
