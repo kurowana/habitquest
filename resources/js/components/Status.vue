@@ -6,9 +6,9 @@
       <div>
         <button @click="changeArea">切り替え</button>
       </div>
-      {{userImgList[user.imgType].face}}
+
       <div v-show="isViewArea">
-        <img src="../../../public/img/p_stand/p001.png" style="height:200px;" />
+        <img :src="userImgList[user.imgType].stand" />
       </div>
       <div v-show="isSetArea" class="setArea">
         <p>残りポイント：{{tempPoint}}</p>
@@ -64,6 +64,7 @@ export default {
   mixins: [baseMixin, eventMixin],
   data: function() {
     return {
+      test: "p002.png",
       isSetArea: true,
       isViewArea: false,
 
@@ -100,10 +101,11 @@ export default {
     }
   },
   created: function() {
+    this.initEvent();
     this.changeBg("ステータス");
-    this.setEvent({ type: "msg", content: "調子はどう？成長してる？" });
-    this.clearChar();
-    this.showChar("スフィア2", "r1");
+    // this.setEvent({ type: "msg", content: "調子はどう？成長してる？" });
+    // this.clearChar();
+    // this.showChar("スフィア2", "r1");
     this.initPage();
   },
   methods: {
