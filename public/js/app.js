@@ -3217,6 +3217,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this = this;
 
     return {
+      test: "p002.png",
       isSetArea: true,
       isViewArea: false,
       tempPoint: 0,
@@ -3250,13 +3251,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
-    this.changeBg("ステータス");
-    this.setEvent({
-      type: "msg",
-      content: "調子はどう？成長してる？"
-    });
-    this.clearChar();
-    this.showChar("スフィア2", "r1");
+    this.initEvent();
+    this.changeBg("ステータス"); // this.setEvent({ type: "msg", content: "調子はどう？成長してる？" });
+    // this.clearChar();
+    // this.showChar("スフィア2", "r1");
+
     this.initPage();
   },
   methods: {
@@ -42949,9 +42948,7 @@ var render = function() {
         _c("div", [
           _c("button", { on: { click: _vm.changeArea } }, [_vm._v("切り替え")])
         ]),
-        _vm._v(
-          "\n    " + _vm._s(_vm.userImgList[_vm.user.imgType].face) + "\n    "
-        ),
+        _vm._v(" "),
         _c(
           "div",
           {
@@ -42966,8 +42963,7 @@ var render = function() {
           },
           [
             _c("img", {
-              staticStyle: { height: "200px" },
-              attrs: { src: __webpack_require__(/*! ../../../public/img/p_stand/p001.png */ "./public/img/p_stand/p001.png") }
+              attrs: { src: _vm.userImgList[_vm.user.imgType].stand }
             })
           ]
         ),
@@ -60202,17 +60198,6 @@ module.exports = "/images/tika_ko.jpg?dff20b775b2224ba4a8ec6a999e71ce4";
 /***/ (function(module, exports) {
 
 module.exports = "/images/yadoya_room.jpg?8c703fad1843d03a3011c6eb7273db3a";
-
-/***/ }),
-
-/***/ "./public/img/p_stand/p001.png":
-/*!*************************************!*\
-  !*** ./public/img/p_stand/p001.png ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/p001.png?8c8fdb1da76539427531db13d6501ac7";
 
 /***/ }),
 
