@@ -1,6 +1,5 @@
 <template>
   <div>
-    <main-header></main-header>
     <h1>交流イベント</h1>
     <message @get-scene="getScene"></message>
     <char-img></char-img>
@@ -20,8 +19,7 @@ import mainHeader from "../parts/MainHeader";
 export default {
   components: {
     message: message,
-    "char-img": charImg,
-    "main-header": mainHeader
+    "char-img": charImg
   },
   mixins: [baseMixin, eventMixin],
   data: function() {

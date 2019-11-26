@@ -1,6 +1,5 @@
 <template>
   <div>
-    <main-header></main-header>
     {{user}}
     <h1>採集</h1>
     <p>鉄：{{tempAssets.iron}}</p>
@@ -45,9 +44,7 @@ import eventMixin from "../mixins/eventMixin";
 import mainHeader from "../parts/MainHeader";
 
 export default {
-  components: {
-    "main-header": mainHeader
-  },
+  components: {},
   mixins: [baseMixin, eventMixin],
   data: function() {
     return {

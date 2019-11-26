@@ -1,7 +1,5 @@
 <template>
   <div>
-    <main-header></main-header>
-
     <div class="statusModal">
       <div>
         <button @click="changeArea">切り替え</button>
@@ -52,14 +50,12 @@ import eventMixin from "../mixins/eventMixin";
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
 import BaseStChart from "../chart/BaseStChart.vue";
-import mainHeader from "../parts/MainHeader";
 
 export default {
   components: {
     message,
     charImg,
-    BaseStChart,
-    "main-header": mainHeader
+    BaseStChart
   },
   mixins: [baseMixin, eventMixin],
   data: function() {
