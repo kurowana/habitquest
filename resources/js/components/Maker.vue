@@ -1,6 +1,5 @@
 <template>
   <div>
-    <main-header></main-header>
     {{myAssets}}
     <h1>武器制作</h1>
     <div>
@@ -44,12 +43,8 @@ import { mapGetters } from "vuex";
 import baseMixin from "../mixins/baseMixin";
 import eventMixin from "../mixins/eventMixin";
 
-import mainHeader from "../parts/MainHeader";
-
 export default {
-  components: {
-    "main-header": mainHeader
-  },
+  components: {},
   mixins: [baseMixin, eventMixin],
   data: function() {
     return {

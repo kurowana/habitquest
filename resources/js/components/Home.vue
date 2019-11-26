@@ -1,6 +1,5 @@
 <template>
   <div>
-    <main-header></main-header>
     <div>
       <i class="fab fa-sticker-mule"></i>
       <i class="fas fa-star-of-david"></i>
@@ -67,7 +66,6 @@ import charImg from "../parts/charImg";
 
 export default {
   components: {
-    "main-header": mainHeader,
     message: message,
     "char-img": charImg
   },

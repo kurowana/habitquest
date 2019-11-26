@@ -1,6 +1,5 @@
 <template>
   <div>
-    <main-header></main-header>
     <h2>活動の登録</h2>
     <input type="text" v-model="inputHabit" />
     <button @click="insertHabit">登録</button>
@@ -43,9 +42,7 @@ import eventMixin from "../mixins/eventMixin";
 import mainHeader from "../parts/MainHeader";
 
 export default {
-  components: {
-    "main-header": mainHeader
-  },
+  components: {},
   mixins: [baseMixin, eventMixin],
   data: function() {
     return {

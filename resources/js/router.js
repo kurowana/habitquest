@@ -10,8 +10,10 @@ import collection from "./components/Collection.vue";
 import maker from "./components/Maker.vue";
 import dungeon from "./components/Dungeon.vue";
 
+import MainHeader from "./parts/MainHeader.vue";
+
 import MainSidebar from "./parts/MainSidebar.vue";
-import subSidebar from "./parts/SubSidebar.vue";
+import SubSidebar from "./parts/SubSidebar.vue";
 
 import title from "./events/title.vue";
 import opening from "./events/opening.vue";
@@ -24,8 +26,9 @@ const routes = [
         name: "title",
         components: {
             default: title,
+            header: MainHeader,
             sidebar: MainSidebar,
-            subSidebar: subSidebar
+            subSidebar: SubSidebar
         }
     },
     {
@@ -33,8 +36,9 @@ const routes = [
         name: "home",
         components: {
             default: home,
+            header: MainHeader,
             sidebar: MainSidebar,
-            subSidebar: subSidebar
+            subSidebar: SubSidebar
         }
     },
     {
@@ -42,8 +46,9 @@ const routes = [
         name: "habit",
         components: {
             default: habit,
+            header: MainHeader,
             sidebar: MainSidebar,
-            subSidebar: subSidebar
+            subSidebar: SubSidebar
         }
     },
     {
@@ -51,8 +56,9 @@ const routes = [
         name: "status",
         components: {
             default: status,
+            // header: MainHeader,
             sidebar: MainSidebar,
-            subSidebar: subSidebar
+            subSidebar: SubSidebar
         }
     },
     {
@@ -60,8 +66,9 @@ const routes = [
         name: "communication",
         components: {
             default: communication,
+            header: MainHeader,
             sidebar: MainSidebar,
-            subSidebar: subSidebar
+            subSidebar: SubSidebar
         }
     },
     {
@@ -69,8 +76,9 @@ const routes = [
         name: "collection",
         components: {
             default: collection,
+            header: MainHeader,
             sidebar: MainSidebar,
-            subSidebar: subSidebar
+            subSidebar: SubSidebar
         }
     },
     {
@@ -78,8 +86,9 @@ const routes = [
         name: "maker",
         components: {
             default: maker,
+            header: MainHeader,
             sidebar: MainSidebar,
-            subSidebar: subSidebar
+            subSidebar: SubSidebar
         }
     },
     {
@@ -87,8 +96,9 @@ const routes = [
         name: "dungeon",
         components: {
             default: dungeon,
+            header: MainHeader,
             sidebar: MainSidebar,
-            subSidebar: subSidebar
+            subSidebar: SubSidebar
         }
     },
 
@@ -98,8 +108,9 @@ const routes = [
         name: "opening",
         components: {
             default: opening,
+            header: MainHeader,
             sidebar: MainSidebar,
-            subSidebar: subSidebar
+            subSidebar: SubSidebar
         },
         beforeEnter: (to, from, next) => {
             if (from.name === "title") {

@@ -2018,6 +2018,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2196,16 +2199,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    "main-header": _parts_MainHeader__WEBPACK_IMPORTED_MODULE_4__["default"]
-  },
+  components: {},
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
@@ -2384,7 +2384,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -2395,8 +2394,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     message: _parts_Message__WEBPACK_IMPORTED_MODULE_4__["default"],
-    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_5__["default"],
-    "main-header": _parts_MainHeader__WEBPACK_IMPORTED_MODULE_6__["default"]
+    "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
@@ -2731,16 +2729,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    "main-header": _parts_MainHeader__WEBPACK_IMPORTED_MODULE_4__["default"]
-  },
+  components: {},
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
@@ -2938,7 +2933,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -2948,7 +2942,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    "main-header": _parts_MainHeader__WEBPACK_IMPORTED_MODULE_4__["default"],
     message: _parts_Message__WEBPACK_IMPORTED_MODULE_5__["default"],
     "char-img": _parts_charImg__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
@@ -3032,7 +3025,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/baseMixin */ "./resources/js/mixins/baseMixin.js");
 /* harmony import */ var _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/eventMixin */ "./resources/js/mixins/eventMixin.js");
-/* harmony import */ var _parts_MainHeader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/MainHeader */ "./resources/js/parts/MainHeader.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3075,16 +3067,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    "main-header": _parts_MainHeader__WEBPACK_IMPORTED_MODULE_4__["default"]
-  },
+  components: {},
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     return {
@@ -3147,7 +3135,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
 /* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
 /* harmony import */ var _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../chart/BaseStChart.vue */ "./resources/js/chart/BaseStChart.vue");
-/* harmony import */ var _parts_MainHeader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../parts/MainHeader */ "./resources/js/parts/MainHeader.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3195,9 +3182,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-
 
 
 
@@ -3209,8 +3193,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     message: _parts_Message__WEBPACK_IMPORTED_MODULE_4__["default"],
     charImg: _parts_charImg__WEBPACK_IMPORTED_MODULE_5__["default"],
-    BaseStChart: _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    "main-header": _parts_MainHeader__WEBPACK_IMPORTED_MODULE_7__["default"]
+    BaseStChart: _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
@@ -42093,7 +42076,16 @@ var render = function() {
       [
         _c("router-view", { attrs: { name: "subSidebar" } }),
         _vm._v(" "),
-        _c("router-view", { staticClass: "game-view", class: _vm.bgImg }),
+        _c(
+          "div",
+          { staticClass: "game-view", class: _vm.bgImg },
+          [
+            _c("router-view", { attrs: { name: "header" } }),
+            _vm._v(" "),
+            _c("router-view")
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("router-view", { attrs: { name: "sidebar" } })
       ],
@@ -42209,160 +42201,155 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("main-header"),
-      _vm._v("\n  " + _vm._s(_vm.user) + "\n  "),
-      _c("h1", [_vm._v("採集")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("鉄：" + _vm._s(_vm.tempAssets.iron))]),
-      _vm._v(" "),
-      _c("p", [_vm._v("羽毛：" + _vm._s(_vm.tempAssets.feather))]),
-      _vm._v(" "),
-      _c("p", [_vm._v("木材：" + _vm._s(_vm.tempAssets.wood))]),
-      _vm._v(" "),
-      _c("p", [_vm._v("魔石：" + _vm._s(_vm.tempAssets.stone))]),
-      _vm._v(" "),
-      _c("p", [_vm._v("革：" + _vm._s(_vm.tempAssets.leather))]),
-      _vm._v(" "),
-      _c("div", [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.startCollection("iron")
-              }
+  return _c("div", [
+    _vm._v("\n  " + _vm._s(_vm.user) + "\n  "),
+    _c("h1", [_vm._v("採集")]),
+    _vm._v(" "),
+    _c("p", [_vm._v("鉄：" + _vm._s(_vm.tempAssets.iron))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("羽毛：" + _vm._s(_vm.tempAssets.feather))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("木材：" + _vm._s(_vm.tempAssets.wood))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("魔石：" + _vm._s(_vm.tempAssets.stone))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("革：" + _vm._s(_vm.tempAssets.leather))]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.startCollection("iron")
             }
-          },
-          [_vm._v("鉄の採集")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.stopCollection("iron")
-              }
-            }
-          },
-          [_vm._v("鉄の採集停止")]
-        ),
-        _vm._v("\n    " + _vm._s(_vm.getIron) + "\n  ")
-      ]),
+          }
+        },
+        [_vm._v("鉄の採集")]
+      ),
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.startCollection("feather")
-              }
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.stopCollection("iron")
             }
-          },
-          [_vm._v("羽毛の採集")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.stopCollection("feather")
-              }
+          }
+        },
+        [_vm._v("鉄の採集停止")]
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getIron) + "\n  ")
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.startCollection("feather")
             }
-          },
-          [_vm._v("羽毛の採集停止")]
-        ),
-        _vm._v("\n    " + _vm._s(_vm.getFeather) + "\n  ")
-      ]),
+          }
+        },
+        [_vm._v("羽毛の採集")]
+      ),
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.startCollection("wood")
-              }
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.stopCollection("feather")
             }
-          },
-          [_vm._v("木材の採集")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.stopCollection("wood")
-              }
+          }
+        },
+        [_vm._v("羽毛の採集停止")]
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getFeather) + "\n  ")
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.startCollection("wood")
             }
-          },
-          [_vm._v("木材の採集停止")]
-        ),
-        _vm._v("\n    " + _vm._s(_vm.getWood) + "\n  ")
-      ]),
+          }
+        },
+        [_vm._v("木材の採集")]
+      ),
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.startCollection("stone")
-              }
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.stopCollection("wood")
             }
-          },
-          [_vm._v("魔石の採集")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.stopCollection("stone")
-              }
+          }
+        },
+        [_vm._v("木材の採集停止")]
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getWood) + "\n  ")
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.startCollection("stone")
             }
-          },
-          [_vm._v("魔石の採集停止")]
-        ),
-        _vm._v("\n    " + _vm._s(_vm.getStone) + "\n  ")
-      ]),
+          }
+        },
+        [_vm._v("魔石の採集")]
+      ),
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.startCollection("leather")
-              }
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.stopCollection("stone")
             }
-          },
-          [_vm._v("革の採集")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                return _vm.stopCollection("leather")
-              }
+          }
+        },
+        [_vm._v("魔石の採集停止")]
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getStone) + "\n  ")
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.startCollection("leather")
             }
-          },
-          [_vm._v("革の採集停止")]
-        ),
-        _vm._v("\n    " + _vm._s(_vm.getLeather) + "\n  ")
-      ])
-    ],
-    1
-  )
+          }
+        },
+        [_vm._v("革の採集")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.stopCollection("leather")
+            }
+          }
+        },
+        [_vm._v("革の採集停止")]
+      ),
+      _vm._v("\n    " + _vm._s(_vm.getLeather) + "\n  ")
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42389,8 +42376,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("main-header"),
-      _vm._v(" "),
       _c("h1", [_vm._v("交流イベント")]),
       _vm._v(" "),
       _c("message", { on: { "get-scene": _vm.getScene } }),
@@ -42482,90 +42467,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("main-header"),
-      _vm._v(" "),
-      _c("h2", [_vm._v("活動の登録")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.inputHabit,
-            expression: "inputHabit"
-          }
-        ],
-        attrs: { type: "text" },
-        domProps: { value: _vm.inputHabit },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.inputHabit = $event.target.value
-          }
+  return _c("div", [
+    _c("h2", [_vm._v("活動の登録")]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.inputHabit,
+          expression: "inputHabit"
         }
-      }),
+      ],
+      attrs: { type: "text" },
+      domProps: { value: _vm.inputHabit },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.inputHabit = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.insertHabit } }, [_vm._v("登録")]),
+    _vm._v(" "),
+    _c("h2", [_vm._v("活動")]),
+    _vm._v(" "),
+    _c("table", [
+      _vm._m(0),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.insertHabit } }, [_vm._v("登録")]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("活動")]),
-      _vm._v(" "),
-      _c("table", [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.habits, function(habit) {
-            return _c("tr", { key: habit.id }, [
-              _c("td", [_vm._v(_vm._s(habit.habit_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(habit.count))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(habit.last_date))]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.addHabitCount(habit.id)
-                      }
+      _c(
+        "tbody",
+        _vm._l(_vm.habits, function(habit) {
+          return _c("tr", { key: habit.id }, [
+            _c("td", [_vm._v(_vm._s(habit.habit_name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(habit.count))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(habit.last_date))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.addHabitCount(habit.id)
                     }
-                  },
-                  [_vm._v("実行")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.deleteHabit(habit.id)
-                      }
+                  }
+                },
+                [_vm._v("実行")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteHabit(habit.id)
                     }
-                  },
-                  [_vm._v("削除")]
-                )
-              ])
+                  }
+                },
+                [_vm._v("削除")]
+              )
             ])
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", [_vm._v("レベル：" + _vm._s(_vm.status.lv))]),
-      _vm._v(" "),
-      _c("p", [_vm._v("累計経験値：" + _vm._s(_vm.status.exp))])
-    ],
-    1
-  )
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", [_vm._v("レベル：" + _vm._s(_vm.status.lv))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("累計経験値：" + _vm._s(_vm.status.exp))])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -42611,8 +42590,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("main-header"),
-      _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
       _c("message", { on: { "get-scene": _vm.getScene } }),
@@ -42739,183 +42716,176 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("main-header"),
-      _vm._v("\n  " + _vm._s(_vm.myAssets) + "\n  "),
-      _c("h1", [_vm._v("武器制作")]),
-      _vm._v(" "),
-      _c("div", [
-        _vm._v("\n    鉄：\n    "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.inputIron,
-              expression: "inputIron"
-            }
-          ],
-          attrs: { type: "text" },
-          domProps: { value: _vm.inputIron },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.inputIron = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _vm._v("\n    羽毛：\n    "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.inputFeather,
-              expression: "inputFeather"
-            }
-          ],
-          attrs: { type: "text" },
-          domProps: { value: _vm.inputFeather },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.inputFeather = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _vm._v("\n    木材：\n    "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.inputWood,
-              expression: "inputWood"
-            }
-          ],
-          attrs: { type: "text" },
-          domProps: { value: _vm.inputWood },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.inputWood = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _vm._v("\n    魔石：\n    "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.inputStone,
-              expression: "inputStone"
-            }
-          ],
-          attrs: { type: "text" },
-          domProps: { value: _vm.inputStone },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.inputStone = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _vm._v("\n    革：\n    "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.inputLeather,
-              expression: "inputLeather"
-            }
-          ],
-          attrs: { type: "text" },
-          domProps: { value: _vm.inputLeather },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.inputLeather = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c(
-          "select",
+  return _c("div", [
+    _vm._v("\n  " + _vm._s(_vm.myAssets) + "\n  "),
+    _c("h1", [_vm._v("武器制作")]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v("\n    鉄：\n    "),
+      _c("input", {
+        directives: [
           {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.inputType,
-                expression: "inputType"
-              }
-            ],
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.inputType = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inputIron,
+            expression: "inputIron"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.inputIron },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
             }
-          },
-          [
-            _c("option", { attrs: { value: "武器" } }, [_vm._v("武器")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "盾" } }, [_vm._v("盾")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "鎧" } }, [_vm._v("鎧")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "アクセサリー" } }, [
-              _vm._v("アクセサリー")
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("button", { on: { click: _vm.createEquipment } }, [
-          _vm._v("装備制作")
-        ])
-      ])
-    ],
-    1
-  )
+            _vm.inputIron = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v("\n    羽毛：\n    "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inputFeather,
+            expression: "inputFeather"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.inputFeather },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.inputFeather = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v("\n    木材：\n    "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inputWood,
+            expression: "inputWood"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.inputWood },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.inputWood = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v("\n    魔石：\n    "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inputStone,
+            expression: "inputStone"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.inputStone },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.inputStone = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v("\n    革：\n    "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.inputLeather,
+            expression: "inputLeather"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.inputLeather },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.inputLeather = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.inputType,
+              expression: "inputType"
+            }
+          ],
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.inputType = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "武器" } }, [_vm._v("武器")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "盾" } }, [_vm._v("盾")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "鎧" } }, [_vm._v("鎧")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "アクセサリー" } }, [
+            _vm._v("アクセサリー")
+          ])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("button", { on: { click: _vm.createEquipment } }, [_vm._v("装備制作")])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42942,8 +42912,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("main-header"),
-      _vm._v(" "),
       _c("div", { staticClass: "statusModal" }, [
         _c("div", [
           _c("button", { on: { click: _vm.changeArea } }, [_vm._v("切り替え")])
@@ -62657,10 +62625,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Collection_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Collection.vue */ "./resources/js/components/Collection.vue");
 /* harmony import */ var _components_Maker_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Maker.vue */ "./resources/js/components/Maker.vue");
 /* harmony import */ var _components_Dungeon_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Dungeon.vue */ "./resources/js/components/Dungeon.vue");
-/* harmony import */ var _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./parts/MainSidebar.vue */ "./resources/js/parts/MainSidebar.vue");
-/* harmony import */ var _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./parts/SubSidebar.vue */ "./resources/js/parts/SubSidebar.vue");
-/* harmony import */ var _events_title_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./events/title.vue */ "./resources/js/events/title.vue");
-/* harmony import */ var _events_opening_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./events/opening.vue */ "./resources/js/events/opening.vue");
+/* harmony import */ var _parts_MainHeader_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./parts/MainHeader.vue */ "./resources/js/parts/MainHeader.vue");
+/* harmony import */ var _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./parts/MainSidebar.vue */ "./resources/js/parts/MainSidebar.vue");
+/* harmony import */ var _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./parts/SubSidebar.vue */ "./resources/js/parts/SubSidebar.vue");
+/* harmony import */ var _events_title_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./events/title.vue */ "./resources/js/events/title.vue");
+/* harmony import */ var _events_opening_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./events/opening.vue */ "./resources/js/events/opening.vue");
+
 
 
 
@@ -62680,74 +62650,83 @@ var routes = [{
   path: "/",
   name: "title",
   components: {
-    "default": _events_title_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    "default": _events_title_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
+    header: _parts_MainHeader_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   }
 }, {
   path: "/home",
   name: "home",
   components: {
     "default": _components_Home_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    header: _parts_MainHeader_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   }
 }, {
   path: "/habit",
   name: "habit",
   components: {
     "default": _components_Habit_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    header: _parts_MainHeader_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   }
 }, {
   path: "/status",
   name: "status",
   components: {
     "default": _components_Status_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    // header: MainHeader,
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   }
 }, {
   path: "/communication",
   name: "communication",
   components: {
     "default": _components_Communication_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    header: _parts_MainHeader_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   }
 }, {
   path: "/collection",
   name: "collection",
   components: {
     "default": _components_Collection_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    header: _parts_MainHeader_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   }
 }, {
   path: "/maker",
   name: "maker",
   components: {
     "default": _components_Maker_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    header: _parts_MainHeader_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   }
 }, {
   path: "/dungeon",
   name: "dungeon",
   components: {
     "default": _components_Dungeon_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    header: _parts_MainHeader_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   }
 }, //イベント系
 {
   path: "/opening",
   name: "opening",
   components: {
-    "default": _events_opening_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
-    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
-    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+    "default": _events_opening_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
+    header: _parts_MainHeader_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    sidebar: _parts_MainSidebar_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    subSidebar: _parts_SubSidebar_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
   },
   beforeEnter: function beforeEnter(to, from, next) {
     if (from.name === "title") {

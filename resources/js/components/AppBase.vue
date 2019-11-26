@@ -2,7 +2,10 @@
   <div class="wrapper">
     <div class="content">
       <router-view name="subSidebar"></router-view>
-      <router-view class="game-view" :class="bgImg"></router-view>
+      <div class="game-view" :class="bgImg">
+        <router-view name="header"></router-view>
+        <router-view></router-view>
+      </div>
       <router-view name="sidebar"></router-view>
     </div>
     <div style="background:#000; z-index:200; position:absolute; width:1200px;">
