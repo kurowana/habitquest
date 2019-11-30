@@ -1,44 +1,41 @@
 <template>
-  <div>
-    <div class="statusModal">
-      <div>
-        <button @click="changeArea">切り替え</button>
-      </div>
+  <div class="statusWrapper">
+    <div>
+      <button @click="changeArea">切り替え</button>
+    </div>
+    <div class="leftArea">
+      <img :src="userImgList[user.imgType].stand" class="statusUserImg" />
+    </div>
 
-      <div v-show="isViewArea">
-        <img :src="userImgList[user.imgType].stand" />
-      </div>
-      <div v-show="isSetArea" class="setArea">
-        <p>残りポイント：{{tempPoint}}</p>
-        <table>
-          <thead>
-            <tr>
-              <th>能力</th>
-              <th>値</th>
-              <th>振り分け</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(value,key) in tempStatus" :key="key">
-              <td>{{key}}</td>
-              <td>{{value}}</td>
-              <td>
-                <button @click.self.prevent="incTempSt(key)">+</button>
-                <button @click.self.prevent="decTempSt(key)">-</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <button @click.self.prevent="updateStatus">決定</button>
-        <button @click.self.prevent="resetStatus">リセット</button>
-      </div>
-      <div class="chartArea">
+    <div class="rightArea">
+      <p>残りポイント：{{tempPoint}}</p>
+      <table>
+        <thead>
+          <tr>
+            <th>能力</th>
+            <th>値</th>
+            <th>振り分け</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(value,key) in tempStatus" :key="key">
+            <td>{{key}}</td>
+            <td>{{value}}</td>
+            <td>
+              <button @click.self.prevent="incTempSt(key)">+</button>
+              <button @click.self.prevent="decTempSt(key)">-</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button @click.self.prevent="updateStatus">決定</button>
+      <button @click.self.prevent="resetStatus">リセット</button>
+      <div>
         <base-st-chart class="chartConponent" :user-status="tempStatus"></base-st-chart>
       </div>
     </div>
-    <!-- <message @get-scene="getScene"></message> -->
-    <char-img></char-img>
   </div>
+  <!-- <message @get-scene="getScene"></message> -->
 </template>
 
 <script>
@@ -181,6 +178,22 @@ export default {
 </script>
 
 <style scoped>
+.statusWrapper {
+  height: 600px;
+}
+.statusUserImg {
+  position: absolute;
+  bottom: 0;
+  height: 450px;
+}
+
+.leftArea {
+  float: left;
+}
+.rightArea {
+  float: right;
+}
+
 .statusModal {
   width: 650px;
   height: 320px;
@@ -202,8 +215,10 @@ export default {
   float: right;
 }
 .chartConponent {
-  position: relative;
-  width: 300px;
-  height: 300px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 400px;
+  height: 400px;
 }
 </style>
