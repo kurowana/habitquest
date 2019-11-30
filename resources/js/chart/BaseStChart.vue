@@ -22,20 +22,20 @@ export default {
         scale: {
           ticks: { min: 0 },
           gridLines: {
-            color: "ragb(255,255,0,0.2)"
+            color: "ragb(0,255,0,1)"
           },
           angleLines: {
             display: true,
-            color: "rgba(255,0,0,0.2)"
+            color: "rgba(255,220,220,1)"
           },
           pointLabels: {
-            fontColor: "FF0000",
+            fontColor: "#FFFFFF",
             fontSize: "20"
           }
         },
         legend: {
           labels: {
-            fontColor: "RED"
+            fontColor: "#FF9999"
           }
         }
       }
@@ -67,7 +67,11 @@ export default {
       let newChart = {
         labels: ["STR", "AGI", "VIT", "INT", "DEX", "LUC"],
         datasets: [
-          { label: "status", data: [], backgroundColor: "rgba(0,0,255,0.2)" }
+          {
+            label: "status",
+            data: [],
+            backgroundColor: "rgba(255,255,0,0.6)"
+          }
         ]
       };
       Object.keys(this.userStatus).map(key => {
