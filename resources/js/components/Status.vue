@@ -1,14 +1,6 @@
 <template>
   <div class="statusWrapper">
-    <div>
-      <button @click="changeArea">切り替え</button>
-    </div>
-    <div class="leftArea">
-      <img :src="userImgList[user.imgType].stand" class="statusUserImg" />
-    </div>
-
-    <div class="rightArea">
-      <p>残りポイント：{{tempPoint}}</p>
+    <modal v-if="isShowStatusUp">
       <table>
         <thead>
           <tr>
@@ -30,6 +22,19 @@
       </table>
       <button @click.self.prevent="updateStatus">決定</button>
       <button @click.self.prevent="resetStatus">リセット</button>
+      <button @click.self.prevent="isShowStatusUp=false">閉じる</button>
+    </modal>
+    <div>
+      <button @click="changeArea">切り替え</button>
+    </div>
+    <div class="leftArea">
+      <p class="statusUserName">ユーザー名：{{user.name}}</p>
+      <img :src="userImgList[user.imgType].stand" class="statusUserImg" />
+    </div>
+    <div class="rightArea">
+      <p>レベル：{{user.lv}}</p>
+      <p>残りポイント：{{tempPoint}}</p>
+      <button @click.self.prevent="isShowStatusUp=true">能力を振り分ける</button>
       <div>
         <base-st-chart class="chartConponent" :user-status="tempStatus"></base-st-chart>
       </div>
@@ -47,20 +52,19 @@ import eventMixin from "../mixins/eventMixin";
 import message from "../parts/Message";
 import charImg from "../parts/charImg";
 import BaseStChart from "../chart/BaseStChart.vue";
+import modal from "../parts/modal";
 
 export default {
   components: {
     message,
     charImg,
-    BaseStChart
+    BaseStChart,
+    modal
   },
   mixins: [baseMixin, eventMixin],
   data: function() {
     return {
-      test: "p002.png",
-      isSetArea: true,
-      isViewArea: false,
-
+      isShowStatusUp: false,
       tempPoint: 0,
       tempStatus: {
         str: 0,
@@ -181,6 +185,9 @@ export default {
 .statusWrapper {
   height: 600px;
 }
+.statusUserName {
+  font-size: 2em;
+}
 .statusUserImg {
   position: absolute;
   bottom: 0;
@@ -218,7 +225,7 @@ export default {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 400px;
-  height: 400px;
+  width: 450px;
+  height: 450px;
 }
 </style>
