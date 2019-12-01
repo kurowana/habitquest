@@ -1917,7 +1917,7 @@ __webpack_require__.r(__webpack_exports__);
           },
           angleLines: {
             display: true,
-            color: "rgba(255,220,220,1)"
+            color: "rgba(200,200,255,1)"
           },
           pointLabels: {
             fontColor: "#FFFFFF",
@@ -1926,7 +1926,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         legend: {
           labels: {
-            fontColor: "#FF9999"
+            fontColor: "#DDDDFF"
           }
         }
       }
@@ -2105,6 +2105,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           dex: res.data.dex,
           luc: res.data.luc
         });
+
+        _this.$store.commit("setLv", res.data.lv);
 
         _this.stage = res.data.clearedStage;
 
@@ -3135,6 +3137,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _parts_Message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parts/Message */ "./resources/js/parts/Message.vue");
 /* harmony import */ var _parts_charImg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../parts/charImg */ "./resources/js/parts/charImg.vue");
 /* harmony import */ var _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../chart/BaseStChart.vue */ "./resources/js/chart/BaseStChart.vue");
+/* harmony import */ var _parts_modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../parts/modal */ "./resources/js/parts/modal.vue");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3179,6 +3182,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -3190,16 +3199,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     message: _parts_Message__WEBPACK_IMPORTED_MODULE_4__["default"],
     charImg: _parts_charImg__WEBPACK_IMPORTED_MODULE_5__["default"],
-    BaseStChart: _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    BaseStChart: _chart_BaseStChart_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    modal: _parts_modal__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   mixins: [_mixins_baseMixin__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_eventMixin__WEBPACK_IMPORTED_MODULE_3__["default"]],
   data: function data() {
     var _this = this;
 
     return {
-      test: "p002.png",
-      isSetArea: true,
-      isViewArea: false,
+      isShowStatusUp: false,
       tempPoint: 0,
       tempStatus: {
         str: 0,
@@ -19242,7 +19250,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.statusWrapper[data-v-ed6f95c6] {\r\n  height: 600px;\n}\n.statusUserImg[data-v-ed6f95c6] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  height: 450px;\n}\n.leftArea[data-v-ed6f95c6] {\r\n  float: left;\n}\n.rightArea[data-v-ed6f95c6] {\r\n  float: right;\n}\n.statusModal[data-v-ed6f95c6] {\r\n  width: 650px;\r\n  height: 320px;\r\n  padding: 15px;\r\n  color: #000;\r\n  background: #fff;\r\n  position: absolute;\r\n  top: 100px;\r\n  left: 10px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\n}\n.setArea[data-v-ed6f95c6] {\r\n  width: 150px;\r\n  float: left;\n}\n.chartArea[data-v-ed6f95c6] {\r\n  width: 400px;\r\n  float: right;\n}\n.chartConponent[data-v-ed6f95c6] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  right: 0;\r\n  width: 400px;\r\n  height: 400px;\n}\r\n", ""]);
+exports.push([module.i, "\n.statusWrapper[data-v-ed6f95c6] {\r\n  height: 600px;\n}\n.statusUserName[data-v-ed6f95c6] {\r\n  font-size: 2em;\n}\n.statusUserImg[data-v-ed6f95c6] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  height: 450px;\n}\n.leftArea[data-v-ed6f95c6] {\r\n  float: left;\n}\n.rightArea[data-v-ed6f95c6] {\r\n  float: right;\n}\n.statusModal[data-v-ed6f95c6] {\r\n  width: 650px;\r\n  height: 320px;\r\n  padding: 15px;\r\n  color: #000;\r\n  background: #fff;\r\n  position: absolute;\r\n  top: 100px;\r\n  left: 10px;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\n}\n.setArea[data-v-ed6f95c6] {\r\n  width: 150px;\r\n  float: left;\n}\n.chartArea[data-v-ed6f95c6] {\r\n  width: 400px;\r\n  float: right;\n}\n.chartConponent[data-v-ed6f95c6] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  right: 0;\r\n  width: 450px;\r\n  height: 450px;\n}\r\n", ""]);
 
 // exports
 
@@ -42906,132 +42914,172 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "statusWrapper" }, [
-    _c("div", [
-      _c("button", { on: { click: _vm.changeArea } }, [_vm._v("切り替え")])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "leftArea" }, [
-      _c("img", {
-        staticClass: "statusUserImg",
-        attrs: { src: _vm.userImgList[_vm.user.imgType].stand }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "rightArea" }, [
-      _c("p", [_vm._v("残りポイント：" + _vm._s(_vm.tempPoint))]),
+  return _c(
+    "div",
+    { staticClass: "statusWrapper" },
+    [
+      _vm.isShowStatusUp
+        ? _c("modal", [
+            _c("table", [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", [_vm._v("能力")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("値")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("振り分け")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.tempStatus, function(value, key) {
+                  return _c("tr", { key: key }, [
+                    _c("td", [_vm._v(_vm._s(key))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(value))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              if ($event.target !== $event.currentTarget) {
+                                return null
+                              }
+                              $event.preventDefault()
+                              return _vm.incTempSt(key)
+                            }
+                          }
+                        },
+                        [_vm._v("+")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function($event) {
+                              if ($event.target !== $event.currentTarget) {
+                                return null
+                              }
+                              $event.preventDefault()
+                              return _vm.decTempSt(key)
+                            }
+                          }
+                        },
+                        [_vm._v("-")]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    if ($event.target !== $event.currentTarget) {
+                      return null
+                    }
+                    $event.preventDefault()
+                    return _vm.updateStatus($event)
+                  }
+                }
+              },
+              [_vm._v("決定")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    if ($event.target !== $event.currentTarget) {
+                      return null
+                    }
+                    $event.preventDefault()
+                    return _vm.resetStatus($event)
+                  }
+                }
+              },
+              [_vm._v("リセット")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    if ($event.target !== $event.currentTarget) {
+                      return null
+                    }
+                    $event.preventDefault()
+                    _vm.isShowStatusUp = false
+                  }
+                }
+              },
+              [_vm._v("閉じる")]
+            )
+          ])
+        : _vm._e(),
       _vm._v(" "),
-      _c("table", [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.tempStatus, function(value, key) {
-            return _c("tr", { key: key }, [
-              _c("td", [_vm._v(_vm._s(key))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(value))]),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        if ($event.target !== $event.currentTarget) {
-                          return null
-                        }
-                        $event.preventDefault()
-                        return _vm.incTempSt(key)
-                      }
-                    }
-                  },
-                  [_vm._v("+")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        if ($event.target !== $event.currentTarget) {
-                          return null
-                        }
-                        $event.preventDefault()
-                        return _vm.decTempSt(key)
-                      }
-                    }
-                  },
-                  [_vm._v("-")]
-                )
-              ])
-            ])
-          }),
-          0
-        )
+      _c("div", [
+        _c("button", { on: { click: _vm.changeArea } }, [_vm._v("切り替え")])
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              if ($event.target !== $event.currentTarget) {
-                return null
-              }
-              $event.preventDefault()
-              return _vm.updateStatus($event)
-            }
-          }
-        },
-        [_vm._v("決定")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              if ($event.target !== $event.currentTarget) {
-                return null
-              }
-              $event.preventDefault()
-              return _vm.resetStatus($event)
-            }
-          }
-        },
-        [_vm._v("リセット")]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        [
-          _c("base-st-chart", {
-            staticClass: "chartConponent",
-            attrs: { "user-status": _vm.tempStatus }
-          })
-        ],
-        1
-      )
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("能力")]),
+      _c("div", { staticClass: "leftArea" }, [
+        _c("p", { staticClass: "statusUserName" }, [
+          _vm._v("ユーザー名：" + _vm._s(_vm.user.name))
+        ]),
         _vm._v(" "),
-        _c("th", [_vm._v("値")]),
+        _c("img", {
+          staticClass: "statusUserImg",
+          attrs: { src: _vm.userImgList[_vm.user.imgType].stand }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "rightArea" }, [
+        _c("p", [_vm._v("レベル：" + _vm._s(_vm.user.lv))]),
         _vm._v(" "),
-        _c("th", [_vm._v("振り分け")])
+        _c("p", [_vm._v("残りポイント：" + _vm._s(_vm.tempPoint))]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                if ($event.target !== $event.currentTarget) {
+                  return null
+                }
+                $event.preventDefault()
+                _vm.isShowStatusUp = true
+              }
+            }
+          },
+          [_vm._v("能力を振り分ける")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          [
+            _c("base-st-chart", {
+              staticClass: "chartConponent",
+              attrs: { "user-status": _vm.tempStatus }
+            })
+          ],
+          1
+        )
       ])
-    ])
-  }
-]
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

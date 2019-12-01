@@ -107,6 +107,7 @@ export default {
             dex: res.data.dex,
             luc: res.data.luc
           });
+          this.$store.commit("setLv", res.data.lv);
           this.stage = res.data.clearedStage;
           this.$store.commit("setBattleStatus");
         })

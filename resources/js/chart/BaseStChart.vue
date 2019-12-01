@@ -26,7 +26,7 @@ export default {
           },
           angleLines: {
             display: true,
-            color: "rgba(255,220,220,1)"
+            color: "rgba(200,200,255,1)"
           },
           pointLabels: {
             fontColor: "#FFFFFF",
@@ -35,7 +35,7 @@ export default {
         },
         legend: {
           labels: {
-            fontColor: "#FF9999"
+            fontColor: "#DDDDFF"
           }
         }
       }
