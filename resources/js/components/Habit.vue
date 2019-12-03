@@ -89,13 +89,9 @@ export default {
           userId: this.user.id
         })
         .then(res => {
-          console.log(res.status);
-          if (res.status === 419) {
-            alert("セッションエラー");
-            location.reload();
-          } else {
-            this.status = res.data;
-          }
+          this.status = res.data;
+          this.$store.commit("setPoint", res.data.point);
+          this.$store.commit("setLv", res.data.lv);
         })
         .catch(error => {
           this.apiDefaultError(error);
