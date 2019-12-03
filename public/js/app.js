@@ -2782,14 +2782,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("./api/getMyStatus", {
         userId: this.user.id
       }).then(function (res) {
-        console.log(res.status);
+        _this2.status = res.data;
 
-        if (res.status === 419) {
-          alert("セッションエラー");
-          location.reload();
-        } else {
-          _this2.status = res.data;
-        }
+        _this2.$store.commit("setPoint", res.data.point);
+
+        _this2.$store.commit("setLv", res.data.lv);
       })["catch"](function (error) {
         _this2.apiDefaultError(error);
       });
