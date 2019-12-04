@@ -74,22 +74,22 @@ export default {
   },
   watch: {},
   methods: {
-    changeMotion: function(motion) {
-      switch (motion) {
-        case "anime1":
-          this.motionType = "effect";
-          break;
-        case "anime2":
-          this.motionType = "effect2";
-          break;
-        case "motion3":
-          this.motionType = "motion3";
-          break;
-        default:
-          this.motionType = "none";
-          return;
-      }
-    }
+    // changeMotion: function(motion) {
+    //   switch (motion) {
+    //     case "anime1":
+    //       this.motionType = "effect";
+    //       break;
+    //     case "anime2":
+    //       this.motionType = "effect2";
+    //       break;
+    //     case "motion3":
+    //       this.motionType = "motion3";
+    //       break;
+    //     default:
+    //       this.motionType = "none";
+    //       return;
+    //   }
+    // }
   }
 };
 </script>
@@ -143,7 +143,7 @@ export default {
 .effect {
   animation: anime1 0.2s ease-in-out 0s infinite;
 }
-@keyframes anime1 {
+/* @keyframes anime1 {
   0% {
     left: 0;
   }
@@ -191,7 +191,7 @@ export default {
     bottom: 0px;
     width: 320px;
   }
-}
+} */
 
 .effect-anime-enter-active {
   position: relative;
