@@ -16,6 +16,10 @@ const state = {
         option1: " ",
         option2: " "
     },
+    windowEffect: {
+        isShow: false,
+        path: ""
+    },
     npc: {
         L1: {
             img: "",
