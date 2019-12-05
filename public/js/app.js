@@ -2021,6 +2021,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2046,7 +2049,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: "getUser",
     message: "getMessage",
-    getSound: "getSound"
+    getSound: "getSound",
+    windowEffect: "getWindowEffect"
   }), {
     bgImg: function bgImg() {
       return this.$store.state.eventStore.bgImg;
@@ -19205,7 +19209,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1200px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\n}\n.home[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/yadoya_room.jpg */ "./public/img/bg/yadoya_room.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.town[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/Europe_House.jpg */ "./public/img/bg/Europe_House.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.itemshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/item_shop.jpg */ "./public/img/bg/item_shop.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.weaponshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bukiya.jpg */ "./public/img/bg/bukiya.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.bar[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bar.jpg */ "./public/img/bg/bar.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden.jpg */ "./public/img/bg/shinden.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree.jpg */ "./public/img/bg/old_tree.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.stream[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/keiryuu.jpg */ "./public/img/bg/keiryuu.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.status[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/invaders.gif */ "./public/img/bg/invaders.gif")) + ");\r\n  background-repeat: repeat;\r\n  background-size: 300px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1200px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\n}\n.windowEffect[data-v-c514e612] {\r\n  position: absolute;\r\n  top: 0;\n}\n.home[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/yadoya_room.jpg */ "./public/img/bg/yadoya_room.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.town[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/Europe_House.jpg */ "./public/img/bg/Europe_House.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.itemshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/item_shop.jpg */ "./public/img/bg/item_shop.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.weaponshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bukiya.jpg */ "./public/img/bg/bukiya.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.bar[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bar.jpg */ "./public/img/bg/bar.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden.jpg */ "./public/img/bg/shinden.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree.jpg */ "./public/img/bg/old_tree.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.stream[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/keiryuu.jpg */ "./public/img/bg/keiryuu.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.status[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/invaders.gif */ "./public/img/bg/invaders.gif")) + ");\r\n  background-repeat: repeat;\r\n  background-size: 300px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -42080,7 +42084,17 @@ var render = function() {
           [
             _c("router-view", { attrs: { name: "header" } }),
             _vm._v(" "),
-            _c("router-view")
+            _c("router-view"),
+            _vm._v(" "),
+            _vm.isWindowEffect
+              ? _c("div", { staticClass: "windowEffect" }, [
+                  _c("img", {
+                    attrs: {
+                      src: __webpack_require__(/*! ../../../public/img/effect/blood01.png */ "./public/img/effect/blood01.png")
+                    }
+                  })
+                ])
+              : _vm._e()
           ],
           1
         ),
@@ -60172,6 +60186,17 @@ module.exports = "/images/yadoya_room.jpg?8c703fad1843d03a3011c6eb7273db3a";
 
 /***/ }),
 
+/***/ "./public/img/effect/blood01.png":
+/*!***************************************!*\
+  !*** ./public/img/effect/blood01.png ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/blood01.png?7c4195415495be03e52b8e56ad712133";
+
+/***/ }),
+
 /***/ "./public/img/ui/msg-window.png":
 /*!**************************************!*\
   !*** ./public/img/ui/msg-window.png ***!
@@ -63037,6 +63062,10 @@ var state = {
     isShow: "",
     option1: " ",
     option2: " "
+  },
+  windowEffect: {
+    isShow: false,
+    path: ""
   },
   npc: {
     L1: {

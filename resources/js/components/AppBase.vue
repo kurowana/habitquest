@@ -5,6 +5,9 @@
       <div class="game-view" :class="bgImg">
         <router-view name="header"></router-view>
         <router-view></router-view>
+        <div v-if="isWindowEffect" class="windowEffect">
+          <img src="../../../public/img/effect/blood01.png" />
+        </div>
       </div>
       <router-view name="sidebar"></router-view>
     </div>
@@ -56,7 +59,8 @@ export default {
     ...mapGetters({
       user: "getUser",
       message: "getMessage",
-      getSound: "getSound"
+      getSound: "getSound",
+      windowEffect: "getWindowEffect"
     }),
 
     bgImg: function() {
@@ -157,6 +161,11 @@ export default {
   position: relative;
   background: #000000;
   color: #ffffff;
+}
+
+.windowEffect {
+  position: absolute;
+  top: 0;
 }
 
 .home {
