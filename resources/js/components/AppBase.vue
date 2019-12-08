@@ -5,8 +5,8 @@
       <div class="game-view" :class="bgImg">
         <router-view name="header"></router-view>
         <router-view></router-view>
-        <div v-if="isWindowEffect" class="windowEffect">
-          <img src="../../../public/img/effect/blood01.png" />
+        <div v-if="windowEffect.isShow" class="windowEffect">
+          <img :src="this.effectImg" />
         </div>
       </div>
       <router-view name="sidebar"></router-view>
@@ -45,6 +45,7 @@ export default {
       loginPassword: "",
 
       isPlay: false,
+      isWindowEffect: true,
 
       csrf: document
         .querySelector('meta[name="csrf-token"]')
@@ -65,6 +66,14 @@ export default {
 
     bgImg: function() {
       return this.$store.state.eventStore.bgImg;
+    },
+    effectImg: function() {
+      switch (this.windowEffect.type) {
+        case "blood":
+          return "/img/effect/blood01.png";
+        default:
+          return "";
+      }
     }
   },
   watch: {
@@ -166,6 +175,8 @@ export default {
 .windowEffect {
   position: absolute;
   top: 0;
+  opacity: 0.8;
+  z-index: 100;
 }
 
 .home {

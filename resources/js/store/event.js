@@ -18,7 +18,7 @@ const state = {
     },
     windowEffect: {
         isShow: false,
-        path: ""
+        type: ""
     },
     npc: {
         L1: {
@@ -319,6 +319,9 @@ const getters = {
     },
     getBgImg: state => {
         return state.bgImg;
+    },
+    getWindowEffect: state => {
+        return state.windowEffect;
     }
 };
 const mutations = {
@@ -502,6 +505,10 @@ const mutations = {
     setBgm(state, sound) {
         state.sound.bgm = sound.bgm;
         state.sound.volume = sound.volume;
+    },
+    setWindowEffect(state, effect) {
+        state.windowEffect.isShow = effect.isShow;
+        state.windowEffect.type = effect.type;
     }
 };
 
