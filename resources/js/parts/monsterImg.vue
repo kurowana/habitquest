@@ -143,7 +143,7 @@ export default {
 .effect {
   animation: anime1 0.2s ease-in-out 0s infinite;
 }
-/* @keyframes anime1 {
+@keyframes anime1 {
   0% {
     left: 0;
   }
@@ -191,7 +191,7 @@ export default {
     bottom: 0px;
     width: 320px;
   }
-} */
+}
 
 .effect-anime-enter-active {
   position: relative;

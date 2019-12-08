@@ -2035,6 +2035,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       loginName: "",
       loginPassword: "",
       isPlay: false,
+      isWindowEffect: true,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content")
     };
   },
@@ -2054,6 +2055,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }), {
     bgImg: function bgImg() {
       return this.$store.state.eventStore.bgImg;
+    },
+    effectImg: function effectImg() {
+      switch (this.windowEffect.type) {
+        case "blood":
+          return "/img/effect/blood01.png";
+
+        default:
+          return "";
+      }
     }
   }),
   watch: {
@@ -19209,7 +19219,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1200px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\n}\n.windowEffect[data-v-c514e612] {\r\n  position: absolute;\r\n  top: 0;\n}\n.home[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/yadoya_room.jpg */ "./public/img/bg/yadoya_room.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.town[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/Europe_House.jpg */ "./public/img/bg/Europe_House.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.itemshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/item_shop.jpg */ "./public/img/bg/item_shop.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.weaponshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bukiya.jpg */ "./public/img/bg/bukiya.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.bar[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bar.jpg */ "./public/img/bg/bar.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden.jpg */ "./public/img/bg/shinden.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree.jpg */ "./public/img/bg/old_tree.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.stream[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/keiryuu.jpg */ "./public/img/bg/keiryuu.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.status[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/invaders.gif */ "./public/img/bg/invaders.gif")) + ");\r\n  background-repeat: repeat;\r\n  background-size: 300px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.content[data-v-c514e612] {\r\n  display: flex;\r\n  width: 1200px;\n}\n.game-view[data-v-c514e612] {\r\n  width: 800px;\r\n  height: 600px;\r\n  position: relative;\r\n  background: #000000;\r\n  color: #ffffff;\n}\n.windowEffect[data-v-c514e612] {\r\n  position: absolute;\r\n  top: 0;\r\n  opacity: 0.8;\r\n  z-index: 100;\n}\n.home[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/yadoya_room.jpg */ "./public/img/bg/yadoya_room.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.town[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/Europe_House.jpg */ "./public/img/bg/Europe_House.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.itemshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/item_shop.jpg */ "./public/img/bg/item_shop.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.weaponshop[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bukiya.jpg */ "./public/img/bg/bukiya.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.bar[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/bar.jpg */ "./public/img/bg/bar.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.shinden[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/shinden.jpg */ "./public/img/bg/shinden.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.tree[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/old_tree.jpg */ "./public/img/bg/old_tree.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.dungeon[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/tika_ko.jpg */ "./public/img/bg/tika_ko.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.stream[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/keiryuu.jpg */ "./public/img/bg/keiryuu.jpg")) + ");\r\n  background-size: 800px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n.status[data-v-c514e612] {\r\n  background: url(" + escape(__webpack_require__(/*! ../../../public/img/bg/invaders.gif */ "./public/img/bg/invaders.gif")) + ");\r\n  background-repeat: repeat;\r\n  background-size: 300px auto;\r\n  -webkit-animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\r\n          animation: bgFadeIn-data-v-c514e612 1s ease 0s 1 normal;\n}\n@-webkit-keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\n@keyframes bgFadeIn-data-v-c514e612 {\n0% {\r\n    opacity: 0;\n}\n100% {\r\n    opacity: 1;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -19420,7 +19430,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal-window[data-v-5ed17cb0] {\r\n  display: block;\r\n  position: absolute;\r\n  background: linear-gradient(45deg, #000000, #666666);\r\n  width: 760px;\r\n  height: 400px;\r\n  padding: 20px;\r\n  top: 20px;\r\n  left: 20px;\r\n  overflow: auto;\r\n  z-index: 100;\r\n  opacity: 0.9;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  color: white;\n}\r\n", ""]);
+exports.push([module.i, "\n.modal-window[data-v-5ed17cb0] {\r\n  display: block;\r\n  position: absolute;\r\n  background: linear-gradient(45deg, rgba(0, 0, 0, 0.9), rgba(96, 96, 96, 0.9));\r\n  width: 760px;\r\n  height: 400px;\r\n  padding: 20px;\r\n  top: 20px;\r\n  left: 20px;\r\n  overflow: auto;\r\n  z-index: 200;\r\n  border: 2px double gold;\r\n  border-radius: 10px;\r\n  color: white;\n}\r\n", ""]);
 
 // exports
 
@@ -19439,7 +19449,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img-view[data-v-c13136d4] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-monster[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-monster img[data-v-c13136d4] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.damageClass[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 50%;\r\n  left: 30%;\r\n  color: red;\r\n  font-size: 5em;\r\n  text-shadow: 1px 1px 1px #fff, -1px 1px 1px #fff, 1px -1px 1px #fff,\r\n    -1px -1px 1px #fff;\n}\n.fade-enter-active[data-v-c13136d4],\r\n.fade-leave-active[data-v-c13136d4] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-c13136d4],\r\n.fade-leave-to[data-v-c13136d4] {\r\n  opacity: 0;\n}\r\n\r\n/* .effectAnime {\r\n  position: absolute;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n  z-index: 100;\r\n  animation: sprite54 0.5s step-end 0s 1;\r\n} */\n.effect[data-v-c13136d4] {\r\n  -webkit-animation: anime1 0.2s ease-in-out 0s infinite;\r\n          animation: anime1 0.2s ease-in-out 0s infinite;\n}\r\n/* @keyframes anime1 {\r\n  0% {\r\n    left: 0;\r\n  }\r\n  25% {\r\n    left: 10px;\r\n    opacity: 0.7;\r\n  }\r\n  75% {\r\n    left: -10px;\r\n  }\r\n  100% {\r\n    left: 0;\r\n  }\r\n}\r\n.effect2 {\r\n  animation: anime2 0.2s ease-in-out 0s infinite;\r\n}\r\n@keyframes anime2 {\r\n  0% {\r\n    left: 0;\r\n  }\r\n  25% {\r\n    left: 1px;\r\n  }\r\n  75% {\r\n    left: -1px;\r\n  }\r\n  100% {\r\n    left: 0;\r\n  }\r\n}\r\n.motion3 {\r\n  animation: attack 0.3s ease-in-out 0s 1;\r\n}\r\n@keyframes attack {\r\n  0% {\r\n    bottom: 0;\r\n    width: 320px;\r\n  }\r\n  75% {\r\n    bottom: 20px;\r\n    width: 350px;\r\n  }\r\n  100% {\r\n    bottom: 0px;\r\n    width: 320px;\r\n  }\r\n} */\n.effect-anime-enter-active[data-v-c13136d4] {\r\n  position: relative;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n\r\n  z-index: 100;\r\n  -webkit-animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\r\n          animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\n}\n@-webkit-keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.img-view[data-v-c13136d4] {\r\n  width: 100%;\r\n  height: 0%;\n}\n.img-monster[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 30%;\n}\n.img-monster img[data-v-c13136d4] {\r\n  width: 320px;\r\n  position: relative;\r\n  bottom: 0;\r\n  left: 0;\n}\n.damageClass[data-v-c13136d4] {\r\n  position: absolute;\r\n  bottom: 50%;\r\n  left: 30%;\r\n  color: red;\r\n  font-size: 5em;\r\n  text-shadow: 1px 1px 1px #fff, -1px 1px 1px #fff, 1px -1px 1px #fff,\r\n    -1px -1px 1px #fff;\n}\n.fade-enter-active[data-v-c13136d4],\r\n.fade-leave-active[data-v-c13136d4] {\r\n  transition: opacity 0.2s;\n}\n.fade-enter[data-v-c13136d4],\r\n.fade-leave-to[data-v-c13136d4] {\r\n  opacity: 0;\n}\r\n\r\n/* .effectAnime {\r\n  position: absolute;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n  z-index: 100;\r\n  animation: sprite54 0.5s step-end 0s 1;\r\n} */\n.effect[data-v-c13136d4] {\r\n  -webkit-animation: anime1-data-v-c13136d4 0.2s ease-in-out 0s infinite;\r\n          animation: anime1-data-v-c13136d4 0.2s ease-in-out 0s infinite;\n}\n@-webkit-keyframes anime1-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\r\n    opacity: 0.7;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime1-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 10px;\r\n    opacity: 0.7;\n}\n75% {\r\n    left: -10px;\n}\n100% {\r\n    left: 0;\n}\n}\n.effect2[data-v-c13136d4] {\r\n  -webkit-animation: anime2-data-v-c13136d4 0.2s ease-in-out 0s infinite;\r\n          animation: anime2-data-v-c13136d4 0.2s ease-in-out 0s infinite;\n}\n@-webkit-keyframes anime2-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n@keyframes anime2-data-v-c13136d4 {\n0% {\r\n    left: 0;\n}\n25% {\r\n    left: 1px;\n}\n75% {\r\n    left: -1px;\n}\n100% {\r\n    left: 0;\n}\n}\n.motion3[data-v-c13136d4] {\r\n  -webkit-animation: attack-data-v-c13136d4 0.3s ease-in-out 0s 1;\r\n          animation: attack-data-v-c13136d4 0.3s ease-in-out 0s 1;\n}\n@-webkit-keyframes attack-data-v-c13136d4 {\n0% {\r\n    bottom: 0;\r\n    width: 320px;\n}\n75% {\r\n    bottom: 20px;\r\n    width: 350px;\n}\n100% {\r\n    bottom: 0px;\r\n    width: 320px;\n}\n}\n@keyframes attack-data-v-c13136d4 {\n0% {\r\n    bottom: 0;\r\n    width: 320px;\n}\n75% {\r\n    bottom: 20px;\r\n    width: 350px;\n}\n100% {\r\n    bottom: 0px;\r\n    width: 320px;\n}\n}\n.effect-anime-enter-active[data-v-c13136d4] {\r\n  position: relative;\r\n  display: block;\r\n  width: 192px;\r\n  height: 192px;\r\n\r\n  z-index: 100;\r\n  -webkit-animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\r\n          animation: sprite54-data-v-c13136d4 0.3s step-end 0s 1;\n}\n@-webkit-keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\n@keyframes sprite54-data-v-c13136d4 {\n1% {\r\n    background-position: 0 0;\n}\n5% {\r\n    background-position: -192px 0;\n}\n10% {\r\n    background-position: -384px 0;\n}\n15% {\r\n    background-position: -576px 0;\n}\n20% {\r\n    background-position: -768px 0;\n}\n25% {\r\n    background-position: 0 -192px;\n}\n30% {\r\n    background-position: -192px -192px;\n}\n35% {\r\n    background-position: -384px -192px;\n}\n40% {\r\n    background-position: -576px -192px;\n}\n45% {\r\n    background-position: -768px -192px;\n}\n50% {\r\n    background-position: 0 -384px;\n}\n55% {\r\n    background-position: -192px -384px;\n}\n60% {\r\n    background-position: -384px -384px;\n}\n65% {\r\n    background-position: -576px -384px;\n}\n70% {\r\n    background-position: -768px -384px;\n}\n75% {\r\n    background-position: 0 -576px;\n}\n80% {\r\n    background-position: -192px -576px;\n}\n85% {\r\n    background-position: -384px -576px;\n}\n90% {\r\n    background-position: -576px -576px;\n}\n95% {\r\n    background-position: -768px -576px;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -42086,13 +42096,9 @@ var render = function() {
             _vm._v(" "),
             _c("router-view"),
             _vm._v(" "),
-            _vm.isWindowEffect
+            _vm.windowEffect.isShow
               ? _c("div", { staticClass: "windowEffect" }, [
-                  _c("img", {
-                    attrs: {
-                      src: __webpack_require__(/*! ../../../public/img/effect/blood01.png */ "./public/img/effect/blood01.png")
-                    }
-                  })
+                  _c("img", { attrs: { src: this.effectImg } })
                 ])
               : _vm._e()
           ],
@@ -60186,17 +60192,6 @@ module.exports = "/images/yadoya_room.jpg?8c703fad1843d03a3011c6eb7273db3a";
 
 /***/ }),
 
-/***/ "./public/img/effect/blood01.png":
-/*!***************************************!*\
-  !*** ./public/img/effect/blood01.png ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/blood01.png?7c4195415495be03e52b8e56ad712133";
-
-/***/ }),
-
 /***/ "./public/img/ui/msg-window.png":
 /*!**************************************!*\
   !*** ./public/img/ui/msg-window.png ***!
@@ -61277,36 +61272,64 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.showEffect("user", "剣");
                 this.$store.commit("setBattleMotionType", "motion3");
                 _context2.next = 4;
+                return this.sleep(500);
+
+              case 4:
+                this.$store.commit("setWindowEffect", {
+                  isShow: true,
+                  type: "blood"
+                });
+                _context2.next = 7;
                 return this.attackPhase(monster, user).then(function (damage) {
                   var message = damage + "damage!!";
 
                   _this2.showDamage("user", message);
                 });
 
-              case 4:
-                _context2.next = 6;
+              case 7:
+                _context2.next = 9;
                 return this.sleep(500);
 
-              case 6:
-                if (!(monster.mp > 10)) {
-                  _context2.next = 13;
-                  break;
-                }
-
-                this.$store.commit("setBattleMotionType", "motion3");
-                this.showEffect("user", "闇");
-                this.magicPhase(monster, user).then(function (damage) {
-                  var message = damage + "damage!!";
-
-                  _this2.showDamage("user", message);
+              case 9:
+                this.$store.commit("setWindowEffect", {
+                  isShow: false,
+                  type: ""
                 });
                 _context2.next = 12;
                 return this.sleep(500);
 
               case 12:
-                this.$store.commit("setBattleMotionType", "motion3");
+                if (!(monster.mp > 10)) {
+                  _context2.next = 23;
+                  break;
+                }
 
-              case 13:
+                this.$store.commit("setBattleMotionType", "motion3");
+                this.showEffect("user", "闇");
+                _context2.next = 17;
+                return this.sleep(500);
+
+              case 17:
+                this.$store.commit("setWindowEffect", {
+                  isShow: true,
+                  type: "blood"
+                });
+                this.magicPhase(monster, user).then(function (damage) {
+                  var message = damage + "damage!!";
+
+                  _this2.showDamage("user", message);
+                });
+                _context2.next = 21;
+                return this.sleep(500);
+
+              case 21:
+                this.$store.commit("setBattleMotionType", "motion3");
+                this.$store.commit("setWindowEffect", {
+                  isShow: false,
+                  type: ""
+                });
+
+              case 23:
               case "end":
                 return _context2.stop();
             }
@@ -63065,7 +63088,7 @@ var state = {
   },
   windowEffect: {
     isShow: false,
-    path: ""
+    type: ""
   },
   npc: {
     L1: {
@@ -63363,6 +63386,9 @@ var getters = {
   },
   getBgImg: function getBgImg(state) {
     return state.bgImg;
+  },
+  getWindowEffect: function getWindowEffect(state) {
+    return state.windowEffect;
   }
 };
 var mutations = {
@@ -63543,6 +63569,10 @@ var mutations = {
   setBgm: function setBgm(state, sound) {
     state.sound.bgm = sound.bgm;
     state.sound.volume = sound.volume;
+  },
+  setWindowEffect: function setWindowEffect(state, effect) {
+    state.windowEffect.isShow = effect.isShow;
+    state.windowEffect.type = effect.type;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
