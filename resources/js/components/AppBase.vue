@@ -11,7 +11,7 @@
       </div>
       <router-view name="sidebar"></router-view>
     </div>
-    <div style="background:#000; z-index:200; position:absolute; width:1200px;">
+    <div style="background:#000; z-index:200; width:1200px;">
       <div>
         <label>name</label>
         <input type="hidden" name="_token" :value="csrf" />

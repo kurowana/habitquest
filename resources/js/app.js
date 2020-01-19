@@ -14,7 +14,13 @@ for (let rule in rules) {
 }
 Vue.component("ValidationProvider", ValidationProvider);
 
+import BootstrapVue from "bootstrap-vue";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+Vue.use(BootstrapVue);
+
 import AppBase from "./components/AppBase";
+import AppContainer from "./components/AppContainer";
 
 Vue.directive("play", function(el, binding) {
     if (binding.value) {
@@ -30,6 +36,7 @@ new Vue({
     store,
     router,
     components: {
-        "app-base": AppBase
+        "app-base": AppBase,
+        "app-container": AppContainer
     }
 });
