@@ -10,9 +10,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(value,key) in tempStatus" :key="key">
-            <td>{{key}}</td>
-            <td>{{value}}</td>
+          <tr v-for="(value, key) in tempStatus" :key="key">
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
             <td>
               <button @click.self.prevent="incTempSt(key)">+</button>
               <button @click.self.prevent="decTempSt(key)">-</button>
@@ -22,19 +22,19 @@
       </table>
       <button @click.self.prevent="updateStatus">決定</button>
       <button @click.self.prevent="resetStatus">リセット</button>
-      <button @click.self.prevent="isShowStatusUp=false">閉じる</button>
+      <button @click.self.prevent="isShowStatusUp = false">閉じる</button>
     </modal>
     <div>
       <button @click="changeArea">切り替え</button>
     </div>
     <div class="leftArea">
-      <p class="statusUserName">ユーザー名：{{user.name}}</p>
+      <p class="statusUserName">ユーザー名：{{ user.name }}</p>
       <img :src="userImgList[user.imgType].stand" class="statusUserImg" />
     </div>
     <div class="rightArea">
-      <p>レベル：{{user.lv}}</p>
-      <p>残りポイント：{{tempPoint}}</p>
-      <button @click.self.prevent="isShowStatusUp=true">能力を振り分ける</button>
+      <p>レベル：{{ user.lv }}</p>
+      <p>残りポイント：{{ tempPoint }}</p>
+      <button @click.self.prevent="isShowStatusUp = true">能力を振り分ける</button>
       <div>
         <base-st-chart class="chartConponent" :user-status="tempStatus"></base-st-chart>
       </div>
@@ -77,7 +77,10 @@ export default {
 
       eventObj: [
         () => {
-          this.setEvent({ type: "msg", content: "どの能力を成長させるの？" });
+          this.setEvent({
+            type: "msg",
+            content: "どの能力を成長させるの？"
+          });
         }
       ]
     };

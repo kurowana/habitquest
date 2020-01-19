@@ -31,6 +31,7 @@ const routes = [
             subSidebar: SubSidebar
         }
     },
+
     {
         path: "/home",
         name: "home",

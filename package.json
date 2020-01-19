@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "bootstrap-vue": "^2.2.2",
         "chart.js": "^2.8.0",
         "vee-validate": "^3.0.3",
         "vue-chartjs": "^3.4.2",
